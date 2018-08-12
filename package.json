@@ -1,0 +1,42 @@
+{
+	"name": "ngx-crud",
+	"description": "CRUD services for Angular",
+	"version": "1.0.0-beta.1",
+	"license": "GPL-3.0",
+	"keywords":
+	[
+		"api",
+		"crud",
+		"rest"
+	],
+	"author":
+	{
+		"name": "Henry Ruhs",
+		"url": "https://redaxmedia.com"
+	},
+	"bugs":
+	{
+		"url": "https://github.com/redaxmedia/ngx-rip/issues"
+	},
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/redaxmedia/ngx-rip.git"
+	},
+	"dependencies":
+	{
+		"@angular/common": ">=4",
+		"@angular/core": ">=4",
+		"rxjs": ">=4",
+		"typescript": ">=2"
+	},
+	"devDependencies":
+	{
+		"tslint": "5.11.0",
+		"tslint-eslint-rules": "5.3.1"
+	},
+	"scripts":
+	{
+		"lint": "tslint src/*"
+	}
+}
