@@ -32,18 +32,23 @@
 	},
 	"devDependencies":
 	{
+		"@angular/compiler": ">4",
+		"@angular/platform-browser": ">4",
+		"@angular/platform-browser-dynamic": ">4",
 		"@types/chai": "4.1.4",
 		"@types/mocha": "5.2.5",
 		"chai": "4.1.2",
-		"core-js": "2.5.7",
+		"jsdom": "11.12.0",
+		"jsdom-global": "3.0.2",
 		"mocha": "5.2.0",
 		"ts-node": "7.0.1",
 		"tslint": "5.11.0",
-		"tslint-eslint-rules": "5.3.1"
+		"tslint-eslint-rules": "5.3.1",
+		"zone.js": "0.8.26"
 	},
 	"scripts":
 	{
 		"lint": "tslint src/**/*.ts tests/**/*.ts",
-		"test": "mocha --require ts-node/register tests/*.spec.ts"
+		"test": "mocha --require ts-node tests/polyfill.ts --require jsdom-global/register --require ts-node/register tests/*.spec.ts"
 	}
 }

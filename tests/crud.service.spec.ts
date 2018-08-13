@@ -1,5 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing'
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { TestService } from './test.service';
 
@@ -7,10 +8,11 @@ describe('CrudService', () =>
 {
 	beforeEach(() =>
 	{
+		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 		TestBed.configureTestingModule({
 			imports:
 			[
-				HttpClientModule
+				HttpClientTestingModule
 			],
 			providers:
 			[
