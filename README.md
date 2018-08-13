@@ -15,3 +15,22 @@ Installation
 ```
 npm install ngx-crud
 ```
+
+
+Usage
+-----
+
+```
+import { Injectable } from '@angular/core';
+import { CrudService } from 'ngx-crud';
+import { ExampleInterface } from './example.interface';
+
+import { environment } from '@env';
+
+@Injectable()
+export class ExampleService extends CrudService<ExampleInterface>
+{
+	protected apiUrl: string = environment.apiUrl;
+	protected endpoint: string = environment.routes.example;
+}
+```

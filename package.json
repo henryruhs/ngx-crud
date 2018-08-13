@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services for Angular",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"license": "GPL-3.0",
 	"keywords":
 	[
@@ -32,11 +32,18 @@
 	},
 	"devDependencies":
 	{
+		"@types/chai": "4.1.4",
+		"@types/mocha": "5.2.5",
+		"chai": "4.1.2",
+		"core-js": "2.5.7",
+		"mocha": "5.2.0",
+		"ts-node": "7.0.1",
 		"tslint": "5.11.0",
 		"tslint-eslint-rules": "5.3.1"
 	},
 	"scripts":
 	{
-		"lint": "tslint src/*"
+		"lint": "tslint src/**/*.ts tests/**/*.ts",
+		"test": "mocha --require ts-node/register tests/*.spec.ts"
 	}
 }
