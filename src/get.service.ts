@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
 
 @Injectable()
-export class GetService extends CommonService
+export class GetService<T> extends CommonService
 {
-	public get(id : string) : Observable<Response>
+	get(id : string, options? : any) : Observable<HttpEvent<T[]>>
 	{
-		return this.http.get(
+		return this.http.get<T[]>(
 		[
 			this.apiUrl,
 			this.endpoint,
 			id
-		].join('/'));
+		].join('/'), options ? options : this.options);
 	}
 }

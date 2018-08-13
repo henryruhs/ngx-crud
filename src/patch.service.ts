@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
 
 @Injectable()
-export class PatchService extends CommonService
+export class PatchService<T> extends CommonService
 {
-	public patch(id : string, body : any) : Observable<Response>
+	patch(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
 	{
-		return this.http.patch(
+		return this.http.patch<T>(
 		[
 			this.apiUrl,
 			this.endpoint,
 			id
-		].join('/'), body);
+		].join('/'), body, options ? options : this.options);
 	}
 }
