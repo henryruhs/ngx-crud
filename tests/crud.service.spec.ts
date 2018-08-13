@@ -9,7 +9,8 @@ describe('CrudService', () =>
 	beforeEach(() =>
 	{
 		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-		TestBed.configureTestingModule({
+		TestBed.configureTestingModule(
+		{
 			imports:
 			[
 				HttpClientTestingModule
