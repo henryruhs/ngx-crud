@@ -10,7 +10,7 @@ import { PutService } from './put.service';
 import { PatchService } from './patch.service';
 
 @Injectable()
-export abstract class CrudService<T> extends CommonService
+export class CrudService<T> extends CommonService
 {
 	protected constructor
 	(

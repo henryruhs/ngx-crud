@@ -1,3 +1,4 @@
+export { CrudModule } from './crud.module';
 export { CrudService } from './crud.service';
 export { DeleteService } from './delete.service';
 export { GetService } from './get.service';

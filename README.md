@@ -21,6 +21,22 @@ Usage
 -----
 
 ```
+import { NgModule } from '@angular/core';
+import { CrudModule } from 'ngx-crud';
+
+@NgModule(
+{
+    imports:
+    [
+    	CrudModule
+    ]
+})
+export class AppModule
+{
+}
+```
+
+```
 import { Injectable } from '@angular/core';
 import { HttpEvent } from '@angular/common/http';
 import { CrudService } from 'ngx-crud';
