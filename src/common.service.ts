@@ -13,7 +13,7 @@ export class CommonService
 		reportProgress? : boolean;
 		responseType? : string;
 		withCredentials? : boolean;
-	};
+	} = {};
 
 	constructor(protected http : HttpClient)
 	{
@@ -97,7 +97,6 @@ export class CommonService
 
 	clear()
 	{
-		this.options = {};
 		this.clearHeaders();
 		this.clearParams();
 		this.clearReportProgress();

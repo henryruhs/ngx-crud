@@ -14,6 +14,6 @@ export class PutService<T> extends CommonService
 			this.apiUrl,
 			this.endpoint,
 			id
-		].join('/'), body, options ? options : this.options);
+		].filter(value => value).join('/'), body, options ? options : this.options);
 	}
 }

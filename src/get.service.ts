@@ -14,6 +14,6 @@ export class GetService<T> extends CommonService
 			this.apiUrl,
 			this.endpoint,
 			id
-		].join('/'), options ? options : this.options);
+		].filter(value => value).join('/'), options ? options : this.options);
 	}
 }
