@@ -28,10 +28,10 @@ import { CrudModule } from 'ngx-crud';
 
 @NgModule(
 {
-    imports:
-    [
-    	CrudModule
-    ]
+	imports:
+	[
+		CrudModule
+	]
 })
 export class AppModule
 {
