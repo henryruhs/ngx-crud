@@ -20,6 +20,8 @@ npm install ngx-crud
 Usage
 -----
 
+Import the `CrudModule` to `AppModule`:
+
 ```
 import { NgModule } from '@angular/core';
 import { CrudModule } from 'ngx-crud';
@@ -35,6 +37,8 @@ export class AppModule
 {
 }
 ```
+
+Extend `ExampleService` from `CrudService`:
 
 ```
 import { Injectable } from '@angular/core';
