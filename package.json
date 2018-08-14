@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services for Angular",
-	"version": "1.0.0-beta.4",
+	"version": "1.0.0-beta.5",
 	"license": "GPL-3.0",
 	"keywords":
 	[
@@ -54,7 +54,7 @@
 	"scripts":
 	{
 		"lint": "tslint src/**/*.ts tests/**/*.ts",
-		"test": "mocha --require ts-node tests/polyfill.ts --require jsdom-global/register --require ts-node/register tests/*.spec.ts",
+		"test": "mocha --require tests/polyfill.ts --require jsdom-global/register --require ts-node/register tests/*.spec.ts",
 		"build": "ng-packagr -p package.json"
 	},
 	"ngPackage":

@@ -30,7 +30,7 @@ export class CommonService
 		this.options.headers = headers;
 	}
 
-	cleartHeaders()
+	clearHeaders()
 	{
 		this.options.headers = new HttpHeaders();
 	}
@@ -97,7 +97,8 @@ export class CommonService
 
 	clear()
 	{
-		this.cleartHeaders();
+		this.options = {};
+		this.clearHeaders();
 		this.clearParams();
 		this.clearReportProgress();
 		this.clearResponseType();

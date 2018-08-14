@@ -1,1 +1,1 @@
-import 'zone.js/dist/zone';
+require('zone.js');

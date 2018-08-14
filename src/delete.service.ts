@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
 
 @Injectable()
-export class DeleteService<T> extends CommonService
+export abstract class DeleteService<T> extends CommonService
 {
 	delete(id : string, options? : any) : Observable<HttpEvent<T>>
 	{

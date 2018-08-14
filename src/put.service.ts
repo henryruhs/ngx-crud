@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
 
 @Injectable()
-export class PutService<T> extends CommonService
+export abstract class PutService<T> extends CommonService
 {
 	put(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
 	{
