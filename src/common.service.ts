@@ -6,17 +6,18 @@ export class CommonService
 {
 	protected apiUrl : string;
 	protected endpoint : string;
-	protected options =
+	protected options :
 	{
-		headers: new HttpHeaders(),
-		params: new HttpParams(),
-		reportProgress: true,
-		responseType: 'json',
-		withCredentials: true
+		headers? : HttpHeaders;
+		params? : HttpParams;
+		reportProgress? : boolean;
+		responseType? : string;
+		withCredentials? : boolean;
 	};
 
 	constructor(protected http : HttpClient)
 	{
+		this.clear();
 	}
 
 	getHeaders() : HttpHeaders
@@ -29,6 +30,11 @@ export class CommonService
 		this.options.headers = headers;
 	}
 
+	cleartHeaders()
+	{
+		this.options.headers = new HttpHeaders();
+	}
+
 	getParams() : HttpParams
 	{
 		return this.options.params;
@@ -37,6 +43,11 @@ export class CommonService
 	setParams(params : HttpParams)
 	{
 		this.options.params = params;
+	}
+
+	clearParams()
+	{
+		this.options.params = new HttpParams();
 	}
 
 	getReportProgress() : boolean
@@ -49,6 +60,11 @@ export class CommonService
 		this.options.reportProgress = reportProgress;
 	}
 
+	clearReportProgress()
+	{
+		this.options.reportProgress = true;
+	}
+
 	getResponseType() : string
 	{
 		return this.options.responseType;
@@ -59,6 +75,11 @@ export class CommonService
 		this.options.responseType = responseType;
 	}
 
+	clearResponseType()
+	{
+		this.options.responseType = 'json';
+	}
+
 	getWithCredentials() : boolean
 	{
 		return this.options.withCredentials;
@@ -67,5 +88,19 @@ export class CommonService
 	setWithCredentials(withCredentials : boolean)
 	{
 		this.options.withCredentials = withCredentials;
+	}
+
+	clearWithCredentials()
+	{
+		this.options.withCredentials = true;
+	}
+
+	clear()
+	{
+		this.cleartHeaders();
+		this.clearParams();
+		this.clearReportProgress();
+		this.clearResponseType();
+		this.clearWithCredentials();
 	}
 }

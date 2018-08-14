@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CrudService } from '../';
+import { CrudService } from '../src';
 
 import { TestInterface } from './test.interface';
 
