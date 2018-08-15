@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services for Angular",
-	"version": "1.0.0-beta.6",
+	"version": "1.0.0-beta.7",
 	"license": "GPL-3.0",
 	"keywords":
 	[
@@ -40,6 +40,7 @@
 		"@types/chai": "4.1.4",
 		"@types/mocha": "5.2.5",
 		"chai": "4.1.2",
+		"core-js": "2.5.7",
 		"jsdom": "11.12.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "5.2.0",

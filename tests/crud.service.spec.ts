@@ -7,7 +7,7 @@ import { TestService } from './test.service';
 
 describe('CrudService', () =>
 {
-	beforeEach(() =>
+	before(() =>
 	{
 		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 		TestBed.configureTestingModule(
