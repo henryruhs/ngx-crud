@@ -7,7 +7,7 @@ import { CommonService } from './common.service';
 @Injectable()
 export class PatchService<T> extends CommonService
 {
-	constructor(protected http: HttpClient)
+	constructor(protected http : HttpClient)
 	{
 		super();
 		this.clear();
