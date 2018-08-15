@@ -25,14 +25,14 @@ export class CommonService
 		this.apiUrl = apiUrl;
 	}
 
-	setEndpoint(endpoint : string)
-	{
-		this.endpoint = endpoint;
-	}
-
 	getEndpoint() : string
 	{
 		return this.endpoint;
+	}
+
+	setEndpoint(endpoint : string)
+	{
+		this.endpoint = endpoint;
 	}
 
 	getHeaders() : HttpHeaders
