@@ -20,6 +20,26 @@ export class CommonService
 		this.clear();
 	}
 
+	getApiUrl() : string
+	{
+		return this.apiUrl;
+	}
+
+	setApiUrl(apiUrl : string)
+	{
+		this.apiUrl = apiUrl;
+	}
+
+	setEndpoint(endpoint : string)
+	{
+		this.endpoint = endpoint;
+	}
+
+	getEndpoint() : string
+	{
+		return this.endpoint;
+	}
+
 	getHeaders() : HttpHeaders
 	{
 		return this.options.headers;

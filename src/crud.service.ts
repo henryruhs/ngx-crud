@@ -25,28 +25,38 @@ export class CrudService<T> extends CommonService
 		this.clear();
 	}
 
-	create(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
+	create(body : any, options? : any) : Observable<HttpEvent<T>>
 	{
-		return this.postService.post(id, body, options ? options : this.options);
+		this.postService.setApiUrl(this.apiUrl);
+		this.postService.setEndpoint(this.endpoint);
+		return this.postService.post(body, options ? options : this.options);
 	}
 
 	read(id : string, options? : any) : Observable<HttpEvent<T[]>>
 	{
+		this.getService.setApiUrl(this.apiUrl);
+		this.getService.setEndpoint(this.endpoint);
 		return this.getService.get(id, options ? options : this.options);
 	}
 
 	update(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
 	{
+		this.putService.setApiUrl(this.apiUrl);
+		this.putService.setEndpoint(this.endpoint);
 		return this.putService.put(id, body, options ? options : this.options);
 	}
 
 	patch(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
 	{
+		this.patchService.setApiUrl(this.apiUrl);
+		this.patchService.setEndpoint(this.endpoint);
 		return this.patchService.patch(id, body, options ? options : this.options);
 	}
 
 	delete(id : string, options? : any) : Observable<HttpEvent<T>>
 	{
+		this.deleteService.setApiUrl(this.apiUrl);
+		this.deleteService.setEndpoint(this.endpoint);
 		return this.deleteService.delete(id, options ? options : this.options);
 	}
 }

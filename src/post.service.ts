@@ -13,13 +13,12 @@ export class PostService<T> extends CommonService
 		this.clear();
 	}
 
-	post(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
+	post(body : any, options? : any) : Observable<HttpEvent<T>>
 	{
 		return this.http.post<T>(
 		[
 			this.apiUrl,
-			this.endpoint,
-			id
+			this.endpoint
 		].filter(value => value).join('/'), body, options ? options : this.options);
 	}
 }
