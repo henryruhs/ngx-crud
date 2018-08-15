@@ -19,17 +19,19 @@ npm install ngx-crud
 Usage
 -----
 
-Import the `CrudModule` to `AppModule`:
+Import the `CrudModule` and `HttpClientModule` to `AppModule`:
 
 ```
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CrudModule } from 'ngx-crud';
 
 @NgModule(
 {
 	imports:
 	[
-		CrudModule
+		CrudModule,
+		HttpClientModule
 	]
 })
 export class AppModule
