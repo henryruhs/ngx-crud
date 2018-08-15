@@ -15,11 +15,6 @@ export class CommonService
 		withCredentials? : boolean;
 	} = {};
 
-	constructor()
-	{
-		this.clear();
-	}
-
 	getApiUrl() : string
 	{
 		return this.apiUrl;
