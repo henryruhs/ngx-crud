@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
@@ -7,6 +7,12 @@ import { CommonService } from './common.service';
 @Injectable()
 export class GetService<T> extends CommonService
 {
+	constructor(protected http: HttpClient)
+	{
+		super();
+		this.clear();
+	}
+
 	get(id : string, options? : any) : Observable<HttpEvent<T[]>>
 	{
 		return this.http.get<T[]>(

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
@@ -14,7 +14,6 @@ export class CrudService<T> extends CommonService
 {
 	protected constructor
 	(
-		protected http : HttpClient,
 		protected deleteService : DeleteService<T>,
 		protected getService : GetService<T>,
 		protected postService : PostService<T>,
@@ -22,7 +21,8 @@ export class CrudService<T> extends CommonService
 		protected patchService : PatchService<T>
 	)
 	{
-		super(http);
+		super();
+		this.clear();
 	}
 
 	create(id : string, body : any, options? : any) : Observable<HttpEvent<T>>

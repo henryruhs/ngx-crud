@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
@@ -7,6 +7,12 @@ import { CommonService } from './common.service';
 @Injectable()
 export class PatchService<T> extends CommonService
 {
+	constructor(protected http: HttpClient)
+	{
+		super();
+		this.clear();
+	}
+
 	patch(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
 	{
 		return this.http.patch<T>(

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class CommonService
@@ -15,7 +15,7 @@ export class CommonService
 		withCredentials? : boolean;
 	} = {};
 
-	constructor(protected http : HttpClient)
+	constructor()
 	{
 		this.clear();
 	}
