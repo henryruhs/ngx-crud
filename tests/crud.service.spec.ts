@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { inject, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing'
 import { HttpClientModule } from '@angular/common/http';
@@ -34,9 +35,17 @@ describe('CrudService', () =>
 			testService
 				.create(
 				{
-					name: 'test'
+					title: 'test'
 				})
-				.subscribe(() => done());
+				.subscribe(response =>
+				{
+					expect(response).to.deep.equal(
+					{
+						id: 101,
+						title: 'test'
+					});
+					done();
+				});
 		})();
 	});
 
@@ -49,7 +58,11 @@ describe('CrudService', () =>
 		{
 			testService
 				.read('1')
-				.subscribe(() => done());
+				.subscribe(response =>
+				{
+					expect(response.id).to.equal(1);
+					done();
+				});
 		})();
 	});
 
@@ -63,9 +76,17 @@ describe('CrudService', () =>
 			testService
 				.update('1',
 				{
-					name: 'test'
+					title: 'test'
 				})
-				.subscribe(() => done());
+				.subscribe(response =>
+				{
+					expect(response).to.deep.equal(
+					{
+						id: 1,
+						title: 'test'
+					});
+					done();
+				});
 		})();
 	});
 
@@ -79,9 +100,15 @@ describe('CrudService', () =>
 			testService
 				.patch('1',
 				{
-					name: 'test'
+					title: 'test'
 				})
-				.subscribe(() => done());
+				.subscribe(response =>
+				{
+					expect(response.id).to.equal(1);
+					expect(response.title).to.equal('test');
+					expect(response).to.have.property('body');
+					done();
+				});
 		})();
 	});
 

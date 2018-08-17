@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
+import { OptionsInterface } from './common.interface';
+
 @Injectable()
 export class CommonService
 {
 	protected apiUrl : string;
 	protected endpoint : string;
-	protected options :
-	{
-		headers? : HttpHeaders;
-		params? : HttpParams;
-		reportProgress? : boolean;
-		responseType? : string;
-		withCredentials? : boolean;
-	} = {};
+	protected options : OptionsInterface = {};
 
 	getApiUrl() : string
 	{
 		return this.apiUrl;
 	}
 
-	setApiUrl(apiUrl : string)
+	setApiUrl(apiUrl : string) : this
 	{
 		this.apiUrl = apiUrl;
+		return this;
 	}
 
 	getEndpoint() : string
@@ -30,9 +26,10 @@ export class CommonService
 		return this.endpoint;
 	}
 
-	setEndpoint(endpoint : string)
+	setEndpoint(endpoint : string) : this
 	{
 		this.endpoint = endpoint;
+		return this;
 	}
 
 	getHeaders() : HttpHeaders
@@ -40,14 +37,16 @@ export class CommonService
 		return this.options.headers;
 	}
 
-	setHeaders(headers : HttpHeaders)
+	setHeaders(headers : HttpHeaders) : this
 	{
 		this.options.headers = headers;
+		return this;
 	}
 
-	clearHeaders()
+	clearHeaders() : this
 	{
 		this.options.headers = new HttpHeaders();
+		return this;
 	}
 
 	getParams() : HttpParams
@@ -55,14 +54,16 @@ export class CommonService
 		return this.options.params;
 	}
 
-	setParams(params : HttpParams)
+	setParams(params : HttpParams) : this
 	{
 		this.options.params = params;
+		return this;
 	}
 
-	clearParams()
+	clearParams() : this
 	{
 		this.options.params = new HttpParams();
+		return this;
 	}
 
 	getReportProgress() : boolean
@@ -70,29 +71,16 @@ export class CommonService
 		return this.options.reportProgress;
 	}
 
-	setReportProgress(reportProgress : boolean)
+	setReportProgress(reportProgress : boolean) : this
 	{
 		this.options.reportProgress = reportProgress;
+		return this;
 	}
 
-	clearReportProgress()
+	clearReportProgress() : this
 	{
 		this.options.reportProgress = true;
-	}
-
-	getResponseType() : string
-	{
-		return this.options.responseType;
-	}
-
-	setResponseType(responseType : string)
-	{
-		this.options.responseType = responseType;
-	}
-
-	clearResponseType()
-	{
-		this.options.responseType = 'json';
+		return this;
 	}
 
 	getWithCredentials() : boolean
@@ -100,22 +88,24 @@ export class CommonService
 		return this.options.withCredentials;
 	}
 
-	setWithCredentials(withCredentials : boolean)
+	setWithCredentials(withCredentials : boolean) : this
 	{
 		this.options.withCredentials = withCredentials;
+		return this;
 	}
 
-	clearWithCredentials()
+	clearWithCredentials() : this
 	{
 		this.options.withCredentials = true;
+		return this;
 	}
 
 	clear()
 	{
-		this.clearHeaders();
-		this.clearParams();
-		this.clearReportProgress();
-		this.clearResponseType();
-		this.clearWithCredentials();
+		this
+			.clearHeaders()
+			.clearParams()
+			.clearReportProgress()
+			.clearWithCredentials();
 	}
 }

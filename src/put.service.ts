@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
+import { OptionsInterface } from './common.interface';
 
 @Injectable()
 export class PutService<T> extends CommonService
@@ -13,7 +14,7 @@ export class PutService<T> extends CommonService
 		this.clear();
 	}
 
-	put(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
+	put(id : string, body : any, options? : OptionsInterface) : Observable<T>
 	{
 		return this.http.put<T>(
 		[

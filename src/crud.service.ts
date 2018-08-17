@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
@@ -8,6 +7,7 @@ import { GetService } from './get.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { PatchService } from './patch.service';
+import { OptionsInterface } from './common.interface';
 
 @Injectable()
 export class CrudService<T> extends CommonService
@@ -25,38 +25,43 @@ export class CrudService<T> extends CommonService
 		this.clear();
 	}
 
-	create(body : any, options? : any) : Observable<HttpEvent<T>>
+	create(body : any, options? : OptionsInterface) : Observable<T>
 	{
-		this.postService.setApiUrl(this.apiUrl);
-		this.postService.setEndpoint(this.endpoint);
-		return this.postService.post(body, options ? options : this.options);
+		return this.postService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.post(body, options ? options : this.options);
 	}
 
-	read(id : string, options? : any) : Observable<HttpEvent<T[]>>
+	read(id : string, options? : OptionsInterface) : Observable<T>
 	{
-		this.getService.setApiUrl(this.apiUrl);
-		this.getService.setEndpoint(this.endpoint);
-		return this.getService.get(id, options ? options : this.options);
+		return this.getService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.get(id, options ? options : this.options);
 	}
 
-	update(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
+	update(id : string, body : any, options? : OptionsInterface) : Observable<T>
 	{
-		this.putService.setApiUrl(this.apiUrl);
-		this.putService.setEndpoint(this.endpoint);
-		return this.putService.put(id, body, options ? options : this.options);
+		return this.putService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.put(id, body, options ? options : this.options);
 	}
 
-	patch(id : string, body : any, options? : any) : Observable<HttpEvent<T>>
+	patch(id : string, body : any, options? : OptionsInterface) : Observable<T>
 	{
-		this.patchService.setApiUrl(this.apiUrl);
-		this.patchService.setEndpoint(this.endpoint);
-		return this.patchService.patch(id, body, options ? options : this.options);
+		return this.patchService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.patch(id, body, options ? options : this.options);
 	}
 
-	delete(id : string, options? : any) : Observable<HttpEvent<T>>
+	delete(id : string, options? : OptionsInterface) : Observable<T>
 	{
-		this.deleteService.setApiUrl(this.apiUrl);
-		this.deleteService.setEndpoint(this.endpoint);
-		return this.deleteService.delete(id, options ? options : this.options);
+		return this.deleteService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.delete(id, options ? options : this.options);
 	}
 }

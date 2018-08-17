@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
+import { OptionsInterface } from './common.interface';
 
 @Injectable()
 export class GetService<T> extends CommonService
@@ -13,9 +14,9 @@ export class GetService<T> extends CommonService
 		this.clear();
 	}
 
-	get(id : string, options? : any) : Observable<HttpEvent<T[]>>
+	get(id : string, options? : OptionsInterface) : Observable<T>
 	{
-		return this.http.get<T[]>(
+		return this.http.get<T>(
 		[
 			this.apiUrl,
 			this.endpoint,
