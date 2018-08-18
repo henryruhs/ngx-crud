@@ -60,10 +60,10 @@ export class ExampleService extends CrudService<ExampleInterface>
 API
 ---
 
-| Operation | HTTP   | Method                                                          |
-|-----------|--------|--------------------------------------------------------------|
-| Create    | POST   | create(body : any, options? : OptionsInterface)              |
-| Read      | GET    | read(id : string, options? : OptionsInterface)               |
-| Update    | PUT    | update(id : string, body : any, options? : OptionsInterface) |
-| Patch     | PATCH  | patch(id : string, body : any, options? : OptionsInterface)  |
-| Delete    | DELETE | delete(id : string, options? : OptionsInterface)             |
+| Operation | HTTP   | Method | Options                                              |
+|-----------|--------|--------|------------------------------------------------------|
+| Create    | POST   | create | body : any, options? : OptionsInterface              |
+| Read      | GET    | read   | id : string, options? : OptionsInterface             |
+| Update    | PUT    | update | id : string, body : any, options? : OptionsInterface |
+| Patch     | PATCH  | patch  | id : string, body : any, options? : OptionsInterface |
+| Delete    | DELETE | delete | id : string, options? : OptionsInterface             |
