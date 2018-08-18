@@ -60,7 +60,7 @@ export class ExampleService extends CrudService<ExampleInterface>
 API
 ---
 
-| Operation | HTTP   | Method | Options                                              |
+| Operation | HTTP   | Method | Parameter                                            |
 |-----------|--------|--------|------------------------------------------------------|
 | Create    | POST   | create | body : any, options? : OptionsInterface              |
 | Read      | GET    | read   | id : string, options? : OptionsInterface             |
