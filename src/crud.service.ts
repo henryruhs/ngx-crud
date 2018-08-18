@@ -30,7 +30,8 @@ export class CrudService<T> extends CommonService
 		return this.postService
 			.setApiUrl(this.apiUrl)
 			.setEndpoint(this.endpoint)
-			.post(body, options ? options : this.options);
+			.setOptions((this.options))
+			.post(body, options);
 	}
 
 	read(id : string, options? : OptionsInterface) : Observable<T>
@@ -38,7 +39,8 @@ export class CrudService<T> extends CommonService
 		return this.getService
 			.setApiUrl(this.apiUrl)
 			.setEndpoint(this.endpoint)
-			.get(id, options ? options : this.options);
+			.setOptions((this.options))
+			.get(id, options);
 	}
 
 	update(id : string, body : any, options? : OptionsInterface) : Observable<T>
@@ -46,7 +48,8 @@ export class CrudService<T> extends CommonService
 		return this.putService
 			.setApiUrl(this.apiUrl)
 			.setEndpoint(this.endpoint)
-			.put(id, body, options ? options : this.options);
+			.setOptions((this.options))
+			.put(id, body, options);
 	}
 
 	patch(id : string, body : any, options? : OptionsInterface) : Observable<T>
@@ -54,7 +57,8 @@ export class CrudService<T> extends CommonService
 		return this.patchService
 			.setApiUrl(this.apiUrl)
 			.setEndpoint(this.endpoint)
-			.patch(id, body, options ? options : this.options);
+			.setOptions((this.options))
+			.patch(id, body, options);
 	}
 
 	delete(id : string, options? : OptionsInterface) : Observable<T>
@@ -62,6 +66,7 @@ export class CrudService<T> extends CommonService
 		return this.deleteService
 			.setApiUrl(this.apiUrl)
 			.setEndpoint(this.endpoint)
-			.delete(id, options ? options : this.options);
+			.setOptions((this.options))
+			.delete(id, options);
 	}
 }

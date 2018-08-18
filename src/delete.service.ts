@@ -21,6 +21,10 @@ export class DeleteService<T> extends CommonService
 			this.apiUrl,
 			this.endpoint,
 			id
-		].filter(value => value).join('/'), options ? options : this.options);
+		].filter(value => value).join('/'),
+		{
+			...this.options,
+			...options
+		})
 	}
 }

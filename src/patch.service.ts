@@ -21,6 +21,10 @@ export class PatchService<T> extends CommonService
 			this.apiUrl,
 			this.endpoint,
 			id
-		].filter(value => value).join('/'), body, options ? options : this.options);
+		].filter(value => value).join('/'), body,
+		{
+			...this.options,
+			...options
+		});
 	}
 }

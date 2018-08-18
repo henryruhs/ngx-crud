@@ -8,7 +8,7 @@ export class CommonService
 {
 	protected apiUrl : string;
 	protected endpoint : string;
-	protected options : OptionsInterface = {};
+	protected options : OptionsInterface;
 
 	getApiUrl() : string
 	{
@@ -29,6 +29,23 @@ export class CommonService
 	setEndpoint(endpoint : string) : this
 	{
 		this.endpoint = endpoint;
+		return this;
+	}
+
+	getOptions() : OptionsInterface
+	{
+		return this.options;
+	}
+
+	setOptions(options : OptionsInterface) : this
+	{
+		this.options = options;
+		return this;
+	}
+
+	clearOptions() : this
+	{
+		this.options = {};
 		return this;
 	}
 
@@ -103,6 +120,7 @@ export class CommonService
 	clear()
 	{
 		this
+			.clearOptions()
 			.clearHeaders()
 			.clearParams()
 			.clearReportProgress()
