@@ -27,4 +27,17 @@ export class GetService<T> extends CommonService
 			...options
 		});
 	}
+
+	find(options? : OptionsInterface) : Observable<T[]>
+	{
+		return this.http.get<T[]>(
+			[
+				this.apiUrl,
+				this.endpoint
+			].filter(value => value).join('/'),
+			{
+				...this.options,
+				...options
+			});
+	}
 }

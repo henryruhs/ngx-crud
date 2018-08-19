@@ -43,6 +43,15 @@ export class CrudService<T> extends CommonService
 			.get(id, options);
 	}
 
+	find(options? : OptionsInterface) : Observable<T[]>
+	{
+		return this.getService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.setOptions((this.options))
+			.find(options);
+	}
+
 	update(id : string, body : any, options? : OptionsInterface) : Observable<T>
 	{
 		return this.putService

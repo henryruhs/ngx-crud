@@ -43,6 +43,7 @@ Extend `ExampleService` from `CrudService`:
 
 ```typescript
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CrudService } from 'ngx-crud';
 import { ExampleInterface } from './example.interface';
 
@@ -53,6 +54,14 @@ export class ExampleService extends CrudService<ExampleInterface>
 {
 	protected apiUrl : string = environment.apiUrl;
 	protected endpoint : string = environment.routes.example;
+
+	findByFilter(filter : string) : Observable<ExampleInterface[]>
+	{
+		return this.find(
+		{
+			params: this.getParams().set('filter', filter)
+		});
+	}
 }
 ```
 
@@ -60,10 +69,11 @@ export class ExampleService extends CrudService<ExampleInterface>
 API
 ---
 
-| Operation | HTTP   | Method | Parameter                                            |
-|-----------|--------|--------|------------------------------------------------------|
-| Create    | POST   | create | body : any, options? : OptionsInterface              |
-| Read      | GET    | read   | id : string, options? : OptionsInterface             |
-| Update    | PUT    | update | id : string, body : any, options? : OptionsInterface |
-| Patch     | PATCH  | patch  | id : string, body : any, options? : OptionsInterface |
-| Delete    | DELETE | delete | id : string, options? : OptionsInterface             |
+| Operation | HTTP   | Method | Parameter                                              | Return            |
+|-----------|--------|--------|--------------------------------------------------------|-------------------|
+| Create    | POST   | create | `body : any, options? : OptionsInterface`              | `Observable<T>`   |
+| Read      | GET    | read   | `id : string, options? : OptionsInterface`             | `Observable<T>`   |
+| Find      | GET    | find   | `options? : OptionsInterface`                          | `Observable<T[]>` |
+| Update    | PUT    | update | `id : string, body : any, options? : OptionsInterface` | `Observable<T>`   |
+| Patch     | PATCH  | patch  | `id : string, body : any, options? : OptionsInterface` | `Observable<T>`   |
+| Delete    | DELETE | delete | `id : string, options? : OptionsInterface`             | `Observable<T>`   |
