@@ -69,12 +69,13 @@ export class ExampleService extends CrudService<ExampleInterface>
 API
 ---
 
-| Operation | HTTP   | Method | Parameter                                                           | Return            |
-|-----------|--------|--------|---------------------------------------------------------------------|-------------------|
-| Create    | POST   | create | `body : any, options? : OptionsInterface`                           | `Observable<T>`   |
-| Read      | GET    | read   | `number / string : string, options? : OptionsInterface`             | `Observable<T>`   |
-| Find      | GET    | find   | `options? : OptionsInterface`                                       | `Observable<T[]>` |
-| Update    | PUT    | update | `number / string : string, body : any, options? : OptionsInterface` | `Observable<T>`   |
-| Patch     | PATCH  | patch  | `number / string : string, body : any, options? : OptionsInterface` | `Observable<T>`   |
-| Delete    | DELETE | delete | `number / string : string, options? : OptionsInterface`             | `Observable<T>`   |
+| Operation | HTTP   | Method | Parameter                                                       | Return            |
+|-----------|--------|--------|-----------------------------------------------------------------|-------------------|
+| Create    | POST   | create | `body : any, options? : OptionsInterface`                       | `Observable<T>`   |
+| Read      | GET    | read   | `id : number / string, options? : OptionsInterface`             | `Observable<T>`   |
+| Find      | GET    | find   | `options? : OptionsInterface`                                   | `Observable<T[]>` |
+| Update    | PUT    | update | `id : number / string, body : any, options? : OptionsInterface` | `Observable<T>`   |
+| Patch     | PATCH  | patch  | `id : number / string, body : any, options? : OptionsInterface` | `Observable<T>`   |
+| Delete    | DELETE | delete | `id : number / string, options? : OptionsInterface`             | `Observable<T>`   |
+
 
