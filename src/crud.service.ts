@@ -34,7 +34,7 @@ export class CrudService<T> extends CommonService
 			.post(body, options);
 	}
 
-	read(id : string, options? : OptionsInterface) : Observable<T>
+	read(id : number | string, options? : OptionsInterface) : Observable<T>
 	{
 		return this.getService
 			.setApiUrl(this.apiUrl)
@@ -52,7 +52,7 @@ export class CrudService<T> extends CommonService
 			.find(options);
 	}
 
-	update(id : string, body : any, options? : OptionsInterface) : Observable<T>
+	update(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
 	{
 		return this.putService
 			.setApiUrl(this.apiUrl)
@@ -61,7 +61,7 @@ export class CrudService<T> extends CommonService
 			.put(id, body, options);
 	}
 
-	patch(id : string, body : any, options? : OptionsInterface) : Observable<T>
+	patch(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
 	{
 		return this.patchService
 			.setApiUrl(this.apiUrl)
@@ -70,7 +70,7 @@ export class CrudService<T> extends CommonService
 			.patch(id, body, options);
 	}
 
-	delete(id : string, options? : OptionsInterface) : Observable<T>
+	delete(id : number | string, options? : OptionsInterface) : Observable<T>
 	{
 		return this.deleteService
 			.setApiUrl(this.apiUrl)

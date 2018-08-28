@@ -14,7 +14,7 @@ export class PatchService<T> extends CommonService
 		this.clear();
 	}
 
-	patch(id : string, body : any, options? : OptionsInterface) : Observable<T>
+	patch(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
 	{
 		return this.http.patch<T>(
 		[

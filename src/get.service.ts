@@ -14,7 +14,7 @@ export class GetService<T> extends CommonService
 		this.clear();
 	}
 
-	get(id : string, options? : OptionsInterface) : Observable<T>
+	get(id : number | string, options? : OptionsInterface) : Observable<T>
 	{
 		return this.http.get<T>(
 		[
