@@ -124,6 +124,7 @@ export class CommonService
 			endpoint,
 			id
 		].filter(value => value).join('/');
+
 		return new URL(route, apiUrl);
 	}
 
