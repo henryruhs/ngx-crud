@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
-export interface OptionsInterface
+export interface OptionInterface
 {
 	headers? : HttpHeaders;
 	observe? : 'body';

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { OptionsInterface } from './option.interface';
+import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class CommonService
 {
 	protected apiUrl : string;
 	protected endpoint : string;
-	protected options : OptionsInterface;
+	protected options : OptionInterface;
 
 	getApiUrl() : string
 	{
@@ -32,12 +32,12 @@ export class CommonService
 		return this;
 	}
 
-	getOptions() : OptionsInterface
+	getOptions() : OptionInterface
 	{
 		return this.options;
 	}
 
-	setOptions(options : OptionsInterface) : this
+	setOptions(options : OptionInterface) : this
 	{
 		this.options = options;
 		return this;

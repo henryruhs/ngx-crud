@@ -7,7 +7,7 @@ import { GetService } from './get.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { PatchService } from './patch.service';
-import { OptionsInterface } from './option.interface';
+import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class CrudService<T> extends CommonService
@@ -25,7 +25,7 @@ export class CrudService<T> extends CommonService
 		this.clear();
 	}
 
-	create(body : any, options? : OptionsInterface) : Observable<T>
+	create(body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.postService
 			.setApiUrl(this.apiUrl)
@@ -34,7 +34,7 @@ export class CrudService<T> extends CommonService
 			.post(body, options);
 	}
 
-	read(id : number | string, options? : OptionsInterface) : Observable<T>
+	read(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.getService
 			.setApiUrl(this.apiUrl)
@@ -43,7 +43,7 @@ export class CrudService<T> extends CommonService
 			.get(id, options);
 	}
 
-	find(options? : OptionsInterface) : Observable<T[]>
+	find(options? : OptionInterface) : Observable<T[]>
 	{
 		return this.getService
 			.setApiUrl(this.apiUrl)
@@ -52,7 +52,7 @@ export class CrudService<T> extends CommonService
 			.find(options);
 	}
 
-	update(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
+	update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.putService
 			.setApiUrl(this.apiUrl)
@@ -61,7 +61,7 @@ export class CrudService<T> extends CommonService
 			.put(id, body, options);
 	}
 
-	patch(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
+	patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.patchService
 			.setApiUrl(this.apiUrl)
@@ -70,7 +70,7 @@ export class CrudService<T> extends CommonService
 			.patch(id, body, options);
 	}
 
-	delete(id : number | string, options? : OptionsInterface) : Observable<T>
+	delete(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.deleteService
 			.setApiUrl(this.apiUrl)

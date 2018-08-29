@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
-import { OptionsInterface } from './option.interface';
+import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class PostService<T> extends CommonService
@@ -14,7 +14,7 @@ export class PostService<T> extends CommonService
 		this.clear();
 	}
 
-	post(body : any, options? : OptionsInterface) : Observable<T>
+	post(body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.http.post<T>(this.createURL(this.apiUrl, this.endpoint).toString(), body,
 		{

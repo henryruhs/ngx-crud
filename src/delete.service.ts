@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
-import { OptionsInterface } from './option.interface';
+import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class DeleteService<T> extends CommonService
@@ -14,7 +14,7 @@ export class DeleteService<T> extends CommonService
 		this.clear();
 	}
 
-	delete(id : number | string, options? : OptionsInterface) : Observable<T>
+	delete(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.http.delete<T>(this.createURL(this.apiUrl, this.endpoint, id).toString(),
 		{
