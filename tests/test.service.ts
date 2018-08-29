@@ -8,7 +8,7 @@ import { TestInterface } from './test.interface';
 export class TestService extends CrudService<TestInterface>
 {
 	protected apiUrl : string = 'https://jsonplaceholder.typicode.com';
-	protected endpoint : string = 'posts';
+	protected endpoint : string = '/posts';
 
 	findByUser(userId : string) : Observable<TestInterface[]>
 	{

@@ -39,11 +39,8 @@ describe('CrudService', () =>
 				})
 				.subscribe(response =>
 				{
-					expect(response).to.deep.equal(
-					{
-						id: 101,
-						title: 'test'
-					});
+					expect(response.id).to.be.above(100);
+					expect(response.title).to.equal('test');
 					done();
 				});
 		})();
