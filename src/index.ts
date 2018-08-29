@@ -1,7 +1,9 @@
+export { CommonService } from './common.service';
 export { CrudModule } from './crud.module';
 export { CrudService } from './crud.service';
 export { DeleteService } from './delete.service';
 export { GetService } from './get.service';
+export { OptionsInterface } from './option.interface';
 export { PatchService } from './patch.service';
 export { PostService } from './post.service';
 export { PutService } from './put.service';

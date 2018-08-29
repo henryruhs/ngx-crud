@@ -7,12 +7,12 @@ import { GetService } from './get.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { PatchService } from './patch.service';
-import { OptionsInterface } from './common.interface';
+import { OptionsInterface } from './option.interface';
 
 @Injectable()
 export class CrudService<T> extends CommonService
 {
-	protected constructor
+	constructor
 	(
 		protected deleteService : DeleteService<T>,
 		protected getService : GetService<T>,

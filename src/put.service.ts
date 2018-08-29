@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
-import { OptionsInterface } from './common.interface';
+import { OptionsInterface } from './option.interface';
 
 @Injectable()
 export class PutService<T> extends CommonService
@@ -16,12 +16,7 @@ export class PutService<T> extends CommonService
 
 	put(id : number | string, body : any, options? : OptionsInterface) : Observable<T>
 	{
-		return this.http.put<T>(
-		[
-			this.apiUrl,
-			this.endpoint,
-			id
-		].filter(value => value).join('/'), body,
+		return this.http.put<T>(this.createURL(this.apiUrl, this.endpoint, id).toString(), body,
 		{
 			...this.options,
 			...options

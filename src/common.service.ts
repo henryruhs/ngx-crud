@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { OptionsInterface } from './common.interface';
+import { OptionsInterface } from './option.interface';
 
 @Injectable()
 export class CommonService
@@ -115,6 +115,16 @@ export class CommonService
 	{
 		this.options.withCredentials = true;
 		return this;
+	}
+
+	createURL(apiUrl : string, endpoint : string, id? : number | string) : URL
+	{
+		const route =
+		[
+			endpoint,
+			id
+		].filter(value => value).join('/');
+		return new URL(route, apiUrl);
 	}
 
 	clear()
