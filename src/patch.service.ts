@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
-import { OptionInterface } from './option.interface;
+import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class PatchService<T> extends CommonService
