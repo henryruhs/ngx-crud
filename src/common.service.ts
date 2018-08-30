@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
+import * as normalizePath from 'normalize-path';
 
 import { OptionInterface } from './option.interface';
 
@@ -117,15 +118,26 @@ export class CommonService
 		return this;
 	}
 
-	createURL(apiUrl : string, endpoint : string, id? : number | string) : URL
+	createURL(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
+		const PATH =
+		{
+			normalize: normalizePath
+		};
 		const route =
 		[
 			endpoint,
 			id
 		].filter(value => value).join('/');
 
-		return new URL(route, apiUrl);
+		try
+		{
+			return new URL(route, apiUrl).toString();
+		}
+		catch (exception)
+		{
+			return PATH.normalize(apiUrl + '/' + route);
+		}
 	}
 
 	clear()

@@ -2,16 +2,15 @@ import { expect } from 'chai';
 import { inject, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing'
 import { HttpClientModule } from '@angular/common/http';
-import { CrudModule } from '../src';
+import { CommonService, CrudModule } from '../src';
 
 import { TestService } from './test.service';
 
-describe('CrudService', () =>
+before(() =>
 {
-	before(() =>
-	{
-		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-		TestBed.configureTestingModule(
+	TestBed
+		.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting())
+		.configureTestingModule(
 		{
 			imports:
 			[
@@ -20,11 +19,32 @@ describe('CrudService', () =>
 			],
 			providers:
 			[
+				CommonService,
 				TestService
 			]
 		});
-	});
+});
 
+describe('CommonService', () =>
+{
+	it('create url', () =>
+	{
+		inject(
+		[
+			CommonService
+		], (commonService : CommonService) =>
+		{
+			const absoluteURL = commonService.createURL('http://localhost', '/posts', 1);
+			const relativeURL = commonService.createURL('../', '/posts', 1);
+
+			expect(absoluteURL).to.be.equal('http://localhost/posts/1');
+			expect(relativeURL).to.be.equal('../posts/1');
+		})();
+	});
+});
+
+describe('CrudService', () =>
+{
 	it('create', done =>
 	{
 		inject(

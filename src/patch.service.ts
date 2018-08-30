@@ -16,7 +16,7 @@ export class PatchService<T> extends CommonService
 
 	patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.patch<T>(this.createURL(this.apiUrl, this.endpoint, id).toString(), body,
+		return this.http.patch<T>(this.createURL(this.apiUrl, this.endpoint, id), body,
 		{
 			...this.options,
 			...options

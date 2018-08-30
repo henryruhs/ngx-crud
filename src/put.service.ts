@@ -16,7 +16,7 @@ export class PutService<T> extends CommonService
 
 	put(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.put<T>(this.createURL(this.apiUrl, this.endpoint, id).toString(), body,
+		return this.http.put<T>(this.createURL(this.apiUrl, this.endpoint, id), body,
 		{
 			...this.options,
 			...options

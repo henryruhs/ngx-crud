@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "Fluent CRUD services for Angular",
-	"version": "1.0.0",
+	"version": "1.1.0-beta.1",
 	"license": "GPL-3.0",
 	"keywords":
 	[
@@ -31,12 +31,12 @@
 	},
 	"devDependencies":
 	{
-		"@angular/core": "6.1.4",
-		"@angular/common": "6.1.4",
-		"@angular/compiler": "6.1.4",
-		"@angular/compiler-cli": "6.1.4",
-		"@angular/platform-browser": "6.1.4",
-		"@angular/platform-browser-dynamic": "6.1.4",
+		"@angular/common": "6.1.6",
+		"@angular/compiler": "6.1.6",
+		"@angular/compiler-cli": "6.1.6",
+		"@angular/core": "6.1.6",
+		"@angular/platform-browser": "6.1.6",
+		"@angular/platform-browser-dynamic": "6.1.6",
 		"@types/chai": "4.1.4",
 		"@types/mocha": "5.2.5",
 		"chai": "4.1.2",
@@ -45,6 +45,7 @@
 		"jsdom-global": "3.0.2",
 		"mocha": "5.2.0",
 		"ng-packagr": "4.1.1",
+		"normalize-path": "3.0.0",
 		"rxjs": "6.2.2",
 		"ts-node": "7.0.1",
 		"tslint": "5.11.0",
