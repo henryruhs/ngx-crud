@@ -119,20 +119,17 @@ export class CommonService
 
 	createURL(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
-		const route =
+		const url =
 		[
+			apiUrl,
 			endpoint,
 			id
-		].filter(value => value).join('/');
+		]
+		.filter(value => value)
+		.join('/')
+		.replace(/([^:]\/)\/+/g, '$1');
 
-		try
-		{
-			return new URL(route, apiUrl).toString();
-		}
-		catch (exception)
-		{
-			return (apiUrl + '/' + route).replace(/\/\/+/g, '/');
-		}
+		return url;
 	}
 
 	clear()

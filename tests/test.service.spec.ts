@@ -29,16 +29,40 @@ describe('CommonService', () =>
 {
 	it('create url', () =>
 	{
+		const urlArray =
+		[
+			{
+				apiUrl: 'http://localhost',
+				endpoint: '/posts',
+				id: null,
+				url: 'http://localhost/posts'
+			},
+			{
+				apiUrl: 'http://localhost/v1.0.0',
+				endpoint: '/posts',
+				id: 1,
+				url: 'http://localhost/v1.0.0/posts/1'
+			},
+			{
+				apiUrl: '../',
+				endpoint: '/posts',
+				id: null,
+				url: '../posts'
+			},
+			{
+				apiUrl: '../v1.0.0',
+				endpoint: '/posts',
+				id: 1,
+				url: '../v1.0.0/posts/1'
+			}
+		];
+
 		inject(
 		[
 			CommonService
 		], (commonService : CommonService) =>
 		{
-			const absoluteURL = commonService.createURL('http://localhost', '/posts', 1);
-			const relativeURL = commonService.createURL('../', '/posts', 1);
-
-			expect(absoluteURL).to.be.equal('http://localhost/posts/1');
-			expect(relativeURL).to.be.equal('../posts/1');
+			urlArray.forEach(item => expect(commonService.createURL(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.url));
 		})();
 	});
 });
