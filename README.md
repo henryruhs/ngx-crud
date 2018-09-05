@@ -67,10 +67,12 @@ export class ExampleService extends CrudService<ExampleInterface>
 
 
 API
----
+===
 
-Overview of CRUD methods:
 
+CRUD Service
+------------
+ 
 | Operation | HTTP   | Method | Parameter                                                      | Return            |
 |-----------|--------|--------|----------------------------------------------------------------|-------------------|
 | Create    | POST   | create | `body : any, options? : OptionInterface`                       | `Observable<T>`   |
@@ -80,28 +82,42 @@ Overview of CRUD methods:
 | Patch     | PATCH  | patch  | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
 | Delete    | DELETE | delete | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
 
-Overview of common methods:
 
-| Method               | Parameter                                                   | Return             |
-|----------------------|-------------------------------------------------------------|--------------------|
-| getApiUrl            |                                                             | `string`           |
-| setApiUrl            | `apiUrl : string`                                           | `this`             |
-| getEndpoint          |                                                             | `string`           |
-| setEndpoint          | `endpoint : string`                                         | `this`             |
-| getOptions           |                                                             | `OptionsInterface` |
-| setOptions           | `options : OptionsInterface`                                | `this`             |
-| clearOptions         |                                                             | `this`             |
-| getHeaders           |                                                             | `HttpHeaders`      |
-| setHeaders           | `headers : HttpHeaders`                                     | `this`             |
-| clearHeaders         |                                                             | `this`             |
-| getParams            |                                                             | `HttpParams`       |
-| setParams            | `params : HttpParams`                                       | `this`             |
-| clearParams          |                                                             | `this`             |
-| getReportProgress    |                                                             | `boolean`          |
-| setReportProgress    | `reportProgress : boolean`                                  | `this`             |
-| clearReportProgress  |                                                             | `this`             |
-| getWithCredentials   |                                                             | `boolean`          |
-| setWithCredentials   | `withCredentials :  boolean`                                | `this`             |
-| clearWithCredentials |                                                             | `this`             |
-| createURL            | `apiUrl : string, endpoint : string, id? : number / string` | `string`           |
-| clear                |                                                             | `this`             |
+Common Service
+--------------
+ 
+| Method             | Return            |
+|--------------------|-------------------|
+| getApiUrl          | `string`          |
+| getEndpoint        | `string`          |
+| getOptions         | `OptionInterface` |
+| getHeaders         | `HttpHeaders`     |
+| getParams          | `HttpParams`      |
+| getReportProgress  | `boolean`         |
+| getWithCredentials | `boolean`         |
+
+ 
+| Method             | Parameter                    | Return |
+|--------------------|------------------------------|--------|
+| setApiUrl          | `apiUrl : string`            | `this` |
+| setEndpoint        | `endpoint : string`          | `this` |
+| setOptions         | `options : OptionInterface`  | `this` |
+| setHeaders         | `headers : HttpHeaders`      | `this` |
+| setParams          | `params : HttpParams`        | `this` |
+| setReportProgress  | `reportProgress : boolean`   | `this` |
+| setWithCredentials | `withCredentials :  boolean` | `this` |
+
+ 
+| Method               | Return |
+|----------------------|--------|
+| clear                | `this` |
+| clearOptions         | `this` |
+| clearHeaders         | `this` |
+| clearParams          | `this` |
+| clearReportProgress  | `this` |
+| clearWithCredentials | `this` |
+
+ 
+| Method    | Parameter                                                   | Return   |
+|-----------|-------------------------------------------------------------|----------|
+| createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
