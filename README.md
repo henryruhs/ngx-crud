@@ -72,7 +72,9 @@ API
 
 CRUD Service
 ------------
- 
+
+Overview of `CRUD` methods:
+
 | Operation | HTTP   | Method | Parameter                                                      | Return            |
 |-----------|--------|--------|----------------------------------------------------------------|-------------------|
 | Create    | POST   | create | `body : any, options? : OptionInterface`                       | `Observable<T>`   |
@@ -85,7 +87,9 @@ CRUD Service
 
 Common Service
 --------------
- 
+
+Overview of `get` methods:
+
 | Method             | Return            |
 |--------------------|-------------------|
 | getApiUrl          | `string`          |
@@ -96,7 +100,8 @@ Common Service
 | getReportProgress  | `boolean`         |
 | getWithCredentials | `boolean`         |
 
- 
+Overview of `set` methods:
+
 | Method             | Parameter                    | Return |
 |--------------------|------------------------------|--------|
 | setApiUrl          | `apiUrl : string`            | `this` |
@@ -107,7 +112,8 @@ Common Service
 | setReportProgress  | `reportProgress : boolean`   | `this` |
 | setWithCredentials | `withCredentials :  boolean` | `this` |
 
- 
+Overview of `clear` methods:
+
 | Method               | Return |
 |----------------------|--------|
 | clear                | `this` |
@@ -117,7 +123,8 @@ Common Service
 | clearReportProgress  | `this` |
 | clearWithCredentials | `this` |
 
- 
+Overview of `misc` methods:
+
 | Method    | Parameter                                                   | Return   |
 |-----------|-------------------------------------------------------------|----------|
 | createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
