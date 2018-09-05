@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CommonService } from './common.service';
@@ -12,16 +12,20 @@ import { OptionInterface } from './option.interface';
 @Injectable()
 export class CrudService<T> extends CommonService
 {
-	constructor
-	(
-		protected deleteService : DeleteService<T>,
-		protected getService : GetService<T>,
-		protected postService : PostService<T>,
-		protected putService : PutService<T>,
-		protected patchService : PatchService<T>
-	)
+	protected deleteService : DeleteService<T>;
+	protected getService : GetService<T>;
+	protected postService : PostService<T>;
+	protected putService : PutService<T>;
+	protected patchService : PatchService<T>;
+
+	constructor(protected injector : Injector)
 	{
-		super();
+		super(injector);
+		this.deleteService = injector.get<T>(DeleteService);
+		this.getService = injector.get<T>(GetService);
+		this.postService = injector.get<T>(PostService);
+		this.putService = injector.get<T>(PutService);
+		this.patchService = injector.get<T>(PatchService);
 		this.clear();
 	}
 

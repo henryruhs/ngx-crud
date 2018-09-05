@@ -1,14 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable, Injector } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { OptionInterface } from './option.interface';
 
 @Injectable()
 export class CommonService
 {
+	protected http : HttpClient;
 	protected apiUrl : string;
 	protected endpoint : string;
 	protected options : OptionInterface;
+
+	constructor(protected injector : Injector)
+	{
+		this.http = injector.get(HttpClient);
+		this.clear();
+	}
 
 	getApiUrl() : string
 	{

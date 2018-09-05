@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CrudService } from '../src';
 
@@ -9,6 +9,11 @@ export class TestService extends CrudService<TestInterface>
 {
 	protected apiUrl : string = 'https://jsonplaceholder.typicode.com';
 	protected endpoint : string = '/posts';
+
+	constructor(injector : Injector)
+	{
+		super(injector);
+	}
 
 	findByUser(userId : string) : Observable<TestInterface[]>
 	{
