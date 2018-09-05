@@ -132,9 +132,9 @@ export class CommonService
 		return url;
 	}
 
-	clear()
+	clear() : this
 	{
-		this
+		return this
 			.clearOptions()
 			.clearHeaders()
 			.clearParams()
