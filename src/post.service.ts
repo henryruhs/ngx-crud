@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { CommonService } from './common.service';
 import { OptionInterface } from './option.interface';
 

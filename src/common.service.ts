@@ -1,6 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
 import { OptionInterface } from './option.interface';
 
 @Injectable()
@@ -14,7 +13,17 @@ export class CommonService
 	constructor(protected injector : Injector)
 	{
 		this.http = injector.get(HttpClient);
-		this.clear();
+		this.init();
+	}
+
+	init() : this
+	{
+		return this
+			.clearOptions()
+			.clearHeaders()
+			.clearParams()
+			.clearReportProgress()
+			.clearWithCredentials();
 	}
 
 	getApiUrl() : string
@@ -137,15 +146,5 @@ export class CommonService
 		.replace(/([^:]\/)\/+/g, '$1');
 
 		return url;
-	}
-
-	clear() : this
-	{
-		return this
-			.clearOptions()
-			.clearHeaders()
-			.clearParams()
-			.clearReportProgress()
-			.clearWithCredentials();
 	}
 }

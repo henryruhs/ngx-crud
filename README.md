@@ -46,7 +46,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CrudService } from 'ngx-crud';
 import { ExampleInterface } from './example.interface';
-
 import { environment } from '@env';
 
 @Injectable()
@@ -116,7 +115,6 @@ Overview of `clear` methods:
 
 | Method               | Return |
 |----------------------|--------|
-| clear                | `this` |
 | clearOptions         | `this` |
 | clearHeaders         | `this` |
 | clearParams          | `this` |
@@ -127,4 +125,5 @@ Overview of `misc` methods:
 
 | Method    | Parameter                                                   | Return   |
 |-----------|-------------------------------------------------------------|----------|
+| init      |                                                             | `this`   |
 | createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |

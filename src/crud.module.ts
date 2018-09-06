@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { DeleteService } from './delete.service';
 import { GetService } from './get.service';
 import { PostService } from './post.service';

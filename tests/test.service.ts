@@ -1,7 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CrudService } from '../src';
-
 import { TestInterface } from './test.interface';
 
 @Injectable()
@@ -13,6 +12,7 @@ export class TestService extends CrudService<TestInterface>
 	constructor(injector : Injector)
 	{
 		super(injector);
+		this.init();
 	}
 
 	findByUser(userId : string) : Observable<TestInterface[]>
