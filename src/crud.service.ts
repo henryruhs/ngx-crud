@@ -3,28 +3,32 @@ import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
 import { DeleteService } from './delete.service';
 import { GetService } from './get.service';
+import { MethodType } from './method.type';
+import { OptionInterface } from './option.interface';
+import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
-import { PatchService } from './patch.service';
-import { OptionInterface } from './option.interface';
+import { RequestService } from './request.service';
 
 @Injectable()
 export class CrudService<T> extends CommonService
 {
 	protected deleteService : DeleteService<T>;
 	protected getService : GetService<T>;
+	protected patchService : PatchService<T>;
 	protected postService : PostService<T>;
 	protected putService : PutService<T>;
-	protected patchService : PatchService<T>;
+	protected requestService : RequestService<T>;
 
 	constructor(protected injector : Injector)
 	{
 		super(injector);
 		this.deleteService = injector.get<any>(DeleteService);
 		this.getService = injector.get<any>(GetService);
+		this.patchService = injector.get<any>(PatchService);
 		this.postService = injector.get<any>(PostService);
 		this.putService = injector.get<any>(PutService);
-		this.patchService = injector.get<any>(PatchService);
+		this.requestService = injector.get<any>(RequestService);
 		this.init();
 	}
 
@@ -80,5 +84,14 @@ export class CrudService<T> extends CommonService
 			.setEndpoint(this.endpoint)
 			.setOptions((this.options))
 			.delete(id, options);
+	}
+
+	request(method : MethodType, options? : OptionInterface) : Observable<T[]>
+	{
+		return this.requestService
+			.setApiUrl(this.apiUrl)
+			.setEndpoint(this.endpoint)
+			.setOptions((this.options))
+			.request(method, options);
 	}
 }

@@ -1,5 +1,5 @@
-import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable, Injector } from '@angular/core';
 import { OptionInterface } from './option.interface';
 
 @Injectable()

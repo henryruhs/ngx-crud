@@ -32,6 +32,7 @@
 				"property-declaration": "onespace",
 				"variable-declaration": "onespace"
 			}
-		]
+		],
+		"ordered-imports": true
 	}
 }

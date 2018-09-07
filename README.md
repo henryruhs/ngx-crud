@@ -74,14 +74,15 @@ CRUD Service
 
 Overview of `CRUD` methods:
 
-| Operation | HTTP   | Method | Parameter                                                      | Return            |
-|-----------|--------|--------|----------------------------------------------------------------|-------------------|
-| Create    | POST   | create | `body : any, options? : OptionInterface`                       | `Observable<T>`   |
-| Read      | GET    | read   | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
-| Find      | GET    | find   | `options? : OptionInterface`                                   | `Observable<T[]>` |
-| Update    | PUT    | update | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
-| Patch     | PATCH  | patch  | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
-| Delete    | DELETE | delete | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
+| Operation | HTTP   | Method  | Parameter                                                      | Return            |
+|-----------|--------|---------|----------------------------------------------------------------|-------------------|
+| Create    | POST   | create  | `body : any, options? : OptionInterface`                       | `Observable<T>`   |
+| Read      | GET    | read    | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
+| Find      | GET    | find    | `options? : OptionInterface`                                   | `Observable<T[]>` |
+| Update    | PUT    | update  | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
+| Patch     | PATCH  | patch   | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
+| Delete    | DELETE | delete  | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
+| Request   | ANY    | request | `method : MethodType, options? : OptionInterface`              | `Observable<T[]>` |
 
 
 Common Service

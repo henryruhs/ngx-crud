@@ -1,7 +1,7 @@
-import { expect } from 'chai';
+import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing'
-import { HttpClientModule } from '@angular/common/http';
+import { expect } from 'chai';
 import { CommonService, CrudModule } from '../src';
 import { TestService } from './test.service';
 
@@ -196,6 +196,23 @@ describe('CrudService', () =>
 			testService
 				.delete('1')
 				.subscribe(() => done());
+		})();
+	});
+
+	it('request', done =>
+	{
+		inject(
+		[
+			TestService
+		], (testService : TestService) =>
+		{
+			testService
+				.request('get')
+				.subscribe(response =>
+				{
+					expect(response.length).to.equal(100);
+					done();
+				});
 		})();
 	});
 });
