@@ -8,3 +8,8 @@ export interface OptionInterface
 	responseType? : 'json';
 	withCredentials? : boolean;
 }
+
+export interface OptionWithBodyInterface extends OptionInterface
+{
+	body? : any;
+}

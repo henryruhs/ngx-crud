@@ -4,7 +4,7 @@ import { CommonService } from './common.service';
 import { DeleteService } from './delete.service';
 import { GetService } from './get.service';
 import { MethodType } from './method.type';
-import { OptionInterface } from './option.interface';
+import { OptionInterface, OptionWithBodyInterface } from './option.interface';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -86,7 +86,7 @@ export class CrudService<T> extends CommonService
 			.delete(id, options);
 	}
 
-	request(method : MethodType, options? : OptionInterface) : Observable<T[]>
+	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T[]>
 	{
 		return this.requestService
 			.setApiUrl(this.apiUrl)

@@ -43,9 +43,10 @@ Extend `ExampleService` from `CrudService`:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { CrudService } from 'ngx-crud';
+import { Observable } from 'rxjs';
 import { ExampleInterface } from './example.interface';
+
 import { environment } from '@env';
 
 @Injectable()
@@ -59,6 +60,28 @@ export class ExampleService extends CrudService<ExampleInterface>
 		return this.find(
 		{
 			params: this.getParams().set('filter', filter)
+		});
+	}
+
+	findMany(idArray : string[]): Observable<ActionInterface[]>
+	{
+		let params = this.getParams();
+		
+		idArray.forEach(id => params = params.append('id', id));
+		return this.find(
+		{
+			params
+		});
+	}
+
+	deleteMany(idArray : string[]) : Observable<ExampleInterface[]>
+	{
+		return this.request('delete',
+		{
+			body:
+			{
+				idArray
+			}
 		});
 	}
 }
