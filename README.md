@@ -63,25 +63,11 @@ export class ExampleService extends CrudService<ExampleInterface>
 		});
 	}
 
-	findMany(idArray : string[]): Observable<ExampleInterface[]>
-	{
-		let params = this.getParams();
-		
-		idArray.forEach(id => params = params.append('id', id));
-		return this.find(
-		{
-			params
-		});
-	}
-
-	deleteMany(idArray : string[]) : Observable<ExampleInterface[]>
+	deleteMany(body : any) : Observable<ExampleInterface[]>
 	{
 		return this.request('delete',
 		{
-			body:
-			{
-				idArray
-			}
+			body
 		});
 	}
 }
