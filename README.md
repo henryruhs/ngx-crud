@@ -63,7 +63,7 @@ export class ExampleService extends CrudService<ExampleInterface>
 		});
 	}
 
-	findMany(idArray : string[]): Observable<ActionInterface[]>
+	findMany(idArray : string[]): Observable<ExampleInterface[]>
 	{
 		let params = this.getParams();
 		
