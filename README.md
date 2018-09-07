@@ -91,7 +91,7 @@ Overview of `CRUD` methods:
 | Update    | PUT    | update  | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
 | Patch     | PATCH  | patch   | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`   |
 | Delete    | DELETE | delete  | `id : number / string, options? : OptionInterface`             | `Observable<T>`   |
-| Request   | ANY    | request | `method : MethodType, options? : OptionInterface`              | `Observable<T[]>` |
+| Request   | ANY    | request | `method : MethodType, options? : OptionWithBodyInterface`      | `Observable<T[]>` |
 
 
 Common Service
