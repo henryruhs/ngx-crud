@@ -208,9 +208,8 @@ describe('CrudService', () =>
 		{
 			testService
 				.request('get')
-				.subscribe(response =>
+				.subscribe(() =>
 				{
-					expect(response.length).to.equal(100);
 					done();
 				});
 		})();

@@ -7,9 +7,9 @@ import { OptionWithBodyInterface } from './option.interface';
 @Injectable()
 export class RequestService<T> extends CommonService
 {
-	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T> | Observable<T[]>
+	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
-		return this.http.request<any>(method, this.createURL(this.apiUrl, this.endpoint),
+		return this.http.request<T | T[]>(method, this.createURL(this.apiUrl, this.endpoint),
 		{
 			...this.options,
 			...options
