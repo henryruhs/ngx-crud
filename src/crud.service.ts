@@ -86,7 +86,7 @@ export class CrudService<T> extends CommonService
 			.delete(id, options);
 	}
 
-	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T[]>
+	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T> | Observable<T[]>
 	{
 		return this.requestService
 			.setApiUrl(this.apiUrl)
