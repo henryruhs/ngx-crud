@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "Fluent CRUD services for Angular",
-	"version": "1.4.0-beta.1",
+	"version": "1.4.0",
 	"license": "GPL-3.0",
 	"keywords":
 	[
