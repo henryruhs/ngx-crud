@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "Fluent CRUD services for Angular",
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"license": "MIT",
 	"keywords":
 	[
@@ -26,33 +26,33 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^6",
-		"@angular/core": "^6",
+		"@angular/common": "^7",
+		"@angular/core": "^7",
 		"rxjs": "^6"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "7.0.4",
-		"@angular/compiler": "7.0.4",
-		"@angular/compiler-cli": "7.0.4",
-		"@angular/core": "7.0.4",
-		"@angular/platform-browser": "7.0.4",
-		"@angular/platform-browser-dynamic": "7.0.4",
+		"@angular/common": "7.2.1",
+		"@angular/compiler": "7.2.1",
+		"@angular/compiler-cli": "7.2.1",
+		"@angular/core": "7.2.1",
+		"@angular/platform-browser": "7.2.1",
+		"@angular/platform-browser-dynamic": "7.2.1",
 		"@types/chai": "4.1.7",
 		"@types/mocha": "5.2.5",
 		"chai": "4.2.0",
-		"core-js": "2.5.7",
-		"jsdom": "13.0.0",
+		"core-js": "2.6.2",
+		"jsdom": "13.1.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "5.2.0",
-		"ng-packagr": "4.4.0",
+		"ng-packagr": "4.6.0",
 		"rxjs": "6.3.3",
 		"ts-node": "7.0.1",
-		"tslint": "5.11.0",
+		"tslint": "5.12.1",
 		"tslint-config-redaxmedia": "1.0.1",
 		"tsickle": "0.34.0",
-		"typescript": "3.1.6",
-		"zone.js": "0.8.26"
+		"typescript": "3.2.2",
+		"zone.js": "0.8.28"
 	},
 	"scripts":
 	{
