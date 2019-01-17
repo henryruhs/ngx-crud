@@ -2,7 +2,7 @@
 	"name": "ngx-crud",
 	"description": "Fluent CRUD services for Angular",
 	"version": "1.4.1",
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"keywords":
 	[
 		"api",
