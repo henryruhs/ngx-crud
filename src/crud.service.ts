@@ -32,7 +32,7 @@ export class CrudService<T> extends CommonService
 		this.init();
 	}
 
-	create(body : any, options? : OptionInterface) : Observable<T>
+	public create(body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.postService
 			.setApiUrl(this.apiUrl)
@@ -41,7 +41,7 @@ export class CrudService<T> extends CommonService
 			.post(body, options);
 	}
 
-	read(id : number | string, options? : OptionInterface) : Observable<T>
+	public read(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.getService
 			.setApiUrl(this.apiUrl)
@@ -50,7 +50,7 @@ export class CrudService<T> extends CommonService
 			.get(id, options);
 	}
 
-	find(options? : OptionInterface) : Observable<T[]>
+	public find(options? : OptionInterface) : Observable<T[]>
 	{
 		return this.getService
 			.setApiUrl(this.apiUrl)
@@ -59,7 +59,7 @@ export class CrudService<T> extends CommonService
 			.find(options);
 	}
 
-	update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+	public update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.putService
 			.setApiUrl(this.apiUrl)
@@ -68,7 +68,7 @@ export class CrudService<T> extends CommonService
 			.put(id, body, options);
 	}
 
-	patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+	public patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.patchService
 			.setApiUrl(this.apiUrl)
@@ -77,7 +77,7 @@ export class CrudService<T> extends CommonService
 			.patch(id, body, options);
 	}
 
-	delete(id : number | string, options? : OptionInterface) : Observable<T>
+	public delete(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.deleteService
 			.setApiUrl(this.apiUrl)
@@ -86,7 +86,7 @@ export class CrudService<T> extends CommonService
 			.delete(id, options);
 	}
 
-	request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
+	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
 		return this.requestService
 			.setApiUrl(this.apiUrl)

@@ -6,21 +6,21 @@ import { OptionInterface } from './option.interface';
 @Injectable()
 export class GetService<T> extends CommonService
 {
-	get(id : number | string, options? : OptionInterface) : Observable<T>
+	public get(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.http.get<T>(this.createURL(this.apiUrl, this.endpoint, id),
 		{
 			...this.options,
-			...options
+			...options,
 		});
 	}
 
-	find(options? : OptionInterface) : Observable<T[]>
+	public find(options? : OptionInterface) : Observable<T[]>
 	{
 		return this.http.get<T[]>(this.createURL(this.apiUrl, this.endpoint),
 		{
 			...this.options,
-			...options
+			...options,
 		});
 	}
 }

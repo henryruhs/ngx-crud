@@ -15,11 +15,11 @@ export class TestService extends CrudService<TestInterface>
 		this.init();
 	}
 
-	findByUser(userId : string) : Observable<TestInterface[]>
+	public findByUser(userId : string) : Observable<TestInterface[]>
 	{
 		return this.find(
 		{
-			params: this.getParams().set('userId', userId)
+			params: this.getParams().set('userId', userId),
 		});
 	}
 }

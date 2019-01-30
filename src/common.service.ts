@@ -16,7 +16,7 @@ export class CommonService
 		this.init();
 	}
 
-	init() : this
+	public init() : this
 	{
 		return this
 			.clearOptions()
@@ -26,120 +26,120 @@ export class CommonService
 			.clearWithCredentials();
 	}
 
-	getApiUrl() : string
+	public getApiUrl() : string
 	{
 		return this.apiUrl;
 	}
 
-	setApiUrl(apiUrl : string) : this
+	public setApiUrl(apiUrl : string) : this
 	{
 		this.apiUrl = apiUrl;
 		return this;
 	}
 
-	getEndpoint() : string
+	public getEndpoint() : string
 	{
 		return this.endpoint;
 	}
 
-	setEndpoint(endpoint : string) : this
+	public setEndpoint(endpoint : string) : this
 	{
 		this.endpoint = endpoint;
 		return this;
 	}
 
-	getOptions() : OptionInterface
+	public getOptions() : OptionInterface
 	{
 		return this.options;
 	}
 
-	setOptions(options : OptionInterface) : this
+	public setOptions(options : OptionInterface) : this
 	{
 		this.options = options;
 		return this;
 	}
 
-	clearOptions() : this
+	public clearOptions() : this
 	{
 		this.options = {};
 		return this;
 	}
 
-	getHeaders() : HttpHeaders
+	public getHeaders() : HttpHeaders
 	{
 		return this.options.headers;
 	}
 
-	setHeaders(headers : HttpHeaders) : this
+	public setHeaders(headers : HttpHeaders) : this
 	{
 		this.options.headers = headers;
 		return this;
 	}
 
-	clearHeaders() : this
+	public clearHeaders() : this
 	{
 		this.options.headers = new HttpHeaders();
 		return this;
 	}
 
-	getParams() : HttpParams
+	public getParams() : HttpParams
 	{
 		return this.options.params;
 	}
 
-	setParams(params : HttpParams) : this
+	public setParams(params : HttpParams) : this
 	{
 		this.options.params = params;
 		return this;
 	}
 
-	clearParams() : this
+	public clearParams() : this
 	{
 		this.options.params = new HttpParams();
 		return this;
 	}
 
-	getReportProgress() : boolean
+	public getReportProgress() : boolean
 	{
 		return this.options.reportProgress;
 	}
 
-	setReportProgress(reportProgress : boolean) : this
+	public setReportProgress(reportProgress : boolean) : this
 	{
 		this.options.reportProgress = reportProgress;
 		return this;
 	}
 
-	clearReportProgress() : this
+	public clearReportProgress() : this
 	{
 		this.options.reportProgress = true;
 		return this;
 	}
 
-	getWithCredentials() : boolean
+	public getWithCredentials() : boolean
 	{
 		return this.options.withCredentials;
 	}
 
-	setWithCredentials(withCredentials : boolean) : this
+	public setWithCredentials(withCredentials : boolean) : this
 	{
 		this.options.withCredentials = withCredentials;
 		return this;
 	}
 
-	clearWithCredentials() : this
+	public clearWithCredentials() : this
 	{
 		this.options.withCredentials = true;
 		return this;
 	}
 
-	createURL(apiUrl : string, endpoint : string, id? : number | string) : string
+	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
 		const url =
 		[
 			apiUrl,
 			endpoint,
-			id
+			id,
 		]
 		.filter(value => value)
 		.join('/')

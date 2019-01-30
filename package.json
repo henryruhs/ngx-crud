@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "Fluent CRUD services for Angular",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"license": "MIT",
 	"keywords":
 	[
@@ -32,32 +32,32 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "7.2.1",
-		"@angular/compiler": "7.2.1",
-		"@angular/compiler-cli": "7.2.1",
-		"@angular/core": "7.2.1",
-		"@angular/platform-browser": "7.2.1",
-		"@angular/platform-browser-dynamic": "7.2.1",
+		"@angular/common": "7.2.2",
+		"@angular/compiler": "7.2.2",
+		"@angular/compiler-cli": "7.2.2",
+		"@angular/core": "7.2.2",
+		"@angular/platform-browser": "7.2.2",
+		"@angular/platform-browser-dynamic": "7.2.2",
 		"@types/chai": "4.1.7",
 		"@types/mocha": "5.2.5",
 		"chai": "4.2.0",
-		"core-js": "2.6.2",
-		"jsdom": "13.1.0",
+		"core-js": "2.6.3",
+		"jsdom": "13.2.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "5.2.0",
-		"ng-packagr": "4.6.0",
-		"rxjs": "6.3.3",
-		"ts-node": "7.0.1",
+		"ng-packagr": "4.7.0",
+		"rxjs": "6.4.0",
+		"ts-node": "8.0.2",
 		"tslint": "5.12.1",
-		"tslint-config-redaxmedia": "1.0.1",
+		"tslint-config-redaxmedia": "1.1.0",
 		"tsickle": "0.34.0",
-		"typescript": "3.2.2",
-		"zone.js": "0.8.28"
+		"typescript": "3.2.4",
+		"zone.js": "0.8.29"
 	},
 	"scripts":
 	{
 		"lint": "tslint src/**/*.ts tests/**/*.ts",
-		"test": "mocha --require tests/polyfill.ts --require jsdom-global/register --require ts-node/register --timeout 10000 tests/*.spec.ts",
+		"test": "mocha --require tests/polyfill.js --require jsdom-global/register --require ts-node/register --timeout 10000 tests/*.spec.ts",
 		"build": "ng-packagr -p package.json"
 	},
 	"ngPackage":
