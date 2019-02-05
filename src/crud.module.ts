@@ -15,8 +15,8 @@ import { RequestService } from './request.service';
 		PatchService,
 		PostService,
 		PutService,
-		RequestService,
-	],
+		RequestService
+	]
 })
 export class CrudModule
 {

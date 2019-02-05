@@ -19,7 +19,7 @@ export class TestService extends CrudService<TestInterface>
 	{
 		return this.find(
 		{
-			params: this.getParams().set('userId', userId),
+			params: this.getParams().set('userId', userId)
 		});
 	}
 }

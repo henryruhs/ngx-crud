@@ -11,7 +11,7 @@ export class DeleteService<T> extends CommonService
 		return this.http.delete<T>(this.createURL(this.apiUrl, this.endpoint, id),
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }

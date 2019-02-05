@@ -11,7 +11,7 @@ export class GetService<T> extends CommonService
 		return this.http.get<T>(this.createURL(this.apiUrl, this.endpoint, id),
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 
@@ -20,7 +20,7 @@ export class GetService<T> extends CommonService
 		return this.http.get<T[]>(this.createURL(this.apiUrl, this.endpoint),
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }

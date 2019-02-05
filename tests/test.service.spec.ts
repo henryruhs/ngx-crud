@@ -14,13 +14,13 @@ before(() =>
 			imports:
 			[
 				CrudModule,
-				HttpClientModule,
+				HttpClientModule
 			],
 			providers:
 			[
 				CommonService,
-				TestService,
-			],
+				TestService
+			]
 		});
 });
 
@@ -34,31 +34,31 @@ describe('CommonService', () =>
 				apiUrl: 'http://localhost',
 				endpoint: '/posts',
 				id: null,
-				url: 'http://localhost/posts',
+				url: 'http://localhost/posts'
 			},
 			{
 				apiUrl: 'http://localhost/v1.0.0',
 				endpoint: '/posts',
 				id: 1,
-				url: 'http://localhost/v1.0.0/posts/1',
+				url: 'http://localhost/v1.0.0/posts/1'
 			},
 			{
 				apiUrl: '../',
 				endpoint: '/posts',
 				id: null,
-				url: '../posts',
+				url: '../posts'
 			},
 			{
 				apiUrl: '../v1.0.0',
 				endpoint: '/posts',
 				id: 1,
-				url: '../v1.0.0/posts/1',
-			},
+				url: '../v1.0.0/posts/1'
+			}
 		];
 
 		inject(
 		[
-			CommonService,
+			CommonService
 		], (commonService : CommonService) =>
 		{
 			urlArray.forEach(item => expect(commonService.createURL(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.url));
@@ -72,13 +72,13 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
 				.create(
 				{
-					title: 'test',
+					title: 'test'
 				})
 				.subscribe(response =>
 				{
@@ -93,7 +93,7 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
@@ -110,7 +110,7 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
@@ -127,7 +127,7 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 			{
 			testService
@@ -144,20 +144,20 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
 				.update('1',
 				{
-					title: 'test',
+					title: 'test'
 				})
 				.subscribe(response =>
 				{
 					expect(response).to.deep.equal(
 					{
 						id: 1,
-						title: 'test',
+						title: 'test'
 					});
 					done();
 				});
@@ -168,13 +168,13 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
 				.patch('1',
 				{
-					title: 'test',
+					title: 'test'
 				})
 				.subscribe(response =>
 				{
@@ -190,7 +190,7 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService
@@ -203,7 +203,7 @@ describe('CrudService', () =>
 	{
 		inject(
 		[
-			TestService,
+			TestService
 		], (testService : TestService) =>
 		{
 			testService

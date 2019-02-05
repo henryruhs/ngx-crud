@@ -11,7 +11,7 @@ export class PostService<T> extends CommonService
 		return this.http.post<T>(this.createURL(this.apiUrl, this.endpoint), body,
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }

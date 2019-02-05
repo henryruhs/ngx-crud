@@ -11,7 +11,7 @@ export class PatchService<T> extends CommonService
 		return this.http.patch<T>(this.createURL(this.apiUrl, this.endpoint, id), body,
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }

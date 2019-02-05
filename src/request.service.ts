@@ -12,7 +12,7 @@ export class RequestService<T> extends CommonService
 		return this.http.request<T | T[]>(method, this.createURL(this.apiUrl, this.endpoint),
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }

@@ -139,7 +139,7 @@ export class CommonService
 		[
 			apiUrl,
 			endpoint,
-			id,
+			id
 		]
 		.filter(value => value)
 		.join('/')

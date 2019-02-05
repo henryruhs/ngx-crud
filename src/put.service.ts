@@ -11,7 +11,7 @@ export class PutService<T> extends CommonService
 		return this.http.put<T>(this.createURL(this.apiUrl, this.endpoint, id), body,
 		{
 			...this.options,
-			...options,
+			...options
 		});
 	}
 }
