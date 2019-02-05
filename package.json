@@ -51,7 +51,7 @@
 		"tslint": "5.12.1",
 		"tslint-config-redaxmedia": "1.1.1",
 		"tsickle": "0.34.3",
-		"typescript": "3.3.1",
+		"typescript": "3.2.4",
 		"zone.js": "0.8.29"
 	},
 	"scripts":
