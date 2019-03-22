@@ -135,7 +135,7 @@ export class CommonService
 
 	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
-		const url =
+		const url : string =
 		[
 			apiUrl,
 			endpoint,

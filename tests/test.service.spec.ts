@@ -28,7 +28,7 @@ describe('CommonService', () =>
 {
 	it('create url', () =>
 	{
-		const urlArray =
+		const urlArray : any[] =
 		[
 			{
 				apiUrl: 'http://localhost',
