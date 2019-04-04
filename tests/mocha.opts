@@ -1,0 +1,5 @@
+ --require ./tests/polyfill.js
+ --require jsdom-global/register
+ --require ts-node/register
+ --timeout 10000
+./tests/**/*.spec.ts
