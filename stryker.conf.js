@@ -6,8 +6,7 @@ module.exports = config =>
 		packageManager: 'npm',
 		reporters:
 		[
-			'clear-text',
-			'progress'
+			'clear-text'
 		],
 		testRunner: 'mocha',
 		testFramework: 'mocha',
@@ -18,7 +17,7 @@ module.exports = config =>
 			[
 				'tests/**/*.spec.ts'
 			],
-			opts: 'tests/mocha.opts'
+			opts: 'mocha.opts'
 		},
 		mutate:
 		[
