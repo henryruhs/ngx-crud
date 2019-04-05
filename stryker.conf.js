@@ -6,7 +6,8 @@ module.exports = config =>
 		packageManager: 'npm',
 		reporters:
 		[
-			'clear-text'
+			'clear-text',
+			'dashboard'
 		],
 		testRunner: 'mocha',
 		testFramework: 'mocha',
