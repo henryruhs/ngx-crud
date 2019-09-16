@@ -208,10 +208,7 @@ describe('CrudService', () =>
 		{
 			testService
 				.request('get')
-				.subscribe(() =>
-				{
-					done();
-				});
+				.subscribe(() => done());
 		})();
 	});
 });
