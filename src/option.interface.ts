@@ -5,7 +5,7 @@ export interface OptionInterface
 	headers? : HttpHeaders;
 	params? : HttpParams;
 	reportProgress? : boolean;
-	responseType? : 'json';
+	responseType? : any;
 	withCredentials? : boolean;
 }
 
