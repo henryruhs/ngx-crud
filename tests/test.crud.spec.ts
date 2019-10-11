@@ -1,6 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { expect } from 'chai';
 import { CommonService, CrudModule } from '../src';
 import { TestService } from './test.service';
@@ -8,7 +7,6 @@ import { TestService } from './test.service';
 before(() =>
 {
 	TestBed
-		.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting())
 		.configureTestingModule(
 		{
 			imports:
@@ -22,48 +20,6 @@ before(() =>
 				TestService
 			]
 		});
-});
-
-describe('CommonService', () =>
-{
-	it('create url', () =>
-	{
-		const urlArray : any[] =
-		[
-			{
-				apiUrl: 'http://localhost',
-				endpoint: '/posts',
-				id: null,
-				url: 'http://localhost/posts'
-			},
-			{
-				apiUrl: 'http://localhost/v1.0.0',
-				endpoint: '/posts',
-				id: 1,
-				url: 'http://localhost/v1.0.0/posts/1'
-			},
-			{
-				apiUrl: '../',
-				endpoint: '/posts',
-				id: null,
-				url: '../posts'
-			},
-			{
-				apiUrl: '../v1.0.0',
-				endpoint: '/posts',
-				id: 1,
-				url: '../v1.0.0/posts/1'
-			}
-		];
-
-		inject(
-		[
-			CommonService
-		], (commonService : CommonService) =>
-		{
-			urlArray.forEach(item => expect(commonService.createURL(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.url));
-		})();
-	});
 });
 
 describe('CrudService', () =>

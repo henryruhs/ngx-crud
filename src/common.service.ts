@@ -95,7 +95,7 @@ export class CommonService
 
 	public clearHeader(name: string) : this
 	{
-		this.options.headers = this.options.headers.set(name, null);
+		this.options.headers = this.options.headers.delete(name);
 		return this;
 	}
 
@@ -129,7 +129,7 @@ export class CommonService
 
 	public clearParam(name: string) : this
 	{
-		this.options.params = this.options.params.set(name, null);
+		this.options.params = this.options.params.delete(name);
 		return this;
 	}
 
