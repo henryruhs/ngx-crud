@@ -58,18 +58,7 @@ export class ExampleService extends CrudService<ExampleInterface>
 
 	findByFilter(filter : string) : Observable<ExampleInterface[]>
 	{
-		return this.find(
-		{
-			params: this.getParams().set('filter', filter)
-		});
-	}
-
-	deleteMany(body : any) : Observable<ExampleInterface[]>
-	{
-		return this.request('delete',
-		{
-			body
-		});
+		return this.setParam('filter', filter).find();
 	}
 }
 ```
@@ -100,37 +89,43 @@ Common Service
 
 Overview of `get` methods:
 
-| Method             | Return            |
-|--------------------|-------------------|
-| getApiUrl          | `string`          |
-| getEndpoint        | `string`          |
-| getOptions         | `OptionInterface` |
-| getHeaders         | `HttpHeaders`     |
-| getParams          | `HttpParams`      |
-| getReportProgress  | `boolean`         |
-| getWithCredentials | `boolean`         |
+| Method             | Parameter        | Return            |
+|--------------------|------------------|-------------------|
+| getApiUrl          |                  | `string`          |
+| getEndpoint        |                  | `string`          |
+| getOptions         |                  | `OptionInterface` |
+| getHeaders         |                  | `HttpHeaders`     |
+| getHeader          | `name : string ` | `string`          |
+| getParams          |                  | `HttpParams`      |
+| getParam           | `name : string ` | `string`          |
+| getReportProgress  |                  | `boolean`         |
+| getWithCredentials |                  | `boolean`         |
 
 Overview of `set` methods:
 
-| Method             | Parameter                    | Return |
-|--------------------|------------------------------|--------|
-| setApiUrl          | `apiUrl : string`            | `this` |
-| setEndpoint        | `endpoint : string`          | `this` |
-| setOptions         | `options : OptionInterface`  | `this` |
-| setHeaders         | `headers : HttpHeaders`      | `this` |
-| setParams          | `params : HttpParams`        | `this` |
-| setReportProgress  | `reportProgress : boolean`   | `this` |
-| setWithCredentials | `withCredentials :  boolean` | `this` |
+| Method             | Parameter                      | Return |
+|--------------------|--------------------------------|--------|
+| setApiUrl          | `apiUrl : string`              | `this` |
+| setEndpoint        | `endpoint : string`            | `this` |
+| setOptions         | `options : OptionInterface`    | `this` |
+| setHeaders         | `headers : HttpHeaders`        | `this` |
+| setHeader          | `name : string, value: string` | `this` |
+| setParams          | `params : HttpParams`          | `this` |
+| setParam           | `name : string, value: string` | `this` |
+| setReportProgress  | `reportProgress : boolean`     | `this` |
+| setWithCredentials | `withCredentials :  boolean`   | `this` |
 
 Overview of `clear` methods:
 
-| Method               | Return |
-|----------------------|--------|
-| clearOptions         | `this` |
-| clearHeaders         | `this` |
-| clearParams          | `this` |
-| clearReportProgress  | `this` |
-| clearWithCredentials | `this` |
+| Method               | Parameter       | Return |
+|----------------------|-----------------|--------|
+| clearOptions         |                 | `this` |
+| clearHeaders         |                 | `this` |
+| clearHeader          | `name : string` | `this` |
+| clearParams          |                 | `this` |
+| clearParam           | `name : string` | `this` |
+| clearReportProgress  |                 | `this` |
+| clearWithCredentials |                 | `this` |
 
 Overview of `misc` methods:
 

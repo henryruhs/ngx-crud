@@ -17,9 +17,6 @@ export class TestService extends CrudService<TestInterface>
 
 	public findByUser(userId : string) : Observable<TestInterface[]>
 	{
-		return this.find(
-		{
-			params: this.getParams().set('userId', userId)
-		});
+		return this.setParam('userId', userId).find();
 	}
 }

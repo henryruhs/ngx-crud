@@ -70,9 +70,20 @@ export class CommonService
 		return this.options.headers;
 	}
 
+	public getHeader(name: string) : string
+	{
+		return this.options.headers.get(name);
+	}
+
 	public setHeaders(headers : HttpHeaders) : this
 	{
 		this.options.headers = headers;
+		return this;
+	}
+
+	public setHeader(name: string, value: string) : this
+	{
+		this.options.headers = this.options.headers.set(name, value);
 		return this;
 	}
 
@@ -82,9 +93,20 @@ export class CommonService
 		return this;
 	}
 
+	public clearHeader(name: string) : this
+	{
+		this.options.headers = this.options.headers.set(name, null);
+		return this;
+	}
+
 	public getParams() : HttpParams
 	{
 		return this.options.params;
+	}
+
+	public getParam(name: string) : string
+	{
+		return this.options.params.get(name);
 	}
 
 	public setParams(params : HttpParams) : this
@@ -93,9 +115,21 @@ export class CommonService
 		return this;
 	}
 
+	public setParam(name: string, value: string) : this
+	{
+		this.options.params = this.options.params.set(name, value);
+		return this;
+	}
+
 	public clearParams() : this
 	{
 		this.options.params = new HttpParams();
+		return this;
+	}
+
+	public clearParam(name: string) : this
+	{
+		this.options.params = this.options.params.set(name, null);
 		return this;
 	}
 
