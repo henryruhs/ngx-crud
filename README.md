@@ -105,17 +105,19 @@ Overview of `get` methods:
 
 Overview of `set` methods:
 
-| Method             | Parameter                      | Return |
-|--------------------|--------------------------------|--------|
-| setApiUrl          | `apiUrl : string`              | `this` |
-| setEndpoint        | `endpoint : string`            | `this` |
-| setOptions         | `options : OptionInterface`    | `this` |
-| setHeaders         | `headers : HttpHeaders`        | `this` |
-| setHeader          | `name : string, value: string` | `this` |
-| setParams          | `params : HttpParams`          | `this` |
-| setParam           | `name : string, value: string` | `this` |
-| setReportProgress  | `reportProgress : boolean`     | `this` |
-| setWithCredentials | `withCredentials :  boolean`   | `this` |
+| Method             | Parameter                             | Return |
+|--------------------|---------------------------------------|--------|
+| setApiUrl          | `apiUrl : string`                     | `this` |
+| setEndpoint        | `endpoint : string`                   | `this` |
+| setOptions         | `options : OptionInterface`           | `this` |
+| setHeaders         | `headers : HttpHeaders`               | `this` |
+| setHeaderArray     | `name : string, valueArray: string[]` | `this` |
+| setHeader          | `name : string, value: string`        | `this` |
+| setParams          | `params : HttpParams`                 | `this` |
+| setParamArray      | `name : string, valueArray: string[]` | `this` |
+| setParam           | `name : string, value: string`        | `this` |
+| setReportProgress  | `reportProgress : boolean`            | `this` |
+| setWithCredentials | `withCredentials :  boolean`          | `this` |
 
 Overview of `append` methods:
 

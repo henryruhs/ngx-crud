@@ -86,6 +86,12 @@ export class CommonService
 		return this;
 	}
 
+	public setHeaderArray(name: string, valueArray: string[]) : this
+	{
+		valueArray.forEach(value => this.appendHeader(name, value));
+		return this;
+	}
+
 	public setHeader(name: string, value: string) : this
 	{
 		this.options.headers = this.options.headers.set(name, value);
@@ -128,6 +134,12 @@ export class CommonService
 	public setParams(params : HttpParams) : this
 	{
 		this.options.params = params;
+		return this;
+	}
+
+	public setParamArray(name: string, valueArray: string[]) : this
+	{
+		valueArray.forEach(value => this.appendParam(name, value));
 		return this;
 	}
 
