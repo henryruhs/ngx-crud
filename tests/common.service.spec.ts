@@ -24,7 +24,7 @@ before(() =>
 
 describe('CommonService', () =>
 {
-	it('single param', () =>
+	it('simple param', () =>
 	{
 		inject(
 		[
@@ -37,7 +37,24 @@ describe('CommonService', () =>
 		})();
 	});
 
-	it('single header', () =>
+	it('multidimensional param', () =>
+	{
+		inject(
+		[
+			CommonService
+		], (commonService : CommonService) =>
+		{
+			commonService.appendParam('test', 'test').appendParam('test', 'test');
+			expect(commonService.getParamArray('test')).to.deep.equal(
+			[
+				'test',
+				'test'
+			]);
+			expect(commonService.clearParam('test').getParamArray('test')).to.be.equal(null);
+		})();
+	});
+
+	it('simple header', () =>
 	{
 		inject(
 		[
@@ -47,6 +64,23 @@ describe('CommonService', () =>
 			commonService.setHeader('test', 'test');
 			expect(commonService.getHeader('test')).to.be.equal('test');
 			expect(commonService.clearHeader('test').getHeader('test')).to.be.equal(null);
+		})();
+	});
+
+	it('multidimensional header', () =>
+	{
+		inject(
+		[
+			CommonService
+		], (commonService : CommonService) =>
+		{
+			commonService.appendHeader('test', 'test').appendHeader('test', 'test');
+			expect(commonService.getHeaderArray('test')).to.deep.equal(
+			[
+				'test',
+				'test'
+			]);
+			expect(commonService.clearHeader('test').getHeaderArray('test')).to.be.equal(null);
 		})();
 	});
 

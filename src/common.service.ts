@@ -70,6 +70,11 @@ export class CommonService
 		return this.options.headers;
 	}
 
+	public getHeaderArray(name: string) : string[]
+	{
+		return this.options.headers.getAll(name);
+	}
+
 	public getHeader(name: string) : string
 	{
 		return this.options.headers.get(name);
@@ -84,6 +89,12 @@ export class CommonService
 	public setHeader(name: string, value: string) : this
 	{
 		this.options.headers = this.options.headers.set(name, value);
+		return this;
+	}
+
+	public appendHeader(name: string, value: string) : this
+	{
+		this.options.headers = this.options.headers.append(name, value);
 		return this;
 	}
 
@@ -104,6 +115,11 @@ export class CommonService
 		return this.options.params;
 	}
 
+	public getParamArray(name: string) : string[]
+	{
+		return this.options.params.getAll(name);
+	}
+
 	public getParam(name: string) : string
 	{
 		return this.options.params.get(name);
@@ -118,6 +134,12 @@ export class CommonService
 	public setParam(name: string, value: string) : this
 	{
 		this.options.params = this.options.params.set(name, value);
+		return this;
+	}
+
+	public appendParam(name: string, value: string) : this
+	{
+		this.options.params = this.options.params.append(name, value);
 		return this;
 	}
 

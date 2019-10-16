@@ -89,17 +89,19 @@ Common Service
 
 Overview of `get` methods:
 
-| Method             | Parameter        | Return            |
-|--------------------|------------------|-------------------|
-| getApiUrl          |                  | `string`          |
-| getEndpoint        |                  | `string`          |
-| getOptions         |                  | `OptionInterface` |
-| getHeaders         |                  | `HttpHeaders`     |
-| getHeader          | `name : string ` | `string`          |
-| getParams          |                  | `HttpParams`      |
-| getParam           | `name : string ` | `string`          |
-| getReportProgress  |                  | `boolean`         |
-| getWithCredentials |                  | `boolean`         |
+| Method             | Parameter       | Return            |
+|--------------------|-----------------|-------------------|
+| getApiUrl          |                 | `string`          |
+| getEndpoint        |                 | `string`          |
+| getOptions         |                 | `OptionInterface` |
+| getHeaders         |                 | `HttpHeaders`     |
+| getHeaderArray     | `name : string` | `string[]`        |
+| getHeader          | `name : string` | `string`          |
+| getParams          |                 | `HttpParams`      |
+| getParamArray      | `name : string` | `string[]`        |
+| getParam           | `name : string` | `string`          |
+| getReportProgress  |                 | `boolean`         |
+| getWithCredentials |                 | `boolean`         |
 
 Overview of `set` methods:
 
@@ -114,6 +116,13 @@ Overview of `set` methods:
 | setParam           | `name : string, value: string` | `this` |
 | setReportProgress  | `reportProgress : boolean`     | `this` |
 | setWithCredentials | `withCredentials :  boolean`   | `this` |
+
+Overview of `append` methods:
+
+| Method       | Parameter                      | Return |
+|--------------|--------------------------------|--------|
+| appendHeader | `name : string, value: string` | `this` |
+| appendParam  | `name : string, value: string` | `this` |
 
 Overview of `clear` methods:
 
