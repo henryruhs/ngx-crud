@@ -72,12 +72,12 @@ export class CommonService
 
 	public getHeaderArray(name: string) : string[]
 	{
-		return this.options.headers.getAll(name);
+		return this.getHeaders().getAll(name);
 	}
 
 	public getHeader(name: string) : string
 	{
-		return this.options.headers.get(name);
+		return this.getHeaders().get(name);
 	}
 
 	public setHeaders(headers : HttpHeaders) : this
@@ -88,32 +88,27 @@ export class CommonService
 
 	public setHeaderArray(name: string, valueArray: string[]) : this
 	{
-		valueArray.forEach(value => this.appendHeader(name, value));
-		return this;
+		return this.setHeaders(this.getHeaders().set(name, valueArray));
 	}
 
 	public setHeader(name: string, value: string) : this
 	{
-		this.options.headers = this.options.headers.set(name, value);
-		return this;
+		return this.setHeaders(this.getHeaders().set(name, value));
 	}
 
 	public appendHeader(name: string, value: string) : this
 	{
-		this.options.headers = this.options.headers.append(name, value);
-		return this;
+		return this.setHeaders(this.getHeaders().append(name, value));
 	}
 
 	public clearHeaders() : this
 	{
-		this.options.headers = new HttpHeaders();
-		return this;
+		return this.setHeaders(new HttpHeaders());
 	}
 
 	public clearHeader(name: string) : this
 	{
-		this.options.headers = this.options.headers.delete(name);
-		return this;
+		return this.setHeaders(this.getHeaders().delete(name));
 	}
 
 	public getParams() : HttpParams
@@ -123,12 +118,12 @@ export class CommonService
 
 	public getParamArray(name: string) : string[]
 	{
-		return this.options.params.getAll(name);
+		return this.getParams().getAll(name);
 	}
 
 	public getParam(name: string) : string
 	{
-		return this.options.params.get(name);
+		return this.getParams().get(name);
 	}
 
 	public setParams(params : HttpParams) : this
@@ -139,32 +134,29 @@ export class CommonService
 
 	public setParamArray(name: string, valueArray: string[]) : this
 	{
+		this.clearParam(name);
 		valueArray.forEach(value => this.appendParam(name, value));
 		return this;
 	}
 
 	public setParam(name: string, value: string) : this
 	{
-		this.options.params = this.options.params.set(name, value);
-		return this;
+		return this.setParams(this.getParams().set(name, value));
 	}
 
 	public appendParam(name: string, value: string) : this
 	{
-		this.options.params = this.options.params.append(name, value);
-		return this;
+		return this.setParams(this.getParams().append(name, value));
 	}
 
 	public clearParams() : this
 	{
-		this.options.params = new HttpParams();
-		return this;
+		return this.setParams(new HttpParams());
 	}
 
 	public clearParam(name: string) : this
 	{
-		this.options.params = this.options.params.delete(name);
-		return this;
+		return this.setParams(this.getParams().delete(name));
 	}
 
 	public getReportProgress() : boolean
@@ -180,8 +172,7 @@ export class CommonService
 
 	public clearReportProgress() : this
 	{
-		this.options.reportProgress = true;
-		return this;
+		return this.setReportProgress(true);
 	}
 
 	public getWithCredentials() : boolean
@@ -197,8 +188,7 @@ export class CommonService
 
 	public clearWithCredentials() : this
 	{
-		this.options.withCredentials = true;
-		return this;
+		return this.setWithCredentials(true);
 	}
 
 	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string

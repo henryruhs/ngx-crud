@@ -44,17 +44,17 @@ describe('CommonService', () =>
 			CommonService
 		], (commonService : CommonService) =>
 		{
-			commonService.appendParam('test', '1').appendParam('test', '2').setParamArray('test',
+			commonService.appendParam('test', '1').setParamArray('test',
 			[
-				'3',
-				'4'
-			]);
+				'2',
+				'3'
+			]).appendParam('test', '4').appendParam('test', '5')
 			expect(commonService.getParamArray('test')).to.deep.equal(
 			[
-				'1',
 				'2',
 				'3',
-				'4'
+				'4',
+				'5'
 			]);
 			expect(commonService.clearParam('test').getParamArray('test')).to.be.equal(null);
 		})();
@@ -80,17 +80,17 @@ describe('CommonService', () =>
 			CommonService
 		], (commonService : CommonService) =>
 		{
-			commonService.appendHeader('test', '1').appendHeader('test', '2').setHeaderArray('test',
+			commonService.appendHeader('test', '1').setHeaderArray('test',
 			[
-				'3',
-				'4'
-			]);
+				'2',
+				'3'
+			]).appendHeader('test', '4').appendHeader('test', '5');
 			expect(commonService.getHeaderArray('test')).to.deep.equal(
 			[
-				'1',
 				'2',
 				'3',
-				'4'
+				'4',
+				'5'
 			]);
 			expect(commonService.clearHeader('test').getHeaderArray('test')).to.be.equal(null);
 		})();
