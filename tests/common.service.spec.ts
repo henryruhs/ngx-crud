@@ -48,7 +48,7 @@ describe('CommonService', () =>
 			[
 				'2',
 				'3'
-			]).appendParam('test', '4').appendParam('test', '5')
+			]).appendParam('test', '4').appendParam('test', '5');
 			expect(commonService.getParamArray('test')).to.deep.equal(
 			[
 				'2',
