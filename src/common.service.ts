@@ -61,7 +61,7 @@ export class CommonService
 
 	public clearOptions() : this
 	{
-		this.options = {};
+		this.setOptions({});
 		return this;
 	}
 
