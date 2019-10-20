@@ -196,7 +196,7 @@ export class CommonService
 	public doCache(method: MethodType = 'GET', lifetime: number = 1000) : this
 	{
 		return this
-			.appendHeader(CacheEnum.cacheMethod, method)
+			.setHeader(CacheEnum.cacheMethod, method)
 			.setHeader(CacheEnum.cacheExpiration, (Date.now() + lifetime).toString());
 	}
 

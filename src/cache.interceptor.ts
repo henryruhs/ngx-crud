@@ -23,7 +23,7 @@ export class CacheInterceptor implements HttpInterceptor
 	public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
 	{
 		const doCache: boolean = request.headers.has(CacheEnum.cacheMethod) &&
-			request.headers.getAll(CacheEnum.cacheMethod).includes(request.method) &&
+			request.headers.get(CacheEnum.cacheMethod) === request.method &&
 			request.headers.has(CacheEnum.cacheExpiration);
 
 		return doCache ? this.getRequest(request, next) : next.handle(request);
