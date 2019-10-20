@@ -1,3 +1,7 @@
+export { CacheEnum } from './cache.enum';
+export { CacheInterceptor } from './cache.interceptor';
+export { CacheInterface } from './cache.interface';
+export { CacheService } from './cache.service';
 export { CommonService } from './common.service';
 export { CrudModule } from './crud.module';
 export { CrudService } from './crud.service';

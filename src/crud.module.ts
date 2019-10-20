@@ -13,12 +13,12 @@ import { RequestService } from './request.service';
 {
 	providers:
 	[
-		CacheService,
 		{
 			multi: true,
 			provide: HTTP_INTERCEPTORS,
 			useClass: CacheInterceptor
 		},
+		CacheService,
 		DeleteService,
 		GetService,
 		PatchService,
