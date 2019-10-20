@@ -8,9 +8,9 @@ export class DeleteService<T> extends CommonService
 {
 	public delete(id : number | string, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.delete<T>(this.createURL(this.apiUrl, this.endpoint, id),
+		return this.http.delete<T>(this.createURL(this.getApiUrl(), this.getEndpoint(), id),
 		{
-			...this.options,
+			...this.getOptions(),
 			...options
 		});
 	}

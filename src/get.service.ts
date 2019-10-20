@@ -8,18 +8,18 @@ export class GetService<T> extends CommonService
 {
 	public get(id : number | string, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.get<T>(this.createURL(this.apiUrl, this.endpoint, id),
+		return this.http.get<T>(this.createURL(this.getApiUrl(), this.getEndpoint(), id),
 		{
-			...this.options,
+			...this.getOptions(),
 			...options
 		});
 	}
 
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
-		return this.http.get<T[]>(this.createURL(this.apiUrl, this.endpoint),
+		return this.http.get<T[]>(this.createURL(this.getApiUrl(), this.getEndpoint()),
 		{
-			...this.options,
+			...this.getOptions(),
 			...options
 		});
 	}

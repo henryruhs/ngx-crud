@@ -9,9 +9,9 @@ export class RequestService<T> extends CommonService
 {
 	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
-		return this.http.request<T | T[]>(method, this.createURL(this.apiUrl, this.endpoint),
+		return this.http.request<T | T[]>(method, this.createURL(this.getApiUrl(), this.getEndpoint()),
 		{
-			...this.options,
+			...this.getOptions(),
 			...options
 		});
 	}

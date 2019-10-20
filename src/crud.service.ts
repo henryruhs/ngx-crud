@@ -35,63 +35,63 @@ export class CrudService<T> extends CommonService
 	public create(body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.postService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.post(body, options);
 	}
 
 	public read(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.getService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.get(id, options);
 	}
 
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
 		return this.getService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.find(options);
 	}
 
 	public update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.putService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.put(id, body, options);
 	}
 
 	public patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
 		return this.patchService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.patch(id, body, options);
 	}
 
 	public delete(id : number | string, options? : OptionInterface) : Observable<T>
 	{
 		return this.deleteService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.delete(id, options);
 	}
 
 	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
 		return this.requestService
-			.setApiUrl(this.apiUrl)
-			.setEndpoint(this.endpoint)
-			.setOptions((this.options))
+			.setApiUrl(this.getApiUrl())
+			.setEndpoint(this.getEndpoint())
+			.setOptions((this.getOptions()))
 			.request(method, options);
 	}
 }
