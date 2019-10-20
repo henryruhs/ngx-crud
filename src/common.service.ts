@@ -192,11 +192,11 @@ export class CommonService
 		return this.setWithCredentials(true);
 	}
 
-	public doCache(timeout: number = 1000) : this
+	public doCache(lifetime: number = 1000) : this
 	{
 		return this
 			.setHeader(CacheEnum.cache, 'TRUE')
-			.setHeader(CacheEnum.cacheExpiration, Date.now() + timeout.toString());
+			.setHeader(CacheEnum.cacheExpiration, (Date.now() + lifetime).toString());
 	}
 
 	public noCache() : this
