@@ -79,6 +79,24 @@ describe('CrudService', () =>
 		})();
 	});
 
+	it('find with cache', done =>
+	{
+		inject(
+		[
+			TestService
+		], (testService : TestService) =>
+		{
+			testService
+				.doCache()
+				.find()
+				.subscribe(response =>
+				{
+					expect(response[0].userId).to.equal(1);
+					done();
+				});
+		})();
+	});
+
 	it('find by user', done =>
 	{
 		inject(

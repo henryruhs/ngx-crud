@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { CacheEnum } from './cache.enum';
 import { OptionInterface } from './option.interface';
 
 @Injectable()
@@ -189,6 +190,20 @@ export class CommonService
 	public clearWithCredentials() : this
 	{
 		return this.setWithCredentials(true);
+	}
+
+	public doCache(timeout: number = 1000) : this
+	{
+		return this
+			.setHeader(CacheEnum.cache, 'TRUE')
+			.setHeader(CacheEnum.cacheExpiration, Date.now() + timeout.toString());
+	}
+
+	public noCache() : this
+	{
+		return this
+			.clearHeader(CacheEnum.cache)
+			.clearHeader(CacheEnum.cacheExpiration);
 	}
 
 	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string

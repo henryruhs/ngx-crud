@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
-	"description": "Fluent CRUD services for Angular",
-	"version": "2.3.0",
+	"description": "Cacheable CRUD services for Angular",
+	"version": "3.0.0-beta.1",
 	"license": "MIT",
 	"keywords":
 	[
@@ -62,6 +62,7 @@
 	"scripts":
 	{
 		"lint": "tslint src/**/*.ts tests/**/*.ts",
+		"fix": "tslint src/**/*.ts tests/**/*.ts --fix",
 		"test": "mocha --opts mocha.opts",
 		"test:mutation": "stryker run",
 		"build": "ng-packagr --project package.json"

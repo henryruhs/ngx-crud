@@ -1,7 +1,7 @@
 NGX CRUD
 ========
 
-> Fluent CRUD services for Angular.
+> Cacheable CRUD services for Angular.
 
 [![Build Status](https://img.shields.io/travis/redaxmedia/ngx-crud.svg)](https://travis-ci.org/redaxmedia/ngx-crud)
 [![Mutation Status](https://badge.stryker-mutator.io/github.com/redaxmedia/ngx-crud/master)](https://github.com/redaxmedia/ngx-crud)
@@ -143,4 +143,6 @@ Overview of `misc` methods:
 | Method    | Parameter                                                   | Return   |
 |-----------|-------------------------------------------------------------|----------|
 | init      |                                                             | `this`   |
+| doCache   | `lifetime : number`                                         | `this`   |
+| noCache   |                                                             | `this`   |
 | createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
