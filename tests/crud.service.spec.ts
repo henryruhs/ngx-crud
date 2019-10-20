@@ -181,7 +181,7 @@ describe('CrudService', () =>
 		], (testService : TestService) =>
 		{
 			testService
-				.request('get')
+				.request('GET')
 				.subscribe(() => done());
 		})();
 	});

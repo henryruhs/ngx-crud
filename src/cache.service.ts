@@ -34,7 +34,7 @@ export class CacheService
 
 	protected isValid(cache: CacheInterface): boolean
 	{
-		return cache && cache.expiration < Date.now();
+		return cache && cache.expiration > Date.now();
 	}
 
 	protected getExpiration(request: HttpRequest<any>): number

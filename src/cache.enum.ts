@@ -1,5 +1,5 @@
 export enum CacheEnum
 {
-	cache = 'X-CACHE',
+	cacheMethod = 'X-CACHE-METHOD',
 	cacheExpiration = 'X-CACHE-EXPIRATION'
 }

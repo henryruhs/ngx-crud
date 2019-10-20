@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { CacheEnum } from './cache.enum';
+import { MethodType } from './method.type';
 import { OptionInterface } from './option.interface';
 
 @Injectable()
@@ -192,17 +193,17 @@ export class CommonService
 		return this.setWithCredentials(true);
 	}
 
-	public doCache(lifetime: number = 1000) : this
+	public doCache(method: MethodType = 'GET', lifetime: number = 1000) : this
 	{
 		return this
-			.setHeader(CacheEnum.cache, 'TRUE')
+			.appendHeader(CacheEnum.cacheMethod, method)
 			.setHeader(CacheEnum.cacheExpiration, (Date.now() + lifetime).toString());
 	}
 
 	public noCache() : this
 	{
 		return this
-			.clearHeader(CacheEnum.cache)
+			.clearHeader(CacheEnum.cacheMethod)
 			.clearHeader(CacheEnum.cacheExpiration);
 	}
 

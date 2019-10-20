@@ -1,1 +1,1 @@
-export type MethodType = 'delete' | 'get' | 'head' | 'options' | 'patch' | 'post' | 'put';
+export type MethodType = 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' | 'POST' | 'PUT';

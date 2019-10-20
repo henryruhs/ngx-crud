@@ -143,6 +143,6 @@ Overview of `misc` methods:
 | Method    | Parameter                                                   | Return   |
 |-----------|-------------------------------------------------------------|----------|
 | init      |                                                             | `this`   |
-| doCache   | `lifetime : number`                                         | `this`   |
+| doCache   | `method : MethodType, lifetime : number`                    | `this`   |
 | noCache   |                                                             | `this`   |
 | createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
