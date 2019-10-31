@@ -8,7 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
+import { filter, publishReplay, refCount, tap } from 'rxjs/operators';
 
 import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
@@ -31,18 +31,23 @@ export class CacheInterceptor implements HttpInterceptor
 
 	public getRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
 	{
-		const cachedResponse: HttpResponse<any> = this.cacheService.get(request);
+		const cachedResponse: Observable<HttpEvent<any>> = this.cacheService.get(request);
 
-		return cachedResponse ? of(cachedResponse) : this.sendRequest(request, next);
+		return cachedResponse ? cachedResponse : this.sendRequest(request, next);
 	}
 
-	public sendRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+	public sendRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpResponse<any>>
 	{
-		return next
+		const nextHandler : Observable<HttpResponse<any>> = next
 			.handle(request)
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response: HttpResponse<any>) => this.cacheService.set(request, response).tidyUp())
+				tap((response: HttpResponse<any>) => this.cacheService.set(request, of(response)).tidyUp()),
+				publishReplay(),
+				refCount()
 			);
+
+		this.cacheService.set(request, nextHandler).tidyUp();
+		return nextHandler;
 	}
 }

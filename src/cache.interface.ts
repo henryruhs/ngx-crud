@@ -1,8 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface CacheInterface
 {
 	expiration: number;
-	response: HttpResponse<any>;
+	response: Observable<HttpResponse<any>>;
 	url: string;
 }
