@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"keywords":
 	[
+		"angular",
 		"api",
 		"request",
 		"crud",
