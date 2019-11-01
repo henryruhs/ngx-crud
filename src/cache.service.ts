@@ -27,7 +27,7 @@ export class CacheService
 		return this;
 	}
 
-	public tidyUp(): this
+	public clearInvalid(): this
 	{
 		this.cache.forEach(cache => !this.isValid(cache.expiration) ? this.cache.delete(cache.url) : null);
 		return this;

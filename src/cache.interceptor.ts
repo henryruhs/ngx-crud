@@ -29,25 +29,25 @@ export class CacheInterceptor implements HttpInterceptor
 		return doCache ? this.getRequest(request, next) : next.handle(request);
 	}
 
-	public getRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+	protected getRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
 	{
-		const cachedResponse: Observable<HttpEvent<any>> = this.cacheService.get(request);
+		const cachedResponse: Observable<HttpEvent<any>> = this.cacheService.clearInvalid().get(request);
 
-		return cachedResponse ? cachedResponse : this.sendRequest(request, next);
+		return cachedResponse ? cachedResponse : this.storeRequest(request, next);
 	}
 
-	public sendRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpResponse<any>>
+	protected storeRequest(request: HttpRequest<any>, next: HttpHandler): Observable<HttpResponse<any>>
 	{
 		const nextHandler : Observable<HttpResponse<any>> = next
 			.handle(request)
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response: HttpResponse<any>) => this.cacheService.set(request, of(response)).tidyUp()),
+				tap((response: HttpResponse<any>) => this.cacheService.set(request, of(response))),
 				publishReplay(),
 				refCount()
 			);
 
-		this.cacheService.set(request, nextHandler).tidyUp();
+		this.cacheService.set(request, nextHandler);
 		return nextHandler;
 	}
 }
