@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "Cacheable CRUD services for Angular",
-	"version": "3.0.0-beta.3",
+	"version": "3.0.0",
 	"license": "MIT",
 	"keywords":
 	[
@@ -28,18 +28,18 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^8",
-		"@angular/core": "^8",
+		"@angular/common": "^9",
+		"@angular/core": "^9",
 		"rxjs": "^6"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "8.2.13",
-		"@angular/compiler": "8.2.13",
-		"@angular/compiler-cli": "8.2.13",
-		"@angular/core": "8.2.13",
-		"@angular/platform-browser": "8.2.13",
-		"@angular/platform-browser-dynamic": "8.2.13",
+		"@angular/common": "9.0.0-rc.0",
+		"@angular/compiler": "9.0.0-rc.0",
+		"@angular/compiler-cli": "9.0.0-rc.0",
+		"@angular/core": "9.0.0-rc.0",
+		"@angular/platform-browser": "9.0.0-rc.0",
+		"@angular/platform-browser-dynamic": "9.0.0-rc.0",
 		"@stryker-mutator/core": "2.1.0",
 		"@stryker-mutator/mocha-framework": "2.1.0",
 		"@stryker-mutator/mocha-runner": "2.1.0",
@@ -47,7 +47,7 @@
 		"@types/chai": "4.2.4",
 		"@types/mocha": "5.2.7",
 		"chai": "4.2.0",
-		"core-js": "3.3.5",
+		"core-js": "3.3.6",
 		"jsdom": "15.2.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "6.2.2",
@@ -58,7 +58,7 @@
 		"tsickle": "0.37.0",
 		"tslint": "5.20.0",
 		"tslint-config-redaxmedia": "1.4.0",
-		"typescript": "3.5.3",
+		"typescript": "3.6.4",
 		"zone.js": "0.10.2"
 	},
 	"scripts":
