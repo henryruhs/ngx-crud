@@ -23,9 +23,7 @@ export class CommonService
 		return this
 			.clearOptions()
 			.clearHeaders()
-			.clearParams()
-			.clearReportProgress()
-			.clearWithCredentials();
+			.clearParams();
 	}
 
 	public getApiUrl() : string
@@ -55,21 +53,42 @@ export class CommonService
 		return this.options;
 	}
 
+	public getOption<Key extends keyof OptionInterface>(name: Key) : OptionInterface[Key]
+	{
+		return this.options[name];
+	}
+
 	public setOptions(options : OptionInterface) : this
 	{
 		this.options = options;
 		return this;
 	}
 
+	public setOption<Key extends keyof OptionInterface>(name: Key, value: OptionInterface[Key]) : this
+	{
+		this.options[name.toString()] = value;
+		return this;
+	}
+
 	public clearOptions() : this
 	{
-		this.setOptions({});
+		this.setOptions(
+		{
+			reportProgress: true,
+			withCredentials: true
+		});
+		return this;
+	}
+
+	public clearOption(key: keyof OptionInterface) : this
+	{
+		this.setOption(key, null);
 		return this;
 	}
 
 	public getHeaders() : HttpHeaders
 	{
-		return this.options.headers;
+		return this.getOption('headers');
 	}
 
 	public getHeaderArray(name: string) : string[]
@@ -84,8 +103,7 @@ export class CommonService
 
 	public setHeaders(headers : HttpHeaders) : this
 	{
-		this.options.headers = headers;
-		return this;
+		return this.setOption('headers', headers);
 	}
 
 	public setHeaderArray(name: string, valueArray: string[]) : this
@@ -115,7 +133,7 @@ export class CommonService
 
 	public getParams() : HttpParams
 	{
-		return this.options.params;
+		return this.getOption('params');
 	}
 
 	public getParamArray(name: string) : string[]
@@ -130,8 +148,7 @@ export class CommonService
 
 	public setParams(params : HttpParams) : this
 	{
-		this.options.params = params;
-		return this;
+		return this.setOption('params', params);
 	}
 
 	public setParamArray(name: string, valueArray: string[]) : this
@@ -159,38 +176,6 @@ export class CommonService
 	public clearParam(name: string) : this
 	{
 		return this.setParams(this.getParams().delete(name));
-	}
-
-	public getReportProgress() : boolean
-	{
-		return this.options.reportProgress;
-	}
-
-	public setReportProgress(reportProgress : boolean) : this
-	{
-		this.options.reportProgress = reportProgress;
-		return this;
-	}
-
-	public clearReportProgress() : this
-	{
-		return this.setReportProgress(true);
-	}
-
-	public getWithCredentials() : boolean
-	{
-		return this.options.withCredentials;
-	}
-
-	public setWithCredentials(withCredentials : boolean) : this
-	{
-		this.options.withCredentials = withCredentials;
-		return this;
-	}
-
-	public clearWithCredentials() : this
-	{
-		return this.setWithCredentials(true);
 	}
 
 	public doCache(method: MethodType = 'GET', lifetime: number = 1000) : this

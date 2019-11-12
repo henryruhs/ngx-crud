@@ -89,35 +89,33 @@ Common Service
 
 Overview of `get` methods:
 
-| Method             | Parameter       | Return            |
-|--------------------|-----------------|-------------------|
-| getApiUrl          |                 | `string`          |
-| getEndpoint        |                 | `string`          |
-| getOptions         |                 | `OptionInterface` |
-| getHeaders         |                 | `HttpHeaders`     |
-| getHeaderArray     | `name : string` | `string[]`        |
-| getHeader          | `name : string` | `string`          |
-| getParams          |                 | `HttpParams`      |
-| getParamArray      | `name : string` | `string[]`        |
-| getParam           | `name : string` | `string`          |
-| getReportProgress  |                 | `boolean`         |
-| getWithCredentials |                 | `boolean`         |
+| Method         | Parameter       | Return                 |
+|----------------|-----------------|------------------------|
+| getApiUrl      |                 | `string`               |
+| getEndpoint    |                 | `string`               |
+| getOptions     |                 | `OptionInterface`      |
+| getOption      | `name : Key`    | `OptionInterface[Key]` |
+| getHeaders     |                 | `HttpHeaders`          |
+| getHeaderArray | `name : string` | `string[]`             |
+| getHeader      | `name : string` | `string`               |
+| getParams      |                 | `HttpParams`           |
+| getParamArray  | `name : string` | `string[]`             |
+| getParam       | `name : string` | `string`               |
 
 Overview of `set` methods:
 
-| Method             | Parameter                             | Return |
-|--------------------|---------------------------------------|--------|
-| setApiUrl          | `apiUrl : string`                     | `this` |
-| setEndpoint        | `endpoint : string`                   | `this` |
-| setOptions         | `options : OptionInterface`           | `this` |
-| setHeaders         | `headers : HttpHeaders`               | `this` |
-| setHeaderArray     | `name : string, valueArray: string[]` | `this` |
-| setHeader          | `name : string, value: string`        | `this` |
-| setParams          | `params : HttpParams`                 | `this` |
-| setParamArray      | `name : string, valueArray: string[]` | `this` |
-| setParam           | `name : string, value: string`        | `this` |
-| setReportProgress  | `reportProgress : boolean`            | `this` |
-| setWithCredentials | `withCredentials :  boolean`          | `this` |
+| Method         | Parameter                                 | Return |
+|----------------|-------------------------------------------|--------|
+| setApiUrl      | `apiUrl : string`                         | `this` |
+| setEndpoint    | `endpoint : string`                       | `this` |
+| setOptions     | `options : OptionInterface`               | `this` |
+| setOption      | `name : Key, value: OptionInterface[Key]` | `this` |
+| setHeaders     | `headers : HttpHeaders`                   | `this` |
+| setHeaderArray | `name : string, valueArray: string[]`     | `this` |
+| setHeader      | `name : string, value: string`            | `this` |
+| setParams      | `params : HttpParams`                     | `this` |
+| setParamArray  | `name : string, valueArray: string[]`     | `this` |
+| setParam       | `name : string, value: string`            | `this` |
 
 Overview of `append` methods:
 
@@ -128,15 +126,14 @@ Overview of `append` methods:
 
 Overview of `clear` methods:
 
-| Method               | Parameter       | Return |
-|----------------------|-----------------|--------|
-| clearOptions         |                 | `this` |
-| clearHeaders         |                 | `this` |
-| clearHeader          | `name : string` | `this` |
-| clearParams          |                 | `this` |
-| clearParam           | `name : string` | `this` |
-| clearReportProgress  |                 | `this` |
-| clearWithCredentials |                 | `this` |
+| Method       | Parameter       | Return |
+|--------------|-----------------|--------|
+| clearOptions |                 | `this` |
+| clearOption  | `name : Key`    | `this` |
+| clearHeaders |                 | `this` |
+| clearHeader  | `name : string` | `this` |
+| clearParams  |                 | `this` |
+| clearParam   | `name : string` | `this` |
 
 Overview of `misc` methods:
 
