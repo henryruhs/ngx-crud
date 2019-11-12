@@ -53,7 +53,7 @@ export class CommonService
 		return this.options;
 	}
 
-	public getOption<Key extends keyof OptionInterface>(name: Key) : OptionInterface[Key]
+	public getOption<K extends keyof OptionInterface>(name: K) : OptionInterface[K]
 	{
 		return this.options[name];
 	}
@@ -64,7 +64,7 @@ export class CommonService
 		return this;
 	}
 
-	public setOption<Key extends keyof OptionInterface>(name: Key, value: OptionInterface[Key]) : this
+	public setOption<K extends keyof OptionInterface>(name: K, value: OptionInterface[K]) : this
 	{
 		this.options[name.toString()] = value;
 		return this;
@@ -80,9 +80,9 @@ export class CommonService
 		return this;
 	}
 
-	public clearOption(key: keyof OptionInterface) : this
+	public clearOption(name: keyof OptionInterface) : this
 	{
-		this.setOption(key, null);
+		this.setOption(name, null);
 		return this;
 	}
 

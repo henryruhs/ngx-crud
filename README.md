@@ -89,33 +89,33 @@ Common Service
 
 Overview of `get` methods:
 
-| Method         | Parameter       | Return                 |
-|----------------|-----------------|------------------------|
-| getApiUrl      |                 | `string`               |
-| getEndpoint    |                 | `string`               |
-| getOptions     |                 | `OptionInterface`      |
-| getOption      | `name : Key`    | `OptionInterface[Key]` |
-| getHeaders     |                 | `HttpHeaders`          |
-| getHeaderArray | `name : string` | `string[]`             |
-| getHeader      | `name : string` | `string`               |
-| getParams      |                 | `HttpParams`           |
-| getParamArray  | `name : string` | `string[]`             |
-| getParam       | `name : string` | `string`               |
+| Method         | Parameter       | Return               |
+|----------------|-----------------|----------------------|
+| getApiUrl      |                 | `string`             |
+| getEndpoint    |                 | `string`             |
+| getOptions     |                 | `OptionInterface`    |
+| getOption      | `name : K`      | `OptionInterface[K]` |
+| getHeaders     |                 | `HttpHeaders`        |
+| getHeaderArray | `name : string` | `string[]`           |
+| getHeader      | `name : string` | `string`             |
+| getParams      |                 | `HttpParams`         |
+| getParamArray  | `name : string` | `string[]`           |
+| getParam       | `name : string` | `string`             |
 
 Overview of `set` methods:
 
-| Method         | Parameter                                 | Return |
-|----------------|-------------------------------------------|--------|
-| setApiUrl      | `apiUrl : string`                         | `this` |
-| setEndpoint    | `endpoint : string`                       | `this` |
-| setOptions     | `options : OptionInterface`               | `this` |
-| setOption      | `name : Key, value: OptionInterface[Key]` | `this` |
-| setHeaders     | `headers : HttpHeaders`                   | `this` |
-| setHeaderArray | `name : string, valueArray: string[]`     | `this` |
-| setHeader      | `name : string, value: string`            | `this` |
-| setParams      | `params : HttpParams`                     | `this` |
-| setParamArray  | `name : string, valueArray: string[]`     | `this` |
-| setParam       | `name : string, value: string`            | `this` |
+| Method         | Parameter                             | Return |
+|----------------|---------------------------------------|--------|
+| setApiUrl      | `apiUrl : string`                     | `this` |
+| setEndpoint    | `endpoint : string`                   | `this` |
+| setOptions     | `options : OptionInterface`           | `this` |
+| setOption      | `name : K, value: OptionInterface[K]` | `this` |
+| setHeaders     | `headers : HttpHeaders`               | `this` |
+| setHeaderArray | `name : string, valueArray: string[]` | `this` |
+| setHeader      | `name : string, value: string`        | `this` |
+| setParams      | `params : HttpParams`                 | `this` |
+| setParamArray  | `name : string, valueArray: string[]` | `this` |
+| setParam       | `name : string, value: string`        | `this` |
 
 Overview of `append` methods:
 
@@ -129,7 +129,7 @@ Overview of `clear` methods:
 | Method       | Parameter       | Return |
 |--------------|-----------------|--------|
 | clearOptions |                 | `this` |
-| clearOption  | `name : Key`    | `this` |
+| clearOption  | `name : K`      | `this` |
 | clearHeaders |                 | `this` |
 | clearHeader  | `name : string` | `this` |
 | clearParams  |                 | `this` |
