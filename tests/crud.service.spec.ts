@@ -94,7 +94,7 @@ describe('CrudService', () =>
 				.subscribe(() =>
 				{
 					// @ts-ignore
-					const request: HttpRequest<any> =
+					const request : HttpRequest<any> =
 					{
 						urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
 					};
