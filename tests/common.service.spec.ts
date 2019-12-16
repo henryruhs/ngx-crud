@@ -113,7 +113,7 @@ describe('CommonService', () =>
 				url: 'http://localhost/v1.0.0/posts/1'
 			},
 			{
-				apiUrl: '../',
+				apiUrl: '..',
 				endpoint: '/posts',
 				id: null,
 				url: '../posts'

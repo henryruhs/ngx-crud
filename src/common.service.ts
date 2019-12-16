@@ -194,16 +194,14 @@ export class CommonService
 
 	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
-		const url : string =
+		const route : string =
 		[
-			apiUrl,
 			endpoint,
 			id
 		]
 		.filter(value => value)
-		.join('/')
-		.replace(/([^:]\/)\/+/g, '$1');
+		.join('/');
 
-		return url;
+		return apiUrl + route;
 	}
 }
