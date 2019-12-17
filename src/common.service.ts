@@ -53,7 +53,7 @@ export class CommonService
 		return this.options;
 	}
 
-	public getOption<K extends keyof OptionInterface>(name: K) : OptionInterface[K]
+	public getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
 	{
 		return this.options[name];
 	}
@@ -64,7 +64,7 @@ export class CommonService
 		return this;
 	}
 
-	public setOption<K extends keyof OptionInterface>(name: K, value: OptionInterface[K]) : this
+	public setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
 	{
 		this.options[name.toString()] = value;
 		return this;
@@ -80,7 +80,7 @@ export class CommonService
 		return this;
 	}
 
-	public clearOption(name: keyof OptionInterface) : this
+	public clearOption(name : keyof OptionInterface) : this
 	{
 		this.setOption(name, null);
 		return this;
@@ -91,12 +91,12 @@ export class CommonService
 		return this.getOption('headers');
 	}
 
-	public getHeaderArray(name: string) : string[]
+	public getHeaderArray(name : string) : string[]
 	{
 		return this.getHeaders().getAll(name);
 	}
 
-	public getHeader(name: string) : string
+	public getHeader(name : string) : string
 	{
 		return this.getHeaders().get(name);
 	}
@@ -106,17 +106,17 @@ export class CommonService
 		return this.setOption('headers', headers);
 	}
 
-	public setHeaderArray(name: string, valueArray: string[]) : this
+	public setHeaderArray(name : string, valueArray : string[]) : this
 	{
 		return this.setHeaders(this.getHeaders().set(name, valueArray));
 	}
 
-	public setHeader(name: string, value: string) : this
+	public setHeader(name : string, value : string) : this
 	{
 		return this.setHeaders(this.getHeaders().set(name, value));
 	}
 
-	public appendHeader(name: string, value: string) : this
+	public appendHeader(name : string, value : string) : this
 	{
 		return this.setHeaders(this.getHeaders().append(name, value));
 	}
@@ -126,7 +126,7 @@ export class CommonService
 		return this.setHeaders(new HttpHeaders());
 	}
 
-	public clearHeader(name: string) : this
+	public clearHeader(name : string) : this
 	{
 		return this.setHeaders(this.getHeaders().delete(name));
 	}
@@ -136,12 +136,12 @@ export class CommonService
 		return this.getOption('params');
 	}
 
-	public getParamArray(name: string) : string[]
+	public getParamArray(name : string) : string[]
 	{
 		return this.getParams().getAll(name);
 	}
 
-	public getParam(name: string) : string
+	public getParam(name : string) : string
 	{
 		return this.getParams().get(name);
 	}
@@ -151,19 +151,19 @@ export class CommonService
 		return this.setOption('params', params);
 	}
 
-	public setParamArray(name: string, valueArray: string[]) : this
+	public setParamArray(name : string, valueArray : string[]) : this
 	{
 		this.clearParam(name);
 		valueArray.forEach(value => this.appendParam(name, value));
 		return this;
 	}
 
-	public setParam(name: string, value: string) : this
+	public setParam(name : string, value : string) : this
 	{
 		return this.setParams(this.getParams().set(name, value));
 	}
 
-	public appendParam(name: string, value: string) : this
+	public appendParam(name : string, value : string) : this
 	{
 		return this.setParams(this.getParams().append(name, value));
 	}
@@ -173,12 +173,12 @@ export class CommonService
 		return this.setParams(new HttpParams());
 	}
 
-	public clearParam(name: string) : this
+	public clearParam(name : string) : this
 	{
 		return this.setParams(this.getParams().delete(name));
 	}
 
-	public doCache(method: MethodType = 'GET', lifetime: number = 1000) : this
+	public doCache(method : MethodType = 'GET', lifetime : number = 1000) : this
 	{
 		return this
 			.setHeader(CacheEnum.cacheMethod, method)

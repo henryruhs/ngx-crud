@@ -4,7 +4,7 @@ export interface OptionInterface
 {
 	headers? : HttpHeaders;
 	params? : HttpParams;
-	observe?: any;
+	observe? : any;
 	reportProgress? : boolean;
 	responseType? : any;
 	withCredentials? : boolean;
