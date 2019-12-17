@@ -9,18 +9,18 @@ export class CacheService
 {
 	protected cache: Map<string, CacheInterface> = new Map();
 
-	public get(request: HttpRequest<any>): Observable<HttpResponse<any>>
+	public get<T>(request: HttpRequest<T>): Observable<HttpResponse<T>>
 	{
 		const cache: CacheInterface = this.cache.get(request.urlWithParams);
 
 		return cache && this.isValid(cache.expiration) ? cache.response : null;
 	}
 
-	public set(request: HttpRequest<any>, response: Observable<HttpResponse<any>>): this
+	public set<T>(request: HttpRequest<T>, response: Observable<HttpResponse<T>>): this
 	{
 		this.cache.set(request.urlWithParams,
 		{
-			expiration: this.getExpiration(request),
+			expiration: this.getExpiration<T>(request),
 			response,
 			url: request.urlWithParams
 		});
@@ -38,7 +38,7 @@ export class CacheService
 		return expiration > Date.now();
 	}
 
-	protected getExpiration(request: HttpRequest<any>): number
+	protected getExpiration<T>(request: HttpRequest<T>): number
 	{
 		return parseFloat(request.headers.get(CacheEnum.cacheExpiration));
 	}
