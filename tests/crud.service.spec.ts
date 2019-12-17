@@ -99,11 +99,13 @@ describe('CrudService', () =>
 						urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
 					};
 
-					cacheService.get(request).subscribe(response =>
-					{
-						expect(response.body[0].userId).to.equal(1);
-						done();
-					});
+					cacheService
+						.get(request)
+						.subscribe(response =>
+						{
+							expect(response.body[0].userId).to.equal(1);
+							done();
+						});
 				});
 		})();
 	});
