@@ -34,12 +34,12 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "9.0.0-rc.0",
-		"@angular/compiler": "9.0.0-rc.0",
-		"@angular/compiler-cli": "9.0.0-rc.0",
-		"@angular/core": "9.0.0-rc.0",
-		"@angular/platform-browser": "9.0.0-rc.0",
-		"@angular/platform-browser-dynamic": "9.0.0-rc.0",
+		"@angular/common": "9.0.0-rc.6",
+		"@angular/compiler": "9.0.0-rc.6",
+		"@angular/compiler-cli": "9.0.0-rc.6",
+		"@angular/core": "9.0.0-rc.6",
+		"@angular/platform-browser": "9.0.0-rc.6",
+		"@angular/platform-browser-dynamic": "9.0.0-rc.6",
 		"@stryker-mutator/core": "2.4.0",
 		"@stryker-mutator/mocha-framework": "2.4.0",
 		"@stryker-mutator/mocha-runner": "2.4.0",
@@ -58,7 +58,7 @@
 		"tsickle": "0.37.1",
 		"tslint": "5.20.1",
 		"tslint-config-redaxmedia": "1.4.0",
-		"typescript": "3.7.3",
+		"typescript": "3.6.4",
 		"zone.js": "0.10.2"
 	},
 	"scripts":
