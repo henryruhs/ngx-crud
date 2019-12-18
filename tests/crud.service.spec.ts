@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
+import { delay } from 'rxjs/operators';
 import { CacheService, CommonService, CrudModule } from '../src';
 import { TestService } from './test.service';
 
@@ -80,7 +81,7 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it('find with cache', done =>
+	it('find with delay and cache', done =>
 	{
 		inject(
 		[
@@ -89,8 +90,9 @@ describe('CrudService', () =>
 		], (cacheService : CacheService, testService : TestService) =>
 		{
 			testService
-				.enableCache()
+				.enableCache('GET', 2000)
 				.find()
+				.pipe(delay(1000))
 				.subscribe(() =>
 				{
 					cacheService

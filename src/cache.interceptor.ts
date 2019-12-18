@@ -6,10 +6,8 @@ import {
 	HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Observable, of } from 'rxjs';
 import { filter, publishReplay, refCount, tap } from 'rxjs/operators';
-
 import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 
