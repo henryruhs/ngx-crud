@@ -137,9 +137,9 @@ Overview of `clear` methods:
 
 Overview of `misc` methods:
 
-| Method    | Parameter                                                   | Return   |
-|-----------|-------------------------------------------------------------|----------|
-| init      |                                                             | `this`   |
-| doCache   | `method : MethodType, lifetime : number`                    | `this`   |
-| noCache   |                                                             | `this`   |
-| createURL | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
+| Method       | Parameter                                                   | Return   |
+|--------------|-------------------------------------------------------------|----------|
+| init         |                                                             | `this`   |
+| enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
+| disableCache |                                                             | `this`   |
+| createURL    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |

@@ -1,4 +1,4 @@
-import { HttpClientModule, HttpRequest } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { CacheService, CommonService, CrudModule } from '../src';
@@ -89,18 +89,16 @@ describe('CrudService', () =>
 		], (cacheService : CacheService, testService : TestService) =>
 		{
 			testService
-				.doCache()
+				.enableCache()
 				.find()
 				.subscribe(() =>
 				{
-					// @ts-ignore
-					const request : HttpRequest<any> =
-					{
-						urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
-					};
-
 					cacheService
-						.get(request)
+						.get(
+						// @ts-ignore
+						{
+							urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+						})
 						.subscribe(response =>
 						{
 							expect(response.body[0].userId).to.equal(1);

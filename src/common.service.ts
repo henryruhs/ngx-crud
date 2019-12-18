@@ -178,14 +178,14 @@ export class CommonService
 		return this.setParams(this.getParams().delete(name));
 	}
 
-	public doCache(method : MethodType = 'GET', lifetime : number = 1000) : this
+	public enableCache(method : MethodType = 'GET', lifetime : number = 1000) : this
 	{
 		return this
 			.setHeader(CacheEnum.cacheMethod, method)
 			.setHeader(CacheEnum.cacheExpiration, (Date.now() + lifetime).toString());
 	}
 
-	public noCache() : this
+	public disableCache() : this
 	{
 		return this
 			.clearHeader(CacheEnum.cacheMethod)

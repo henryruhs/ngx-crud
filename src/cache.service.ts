@@ -7,29 +7,29 @@ import { CacheInterface } from './cache.interface';
 @Injectable()
 export class CacheService
 {
-	protected cache : Map<string, CacheInterface> = new Map();
+	protected store : Map<string, CacheInterface> = new Map();
 
 	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
 	{
-		const cache : CacheInterface = this.cache.get(request.urlWithParams);
+		const cache : CacheInterface = this.store.get(request.urlWithParams);
 
 		return cache && this.isValid(cache.expiration) ? cache.response : null;
 	}
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
 	{
-		this.cache.set(request.urlWithParams,
+		this.store.set(request.urlWithParams,
 		{
 			expiration: this.getExpiration<T>(request),
 			response,
-			url: request.urlWithParams
+			urlWithParams: request.urlWithParams
 		});
 		return this;
 	}
 
 	public clearInvalid() : this
 	{
-		this.cache.forEach(cache => !this.isValid(cache.expiration) ? this.cache.delete(cache.url) : null);
+		this.store.forEach(cache => !this.isValid(cache.expiration) ? this.store.delete(cache.urlWithParams) : null);
 		return this;
 	}
 

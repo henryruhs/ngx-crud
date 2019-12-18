@@ -5,5 +5,5 @@ export interface CacheInterface
 {
 	expiration : number;
 	response : Observable<HttpResponse<any>>;
-	url : string;
+	urlWithParams : string;
 }
