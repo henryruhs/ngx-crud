@@ -2,7 +2,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import { CacheService, CommonService, CrudModule } from '../src';
+import {
+	AbortService,
+	CacheService,
+	CommonService,
+	CrudModule
+} from '../src';
 import { TestService } from './test.service';
 
 before(() =>
@@ -17,6 +22,7 @@ before(() =>
 			],
 			providers:
 			[
+				AbortService,
 				CacheService,
 				CommonService,
 				TestService
@@ -81,6 +87,27 @@ describe('CrudService', () =>
 		})();
 	});
 
+	it('find with delay and abort', done =>
+	{
+		inject(
+		[
+			AbortService,
+			TestService
+		], (abortService : AbortService, testService : TestService) =>
+		{
+			testService
+				.find()
+				.pipe(
+					delay(1000)
+				)
+				.subscribe(() => done('error'));
+			abortService
+				.get()
+				.subscribe(() => done());
+			abortService.abort();
+		})();
+	});
+
 	it('find with delay and cache', done =>
 	{
 		inject(
@@ -92,7 +119,9 @@ describe('CrudService', () =>
 			testService
 				.enableCache('GET', 2000)
 				.find()
-				.pipe(delay(1000))
+				.pipe(
+					delay(1000)
+				)
 				.subscribe(() =>
 				{
 					cacheService
