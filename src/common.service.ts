@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+import { AbortEnum } from './abort.enum';
 import { CacheEnum } from './cache.enum';
 import { MethodType } from './method.type';
 import { OptionInterface } from './option.interface';
@@ -178,18 +179,28 @@ export class CommonService
 		return this.setParams(this.getParams().delete(name));
 	}
 
+	public enableAbort(method : MethodType = 'GET') : this
+	{
+		return this.setHeader(AbortEnum.method, method);
+	}
+
+	public disableAbort() : this
+	{
+		return this.clearHeader(AbortEnum.method);
+	}
+
 	public enableCache(method : MethodType = 'GET', lifetime : number = 1000) : this
 	{
 		return this
-			.setHeader(CacheEnum.cacheMethod, method)
-			.setHeader(CacheEnum.cacheExpiration, (Date.now() + lifetime).toString());
+			.setHeader(CacheEnum.method, method)
+			.setHeader(CacheEnum.expiration, (Date.now() + lifetime).toString());
 	}
 
 	public disableCache() : this
 	{
 		return this
-			.clearHeader(CacheEnum.cacheMethod)
-			.clearHeader(CacheEnum.cacheExpiration);
+			.clearHeader(CacheEnum.method)
+			.clearHeader(CacheEnum.expiration);
 	}
 
 	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string

@@ -40,6 +40,6 @@ export class CacheService
 
 	protected getExpiration<T>(request : HttpRequest<T>) : number
 	{
-		return parseFloat(request.headers.get(CacheEnum.cacheExpiration));
+		return parseFloat(request.headers.get(CacheEnum.expiration));
 	}
 }

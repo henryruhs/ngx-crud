@@ -1,5 +1,4 @@
 export { AbortInterceptor } from './abort.interceptor';
-export { AbortInterface } from './abort.interface';
 export { AbortService } from './abort.service';
 export { CacheEnum } from './cache.enum';
 export { CacheInterceptor } from './cache.interceptor';

@@ -96,9 +96,10 @@ describe('CrudService', () =>
 		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService
+				.enableAbort()
 				.find()
 				.pipe(
-					delay(1000)
+					delay(2000)
 				)
 				.subscribe(() => done('error'));
 			abortService
