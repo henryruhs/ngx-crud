@@ -16,9 +16,16 @@ export class AbortService
 		return this.store.get(request.url).asObservable();
 	}
 
-	public abort<T>(request : HttpRequest<T>) : void
+	public abort<T>(request : HttpRequest<T>) : this
 	{
 		this.store.get(request.url).next();
 		this.store.get(request.url).complete();
+		return this;
+	}
+
+	public destroy() : this
+	{
+		this.store.forEach((value, index) => this.store.delete(index));
+		return this;
 	}
 }
