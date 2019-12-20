@@ -1,19 +1,24 @@
+import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class AbortService
 {
-	protected store : Subject<void> = new Subject<void>();
+	protected store : Map<string, Subject<void>> = new Map();
 
-	public get() : Observable<void>
+	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
-		return this.store.asObservable();
+		if (!this.store.get(request.url))
+		{
+			this.store.set(request.url, new Subject<void>());
+		}
+		return this.store.get(request.url).asObservable();
 	}
 
-	public abort() : void
+	public abort<T>(request : HttpRequest<T>) : void
 	{
-		this.store.next();
-		this.store.complete();
+		this.store.get(request.url).next();
+		this.store.get(request.url).complete();
 	}
 }

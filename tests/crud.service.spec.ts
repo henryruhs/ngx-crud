@@ -95,7 +95,7 @@ describe('CrudService', () =>
 			TestService
 		], (abortService : AbortService, testService : TestService) =>
 		{
-			testService
+			const request : any = testService
 				.enableAbort()
 				.find()
 				.pipe(
@@ -103,9 +103,18 @@ describe('CrudService', () =>
 				)
 				.subscribe(() => done('error'));
 			abortService
-				.get()
+				.get(
+				// @ts-ignore
+				{
+					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+				})
 				.subscribe(() => done());
-			abortService.abort();
+			abortService.abort(
+				// @ts-ignore
+				{
+					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+				}
+			);
 		})();
 	});
 
