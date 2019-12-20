@@ -20,21 +20,21 @@ export class CacheInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableCache : boolean = request.headers.has(CacheEnum.cacheMethod) &&
-			request.headers.get(CacheEnum.cacheMethod) === request.method &&
-			request.headers.has(CacheEnum.cacheExpiration);
+		const enableCache : boolean = request.headers.has(CacheEnum.method) &&
+			request.headers.get(CacheEnum.method) === request.method &&
+			request.headers.has(CacheEnum.expiration);
 
-		return enableCache ? this.handleCache(request, next) : next.handle(request);
+		return enableCache ? this.handle(request, next) : next.handle(request);
 	}
 
-	protected handleCache<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
+	protected handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const cachedResponse : Observable<HttpEvent<T>> = this.cacheService.clearInvalid().get(request);
 
-		return cachedResponse ? cachedResponse : this.storeCache(request, next);
+		return cachedResponse ? cachedResponse : this.store(request, next);
 	}
 
-	protected storeCache<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpResponse<T>>
+	protected store<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpResponse<T>>
 	{
 		const nextHandler : Observable<HttpResponse<T>> = next
 			.handle(request)
