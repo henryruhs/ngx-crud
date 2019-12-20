@@ -95,7 +95,7 @@ describe('CrudService', () =>
 			TestService
 		], (abortService : AbortService, testService : TestService) =>
 		{
-			const request : any = testService
+			testService
 				.enableAbort()
 				.find()
 				.pipe(
