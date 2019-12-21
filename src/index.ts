@@ -1,3 +1,4 @@
+export { AbortEnum } from './abort.enum';
 export { AbortInterceptor } from './abort.interceptor';
 export { AbortService } from './abort.service';
 export { CacheEnum } from './cache.enum';
