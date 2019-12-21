@@ -109,12 +109,7 @@ describe('CrudService', () =>
 					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
 				})
 				.subscribe(() => done());
-			abortService.abort(
-				// @ts-ignore
-				{
-					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
-				}
-			);
+			testService.abort();
 		})();
 	});
 

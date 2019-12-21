@@ -32,7 +32,7 @@ export class CacheService
 		return this;
 	}
 
-	public destroy() : this
+	public clearAll() : this
 	{
 		this.store.forEach((value, index) => this.store.delete(index));
 		return this;

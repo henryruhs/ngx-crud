@@ -140,6 +140,9 @@ Overview of `misc` methods:
 | Method       | Parameter                                                   | Return   |
 |--------------|-------------------------------------------------------------|----------|
 | init         |                                                             | `this`   |
+| abort        |                                                             | `this`   |
+| enableAbort  | `method : MethodType`                                       | `this`   |
+| disableAbort |                                                             | `this`   |
 | enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
 | disableCache |                                                             | `this`   |
 | createURL    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |

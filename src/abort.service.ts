@@ -23,7 +23,7 @@ export class AbortService
 		return this;
 	}
 
-	public destroy() : this
+	public abortAll() : this
 	{
 		this.store.forEach((value, index) => this.store.delete(index));
 		return this;
