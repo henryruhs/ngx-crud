@@ -30,7 +30,7 @@ export class AbortInterceptor implements HttpInterceptor
 		return next
 			.handle(request)
 			.pipe(
-				takeUntil(this.abortService.get())
+				takeUntil(this.abortService.get(request))
 			);
 	}
 }

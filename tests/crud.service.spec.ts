@@ -103,9 +103,13 @@ describe('CrudService', () =>
 				)
 				.subscribe(() => done('error'));
 			abortService
-				.get()
+				.get(
+				// @ts-ignore
+				{
+					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+				})
 				.subscribe(() => done());
-			abortService.abort();
+			testService.abort();
 		})();
 	});
 

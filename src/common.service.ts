@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { AbortEnum } from './abort.enum';
+import { AbortService } from './abort.service';
 import { CacheEnum } from './cache.enum';
 import { MethodType } from './method.type';
 import { OptionInterface } from './option.interface';
@@ -9,6 +10,7 @@ import { OptionInterface } from './option.interface';
 export class CommonService
 {
 	protected http : HttpClient;
+	protected abortService : AbortService;
 	protected apiUrl : string;
 	protected endpoint : string;
 	protected options : OptionInterface;
@@ -16,6 +18,7 @@ export class CommonService
 	constructor(protected injector : Injector)
 	{
 		this.http = injector.get(HttpClient);
+		this.abortService = injector.get(AbortService);
 		this.init();
 	}
 
@@ -25,6 +28,16 @@ export class CommonService
 			.clearOptions()
 			.clearHeaders()
 			.clearParams();
+	}
+
+	public abort() : this
+	{
+		return this.abortService
+			.abort(
+			// @ts-ignore
+			{
+				url: this.createURL(this.getApiUrl(), this.getEndpoint())
+			});
 	}
 
 	public getApiUrl() : string

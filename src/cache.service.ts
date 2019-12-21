@@ -21,15 +21,20 @@ export class CacheService
 		this.store.set(request.urlWithParams,
 		{
 			expiration: this.getExpiration<T>(request),
-			response,
-			urlWithParams: request.urlWithParams
+			response
 		});
 		return this;
 	}
 
 	public clearInvalid() : this
 	{
-		this.store.forEach(cache => !this.isValid(cache.expiration) ? this.store.delete(cache.urlWithParams) : null);
+		this.store.forEach((value, index) => !this.isValid(value.expiration) ? this.store.delete(index) : null);
+		return this;
+	}
+
+	public clearAll() : this
+	{
+		this.store.forEach((value, index) => this.store.delete(index));
 		return this;
 	}
 
