@@ -97,6 +97,7 @@ describe('CrudService', () =>
 		{
 			testService
 				.enableAbort()
+				.abort()
 				.find()
 				.pipe(
 					delay(2000)

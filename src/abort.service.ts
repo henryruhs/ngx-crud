@@ -18,14 +18,23 @@ export class AbortService
 
 	public abort<T>(request : HttpRequest<T>) : this
 	{
-		this.store.get(request.url).next();
-		this.store.get(request.url).complete();
-		return this;
+		return this._abort(request.url);
 	}
 
 	public abortAll() : this
 	{
-		this.store.forEach((value, index) => this.store.delete(index));
+		this.store.forEach((subject, url) => this._abort(url));
+		return this;
+	}
+
+	protected _abort(url : string) : this
+	{
+		if (this.store.get(url))
+		{
+			this.store.get(url).next();
+			this.store.get(url).complete();
+			this.store.delete(url);
+		}
 		return this;
 	}
 }

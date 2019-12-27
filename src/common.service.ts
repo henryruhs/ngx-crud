@@ -32,12 +32,12 @@ export class CommonService
 
 	public abort() : this
 	{
-		return this.abortService
-			.abort(
-			// @ts-ignore
-			{
-				url: this.createURL(this.getApiUrl(), this.getEndpoint())
-			});
+		this.abortService.abort(
+		// @ts-ignore
+		{
+			url: this.createURL(this.getApiUrl(), this.getEndpoint())
+		});
+		return this;
 	}
 
 	public getApiUrl() : string
