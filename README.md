@@ -146,4 +146,4 @@ Overview of `misc` methods:
 | disableAbort |                                                             | `this`   |
 | enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
 | disableCache |                                                             | `this`   |
-| createURL    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
+| createUrl    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |

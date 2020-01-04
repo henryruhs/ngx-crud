@@ -103,7 +103,7 @@ describe('CrudService', () =>
 				.get(
 				// @ts-ignore
 				{
-					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+					urlWithParams: testService.createUrl(testService.getApiUrl(), testService.getEndpoint())
 				})
 				.subscribe(() =>
 				{
@@ -133,7 +133,7 @@ describe('CrudService', () =>
 						.get(
 						// @ts-ignore
 						{
-							urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
+							urlWithParams: testService.createUrl(testService.getApiUrl(), testService.getEndpoint())
 						})
 						.subscribe(response =>
 						{

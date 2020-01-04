@@ -32,6 +32,12 @@ export class CacheService
 		return this;
 	}
 
+	public clearMany(baseUrl : string) : this
+	{
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.clear(urlWithParams) : null);
+		return this;
+	}
+
 	public clearAll() : this
 	{
 		this.store.forEach((value, urlWithParams) => this.clear(urlWithParams));

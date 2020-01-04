@@ -35,18 +35,17 @@ export class CommonService
 
 	public abort() : this
 	{
-		const url : string = this.createURL(this.getApiUrl(), this.getEndpoint());
+		const baseURL : string = this.createUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.abortService.abort(url);
+		this.abortService.abortMany(baseURL);
 		return this;
 	}
 
 	public flush() : this
 	{
-		const url : string = this.createURL(this.getApiUrl(), this.getEndpoint());
-		const urlWithParams : string = this.getParams() ? url + '?' + this.getParams().toString() : url;
+		const baseURL : string = this.createUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.cacheService.clear(urlWithParams);
+		this.cacheService.clearMany(baseURL);
 		return this;
 	}
 
@@ -230,7 +229,7 @@ export class CommonService
 			.clearHeader(CacheEnum.expiration);
 	}
 
-	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string
+	public createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
 	{
 		const route : string =
 		[

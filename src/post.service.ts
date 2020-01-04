@@ -8,7 +8,7 @@ export class PostService<T> extends CommonService
 {
 	public post(body : any, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.post<T>(this.createURL(this.getApiUrl(), this.getEndpoint()), body,
+		return this.http.post<T>(this.createUrl(this.getApiUrl(), this.getEndpoint()), body,
 		{
 			...this.getOptions(),
 			...options

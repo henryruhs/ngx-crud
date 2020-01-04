@@ -8,7 +8,7 @@ export class PutService<T> extends CommonService
 {
 	public put(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.put<T>(this.createURL(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.put<T>(this.createUrl(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options

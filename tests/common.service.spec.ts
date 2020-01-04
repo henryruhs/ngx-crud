@@ -131,7 +131,7 @@ describe('CommonService', () =>
 			CommonService
 		], (commonService : CommonService) =>
 		{
-			urlArray.forEach(item => expect(commonService.createURL(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.url));
+			urlArray.forEach(item => expect(commonService.createUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.url));
 		})();
 	});
 });

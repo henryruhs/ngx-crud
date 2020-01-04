@@ -11,37 +11,43 @@ export class AbortService
 
 	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
-		if (!this.store.get(request.url))
+		if (!this.store.get(request.urlWithParams))
 		{
-			this.store.set(request.url,
+			this.store.set(request.urlWithParams,
 			{
 				expiration: this.getExpiration(request),
 				signal: new Subject<void>()
 			});
 		}
-		return this.store.get(request.url).signal.asObservable();
+		return this.store.get(request.urlWithParams).signal.asObservable();
 	}
 
-	public abort(url : string) : this
+	public abort(urlWithParams : string) : this
 	{
-		if (this.store.get(url))
+		if (this.store.get(urlWithParams))
 		{
-			this.store.get(url).signal.next();
-			this.store.get(url).signal.complete();
-			this.store.delete(url);
+			this.store.get(urlWithParams).signal.next();
+			this.store.get(urlWithParams).signal.complete();
+			this.store.delete(urlWithParams);
 		}
+		return this;
+	}
+
+	public abortMany(baseUrl : string) : this
+	{
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.abort(urlWithParams) : null);
 		return this;
 	}
 
 	public abortAll() : this
 	{
-		this.store.forEach((value, url) => this.abort(url));
+		this.store.forEach((value, urlWithParams) => this.abort(urlWithParams));
 		return this;
 	}
 
 	public abortOnExpiration<T>(request : HttpRequest<T>) : this
 	{
-		setTimeout(() => this.abort(request.url), this.getExpiration(request) - Date.now());
+		setTimeout(() => this.abort(request.urlWithParams), this.getExpiration(request) - Date.now());
 		return this;
 	}
 

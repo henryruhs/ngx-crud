@@ -8,7 +8,7 @@ export class PatchService<T> extends CommonService
 {
 	public patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.patch<T>(this.createURL(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.patch<T>(this.createUrl(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options

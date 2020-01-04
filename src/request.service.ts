@@ -9,7 +9,7 @@ export class RequestService<T> extends CommonService
 {
 	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
-		return this.http.request<T | T[]>(method, this.createURL(this.getApiUrl(), this.getEndpoint()),
+		return this.http.request<T | T[]>(method, this.createUrl(this.getApiUrl(), this.getEndpoint()),
 		{
 			...this.getOptions(),
 			...options
