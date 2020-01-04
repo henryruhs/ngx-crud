@@ -1,7 +1,7 @@
 NGX CRUD
 ========
 
-> CRUD services for Angular with effortlessly aborting and caching.
+> CRUD services for Angular with effortless aborting and caching.
 
 [![Build Status](https://img.shields.io/travis/redaxmedia/ngx-crud.svg)](https://travis-ci.org/redaxmedia/ngx-crud)
 [![Mutation Status](https://badge.stryker-mutator.io/github.com/redaxmedia/ngx-crud/master)](https://github.com/redaxmedia/ngx-crud)
@@ -135,7 +135,7 @@ Overview of `clear` methods:
 | clearParams  |                 | `this` |
 | clearParam   | `name : string` | `this` |
 
-Overview of `misc` methods:
+Overview of `control` methods:
 
 | Method       | Parameter                                | Return |
 |--------------|------------------------------------------|--------|
