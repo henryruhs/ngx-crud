@@ -3,7 +3,7 @@ import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
 import { CacheService, CrudModule } from '../src';
-import { createUrl } from '../src/helper';
+import { mockRequest } from './helper';
 import { TestService } from './test.service';
 
 before(() =>
@@ -36,6 +36,7 @@ describe('CacheService', () =>
 		{
 			testService
 				.enableCache('GET', 2000)
+				.setParam('test', 'test')
 				.find()
 				.pipe(
 					delay(1000)
@@ -43,14 +44,10 @@ describe('CacheService', () =>
 				.subscribe(() =>
 				{
 					cacheService
-						.get(
-						// @ts-ignore
-						{
-							urlWithParams: createUrl(testService.getApiUrl(), testService.getEndpoint())
-						})
+						.get(mockRequest(testService))
 						.subscribe(response =>
 						{
-							testService.disableCache();
+							testService.clear();
 							expect(response.body[0].userId).to.equal(1);
 							done();
 						});

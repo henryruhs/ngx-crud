@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { AbortService, CrudModule } from '../src';
-import { createUrl } from '../src/helper';
+import { mockRequest } from './helper';
 import { TestService } from './test.service';
 
 before(() =>
@@ -34,23 +34,48 @@ describe('AbortService', () =>
 		{
 			testService
 				.enableAbort('GET', 100)
+				.setParam('test', 'test')
 				.find()
 				.subscribe(() =>
 				{
-					testService.disableAbort();
+					testService.clear();
 					done('error');
 				});
 			abortService
-				.get(
-				// @ts-ignore
-				{
-					urlWithParams: createUrl(testService.getApiUrl(), testService.getEndpoint())
-				})
+				.get(mockRequest(testService))
 				.subscribe(() =>
 				{
-					testService.disableAbort();
+					testService.clear();
 					done();
 				});
+		})();
+	});
+
+	it('service abort', done =>
+	{
+		inject(
+		[
+			AbortService,
+			TestService
+		], (abortService : AbortService, testService : TestService) =>
+		{
+			testService
+				.enableAbort()
+				.setParam('test', 'test')
+				.find()
+				.subscribe(() =>
+				{
+					testService.clear();
+					done('error');
+				});
+			abortService
+				.get(mockRequest(testService))
+				.subscribe(() =>
+				{
+					testService.clear();
+					done();
+				});
+			testService.abort();
 		})();
 	});
 });

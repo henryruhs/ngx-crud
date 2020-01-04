@@ -28,6 +28,11 @@ export class CommonService
 
 	public init() : this
 	{
+		return this.clear();
+	}
+
+	public clear() : this
+	{
 		return this
 			.clearOptions()
 			.clearHeaders()

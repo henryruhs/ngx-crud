@@ -128,6 +128,7 @@ Overview of `clear` methods:
 
 | Method       | Parameter       | Return |
 |--------------|-----------------|--------|
+| clear        |                 | `this` |
 | clearOptions |                 | `this` |
 | clearOption  | `name : K`      | `this` |
 | clearHeaders |                 | `this` |
