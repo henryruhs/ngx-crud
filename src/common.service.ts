@@ -4,6 +4,7 @@ import { AbortEnum } from './abort.enum';
 import { AbortService } from './abort.service';
 import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
+import { createUrl } from './helper';
 import { MethodType } from './method.type';
 import { OptionInterface } from './option.interface';
 
@@ -35,7 +36,7 @@ export class CommonService
 
 	public abort() : this
 	{
-		const baseURL : string = this.createUrl(this.getApiUrl(), this.getEndpoint());
+		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
 
 		this.abortService.abortMany(baseURL);
 		return this;
@@ -43,7 +44,7 @@ export class CommonService
 
 	public flush() : this
 	{
-		const baseURL : string = this.createUrl(this.getApiUrl(), this.getEndpoint());
+		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
 
 		this.cacheService.clearMany(baseURL);
 		return this;
@@ -227,18 +228,5 @@ export class CommonService
 		return this
 			.clearHeader(CacheEnum.method)
 			.clearHeader(CacheEnum.expiration);
-	}
-
-	public createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
-	{
-		const route : string =
-		[
-			endpoint,
-			id
-		]
-		.filter(value => value)
-		.join('/');
-
-		return apiUrl + route;
 	}
 }

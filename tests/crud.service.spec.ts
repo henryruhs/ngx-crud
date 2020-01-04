@@ -8,6 +8,7 @@ import {
 	CommonService,
 	CrudModule
 } from '../src';
+import { createUrl } from '../src/helper';
 import { TestService } from './test.service';
 
 before(() =>
@@ -103,7 +104,7 @@ describe('CrudService', () =>
 				.get(
 				// @ts-ignore
 				{
-					urlWithParams: testService.createUrl(testService.getApiUrl(), testService.getEndpoint())
+					urlWithParams: createUrl(testService.getApiUrl(), testService.getEndpoint())
 				})
 				.subscribe(() =>
 				{
@@ -133,7 +134,7 @@ describe('CrudService', () =>
 						.get(
 						// @ts-ignore
 						{
-							urlWithParams: testService.createUrl(testService.getApiUrl(), testService.getEndpoint())
+							urlWithParams: createUrl(testService.getApiUrl(), testService.getEndpoint())
 						})
 						.subscribe(response =>
 						{

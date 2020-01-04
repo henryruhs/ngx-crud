@@ -137,13 +137,13 @@ Overview of `clear` methods:
 
 Overview of `misc` methods:
 
-| Method       | Parameter                                                   | Return   |
-|--------------|-------------------------------------------------------------|----------|
-| init         |                                                             | `this`   |
-| abort        |                                                             | `this`   |
-| flush        |                                                             | `this`   |
-| enableAbort  | `method : MethodType, lifetime : number`                    | `this`   |
-| disableAbort |                                                             | `this`   |
-| enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
-| disableCache |                                                             | `this`   |
-| createUrl    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
+| Method       | Parameter                                | Return |
+|--------------|------------------------------------------|--------|
+| init         |                                          | `this` |
+| abort        |                                          | `this` |
+| flush        |                                          | `this` |
+| enableAbort  | `method : MethodType, lifetime : number` | `this` |
+| disableAbort |                                          | `this` |
+| enableCache  | `method : MethodType, lifetime : number` | `this` |
+| disableCache |                                          | `this` |
+
