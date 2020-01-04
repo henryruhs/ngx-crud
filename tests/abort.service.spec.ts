@@ -51,7 +51,7 @@ describe('AbortService', () =>
 		})();
 	});
 
-	it('service abort', done =>
+	it('programmatic abort', done =>
 	{
 		inject(
 		[

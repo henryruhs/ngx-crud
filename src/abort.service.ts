@@ -11,20 +11,26 @@ export class AbortService
 
 	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
-		if (!this.store.get(request.urlWithParams))
+		if (!this.store.has(request.urlWithParams))
 		{
-			this.store.set(request.urlWithParams,
-			{
-				expiration: this.getExpiration(request),
-				signal: new Subject<void>()
-			});
+			this.set(request);
 		}
 		return this.store.get(request.urlWithParams).signal.asObservable();
 	}
 
+	public set<T>(request : HttpRequest<T>) : this
+	{
+		this.store.set(request.urlWithParams,
+		{
+			expiration: this.getExpiration(request),
+			signal: new Subject<void>()
+		});
+		return this;
+	}
+
 	public abort(urlWithParams : string) : this
 	{
-		if (this.store.get(urlWithParams))
+		if (this.store.has(urlWithParams))
 		{
 			this.store.get(urlWithParams).signal.next();
 			this.store.get(urlWithParams).signal.complete();
