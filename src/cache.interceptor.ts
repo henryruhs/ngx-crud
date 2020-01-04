@@ -40,7 +40,7 @@ export class CacheInterceptor implements HttpInterceptor
 			.handle(request)
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response : HttpResponse<T>) => this.cacheService.clearOnExpiration(request).set(request, of(response))),
+				tap((response : HttpResponse<T>) => this.cacheService.flushOnExpiration(request).set(request, of(response))),
 				publishReplay(),
 				refCount()
 			);

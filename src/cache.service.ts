@@ -26,27 +26,27 @@ export class CacheService
 		return this;
 	}
 
-	public clear(urlWithParams : string) : this
+	public flush(urlWithParams : string) : this
 	{
 		this.store.delete(urlWithParams);
 		return this;
 	}
 
-	public clearMany(baseUrl : string) : this
+	public flushMany(baseUrl : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.clear(urlWithParams) : null);
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.flush(urlWithParams) : null);
 		return this;
 	}
 
-	public clearAll() : this
+	public flushAll() : this
 	{
-		this.store.forEach((value, urlWithParams) => this.clear(urlWithParams));
+		this.store.forEach((value, urlWithParams) => this.flush(urlWithParams));
 		return this;
 	}
 
-	public clearOnExpiration<T>(request : HttpRequest<T>) : this
+	public flushOnExpiration<T>(request : HttpRequest<T>) : this
 	{
-		setTimeout(() => this.clear(request.urlWithParams), this.getExpiration(request) - Date.now());
+		setTimeout(() => this.flush(request.urlWithParams), this.getExpiration(request) - Date.now());
 		return this;
 	}
 

@@ -46,7 +46,7 @@ export class CommonService
 	{
 		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.cacheService.clearMany(baseURL);
+		this.cacheService.flushMany(baseURL);
 		return this;
 	}
 
