@@ -1,15 +1,15 @@
 {
 	"name": "ngx-crud",
-	"description": "Cacheable CRUD services for Angular",
-	"version": "4.0.0-beta.2",
+	"description": "CRUD services for Angular with effortlessly aborting and caching",
+	"version": "4.0.0-beta.3",
 	"license": "MIT",
 	"keywords":
 	[
 		"angular",
-		"api",
 		"request",
 		"crud",
 		"rest",
+		"abort",
 		"cache"
 	],
 	"author":

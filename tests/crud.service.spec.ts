@@ -87,7 +87,7 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it('find with delay and abort', done =>
+	it('find with abort', done =>
 	{
 		inject(
 		[
@@ -96,12 +96,8 @@ describe('CrudService', () =>
 		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService
-				.enableAbort()
-				.abort()
+				.enableAbort('GET', 100)
 				.find()
-				.pipe(
-					delay(2000)
-				)
 				.subscribe(() => done('error'));
 			abortService
 				.get(
@@ -109,12 +105,15 @@ describe('CrudService', () =>
 				{
 					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
 				})
-				.subscribe(() => done());
-			testService.abort();
+				.subscribe(() =>
+				{
+					testService.disableAbort();
+					done();
+				});
 		})();
 	});
 
-	it('find with delay and cache', done =>
+	it('find with cache', done =>
 	{
 		inject(
 		[
@@ -139,6 +138,7 @@ describe('CrudService', () =>
 						.subscribe(response =>
 						{
 							expect(response.body[0].userId).to.equal(1);
+							testService.disableCache();
 							done();
 						});
 				});

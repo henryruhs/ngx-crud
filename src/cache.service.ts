@@ -26,15 +26,21 @@ export class CacheService
 		return this;
 	}
 
-	public clearInvalid() : this
+	public clear(urlWithParams : string) : this
 	{
-		this.store.forEach((value, index) => !this.isValid(value.expiration) ? this.store.delete(index) : null);
+		this.store.delete(urlWithParams);
 		return this;
 	}
 
 	public clearAll() : this
 	{
-		this.store.forEach((value, index) => this.store.delete(index));
+		this.store.forEach((value, urlWithParams) => this.clear(urlWithParams));
+		return this;
+	}
+
+	public clearOnExpiration<T>(request : HttpRequest<T>) : this
+	{
+		setTimeout(() => this.clear(request.urlWithParams), this.getExpiration(request) - Date.now());
 		return this;
 	}
 

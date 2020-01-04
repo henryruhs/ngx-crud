@@ -29,7 +29,7 @@ export class CacheInterceptor implements HttpInterceptor
 
 	protected handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const cachedResponse : Observable<HttpEvent<T>> = this.cacheService.clearInvalid().get(request);
+		const cachedResponse : Observable<HttpEvent<T>> = this.cacheService.get(request);
 
 		return cachedResponse ? cachedResponse : this.store(request, next);
 	}
@@ -40,7 +40,7 @@ export class CacheInterceptor implements HttpInterceptor
 			.handle(request)
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response : HttpResponse<T>) => this.cacheService.set(request, of(response))),
+				tap((response : HttpResponse<T>) => this.cacheService.clearOnExpiration(request).set(request, of(response))),
 				publishReplay(),
 				refCount()
 			);

@@ -1,40 +1,52 @@
 import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { AbortEnum } from './abort.enum';
+import { AbortInterface } from './abort.interface';
 
 @Injectable()
 export class AbortService
 {
-	protected store : Map<string, Subject<void>> = new Map();
+	protected store : Map<string, AbortInterface> = new Map();
 
 	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
 		if (!this.store.get(request.url))
 		{
-			this.store.set(request.url, new Subject<void>());
+			this.store.set(request.url,
+			{
+				expiration: this.getExpiration(request),
+				signal: new Subject<void>()
+			});
 		}
-		return this.store.get(request.url).asObservable();
+		return this.store.get(request.url).signal.asObservable();
 	}
 
-	public abort<T>(request : HttpRequest<T>) : this
+	public abort(url : string) : this
 	{
-		return this._abort(request.url);
+		if (this.store.get(url))
+		{
+			this.store.get(url).signal.next();
+			this.store.get(url).signal.complete();
+			this.store.delete(url);
+		}
+		return this;
 	}
 
 	public abortAll() : this
 	{
-		this.store.forEach((subject, url) => this._abort(url));
+		this.store.forEach((value, url) => this.abort(url));
 		return this;
 	}
 
-	protected _abort(url : string) : this
+	public abortOnExpiration<T>(request : HttpRequest<T>) : this
 	{
-		if (this.store.get(url))
-		{
-			this.store.get(url).next();
-			this.store.get(url).complete();
-			this.store.delete(url);
-		}
+		setTimeout(() => this.abort(request.url), this.getExpiration(request) - Date.now());
 		return this;
+	}
+
+	protected getExpiration<T>(request : HttpRequest<T>) : number
+	{
+		return parseFloat(request.headers.get(AbortEnum.expiration));
 	}
 }

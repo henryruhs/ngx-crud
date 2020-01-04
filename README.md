@@ -1,7 +1,7 @@
 NGX CRUD
 ========
 
-> Cacheable CRUD services for Angular.
+> CRUD services for Angular with effortlessly aborting and caching.
 
 [![Build Status](https://img.shields.io/travis/redaxmedia/ngx-crud.svg)](https://travis-ci.org/redaxmedia/ngx-crud)
 [![Mutation Status](https://badge.stryker-mutator.io/github.com/redaxmedia/ngx-crud/master)](https://github.com/redaxmedia/ngx-crud)
@@ -141,7 +141,8 @@ Overview of `misc` methods:
 |--------------|-------------------------------------------------------------|----------|
 | init         |                                                             | `this`   |
 | abort        |                                                             | `this`   |
-| enableAbort  | `method : MethodType`                                       | `this`   |
+| flush        |                                                             | `this`   |
+| enableAbort  | `method : MethodType, lifetime : number`                    | `this`   |
 | disableAbort |                                                             | `this`   |
 | enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
 | disableCache |                                                             | `this`   |
