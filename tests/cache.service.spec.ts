@@ -1,6 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
-import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
 import { CacheService, CrudModule } from '../src';
 import { mockRequest } from './helper';
@@ -45,13 +44,65 @@ describe('CacheService', () =>
 				{
 					cacheService
 						.get(mockRequest(testService))
-						.subscribe(response =>
+						.subscribe(() =>
 						{
 							testService.clear();
-							expect(response.body[0].userId).to.equal(1);
 							done();
 						});
 				});
+		})();
+	});
+
+	it('outdated cache', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('test', 'test')
+				.find()
+				.pipe(
+					delay(2000)
+				)
+				.subscribe(() =>
+				{
+					if (!cacheService.has(mockRequest(testService)))
+					{
+						testService.clear();
+						done();
+					}
+				});
+		})();
+	});
+
+	it('programmatic flush', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('test', 'test')
+				.find()
+				.pipe(
+					delay(500)
+				)
+				.subscribe(() =>
+				{
+					if (!cacheService.has(mockRequest(testService)))
+					{
+						testService.clear();
+						done();
+					}
+				});
+			testService.flush();
 		})();
 	});
 });

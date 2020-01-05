@@ -29,9 +29,7 @@ export class CacheInterceptor implements HttpInterceptor
 
 	protected handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const cachedResponse : Observable<HttpEvent<T>> = this.cacheService.get(request);
-
-		return cachedResponse ? cachedResponse : this.store(request, next);
+		return this.cacheService.has(request) ? this.cacheService.get(request) : this.store(request, next);
 	}
 
 	protected store<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpResponse<T>>

@@ -11,7 +11,7 @@ export class AbortService
 
 	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
-		if (!this.store.has(request.urlWithParams))
+		if (!this.has(request))
 		{
 			this.set(request);
 		}
@@ -26,6 +26,11 @@ export class AbortService
 			signal: new Subject<void>()
 		});
 		return this;
+	}
+
+	public has<T>(request : HttpRequest<T>) : boolean
+	{
+		return this.store.has(request.urlWithParams);
 	}
 
 	public abort(urlWithParams : string) : this

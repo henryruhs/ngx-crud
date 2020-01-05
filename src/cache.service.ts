@@ -11,9 +11,7 @@ export class CacheService
 
 	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
 	{
-		const cache : CacheInterface = this.store.get(request.urlWithParams);
-
-		return cache && this.isValid(cache.expiration) ? cache.response : null;
+		return this.store.get(request.urlWithParams).response;
 	}
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
@@ -24,6 +22,13 @@ export class CacheService
 			response
 		});
 		return this;
+	}
+
+	public has<T>(request : HttpRequest<T>) : boolean
+	{
+		const cache : CacheInterface = this.store.get(request.urlWithParams);
+
+		return cache && this.isValid(cache.expiration);
 	}
 
 	public flush(urlWithParams : string) : this
