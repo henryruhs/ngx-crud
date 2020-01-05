@@ -62,19 +62,25 @@ describe('CacheService', () =>
 		], (cacheService : CacheService, testService : TestService) =>
 		{
 			testService
-				.enableCache()
+				.enableCache('GET', 500)
 				.setParam('test', 'test')
 				.find()
 				.pipe(
-					delay(2000)
+					delay(1000)
 				)
 				.subscribe(() =>
 				{
-					if (!cacheService.has(mockRequest(testService)))
-					{
-						testService.clear();
-						done();
-					}
+					cacheService
+						.get(mockRequest(testService))
+						.subscribe(() =>
+						{
+							testService.clear();
+							done('error');
+						}, () =>
+						{
+							testService.clear();
+							done();
+						});
 				});
 		})();
 	});
@@ -92,15 +98,21 @@ describe('CacheService', () =>
 				.setParam('test', 'test')
 				.find()
 				.pipe(
-					delay(500)
+					delay(1000)
 				)
 				.subscribe(() =>
 				{
-					if (!cacheService.has(mockRequest(testService)))
-					{
-						testService.clear();
-						done();
-					}
+					cacheService
+						.get(mockRequest(testService))
+						.subscribe(() =>
+						{
+							testService.clear();
+							done('error');
+						}, () =>
+						{
+							testService.clear();
+							done();
+						});
 				});
 			testService.flush();
 		})();

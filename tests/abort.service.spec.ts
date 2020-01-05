@@ -33,7 +33,7 @@ describe('AbortService', () =>
 		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService
-				.enableAbort('GET', 100)
+				.enableAbort('GET', 0)
 				.setParam('test', 'test')
 				.find()
 				.subscribe(() =>

@@ -11,6 +11,10 @@ export class CacheService
 
 	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
 	{
+		if (!this.has(request))
+		{
+			return Observable.create(observer => observer.error());
+		}
 		return this.store.get(request.urlWithParams).response;
 	}
 
