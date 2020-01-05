@@ -12,14 +12,6 @@ module.exports = config =>
 		testRunner: 'mocha',
 		testFramework: 'mocha',
 		tsconfigFile: 'tsconfig.json',
-		mochaOptions:
-		{
-			files:
-			[
-				'tests/**/*.spec.ts'
-			],
-			opts: 'mocha.opts'
-		},
 		mutate:
 		[
 			'src/**/*.ts'
