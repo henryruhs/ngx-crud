@@ -13,7 +13,7 @@ export class CacheService
 	{
 		if (!this.has(request))
 		{
-			return Observable.create(observer => observer.error());
+			return new Observable(observer => observer.error());
 		}
 		return this.store.get(request.urlWithParams).response;
 	}

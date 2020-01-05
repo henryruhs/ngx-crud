@@ -1,9 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { delay } from 'rxjs/operators';
 import { CommonService, CrudModule } from '../src';
-import { createUrl } from '../src/helper';
 import { TestService } from './test.service';
 
 before(() =>
