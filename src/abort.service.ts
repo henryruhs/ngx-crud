@@ -1,40 +1,69 @@
 import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { AbortEnum } from './abort.enum';
+import { AbortInterface } from './abort.interface';
 
 @Injectable()
 export class AbortService
 {
-	protected store : Map<string, Subject<void>> = new Map();
+	protected store : Map<string, AbortInterface> = new Map();
 
 	public get<T>(request : HttpRequest<T>) : Observable<void>
 	{
-		if (!this.store.get(request.url))
+		if (!this.has(request))
 		{
-			this.store.set(request.url, new Subject<void>());
+			this.set(request);
 		}
-		return this.store.get(request.url).asObservable();
+		return this.store.get(request.urlWithParams).signal.asObservable();
 	}
 
-	public abort<T>(request : HttpRequest<T>) : this
+	public set<T>(request : HttpRequest<T>) : this
 	{
-		return this._abort(request.url);
+		this.store.set(request.urlWithParams,
+		{
+			expiration: this.getExpiration(request),
+			signal: new Subject<void>()
+		});
+		return this;
+	}
+
+	public has<T>(request : HttpRequest<T>) : boolean
+	{
+		return this.store.has(request.urlWithParams);
+	}
+
+	public abort(urlWithParams : string) : this
+	{
+		if (this.store.has(urlWithParams))
+		{
+			this.store.get(urlWithParams).signal.next();
+			this.store.get(urlWithParams).signal.complete();
+			this.store.delete(urlWithParams);
+		}
+		return this;
+	}
+
+	public abortMany(baseUrl : string) : this
+	{
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.abort(urlWithParams) : null);
+		return this;
 	}
 
 	public abortAll() : this
 	{
-		this.store.forEach((subject, url) => this._abort(url));
+		this.store.forEach((value, urlWithParams) => this.abort(urlWithParams));
 		return this;
 	}
 
-	protected _abort(url : string) : this
+	public abortOnExpiration<T>(request : HttpRequest<T>) : this
 	{
-		if (this.store.get(url))
-		{
-			this.store.get(url).next();
-			this.store.get(url).complete();
-			this.store.delete(url);
-		}
+		setTimeout(() => this.abort(request.urlWithParams), this.getExpiration(request) - Date.now());
 		return this;
+	}
+
+	protected getExpiration<T>(request : HttpRequest<T>) : number
+	{
+		return parseFloat(request.headers.get(AbortEnum.expiration));
 	}
 }

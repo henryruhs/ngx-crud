@@ -1,7 +1,7 @@
 NGX CRUD
 ========
 
-> Cacheable CRUD services for Angular.
+> CRUD services for Angular with effortless aborting and caching.
 
 [![Build Status](https://img.shields.io/travis/redaxmedia/ngx-crud.svg)](https://travis-ci.org/redaxmedia/ngx-crud)
 [![Mutation Status](https://badge.stryker-mutator.io/github.com/redaxmedia/ngx-crud/master)](https://github.com/redaxmedia/ngx-crud)
@@ -128,6 +128,7 @@ Overview of `clear` methods:
 
 | Method       | Parameter       | Return |
 |--------------|-----------------|--------|
+| clear        |                 | `this` |
 | clearOptions |                 | `this` |
 | clearOption  | `name : K`      | `this` |
 | clearHeaders |                 | `this` |
@@ -135,14 +136,15 @@ Overview of `clear` methods:
 | clearParams  |                 | `this` |
 | clearParam   | `name : string` | `this` |
 
-Overview of `misc` methods:
+Overview of `control` methods:
 
-| Method       | Parameter                                                   | Return   |
-|--------------|-------------------------------------------------------------|----------|
-| init         |                                                             | `this`   |
-| abort        |                                                             | `this`   |
-| enableAbort  | `method : MethodType`                                       | `this`   |
-| disableAbort |                                                             | `this`   |
-| enableCache  | `method : MethodType, lifetime : number`                    | `this`   |
-| disableCache |                                                             | `this`   |
-| createURL    | `apiUrl : string, endpoint : string, id? : number / string` | `string` |
+| Method       | Parameter                                | Return |
+|--------------|------------------------------------------|--------|
+| init         |                                          | `this` |
+| abort        |                                          | `this` |
+| flush        |                                          | `this` |
+| enableAbort  | `method : MethodType, lifetime : number` | `this` |
+| disableAbort |                                          | `this` |
+| enableCache  | `method : MethodType, lifetime : number` | `this` |
+| disableCache |                                          | `this` |
+

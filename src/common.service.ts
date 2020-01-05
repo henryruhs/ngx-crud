@@ -3,6 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { AbortEnum } from './abort.enum';
 import { AbortService } from './abort.service';
 import { CacheEnum } from './cache.enum';
+import { CacheService } from './cache.service';
+import { createUrl } from './helper';
 import { MethodType } from './method.type';
 import { OptionInterface } from './option.interface';
 
@@ -11,6 +13,7 @@ export class CommonService
 {
 	protected http : HttpClient;
 	protected abortService : AbortService;
+	protected cacheService : CacheService;
 	protected apiUrl : string;
 	protected endpoint : string;
 	protected options : OptionInterface;
@@ -19,10 +22,16 @@ export class CommonService
 	{
 		this.http = injector.get(HttpClient);
 		this.abortService = injector.get(AbortService);
+		this.cacheService = injector.get(CacheService);
 		this.init();
 	}
 
 	public init() : this
+	{
+		return this.clear();
+	}
+
+	public clear() : this
 	{
 		return this
 			.clearOptions()
@@ -32,11 +41,17 @@ export class CommonService
 
 	public abort() : this
 	{
-		this.abortService.abort(
-		// @ts-ignore
-		{
-			url: this.createURL(this.getApiUrl(), this.getEndpoint())
-		});
+		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
+
+		this.abortService.abortMany(baseURL);
+		return this;
+	}
+
+	public flush() : this
+	{
+		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
+
+		this.cacheService.flushMany(baseURL);
 		return this;
 	}
 
@@ -192,14 +207,18 @@ export class CommonService
 		return this.setParams(this.getParams().delete(name));
 	}
 
-	public enableAbort(method : MethodType = 'GET') : this
+	public enableAbort(method : MethodType = 'GET', lifetime : number = 1000) : this
 	{
-		return this.setHeader(AbortEnum.method, method);
+		return this
+			.setHeader(AbortEnum.method, method)
+			.setHeader(AbortEnum.expiration, (Date.now() + lifetime).toString());
 	}
 
 	public disableAbort() : this
 	{
-		return this.clearHeader(AbortEnum.method);
+		return this
+			.clearHeader(AbortEnum.method)
+			.clearHeader(AbortEnum.expiration);
 	}
 
 	public enableCache(method : MethodType = 'GET', lifetime : number = 1000) : this
@@ -214,18 +233,5 @@ export class CommonService
 		return this
 			.clearHeader(CacheEnum.method)
 			.clearHeader(CacheEnum.expiration);
-	}
-
-	public createURL(apiUrl : string, endpoint : string, id? : number | string) : string
-	{
-		const route : string =
-		[
-			endpoint,
-			id
-		]
-		.filter(value => value)
-		.join('/');
-
-		return apiUrl + route;
 	}
 }

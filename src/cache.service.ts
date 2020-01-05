@@ -11,9 +11,11 @@ export class CacheService
 
 	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
 	{
-		const cache : CacheInterface = this.store.get(request.urlWithParams);
-
-		return cache && this.isValid(cache.expiration) ? cache.response : null;
+		if (!this.has(request))
+		{
+			return Observable.create(observer => observer.error());
+		}
+		return this.store.get(request.urlWithParams).response;
 	}
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
@@ -26,15 +28,34 @@ export class CacheService
 		return this;
 	}
 
-	public clearInvalid() : this
+	public has<T>(request : HttpRequest<T>) : boolean
 	{
-		this.store.forEach((value, index) => !this.isValid(value.expiration) ? this.store.delete(index) : null);
+		const cache : CacheInterface = this.store.get(request.urlWithParams);
+
+		return cache && this.isValid(cache.expiration);
+	}
+
+	public flush(urlWithParams : string) : this
+	{
+		this.store.delete(urlWithParams);
 		return this;
 	}
 
-	public clearAll() : this
+	public flushMany(baseUrl : string) : this
 	{
-		this.store.forEach((value, index) => this.store.delete(index));
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.flush(urlWithParams) : null);
+		return this;
+	}
+
+	public flushAll() : this
+	{
+		this.store.forEach((value, urlWithParams) => this.flush(urlWithParams));
+		return this;
+	}
+
+	public flushOnExpiration<T>(request : HttpRequest<T>) : this
+	{
+		setTimeout(() => this.flush(request.urlWithParams), this.getExpiration(request) - Date.now());
 		return this;
 	}
 

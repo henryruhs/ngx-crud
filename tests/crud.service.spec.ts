@@ -2,12 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import {
-	AbortService,
-	CacheService,
-	CommonService,
-	CrudModule
-} from '../src';
+import { CommonService, CrudModule } from '../src';
+import { createUrl } from '../src/helper';
 import { TestService } from './test.service';
 
 before(() =>
@@ -22,8 +18,6 @@ before(() =>
 			],
 			providers:
 			[
-				AbortService,
-				CacheService,
 				CommonService,
 				TestService
 			]
@@ -83,64 +77,6 @@ describe('CrudService', () =>
 				{
 					expect(response[0].userId).to.equal(1);
 					done();
-				});
-		})();
-	});
-
-	it('find with delay and abort', done =>
-	{
-		inject(
-		[
-			AbortService,
-			TestService
-		], (abortService : AbortService, testService : TestService) =>
-		{
-			testService
-				.enableAbort()
-				.abort()
-				.find()
-				.pipe(
-					delay(2000)
-				)
-				.subscribe(() => done('error'));
-			abortService
-				.get(
-				// @ts-ignore
-				{
-					url: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
-				})
-				.subscribe(() => done());
-			testService.abort();
-		})();
-	});
-
-	it('find with delay and cache', done =>
-	{
-		inject(
-		[
-			CacheService,
-			TestService
-		], (cacheService : CacheService, testService : TestService) =>
-		{
-			testService
-				.enableCache('GET', 2000)
-				.find()
-				.pipe(
-					delay(1000)
-				)
-				.subscribe(() =>
-				{
-					cacheService
-						.get(
-						// @ts-ignore
-						{
-							urlWithParams: testService.createURL(testService.getApiUrl(), testService.getEndpoint())
-						})
-						.subscribe(response =>
-						{
-							expect(response.body[0].userId).to.equal(1);
-							done();
-						});
 				});
 		})();
 	});
