@@ -22,22 +22,24 @@ export class CacheService
 	{
 		this.store.set(request.urlWithParams,
 		{
-			expiration: this.getExpiration<T>(request),
-			response
+			response,
+			timeout: setTimeout(() => this.flush(request.urlWithParams), this.getLifetime(request))
 		});
 		return this;
 	}
 
 	public has<T>(request : HttpRequest<T>) : boolean
 	{
-		const cache : CacheInterface = this.store.get(request.urlWithParams);
-
-		return cache && this.isValid(cache.expiration);
+		return this.store.has(request.urlWithParams);
 	}
 
 	public flush(urlWithParams : string) : this
 	{
-		this.store.delete(urlWithParams);
+		if (this.store.has(urlWithParams))
+		{
+			clearTimeout(this.store.get(urlWithParams).timeout);
+			this.store.delete(urlWithParams);
+		}
 		return this;
 	}
 
@@ -53,19 +55,8 @@ export class CacheService
 		return this;
 	}
 
-	public flushOnExpiration<T>(request : HttpRequest<T>) : this
+	protected getLifetime<T>(request : HttpRequest<T>) : number
 	{
-		setTimeout(() => this.flush(request.urlWithParams), this.getExpiration(request) - Date.now());
-		return this;
-	}
-
-	protected isValid(expiration : number) : boolean
-	{
-		return expiration > Date.now();
-	}
-
-	protected getExpiration<T>(request : HttpRequest<T>) : number
-	{
-		return parseFloat(request.headers.get(CacheEnum.expiration));
+		return parseFloat(request.headers.get(CacheEnum.lifetime));
 	}
 }

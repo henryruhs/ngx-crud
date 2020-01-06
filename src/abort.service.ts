@@ -22,8 +22,8 @@ export class AbortService
 	{
 		this.store.set(request.urlWithParams,
 		{
-			expiration: this.getExpiration(request),
-			signal: new Subject<void>()
+			signal: new Subject<void>(),
+			timeout: setTimeout(() => this.abort(request.urlWithParams), this.getLifetime(request))
 		});
 		return this;
 	}
@@ -37,6 +37,7 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
+			clearTimeout(this.store.get(urlWithParams).timeout);
 			this.store.get(urlWithParams).signal.next();
 			this.store.get(urlWithParams).signal.complete();
 			this.store.delete(urlWithParams);
@@ -56,14 +57,8 @@ export class AbortService
 		return this;
 	}
 
-	public abortOnExpiration<T>(request : HttpRequest<T>) : this
+	protected getLifetime<T>(request : HttpRequest<T>) : number
 	{
-		setTimeout(() => this.abort(request.urlWithParams), this.getExpiration(request) - Date.now());
-		return this;
-	}
-
-	protected getExpiration<T>(request : HttpRequest<T>) : number
-	{
-		return parseFloat(request.headers.get(AbortEnum.expiration));
+		return parseFloat(request.headers.get(AbortEnum.lifetime));
 	}
 }

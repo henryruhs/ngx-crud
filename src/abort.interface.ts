@@ -2,6 +2,6 @@ import { Subject } from 'rxjs';
 
 export interface AbortInterface
 {
-	expiration : number;
+	timeout : NodeJS.Timeout;
 	signal : Subject<void>;
 }

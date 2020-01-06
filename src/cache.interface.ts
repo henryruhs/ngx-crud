@@ -3,6 +3,6 @@ import { Observable } from 'rxjs';
 
 export interface CacheInterface
 {
-	expiration : number;
 	response : Observable<HttpResponse<any>>;
+	timeout : NodeJS.Timeout;
 }
