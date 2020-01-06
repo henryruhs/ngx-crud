@@ -55,11 +55,6 @@ export class ExampleService extends CrudService<ExampleInterface>
 {
 	protected apiUrl : string = environment.apiUrl;
 	protected endpoint : string = environment.routes.example;
-
-	public findByFilter(filter : string) : Observable<ExampleInterface[]>
-	{
-		return this.setParam('filter', filter).find();
-	}
 }
 ```
 
