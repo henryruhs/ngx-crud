@@ -22,7 +22,7 @@ export class CacheInterceptor implements HttpInterceptor
 	{
 		const enableCache : boolean = request.headers.has(CacheEnum.method) &&
 			request.headers.get(CacheEnum.method) === request.method &&
-			request.headers.has(CacheEnum.expiration);
+			request.headers.has(CacheEnum.lifetime);
 
 		return enableCache ? this.handle(request, next) : next.handle(request);
 	}
@@ -38,7 +38,7 @@ export class CacheInterceptor implements HttpInterceptor
 			.handle(request)
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response : HttpResponse<T>) => this.cacheService.flushOnExpiration(request).set(request, of(response))),
+				tap((response : HttpResponse<T>) => this.cacheService.set(request, of(response))),
 				publishReplay(),
 				refCount()
 			);

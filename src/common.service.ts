@@ -211,27 +211,27 @@ export class CommonService
 	{
 		return this
 			.setHeader(AbortEnum.method, method)
-			.setHeader(AbortEnum.expiration, (Date.now() + lifetime).toString());
+			.setHeader(AbortEnum.lifetime, lifetime.toString());
 	}
 
 	public disableAbort() : this
 	{
 		return this
 			.clearHeader(AbortEnum.method)
-			.clearHeader(AbortEnum.expiration);
+			.clearHeader(AbortEnum.lifetime);
 	}
 
 	public enableCache(method : MethodType = 'GET', lifetime : number = 1000) : this
 	{
 		return this
 			.setHeader(CacheEnum.method, method)
-			.setHeader(CacheEnum.expiration, (Date.now() + lifetime).toString());
+			.setHeader(CacheEnum.lifetime, lifetime.toString());
 	}
 
 	public disableCache() : this
 	{
 		return this
 			.clearHeader(CacheEnum.method)
-			.clearHeader(CacheEnum.expiration);
+			.clearHeader(CacheEnum.lifetime);
 	}
 }

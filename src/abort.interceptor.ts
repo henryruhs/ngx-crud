@@ -21,7 +21,7 @@ export class AbortInterceptor implements HttpInterceptor
 	{
 		const enableAbort : boolean = request.headers.has(AbortEnum.method) &&
 			request.headers.get(AbortEnum.method) === request.method &&
-			request.headers.has(AbortEnum.expiration);
+			request.headers.has(AbortEnum.lifetime);
 
 		return enableAbort ? this.handle(request, next) : next.handle(request);
 	}
@@ -31,7 +31,7 @@ export class AbortInterceptor implements HttpInterceptor
 		return next
 			.handle(request)
 			.pipe(
-				takeUntil(this.abortService.abortOnExpiration(request).get(request))
+				takeUntil(this.abortService.get(request))
 			);
 	}
 }
