@@ -20,6 +20,10 @@ export class AbortService
 
 	public set<T>(request : HttpRequest<T>) : this
 	{
+		if (this.has(request))
+		{
+			clearTimeout(this.store.get(request.urlWithParams).timeout);
+		}
 		this.store.set(request.urlWithParams,
 		{
 			signal: new Subject<void>(),

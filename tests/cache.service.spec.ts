@@ -34,11 +34,11 @@ describe('CacheService', () =>
 		], (cacheService : CacheService, testService : TestService) =>
 		{
 			testService
-				.enableCache('GET', 2000)
+				.enableCache('GET', 1000)
 				.setParam('test', 'test')
 				.find()
 				.pipe(
-					delay(1000)
+					delay(500)
 				)
 				.subscribe(() =>
 				{
@@ -48,6 +48,10 @@ describe('CacheService', () =>
 						{
 							testService.clear();
 							done();
+						}, () =>
+						{
+							testService.clear();
+							done('error');
 						});
 				});
 		})();

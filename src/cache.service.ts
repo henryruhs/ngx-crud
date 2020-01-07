@@ -20,6 +20,10 @@ export class CacheService
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
 	{
+		if (this.has(request))
+		{
+			clearTimeout(this.store.get(request.urlWithParams).timeout);
+		}
 		this.store.set(request.urlWithParams,
 		{
 			response,
