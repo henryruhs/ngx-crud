@@ -207,7 +207,7 @@ export class CommonService
 		return this.setParams(this.getParams().delete(name));
 	}
 
-	public enableAbort(method : MethodType = 'GET', lifetime : number = 1000) : this
+	public enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this
 			.setHeader(AbortEnum.method, method)
@@ -221,7 +221,7 @@ export class CommonService
 			.clearHeader(AbortEnum.lifetime);
 	}
 
-	public enableCache(method : MethodType = 'GET', lifetime : number = 1000) : this
+	public enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this
 			.setHeader(CacheEnum.method, method)

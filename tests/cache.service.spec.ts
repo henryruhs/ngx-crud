@@ -35,7 +35,7 @@ describe('CacheService', () =>
 		{
 			testService
 				.enableCache('GET', 1000)
-				.setParam('test', 'test')
+				.setParam('cache', '1')
 				.find()
 				.pipe(
 					delay(500)
@@ -67,7 +67,7 @@ describe('CacheService', () =>
 		{
 			testService
 				.enableCache('GET', 500)
-				.setParam('test', 'test')
+				.setParam('cache', '2')
 				.find()
 				.pipe(
 					delay(1000)
@@ -99,13 +99,11 @@ describe('CacheService', () =>
 		{
 			testService
 				.enableCache()
-				.setParam('test', 'test')
+				.setParam('cache', '3')
 				.find()
-				.pipe(
-					delay(1000)
-				)
 				.subscribe(() =>
 				{
+					testService.flush();
 					cacheService
 						.get(mockRequest(testService))
 						.subscribe(() =>
@@ -118,7 +116,36 @@ describe('CacheService', () =>
 							done();
 						});
 				});
-			testService.flush();
+		})();
+	});
+
+	it('programmatic flush all', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('cache', '4')
+				.find()
+				.subscribe(() =>
+				{
+					cacheService
+						.flushAll()
+						.get(mockRequest(testService))
+						.subscribe(() =>
+						{
+							testService.clear();
+							done('error');
+						}, () =>
+						{
+							testService.clear();
+							done();
+						});
+				});
 		})();
 	});
 });

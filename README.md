@@ -142,4 +142,3 @@ Overview of `control` methods:
 | disableAbort |                                          | `this` |
 | enableCache  | `method : MethodType, lifetime : number` | `this` |
 | disableCache |                                          | `this` |
-
