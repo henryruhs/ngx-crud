@@ -55,6 +55,14 @@ export class CommonService
 		return this;
 	}
 
+	public destroy() : this
+	{
+		return this
+			.abort()
+			.flush()
+			.clear();
+	}
+
 	public getApiUrl() : string
 	{
 		return this.apiUrl;

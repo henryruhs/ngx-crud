@@ -138,6 +138,7 @@ Overview of `control` methods:
 | init         |                                          | `this` |
 | abort        |                                          | `this` |
 | flush        |                                          | `this` |
+| destroy      |                                          | `this` |
 | enableAbort  | `method : MethodType, lifetime : number` | `this` |
 | disableAbort |                                          | `this` |
 | enableCache  | `method : MethodType, lifetime : number` | `this` |
