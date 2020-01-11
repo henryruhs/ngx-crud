@@ -73,7 +73,6 @@ crudService->create(body : any, options? : OptionInterface) : Observable<T>
 
 A `GET` request to read a single record:
 
-
 ```typescript
 crudService->read(id : number | string, options? : OptionInterface) : Observable<T>
 ```
@@ -109,6 +108,22 @@ crudService->request(method : MethodType, options? : OptionWithBodyInterface) : 
 ```
 
 
+Service Operations
+------------------
+
+Clear the service:
+
+```typescript
+crudService->clear()
+```
+
+Destroy the service:
+
+```typescript
+crudService->destroy()
+```
+
+
 HTTP Aborting
 -------------
 
@@ -124,13 +139,25 @@ Disable aborting for the service:
 crudService->disableAbort() : this
 ```
 
-Abort pending requests of the service:
+Abort all requests of the service:
 
 ```typescript
 crudService->abort() : this
 ```
 
-Abort all pending request for enabled services:
+Abort a single request by its `urlWithParams` for enabled services:
+
+```typescript
+abortService->abort(urlWithParams : string) : this
+```
+
+Abort requests by their `baseUrl` for enabled services:
+
+```typescript
+abortService->abortMany(baseUrl : string) : this
+```
+
+Abort all request for enabled services:
 
 ```typescript
 abortService->abortAll() : this
@@ -152,13 +179,20 @@ Disable caching for the service:
 crudService->disableCache() : this
 ```
 
-Flush the cache of the service:
+Flush all caches of the service:
 
 ```typescript
 crudService->flush() : this
 ```
 
-Flush many caches by their `baseUrl` flushMany(baseUrl : string) : this:
+
+Flush a single cache by its `urlWithParams` for enabled services:
+
+```typescript
+cacheService->flush(urlWithParams : string) : this
+```
+
+Flush caches by their `baseUrl` for enabled services:
 
 ```typescript
 cacheService->flushMany(baseUrl : string) : this
@@ -168,6 +202,74 @@ Flush all caches for enabled services:
 
 ```typescript
 cacheService->flushAll() : this
+```
+
+
+Service Options
+---------------
+
+Get the API URL of the service:
+
+```typescript
+crudService->getApiUrl() : string
+```
+
+Set the API URL of the service:
+
+```typescript
+crudService->setApiUrl(apiUrl : string) : this
+```
+
+Get the endpoint of the service:
+
+```typescript
+crudServie->getEndpoint() : string
+```
+
+Set the endpoint of the service:
+
+```typescript
+crudService->setEndpoint(endpoint : string) : this
+```
+
+
+HTTP Options
+------------
+
+Get a single option of the service
+
+```typescript
+getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
+```
+
+Get all options of the service
+
+```typescript
+getOptions() : OptionInterface
+```
+
+Set a single option of the service
+
+```typescript
+setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
+```
+
+Set all options of the service
+
+```typescript
+setOptions(options : OptionInterface) : this
+```
+
+Clear a single header of the service
+
+```typescript
+clearOption(name : keyof OptionInterface) : this
+```
+
+Clear all headers of the service
+
+```typescript
+clearOptions() : this
 ```
 
 

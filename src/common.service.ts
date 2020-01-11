@@ -26,11 +26,6 @@ export class CommonService
 		this.init();
 	}
 
-	public init() : this
-	{
-		return this.clear();
-	}
-
 	public clear() : this
 	{
 		return this
@@ -252,5 +247,10 @@ export class CommonService
 		return this
 			.clearHeader(CacheEnum.method)
 			.clearHeader(CacheEnum.lifetime);
+	}
+
+	protected init() : this
+	{
+		return this.clear();
 	}
 }
