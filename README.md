@@ -20,7 +20,7 @@ npm install ngx-crud
 Usage
 -----
 
-Import the `CrudModule` and `HttpClientModule` to `AppModule`:
+Import the `CrudModule` and `HttpClientModule` inside your `AppModule`:
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -39,8 +39,7 @@ export class AppModule
 {
 }
 ```
-
-Extend `ExampleService` from `CrudService`:
+Extend the `ExampleService` from the `CrudService`:
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -63,83 +62,238 @@ API
 ===
 
 
-CRUD Service
+HTTP Operations
+---------------
+
+A `POST` request to create a single record:
+
+```typescript
+crudService->create(body : any, options? : OptionInterface) : Observable<T>
+```
+
+A `GET` request to read a single record:
+
+
+```typescript
+crudService->read(id : number | string, options? : OptionInterface) : Observable<T>
+```
+
+A `GET` request to find multiple records:
+
+```typescript
+crudService->find(options? : OptionInterface) : Observable<T[]>
+```
+
+A `PUT` request to completely update a single record:
+
+```typescript
+crudService->update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+```
+
+A `PATCH` request to partially update a single record:
+
+```typescript
+crudService->patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+```
+
+A `DELETE` request to delete a single record:
+
+```typescript
+crudService->delete(id : number | string, options? : OptionInterface) : Observable<T>
+```
+
+A non-standard request:
+
+```typescript
+crudService->request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
+```
+
+
+HTTP Aborting
+-------------
+
+Enable aborting for the service:
+
+```typescript
+crudService->enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
+```
+
+Disable aborting for the service:
+
+```typescript
+crudService->disableAbort() : this
+```
+
+Abort pending requests of the service:
+
+```typescript
+crudService->abort() : this
+```
+
+Abort all pending request for enabled services:
+
+```typescript
+abortService->abortAll() : this
+```
+
+
+HTTP Caching
 ------------
 
-Overview of `CRUD` methods:
+Enable caching for the service:
 
-| Operation | HTTP   | Method  | Parameter                                                      | Return                |
-|-----------|--------|---------|----------------------------------------------------------------|-----------------------|
-| Create    | POST   | create  | `body : any, options? : OptionInterface`                       | `Observable<T>`       |
-| Read      | GET    | read    | `id : number / string, options? : OptionInterface`             | `Observable<T>`       |
-| Find      | GET    | find    | `options? : OptionInterface`                                   | `Observable<T[]>`     |
-| Update    | PUT    | update  | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`       |
-| Patch     | PATCH  | patch   | `id : number / string, body : any, options? : OptionInterface` | `Observable<T>`       |
-| Delete    | DELETE | delete  | `id : number / string, options? : OptionInterface`             | `Observable<T>`       |
-| Request   | ANY    | request | `method : MethodType, options? : OptionWithBodyInterface`      | `Observable<T / T[]>` |
+```typescript
+crudService->enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
+```
+
+Disable caching for the service:
+
+```typescript
+crudService->disableCache() : this
+```
+
+Flush the cache of the service:
+
+```typescript
+crudService->flush() : this
+```
+
+Flush many caches by their `baseUrl` flushMany(baseUrl : string) : this:
+
+```typescript
+cacheService->flushMany(baseUrl : string) : this
+```
+
+Flush all caches for enabled services:
+
+```typescript
+cacheService->flushAll() : this
+```
 
 
-Common Service
---------------
+HTTP Headers
+------------
 
-Overview of `get` methods:
+Get a single header of the service
 
-| Method         | Parameter       | Return               |
-|----------------|-----------------|----------------------|
-| getApiUrl      |                 | `string`             |
-| getEndpoint    |                 | `string`             |
-| getOptions     |                 | `OptionInterface`    |
-| getOption      | `name : K`      | `OptionInterface[K]` |
-| getHeaders     |                 | `HttpHeaders`        |
-| getHeaderArray | `name : string` | `string[]`           |
-| getHeader      | `name : string` | `string`             |
-| getParams      |                 | `HttpParams`         |
-| getParamArray  | `name : string` | `string[]`           |
-| getParam       | `name : string` | `string`             |
+```typescript
+crudService->getHeader(name : string) : string
+```
 
-Overview of `set` methods:
+Get all headers of the service
 
-| Method         | Parameter                             | Return |
-|----------------|---------------------------------------|--------|
-| setApiUrl      | `apiUrl : string`                     | `this` |
-| setEndpoint    | `endpoint : string`                   | `this` |
-| setOptions     | `options : OptionInterface`           | `this` |
-| setOption      | `name : K, value: OptionInterface[K]` | `this` |
-| setHeaders     | `headers : HttpHeaders`               | `this` |
-| setHeaderArray | `name : string, valueArray: string[]` | `this` |
-| setHeader      | `name : string, value: string`        | `this` |
-| setParams      | `params : HttpParams`                 | `this` |
-| setParamArray  | `name : string, valueArray: string[]` | `this` |
-| setParam       | `name : string, value: string`        | `this` |
+```typescript
+crudService->getHeaders() : HttpHeaders
+```
 
-Overview of `append` methods:
+Get values for a single header of the service
 
-| Method       | Parameter                      | Return |
-|--------------|--------------------------------|--------|
-| appendHeader | `name : string, value: string` | `this` |
-| appendParam  | `name : string, value: string` | `this` |
+```typescript
+crudService->getHeaderArray(name : string) : string[]
+```
 
-Overview of `clear` methods:
+Set a single header of the service
 
-| Method       | Parameter       | Return |
-|--------------|-----------------|--------|
-| clear        |                 | `this` |
-| clearOptions |                 | `this` |
-| clearOption  | `name : K`      | `this` |
-| clearHeaders |                 | `this` |
-| clearHeader  | `name : string` | `this` |
-| clearParams  |                 | `this` |
-| clearParam   | `name : string` | `this` |
+```typescript
+crudService->setHeader(name : string, value : string) : this
+```
 
-Overview of `control` methods:
+Set all headers of the service
 
-| Method       | Parameter                                | Return |
-|--------------|------------------------------------------|--------|
-| init         |                                          | `this` |
-| abort        |                                          | `this` |
-| flush        |                                          | `this` |
-| destroy      |                                          | `this` |
-| enableAbort  | `method : MethodType, lifetime : number` | `this` |
-| disableAbort |                                          | `this` |
-| enableCache  | `method : MethodType, lifetime : number` | `this` |
-| disableCache |                                          | `this` |
+```typescript
+crudService->setHeaders(headers : HttpHeaders) : this
+```
+
+Set values for a single header of the service
+
+```typescript
+crudService->setHeaderArray(name : string, valueArray : string[]) : this
+```
+
+Append a single header to the service
+
+```typescript
+crudService->appendHeader(name : string, value : string) : this
+```
+
+Append values to a single header of the service
+
+```typescript
+crudService->appendHeaderArray(name : string, valueArray : string[]) : this
+```
+
+Clear a single header of the service
+
+```typescript
+crudService->clearHeader(name : string) : this
+```
+
+Clear all headers of the service
+
+```typescript
+crudService->clearHeaders() : this
+```
+
+
+HTTP Params
+-----------
+
+Get a single param of the service:
+
+```typescript
+crudService->getParam(name : string) : string
+```
+
+Get all params of the service
+
+```typescript
+crudService->getParams() : HttpParams
+```
+
+Get values for a single param of the service
+
+```typescript
+crudService->getParamArray(name : string) : string[]
+```
+
+Set a single param of the service
+
+```typescript
+crudService->setParam(name : string, value : string) : this
+```
+
+Set all params of the service
+
+```typescript
+crudService->setParams(params : HttpParams) : this
+```
+
+Set values for a single param of the service
+
+```typescript
+crudService->setParamArray(name : string, valueArray : string[]) : this
+```
+
+Append a single param to the service
+
+```typescript
+crudService->appendParam(name : string, value : string) : this
+```
+
+Append values to a single param of the service
+
+```typescript
+crudService->appendParamArray(name : string, valueArray : string) : this
+```
+
+Clear a single param of the service
+
+```typescript
+crudService->clearParam(name : string) : this
+```
+
+Clear all params of the service
+
+```typescript
+crudService->clearParams() : this
+```

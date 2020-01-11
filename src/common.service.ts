@@ -85,14 +85,20 @@ export class CommonService
 		return this;
 	}
 
+	public getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
+	{
+		return this.options[name];
+	}
+
 	public getOptions() : OptionInterface
 	{
 		return this.options;
 	}
 
-	public getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
+	public setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
 	{
-		return this.options[name];
+		this.options[name.toString()] = value;
+		return this;
 	}
 
 	public setOptions(options : OptionInterface) : this
@@ -101,9 +107,9 @@ export class CommonService
 		return this;
 	}
 
-	public setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
+	public clearOption(name : keyof OptionInterface) : this
 	{
-		this.options[name.toString()] = value;
+		this.setOption(name, null);
 		return this;
 	}
 
@@ -117,10 +123,9 @@ export class CommonService
 		return this;
 	}
 
-	public clearOption(name : keyof OptionInterface) : this
+	public getHeader(name : string) : string
 	{
-		this.setOption(name, null);
-		return this;
+		return this.getHeaders().get(name);
 	}
 
 	public getHeaders() : HttpHeaders
@@ -133,9 +138,9 @@ export class CommonService
 		return this.getHeaders().getAll(name);
 	}
 
-	public getHeader(name : string) : string
+	public setHeader(name : string, value : string) : this
 	{
-		return this.getHeaders().get(name);
+		return this.setHeaders(this.getHeaders().set(name, value));
 	}
 
 	public setHeaders(headers : HttpHeaders) : this
@@ -148,14 +153,19 @@ export class CommonService
 		return this.setHeaders(this.getHeaders().set(name, valueArray));
 	}
 
-	public setHeader(name : string, value : string) : this
-	{
-		return this.setHeaders(this.getHeaders().set(name, value));
-	}
-
 	public appendHeader(name : string, value : string) : this
 	{
 		return this.setHeaders(this.getHeaders().append(name, value));
+	}
+
+	public appendHeaderArray(name : string, valueArray : string[]) : this
+	{
+		return this.setHeaders(this.getHeaders().append(name, valueArray));
+	}
+
+	public clearHeader(name : string) : this
+	{
+		return this.setHeaders(this.getHeaders().delete(name));
 	}
 
 	public clearHeaders() : this
@@ -163,9 +173,9 @@ export class CommonService
 		return this.setHeaders(new HttpHeaders());
 	}
 
-	public clearHeader(name : string) : this
+	public getParam(name : string) : string
 	{
-		return this.setHeaders(this.getHeaders().delete(name));
+		return this.getParams().get(name);
 	}
 
 	public getParams() : HttpParams
@@ -178,9 +188,9 @@ export class CommonService
 		return this.getParams().getAll(name);
 	}
 
-	public getParam(name : string) : string
+	public setParam(name : string, value : string) : this
 	{
-		return this.getParams().get(name);
+		return this.setParams(this.getParams().set(name, value));
 	}
 
 	public setParams(params : HttpParams) : this
@@ -195,24 +205,25 @@ export class CommonService
 		return this;
 	}
 
-	public setParam(name : string, value : string) : this
-	{
-		return this.setParams(this.getParams().set(name, value));
-	}
-
 	public appendParam(name : string, value : string) : this
 	{
 		return this.setParams(this.getParams().append(name, value));
 	}
 
-	public clearParams() : this
+	public appendParamArray(name : string, valueArray : string[]) : this
 	{
-		return this.setParams(new HttpParams());
+		valueArray.forEach(value => this.appendParam(name, value));
+		return this;
 	}
 
 	public clearParam(name : string) : this
 	{
 		return this.setParams(this.getParams().delete(name));
+	}
+
+	public clearParams() : this
+	{
+		return this.setParams(new HttpParams());
 	}
 
 	public enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
