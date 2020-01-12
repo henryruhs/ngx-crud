@@ -239,37 +239,37 @@ HTTP Options
 Get a single option of the service
 
 ```typescript
-getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
+crudService->getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
 ```
 
 Get all options of the service
 
 ```typescript
-getOptions() : OptionInterface
+crudService->getOptions() : OptionInterface
 ```
 
 Set a single option of the service
 
 ```typescript
-setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
+crudService->setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
 ```
 
 Set all options of the service
 
 ```typescript
-setOptions(options : OptionInterface) : this
+crudService->setOptions(options : OptionInterface) : this
 ```
 
 Clear a single header of the service
 
 ```typescript
-clearOption(name : keyof OptionInterface) : this
+crudService->clearOption(name : keyof OptionInterface) : this
 ```
 
 Clear all headers of the service
 
 ```typescript
-clearOptions() : this
+crudService->clearOptions() : this
 ```
 
 
