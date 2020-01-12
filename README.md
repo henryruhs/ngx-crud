@@ -74,7 +74,7 @@ crudService->create(body : BodyInterface, options? : OptionInterface) : Observab
 Fires a `GET` request to read a single record:
 
 ```typescript
-crudService->read(id : number | string, options? : OptionInterface) : Observable<T>
+crudService->read(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
 Fires a `GET` request to find multiple records:
@@ -86,19 +86,19 @@ crudService->find(options? : OptionInterface) : Observable<T[]>
 Fires a `PUT` request to completely update a single record:
 
 ```typescript
-crudService->update(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
+crudService->update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
 Fires a `PATCH` request to partially update a single record:
 
 ```typescript
-crudService->patch(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
+crudService->patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
 Fires a `DELETE` request to delete a single record:
 
 ```typescript
-crudService->delete(id : number | string, options? : OptionInterface) : Observable<T>
+crudService->delete(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
 Fires a non-standard request:

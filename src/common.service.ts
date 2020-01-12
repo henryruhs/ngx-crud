@@ -5,8 +5,8 @@ import { AbortService } from './abort.service';
 import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 import { OptionInterface } from './common.interface';
+import { MethodType } from './common.type';
 import { createUrl } from './helper';
-import { MethodType } from './method.type';
 
 @Injectable()
 export class CommonService
