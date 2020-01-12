@@ -70,7 +70,7 @@
 		"fix": "tslint src/**/*.ts tests/**/*.ts --fix",
 		"test": "mocha",
 		"test:watch": "mocha --watch",
-		"test:coverage": "nyc mocha",
+		"test:coverage": "nyc npm test",
 		"test:report": "nyc report --reporter=text-lcov | coveralls",
 		"test:mutation": "stryker run"
 	},
