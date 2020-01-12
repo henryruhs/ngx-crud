@@ -44,7 +44,6 @@ Extend the `ExampleService` from the `CrudService`:
 ```typescript
 import { Injectable } from '@angular/core';
 import { CrudService } from 'ngx-crud';
-import { Observable } from 'rxjs';
 import { ExampleInterface } from './example.interface';
 
 import { environment } from '@env';
@@ -184,7 +183,6 @@ Flush all caches of the service:
 ```typescript
 crudService->flush() : this
 ```
-
 
 Flush a single cache by its `urlWithParams` for enabled services:
 
