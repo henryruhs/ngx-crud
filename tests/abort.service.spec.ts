@@ -1,7 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
+import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import { AbortService, CrudModule } from '../src';
+import { AbortEnum, AbortService, CrudModule } from '../src';
 import { mockRequest } from './helper';
 import { TestService } from './test.service';
 
@@ -25,6 +26,22 @@ before(() =>
 
 describe('AbortService', () =>
 {
+	it('enable and disable', () =>
+	{
+		inject(
+			[
+				TestService
+			], (testService : TestService) =>
+			{
+				testService.enableAbort();
+				expect(testService.getHeader(AbortEnum.method)).to.be.equal('GET');
+				expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal('2000');
+				testService.disableAbort();
+				expect(testService.getHeader(AbortEnum.method)).to.be.equal(null);
+				expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal(null);
+			});
+	});
+
 	it('natural abort', done =>
 	{
 		inject(

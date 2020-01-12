@@ -65,62 +65,46 @@ API
 HTTP Operations
 ---------------
 
-Fires a `POST` request to create a single record:
+Fire a `POST` request to create a single record:
 
 ```typescript
 crudService->create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fires a `GET` request to read a single record:
+Fire a `GET` request to read a single record:
 
 ```typescript
 crudService->read(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
-Fires a `GET` request to find multiple records:
+Fire a `GET` request to find multiple records:
 
 ```typescript
 crudService->find(options? : OptionInterface) : Observable<T[]>
 ```
 
-Fires a `PUT` request to completely update a single record:
+Fire a `PUT` request to completely update a single record:
 
 ```typescript
 crudService->update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fires a `PATCH` request to partially update a single record:
+Fire a `PATCH` request to partially update a single record:
 
 ```typescript
 crudService->patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fires a `DELETE` request to delete a single record:
+Fire a `DELETE` request to delete a single record:
 
 ```typescript
 crudService->delete(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
-Fires a non-standard request:
+Fire a non-standard request:
 
 ```typescript
 crudService->request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
-```
-
-
-Service Operations
-------------------
-
-Clear the service:
-
-```typescript
-crudService->clear()
-```
-
-Destroy the service:
-
-```typescript
-crudService->destroy()
 ```
 
 
@@ -201,6 +185,22 @@ Flush all caches for enabled services:
 
 ```typescript
 cacheService->flushAll() : this
+```
+
+
+Service Shorthands
+------------------
+
+Clear the service:
+
+```typescript
+crudService->clear()
+```
+
+Destroy the service:
+
+```typescript
+crudService->destroy()
 ```
 
 
