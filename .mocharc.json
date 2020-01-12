@@ -10,5 +10,5 @@
 		"src/**/*.ts",
 		"tests/**/*.ts"
 	],
-	"timeout": 4000
+	"timeout": 5000
 }

@@ -48,13 +48,25 @@ describe('CommonService', () =>
 			[
 				'2',
 				'3'
-			]).appendParam('test', '4').appendParam('test', '5');
+			]).appendParam('test', '4');
+			expect(commonService.getParamArray('test')).to.deep.equal(
+			[
+				'2',
+				'3',
+				'4'
+			]);
+			commonService.appendParam('test', '5').appendParamArray('test', [
+				'6',
+				'7'
+			]);
 			expect(commonService.getParamArray('test')).to.deep.equal(
 			[
 				'2',
 				'3',
 				'4',
-				'5'
+				'5',
+				'6',
+				'7'
 			]);
 			expect(commonService.clearParam('test').getParamArray('test')).to.be.equal(null);
 		})();
@@ -84,13 +96,25 @@ describe('CommonService', () =>
 			[
 				'2',
 				'3'
-			]).appendHeader('test', '4').appendHeader('test', '5');
+			]).appendHeader('test', '4');
+			expect(commonService.getHeaderArray('test')).to.deep.equal(
+			[
+				'2',
+				'3',
+				'4'
+			]);
+			commonService.appendHeader('test', '5').appendHeaderArray('test', [
+				'6',
+				'7'
+			]);
 			expect(commonService.getHeaderArray('test')).to.deep.equal(
 			[
 				'2',
 				'3',
 				'4',
-				'5'
+				'5',
+				'6',
+				'7'
 			]);
 			expect(commonService.clearHeader('test').getHeaderArray('test')).to.be.equal(null);
 		})();
