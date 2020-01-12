@@ -65,43 +65,43 @@ API
 HTTP Operations
 ---------------
 
-A `POST` request to create a single record:
+Fires a `POST` request to create a single record:
 
 ```typescript
-crudService->create(body : any, options? : OptionInterface) : Observable<T>
+crudService->create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-A `GET` request to read a single record:
+Fires a `GET` request to read a single record:
 
 ```typescript
 crudService->read(id : number | string, options? : OptionInterface) : Observable<T>
 ```
 
-A `GET` request to find multiple records:
+Fires a `GET` request to find multiple records:
 
 ```typescript
 crudService->find(options? : OptionInterface) : Observable<T[]>
 ```
 
-A `PUT` request to completely update a single record:
+Fires a `PUT` request to completely update a single record:
 
 ```typescript
-crudService->update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+crudService->update(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-A `PATCH` request to partially update a single record:
+Fires a `PATCH` request to partially update a single record:
 
 ```typescript
-crudService->patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+crudService->patch(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-A `DELETE` request to delete a single record:
+Fires a `DELETE` request to delete a single record:
 
 ```typescript
 crudService->delete(id : number | string, options? : OptionInterface) : Observable<T>
 ```
 
-A non-standard request:
+Fires a non-standard request:
 
 ```typescript
 crudService->request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>

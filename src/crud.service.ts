@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common.interface';
 import { CommonService } from './common.service';
 import { DeleteService } from './delete.service';
 import { GetService } from './get.service';
 import { MethodType } from './method.type';
-import { OptionInterface, OptionWithBodyInterface } from './option.interface';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -32,7 +32,7 @@ export class CrudService<T> extends CommonService
 		this.init();
 	}
 
-	public create(body : any, options? : OptionInterface) : Observable<T>
+	public create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.postService
 			.setApiUrl(this.getApiUrl())
@@ -59,7 +59,7 @@ export class CrudService<T> extends CommonService
 			.find(options);
 	}
 
-	public update(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+	public update(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.putService
 			.setApiUrl(this.getApiUrl())
@@ -68,7 +68,7 @@ export class CrudService<T> extends CommonService
 			.put(id, body, options);
 	}
 
-	public patch(id : number | string, body : any, options? : OptionInterface) : Observable<T>
+	public patch(id : number | string, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.patchService
 			.setApiUrl(this.getApiUrl())
