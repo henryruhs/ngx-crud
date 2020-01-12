@@ -13,5 +13,8 @@ install:
 script:
 - npm run lint
 - npm run build
-- npm test
+- npm run test:coverage
+
+after_success:
+- npm run test:report
 - npm run test:mutation
