@@ -24,8 +24,8 @@ Usage
 Import the `CrudModule` and `HttpClientModule` inside your `AppModule`:
 
 ```typescript
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { CrudModule } from 'ngx-crud';
 
 @NgModule(
