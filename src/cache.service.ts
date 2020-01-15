@@ -20,6 +20,8 @@ export class CacheService
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
 	{
+		const lifetime : number = this.getLifetime(request);
+
 		if (this.has(request))
 		{
 			clearTimeout(this.store.get(request.urlWithParams).timeout);
@@ -27,7 +29,7 @@ export class CacheService
 		this.store.set(request.urlWithParams,
 		{
 			response,
-			timeout: setTimeout(() => this.flush(request.urlWithParams), this.getLifetime(request))
+			timeout: lifetime > 0 ? setTimeout(() => this.flush(request.urlWithParams), lifetime) : null
 		});
 		return this;
 	}

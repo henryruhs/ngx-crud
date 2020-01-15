@@ -29,17 +29,17 @@ describe('AbortService', () =>
 	it('enable and disable', () =>
 	{
 		inject(
-			[
-				TestService
-			], (testService : TestService) =>
-			{
-				testService.enableAbort();
-				expect(testService.getHeader(AbortEnum.method)).to.be.equal('GET');
-				expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal('2000');
-				testService.disableAbort();
-				expect(testService.getHeader(AbortEnum.method)).to.be.equal(null);
-				expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal(null);
-			});
+		[
+			TestService
+		], (testService : TestService) =>
+		{
+			testService.enableAbort();
+			expect(testService.getHeader(AbortEnum.method)).to.be.equal('GET');
+			expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal('2000');
+			testService.disableAbort();
+			expect(testService.getHeader(AbortEnum.method)).to.be.equal(null);
+			expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal(null);
+		});
 	});
 
 	it('natural abort', done =>
@@ -51,7 +51,7 @@ describe('AbortService', () =>
 		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService
-				.enableAbort('GET', 0)
+				.enableAbort('GET', 10)
 				.setParam('abort', '1')
 				.find()
 				.subscribe(() =>

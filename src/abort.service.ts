@@ -20,6 +20,8 @@ export class AbortService
 
 	public set<T>(request : HttpRequest<T>) : this
 	{
+		const lifetime : number = this.getLifetime(request);
+
 		if (this.has(request))
 		{
 			clearTimeout(this.store.get(request.urlWithParams).timeout);
@@ -27,7 +29,7 @@ export class AbortService
 		this.store.set(request.urlWithParams,
 		{
 			signal: new Subject<void>(),
-			timeout: setTimeout(() => this.abort(request.urlWithParams), this.getLifetime(request))
+			timeout: lifetime > 0 ? setTimeout(() => this.abort(request.urlWithParams), lifetime) : null
 		});
 		return this;
 	}
