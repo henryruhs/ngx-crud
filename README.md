@@ -65,37 +65,37 @@ API
 HTTP Operations
 ---------------
 
-Fire a `POST` request to create a single record:
+Fire a `POST` request to create a single resource:
 
 ```typescript
 crudService->create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `GET` request to read a single record:
+Fire a `GET` request to read a single resource:
 
 ```typescript
 crudService->read(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `GET` request to find multiple records:
+Fire a `GET` request to find multiple resources:
 
 ```typescript
 crudService->find(options? : OptionInterface) : Observable<T[]>
 ```
 
-Fire a `PUT` request to completely update a single record:
+Fire a `PUT` request to completely update a single resource:
 
 ```typescript
 crudService->update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `PATCH` request to partially update a single record:
+Fire a `PATCH` request to partially update a single resource:
 
 ```typescript
 crudService->patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `DELETE` request to delete a single record:
+Fire a `DELETE` request to delete a single resource:
 
 ```typescript
 crudService->delete(id : IdType, options? : OptionInterface) : Observable<T>
@@ -135,13 +135,13 @@ Abort a single request by its `urlWithParams` for enabled services:
 abortService->abort(urlWithParams : string) : this
 ```
 
-Abort requests by their `baseUrl` for enabled services:
+Abort many requests by their `baseUrl` for enabled services:
 
 ```typescript
 abortService->abortMany(baseUrl : string) : this
 ```
 
-Abort all request for enabled services:
+Abort all requests for enabled services:
 
 ```typescript
 abortService->abortAll() : this
@@ -175,7 +175,7 @@ Flush a single cache by its `urlWithParams` for enabled services:
 cacheService->flush(urlWithParams : string) : this
 ```
 
-Flush caches by their `baseUrl` for enabled services:
+Flush many caches by their `baseUrl` for enabled services:
 
 ```typescript
 cacheService->flushMany(baseUrl : string) : this

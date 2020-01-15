@@ -18,6 +18,17 @@ export class CacheInterceptor implements HttpInterceptor
 	{
 	}
 
+	/**
+	 * intercept the request
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param request instance of the http request
+	 * @param next instance of the http handler
+	 *
+	 * @return http event as observable
+	 */
+
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const enableCache : boolean = request.headers.has(CacheEnum.method) &&
@@ -27,10 +38,32 @@ export class CacheInterceptor implements HttpInterceptor
 		return enableCache ? this.handle(request, next) : next.handle(request);
 	}
 
+	/**
+	 * handle the request
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param request instance of the http request
+	 * @param next instance of the http handler
+	 *
+	 * @return http event as observable
+	 */
+
 	protected handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		return this.cacheService.has(request) ? this.cacheService.get(request) : this.store(request, next);
 	}
+
+	/**
+	 * store the request
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param request instance of the http request
+	 * @param next instance of the http handler
+	 *
+	 * @return http response as observable
+	 */
 
 	protected store<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpResponse<T>>
 	{

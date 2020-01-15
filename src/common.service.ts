@@ -6,7 +6,7 @@ import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 import { OptionInterface } from './common.interface';
 import { MethodType } from './common.type';
-import { createUrl } from './helper';
+import { createBaseUrl } from './helper';
 
 @Injectable()
 export class CommonService
@@ -36,17 +36,17 @@ export class CommonService
 
 	public abort() : this
 	{
-		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
+		const baseUrl : string = createBaseUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.abortService.abortMany(baseURL);
+		this.abortService.abortMany(baseUrl);
 		return this;
 	}
 
 	public flush() : this
 	{
-		const baseURL : string = createUrl(this.getApiUrl(), this.getEndpoint());
+		const baseUrl : string = createBaseUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.cacheService.flushMany(baseURL);
+		this.cacheService.flushMany(baseUrl);
 		return this;
 	}
 
@@ -221,12 +221,31 @@ export class CommonService
 		return this.setParams(new HttpParams());
 	}
 
+	/**
+	 * enable aborting for the service
+	 *
+	 * @since 7.0.0
+	 *
+	 * @param method method of the request
+	 * @param lifetime lifetime of the request
+	 *
+	 * @return instance of the service
+	 */
+
 	public enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this
 			.setHeader(AbortEnum.method, method)
 			.setHeader(AbortEnum.lifetime, lifetime.toString());
 	}
+
+	/**
+	 * disable aborting for the service
+	 *
+	 * @since 7.0.0
+	 *
+	 * @return instance of the service
+	 */
 
 	public disableAbort() : this
 	{
@@ -235,6 +254,17 @@ export class CommonService
 			.clearHeader(AbortEnum.lifetime);
 	}
 
+	/**
+	 * enable caching for the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param method method of the request
+	 * @param lifetime lifetime of the request
+	 *
+	 * @return instance of the service
+	 */
+
 	public enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this
@@ -242,12 +272,28 @@ export class CommonService
 			.setHeader(CacheEnum.lifetime, lifetime.toString());
 	}
 
+	/**
+	 * disable caching for the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
 	public disableCache() : this
 	{
 		return this
 			.clearHeader(CacheEnum.method)
 			.clearHeader(CacheEnum.lifetime);
 	}
+
+	/**
+	 * init the service
+	 *
+	 * @since 7.0.0
+	 *
+	 * @return instance of the service
+	 */
 
 	protected init() : this
 	{
