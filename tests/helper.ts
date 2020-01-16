@@ -3,7 +3,7 @@ import { createBaseUrl } from '../src/helper';
 import { TestService } from './test.service';
 
 /***
- * mock request
+ * mock request for test service
  *
  * @since 4.0.0
  *

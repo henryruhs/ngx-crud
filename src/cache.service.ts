@@ -62,7 +62,7 @@ export class CacheService
 	 *
 	 * @param request instance of the http request
 	 *
-	 * @return boolean value
+	 * @return boolean
 	 */
 
 	public has<T>(request : HttpRequest<T>) : boolean
@@ -127,7 +127,7 @@ export class CacheService
 	 *
 	 * @param request instance of the http request
 	 *
-	 * @return time in milliseconds
+	 * @return lifetime in milliseconds
 	 */
 
 	protected getLifetime<T>(request : HttpRequest<T>) : number
