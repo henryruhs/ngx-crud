@@ -17,6 +17,17 @@ export class AbortInterceptor implements HttpInterceptor
 	{
 	}
 
+	/**
+	 * intercept the request
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param request instance of the http request
+	 * @param next instance of the http handler
+	 *
+	 * @return http event as observable
+	 */
+
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const enableAbort : boolean = request.headers.has(AbortEnum.method) &&
@@ -25,6 +36,17 @@ export class AbortInterceptor implements HttpInterceptor
 
 		return enableAbort ? this.handle(request, next) : next.handle(request);
 	}
+
+	/**
+	 * handle the request
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param request instance of the http request
+	 * @param next instance of the http handler
+	 *
+	 * @return http event as observable
+	 */
 
 	public handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{

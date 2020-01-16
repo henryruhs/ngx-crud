@@ -15,6 +15,16 @@ export class TestService extends CrudService<TestInterface>
 		this.init();
 	}
 
+	/**
+	 * find by user
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param userId identifier of the user
+	 *
+	 * @return http response as observable
+	 */
+
 	public findByUser(userId : string) : Observable<TestInterface[]>
 	{
 		return this.setParam('userId', userId).find();
