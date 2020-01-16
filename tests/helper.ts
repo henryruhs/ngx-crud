@@ -9,7 +9,7 @@ import { TestService } from './test.service';
  *
  * @param testService TestService
  *
- * @return http request
+ * @return instance of the http request
  */
 
 export function mockRequest(testService : TestService) : HttpRequest<any>

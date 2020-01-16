@@ -128,7 +128,7 @@ export class AbortService
 	 *
 	 * @param request instance of the http request
 	 *
-	 * @return lifetime in milliseconds
+	 * @return lifetime of the request
 	 */
 
 	protected getLifetime<T>(request : HttpRequest<T>) : number
