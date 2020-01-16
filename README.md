@@ -241,7 +241,7 @@ Get a single option of the service:
 crudService->getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
 ```
 
-Get the options instance of the service:
+Get the options of the service:
 
 ```typescript
 crudService->getOptions() : OptionInterface
@@ -253,7 +253,7 @@ Set a single option of the service:
 crudService->setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
 ```
 
-Set the options instance of the service:
+Set the options of the service:
 
 ```typescript
 crudService->setOptions(options : OptionInterface) : this
@@ -265,7 +265,7 @@ Clear a single option of the service:
 crudService->clearOption(name : keyof OptionInterface) : this
 ```
 
-Clear the options instance of the service:
+Clear the options of the service:
 
 ```typescript
 crudService->clearOptions() : this

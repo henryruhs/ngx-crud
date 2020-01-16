@@ -164,7 +164,7 @@ export class CommonService
 	}
 
 	/**
-	 * get the options instance of the service
+	 * get the options of the service
 	 *
 	 * @since 2.0.0
 	 *
@@ -194,11 +194,11 @@ export class CommonService
 	}
 
 	/**
-	 * set the options instance of the service
+	 * set the options of the service
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param options instance of the options
+	 * @param options options of the request
 	 *
 	 * @return instance of the service
 	 */
@@ -225,7 +225,7 @@ export class CommonService
 	}
 
 	/**
-	 * clear the options instance of the service
+	 * clear the options of the service
 	 *
 	 * @since 2.0.0
 	 *

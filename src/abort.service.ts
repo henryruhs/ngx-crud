@@ -55,7 +55,7 @@ export class AbortService
 	}
 
 	/**
-	 * has the signal and timeout for the request
+	 * has a signal and timeout for the request
 	 *
 	 * @since 4.0.0
 	 *

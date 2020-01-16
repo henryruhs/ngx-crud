@@ -56,7 +56,7 @@ export class CacheService
 	}
 
 	/**
-	 * has the response and timeout for the request
+	 * has a response and timeout for the request
 	 *
 	 * @since 3.0.0
 	 *
