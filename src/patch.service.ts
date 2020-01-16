@@ -9,11 +9,13 @@ import { createBaseUrl } from './helper';
 export class PatchService<T> extends CommonService
 {
 	/**
-	 * fire a request to partially update a single resource
+	 * fires a request to partially update a single resource
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param id identifier of the resource
-	 * @param body http body
-	 * @param options http options
+	 * @param body body of the request
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */

@@ -9,10 +9,12 @@ import { createBaseUrl } from './helper';
 export class GetService<T> extends CommonService
 {
 	/**
-	 * fire a request to read a single resource
+	 * fires a request to read a single resource
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param id identifier of the resource
-	 * @param options http options
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */
@@ -27,9 +29,11 @@ export class GetService<T> extends CommonService
 	}
 
 	/**
-	 * fire a request to find multiple resources
+	 * fires a request to find multiple resources
 	 *
-	 * @param options http options
+	 * @since 1.0.0
+	 *
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */

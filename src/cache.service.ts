@@ -12,7 +12,7 @@ export class CacheService
 	/**
 	 * get the response of the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 *
@@ -31,7 +31,7 @@ export class CacheService
 	/**
 	 * set the response and timeout for the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param response instance of the http response
@@ -58,7 +58,7 @@ export class CacheService
 	/**
 	 * has the response and timeout for the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 *
@@ -73,7 +73,7 @@ export class CacheService
 	/**
 	 * flush a single cache for enabled services:
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param urlWithParams url with parameters
 	 *
@@ -93,7 +93,7 @@ export class CacheService
 	/**
 	 * flush many caches for enabled services:
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param baseUrl base url of the request
 	 *
@@ -109,7 +109,7 @@ export class CacheService
 	/**
 	 * flush all caches for enabled services:
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @return instance of the service
 	 */
@@ -123,7 +123,7 @@ export class CacheService
 	/**
 	 * get the lifetime of the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 *

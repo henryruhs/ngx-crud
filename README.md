@@ -65,43 +65,43 @@ API
 HTTP Operations
 ---------------
 
-Fire a `POST` request to create a single resource:
+Fires a `POST` request to create a single resource:
 
 ```typescript
 crudService->create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `GET` request to read a single resource:
+Fires a `GET` request to read a single resource:
 
 ```typescript
 crudService->read(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `GET` request to find multiple resources:
+Fires a `GET` request to find multiple resources:
 
 ```typescript
 crudService->find(options? : OptionInterface) : Observable<T[]>
 ```
 
-Fire a `PUT` request to completely update a single resource:
+Fires a `PUT` request to completely update a single resource:
 
 ```typescript
 crudService->update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `PATCH` request to partially update a single resource:
+Fires a `PATCH` request to partially update a single resource:
 
 ```typescript
 crudService->patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a `DELETE` request to delete a single resource:
+Fires a `DELETE` request to delete a single resource:
 
 ```typescript
 crudService->delete(id : IdType, options? : OptionInterface) : Observable<T>
 ```
 
-Fire a non-standard request:
+Fires a non-standard request:
 
 ```typescript
 crudService->request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
@@ -235,37 +235,37 @@ crudService->setEndpoint(endpoint : string) : this
 HTTP Options
 ------------
 
-Get a single option of the service
+Get a single option of the service:
 
 ```typescript
 crudService->getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
 ```
 
-Get all options of the service
+Get the options instance of the service:
 
 ```typescript
 crudService->getOptions() : OptionInterface
 ```
 
-Set a single option of the service
+Set a single option of the service:
 
 ```typescript
 crudService->setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
 ```
 
-Set all options of the service
+Set the options instance of the service:
 
 ```typescript
 crudService->setOptions(options : OptionInterface) : this
 ```
 
-Clear a single header of the service
+Clear a single option of the service:
 
 ```typescript
 crudService->clearOption(name : keyof OptionInterface) : this
 ```
 
-Clear all headers of the service
+Clear the options instance of the service:
 
 ```typescript
 crudService->clearOptions() : this
@@ -275,61 +275,61 @@ crudService->clearOptions() : this
 HTTP Headers
 ------------
 
-Get a single header of the service
+Get a single header of the service:
 
 ```typescript
 crudService->getHeader(name : string) : string
 ```
 
-Get all headers of the service
+Get the headers instance of the service:
 
 ```typescript
 crudService->getHeaders() : HttpHeaders
 ```
 
-Get values for a single header of the service
+Get values for a single header of the service:
 
 ```typescript
 crudService->getHeaderArray(name : string) : string[]
 ```
 
-Set a single header of the service
+Set a single header of the service:
 
 ```typescript
 crudService->setHeader(name : string, value : string) : this
 ```
 
-Set all headers of the service
+Set the headers instance of the service:
 
 ```typescript
 crudService->setHeaders(headers : HttpHeaders) : this
 ```
 
-Set values for a single header of the service
+Set values for a single header of the service:
 
 ```typescript
 crudService->setHeaderArray(name : string, valueArray : string[]) : this
 ```
 
-Append a single header to the service
+Append a single header to the service:
 
 ```typescript
 crudService->appendHeader(name : string, value : string) : this
 ```
 
-Append values to a single header of the service
+Append values to a single header of the service:
 
 ```typescript
 crudService->appendHeaderArray(name : string, valueArray : string[]) : this
 ```
 
-Clear a single header of the service
+Clear a single header of the service:
 
 ```typescript
 crudService->clearHeader(name : string) : this
 ```
 
-Clear all headers of the service
+Clear the headers instance of the service:
 
 ```typescript
 crudService->clearHeaders() : this
@@ -339,61 +339,61 @@ crudService->clearHeaders() : this
 HTTP Params
 -----------
 
-Get a single param of the service:
+Get a single parameter of the service:
 
 ```typescript
 crudService->getParam(name : string) : string
 ```
 
-Get all params of the service
+Get the parameters instance of the service:
 
 ```typescript
 crudService->getParams() : HttpParams
 ```
 
-Get values for a single param of the service
+Get values for a single parameter of the service:
 
 ```typescript
 crudService->getParamArray(name : string) : string[]
 ```
 
-Set a single param of the service
+Set a single parameter of the service:
 
 ```typescript
 crudService->setParam(name : string, value : string) : this
 ```
 
-Set all params of the service
+Set the parameters instance of the service:
 
 ```typescript
 crudService->setParams(params : HttpParams) : this
 ```
 
-Set values for a single param of the service
+Set values for a single parameter of the service:
 
 ```typescript
 crudService->setParamArray(name : string, valueArray : string[]) : this
 ```
 
-Append a single param to the service
+Append a single parameter to the service:
 
 ```typescript
 crudService->appendParam(name : string, value : string) : this
 ```
 
-Append values to a single param of the service
+Append values to a single parameter of the service:
 
 ```typescript
 crudService->appendParamArray(name : string, valueArray : string) : this
 ```
 
-Clear a single param of the service
+Clear a single parameter of the service:
 
 ```typescript
 crudService->clearParam(name : string) : this
 ```
 
-Clear all params of the service
+Clear the parameters instance of the service:
 
 ```typescript
 crudService->clearParams() : this

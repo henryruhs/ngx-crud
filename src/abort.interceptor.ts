@@ -20,7 +20,7 @@ export class AbortInterceptor implements HttpInterceptor
 	/**
 	 * intercept the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler
@@ -40,7 +40,7 @@ export class AbortInterceptor implements HttpInterceptor
 	/**
 	 * handle the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler

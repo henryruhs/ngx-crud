@@ -11,8 +11,10 @@ export class RequestService<T> extends CommonService
 	/**
 	 * fire a non-standard request
 	 *
-	 * @param method http method
-	 * @param options http options with body support
+	 * @since 2.0.0
+	 *
+	 * @param method method of the request
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */

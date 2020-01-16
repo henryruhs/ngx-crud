@@ -8,6 +8,18 @@ import { createBaseUrl } from './helper';
 @Injectable()
 export class PutService<T> extends CommonService
 {
+	/**
+	 * fires a request to completely update a single resource
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param id identifier of the resource
+	 * @param body body of the request
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
+
 	public put(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.http.put<T>(createBaseUrl(this.getApiUrl(), this.getEndpoint(), id), body,

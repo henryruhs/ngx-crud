@@ -12,7 +12,7 @@ export class AbortService
 	/**
 	 * get the signal of the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 *
@@ -31,7 +31,7 @@ export class AbortService
 	/**
 	 * set the signal and timeout for the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 *
@@ -57,7 +57,7 @@ export class AbortService
 	/**
 	 * has the signal and timeout for the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 *
@@ -72,7 +72,7 @@ export class AbortService
 	/**
 	 * abort a single request for enabled services
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param urlWithParams url with parameters
 	 *
@@ -94,7 +94,7 @@ export class AbortService
 	/**
 	 * abort many requests for enabled services
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param baseUrl base url without parameters
 	 *
@@ -110,7 +110,7 @@ export class AbortService
 	/**
 	 * abort all requests for enabled services
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @return instance of the service
 	 */
@@ -124,7 +124,7 @@ export class AbortService
 	/**
 	 * get the lifetime of the request
 	 *
-	 * @since 7.0.0
+	 * @since 4.0.0
 	 *
 	 * @param request instance of the http request
 	 *

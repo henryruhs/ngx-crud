@@ -21,7 +21,7 @@ export class CacheInterceptor implements HttpInterceptor
 	/**
 	 * intercept the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler
@@ -41,7 +41,7 @@ export class CacheInterceptor implements HttpInterceptor
 	/**
 	 * handle the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler
@@ -57,7 +57,7 @@ export class CacheInterceptor implements HttpInterceptor
 	/**
 	 * store the request
 	 *
-	 * @since 6.0.0
+	 * @since 3.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler

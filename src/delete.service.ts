@@ -9,10 +9,12 @@ import { createBaseUrl } from './helper';
 export class DeleteService<T> extends CommonService
 {
 	/**
-	 * fire a request to delete a single resource
+	 * fires a request to delete a single resource
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param id identifier of the resource
-	 * @param options http options
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */

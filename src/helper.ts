@@ -1,7 +1,7 @@
 /**
  * create the base url
  *
- * @since 7.0.0
+ * @since 4.0.0
  *
  * @param apiUrl url of the api
  * @param endpoint route of the endpoint

@@ -8,10 +8,12 @@ import { createBaseUrl } from './helper';
 export class PostService<T> extends CommonService
 {
 	/**
-	 * Fire a request to post non-standard data
+	 * fires a request to post non-standard data
 	 *
-	 * @param body http body
-	 * @param options http options
+	 * @since 1.0.0
+	 *
+	 * @param body body of the request
+	 * @param options options of the request
 	 *
 	 * @return http response as observable
 	 */

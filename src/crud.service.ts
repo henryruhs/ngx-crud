@@ -32,6 +32,17 @@ export class CrudService<T> extends CommonService
 		this.init();
 	}
 
+	/**
+	 * fires a request to create a single resource:
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param body body of the request
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
+
 	public create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.postService
@@ -40,6 +51,17 @@ export class CrudService<T> extends CommonService
 			.setOptions((this.getOptions()))
 			.post(body, options);
 	}
+
+	/**
+	 * fires a request to read a single resource
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param id identifier of the resource
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
 
 	public read(id : IdType, options? : OptionInterface) : Observable<T>
 	{
@@ -50,6 +72,16 @@ export class CrudService<T> extends CommonService
 			.get(id, options);
 	}
 
+	/**
+	 * fires a request to find multiple resources
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
+
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
 		return this.getService
@@ -58,6 +90,18 @@ export class CrudService<T> extends CommonService
 			.setOptions((this.getOptions()))
 			.find(options);
 	}
+
+	/**
+	 * fires a request to completely update a single resource
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param id identifier of the resource
+	 * @param body body of the request
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
 
 	public update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
@@ -68,6 +112,18 @@ export class CrudService<T> extends CommonService
 			.put(id, body, options);
 	}
 
+	/**
+	 * fires a request to partially update a single resource
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param id identifier of the resource
+	 * @param body body of the request
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
+
 	public patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
 		return this.patchService
@@ -77,6 +133,17 @@ export class CrudService<T> extends CommonService
 			.patch(id, body, options);
 	}
 
+	/**
+	 * fires a request to delete a single resource
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param id identifier of the resource
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
+
 	public delete(id : IdType, options? : OptionInterface) : Observable<T>
 	{
 		return this.deleteService
@@ -85,6 +152,17 @@ export class CrudService<T> extends CommonService
 			.setOptions((this.getOptions()))
 			.delete(id, options);
 	}
+
+	/**
+	 * fires a non-standard request
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param method method of the request
+	 * @param options options of the request
+	 *
+	 * @return http response as observable
+	 */
 
 	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
