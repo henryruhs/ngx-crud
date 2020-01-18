@@ -6,11 +6,10 @@
 	"keywords":
 	[
 		"angular",
-		"request",
+		"http",
 		"crud",
-		"rest",
-		"abort",
-		"cache"
+		"aborting",
+		"caching"
 	],
 	"author":
 	{
