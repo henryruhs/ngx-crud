@@ -1,38 +1,38 @@
 import { expect } from 'chai';
-import { createBaseUrl } from '../src/helper';
+import { createEndpointUrl } from '../src/helper';
 
 describe('Helper', () =>
 {
-	it('create base url', () =>
+	it('create endpoint url', () =>
 	{
 		const urlArray : any[] =
 		[
 			{
 				apiUrl: 'http://localhost',
-				baseUrl: 'http://localhost/posts',
 				endpoint: '/posts',
+				endpointUrl: 'http://localhost/posts',
 				id: null
 			},
 			{
 				apiUrl: 'http://localhost/v1.0.0',
-				baseUrl: 'http://localhost/v1.0.0/posts/1',
 				endpoint: '/posts',
+				endpointUrl: 'http://localhost/v1.0.0/posts/1',
 				id: 1
 			},
 			{
 				apiUrl: '..',
-				baseUrl: '../posts',
 				endpoint: '/posts',
+				endpointUrl: '../posts',
 				id: null
 			},
 			{
 				apiUrl: '../v1.0.0',
-				baseUrl: '../v1.0.0/posts/1',
 				endpoint: '/posts',
+				endpointUrl: '../v1.0.0/posts/1',
 				id: 1
 			}
 		];
 
-		urlArray.forEach(item => expect(createBaseUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.baseUrl));
+		urlArray.forEach(item => expect(createEndpointUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.endpointUrl));
 	});
 });

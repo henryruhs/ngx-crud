@@ -93,16 +93,16 @@ export class CacheService
 	/**
 	 * flush many caches for enabled services:
 	 *
-	 * @since 3.0.0
+	 * @since 4.1.0
 	 *
-	 * @param baseUrl base url of the request
+	 * @param endpointUrl endpoint url of the request
 	 *
 	 * @return instance of the service
 	 */
 
-	public flushMany(baseUrl : string) : this
+	public flushMany(endpointUrl : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.flush(urlWithParams) : null);
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(endpointUrl) ? this.flush(urlWithParams) : null);
 		return this;
 	}
 

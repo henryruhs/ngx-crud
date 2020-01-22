@@ -94,16 +94,16 @@ export class AbortService
 	/**
 	 * abort many requests for enabled services
 	 *
-	 * @since 4.0.0
+	 * @since 4.1.0
 	 *
-	 * @param baseUrl base url without parameters
+	 * @param endpointUrl endpoint url of the request
 	 *
 	 * @return instance of the service
 	 */
 
-	public abortMany(baseUrl : string) : this
+	public abortMany(endpointUrl : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(baseUrl) ? this.abort(urlWithParams) : null);
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(endpointUrl) ? this.abort(urlWithParams) : null);
 		return this;
 	}
 
