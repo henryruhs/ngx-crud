@@ -193,7 +193,7 @@ Flush all caches for enabled services:
 cacheService->flushAll() : this
 ```
 
-Observe all requests for enabled services:
+Observe all caches for enabled services:
 
 ```typescript
 cacheService->observeAll() : Observable<[string, CacheInterface]>
