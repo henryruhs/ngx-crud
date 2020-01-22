@@ -51,7 +51,7 @@ describe('AbortService', () =>
 		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService
-				.enableAbort('GET', 10)
+				.enableAbort('GET', 1)
 				.setParam('abort', '1')
 				.find()
 				.subscribe(() =>
@@ -128,6 +128,34 @@ describe('AbortService', () =>
 						testService.clear();
 						done();
 					});
+		})();
+	});
+
+	it('observe all', done =>
+	{
+		inject(
+		[
+			AbortService,
+			TestService
+		], (abortService : AbortService, testService : TestService) =>
+		{
+			testService
+				.enableAbort()
+				.setParam('abort', '4')
+				.find()
+				.subscribe();
+			abortService
+				.observeAll()
+				.subscribe(store =>
+				{
+					expect(store.length).to.be.above(0);
+					testService.clear();
+					done();
+				}, () =>
+				{
+					testService.clear();
+					done('error');
+				});
 		})();
 	});
 });

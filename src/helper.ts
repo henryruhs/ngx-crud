@@ -1,16 +1,16 @@
 /**
- * create the base url
+ * create the endpoint url of the request
  *
- * @since 4.0.0
+ * @since 4.1.0
  *
  * @param apiUrl url of the api
  * @param endpoint route of the endpoint
  * @param id optional identifier of the record
  *
- * @return base url without parameters
+ * @return endpoint url of the request
  */
 
-export function createBaseUrl(apiUrl : string, endpoint : string, id? : number | string) : string
+export function createEndpointUrl(apiUrl : string, endpoint : string, id? : number | string) : string
 {
 	const route : string =
 	[

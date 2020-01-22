@@ -165,4 +165,32 @@ describe('CacheService', () =>
 				});
 		})();
 	});
+
+	it('observe all', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('cache', '5')
+				.find()
+				.subscribe();
+			cacheService
+				.observeAll()
+				.subscribe(store =>
+				{
+					expect(store.length).to.be.above(0);
+					testService.clear();
+					done();
+				}, () =>
+				{
+					testService.clear();
+					done('error');
+				});
+		})();
+	});
 });

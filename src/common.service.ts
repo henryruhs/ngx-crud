@@ -6,7 +6,7 @@ import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 import { OptionInterface } from './common.interface';
 import { MethodType } from './common.type';
-import { createBaseUrl } from './helper';
+import { createEndpointUrl } from './helper';
 
 @Injectable()
 export class CommonService
@@ -24,38 +24,6 @@ export class CommonService
 		this.abortService = injector.get(AbortService);
 		this.cacheService = injector.get(CacheService);
 		this.init();
-	}
-
-	/**
-	 * abort all requests of the service
-	 *
-	 * @since 4.0.0
-	 *
-	 * @return instance of the service
-	 */
-
-	public abort() : this
-	{
-		const baseUrl : string = createBaseUrl(this.getApiUrl(), this.getEndpoint());
-
-		this.abortService.abortMany(baseUrl);
-		return this;
-	}
-
-	/**
-	 * flush all caches of the service
-	 *
-	 * @since 4.0.0
-	 *
-	 * @return instance of the service
-	 */
-
-	public flush() : this
-	{
-		const baseUrl : string = createBaseUrl(this.getApiUrl(), this.getEndpoint());
-
-		this.cacheService.flushMany(baseUrl);
-		return this;
 	}
 
 	/**
@@ -578,6 +546,22 @@ export class CommonService
 	}
 
 	/**
+	 * abort all requests of the service
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public abort() : this
+	{
+		const endpointUrl : string = createEndpointUrl(this.getApiUrl(), this.getEndpoint());
+
+		this.abortService.abortMany(endpointUrl);
+		return this;
+	}
+
+	/**
 	 * enable caching for the service
 	 *
 	 * @since 3.0.0
@@ -608,6 +592,22 @@ export class CommonService
 		return this
 			.clearHeader(CacheEnum.method)
 			.clearHeader(CacheEnum.lifetime);
+	}
+
+	/**
+	 * flush all caches of the service
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public flush() : this
+	{
+		const endpointUrl : string = createEndpointUrl(this.getApiUrl(), this.getEndpoint());
+
+		this.cacheService.flushMany(endpointUrl);
+		return this;
 	}
 
 	/**

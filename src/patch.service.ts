@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { BodyInterface, OptionInterface } from './common.interface';
 import { CommonService } from './common.service';
 import { IdType } from './common.type';
-import { createBaseUrl } from './helper';
+import { createEndpointUrl } from './helper';
 
 @Injectable()
 export class PatchService<T> extends CommonService
@@ -22,7 +22,7 @@ export class PatchService<T> extends CommonService
 
 	public patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.patch<T>(createBaseUrl(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.patch<T>(createEndpointUrl(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options
