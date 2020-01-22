@@ -2,5 +2,15 @@
 	"extends":
 	[
 		"tslint-config-redaxmedia"
-	]
+	],
+	"rules":
+	{
+		"max-line-length":
+		{
+			"options":
+			{
+				"limit": 140
+			}
+		}
+	}
 }

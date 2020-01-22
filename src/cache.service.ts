@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { CacheEnum } from './cache.enum';
 import { CacheInterface } from './cache.interface';
 
