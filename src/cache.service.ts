@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { CacheEnum } from './cache.enum';
 import { CacheInterface } from './cache.interface';
 
@@ -71,7 +71,7 @@ export class CacheService
 	}
 
 	/**
-	 * flush a single cache for enabled services:
+	 * flush a single cache for enabled services
 	 *
 	 * @since 3.0.0
 	 *
@@ -91,7 +91,7 @@ export class CacheService
 	}
 
 	/**
-	 * flush many caches for enabled services:
+	 * flush many caches for enabled services
 	 *
 	 * @since 4.1.0
 	 *
@@ -107,7 +107,7 @@ export class CacheService
 	}
 
 	/**
-	 * flush all caches for enabled services:
+	 * flush all caches for enabled services
 	 *
 	 * @since 3.0.0
 	 *
@@ -118,6 +118,19 @@ export class CacheService
 	{
 		this.store.forEach((value, urlWithParams) => this.flush(urlWithParams));
 		return this;
+	}
+
+	/**
+	 * observe all caches for enabled services
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return collection of response and timeout as observable
+	 */
+
+	public observeAll() : Observable<[string, CacheInterface]>
+	{
+		return from(this.store);
 	}
 
 	/**

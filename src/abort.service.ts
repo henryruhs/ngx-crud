@@ -1,6 +1,6 @@
 import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
 import { AbortEnum } from './abort.enum';
 import { AbortInterface } from './abort.interface';
 
@@ -119,6 +119,19 @@ export class AbortService
 	{
 		this.store.forEach((value, urlWithParams) => this.abort(urlWithParams));
 		return this;
+	}
+
+	/**
+	 * observe all requests for enabled services
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return collection of signal and timeout as observable
+	 */
+
+	public observeAll() : Observable<[string, AbortInterface]>
+	{
+		return from(this.store);
 	}
 
 	/**

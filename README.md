@@ -147,6 +147,12 @@ Abort all requests for enabled services:
 abortService->abortAll() : this
 ```
 
+Observe all requests for enabled services:
+
+```typescript
+abortService->observeAll() : Observable<[string, AbortInterface]>
+```
+
 
 HTTP Caching
 ------------
@@ -185,6 +191,12 @@ Flush all caches for enabled services:
 
 ```typescript
 cacheService->flushAll() : this
+```
+
+Observe all requests for enabled services:
+
+```typescript
+cacheService->observeAll() : Observable<[string, CacheInterface]>
 ```
 
 
