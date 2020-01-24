@@ -23,12 +23,12 @@ export class CrudService<T> extends CommonService
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.deleteService = injector.get(DeleteService);
-		this.getService = injector.get(GetService);
-		this.patchService = injector.get(PatchService);
-		this.postService = injector.get(PostService);
-		this.putService = injector.get(PutService);
-		this.requestService = injector.get(RequestService);
+		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
+		this.getService = injector.get<GetService<T>>(GetService);
+		this.patchService = injector.get<PatchService<T>>(PatchService);
+		this.postService = injector.get<PostService<T>>(PostService);
+		this.putService = injector.get<PutService<T>>(PutService);
+		this.requestService = injector.get<RequestService<T>>(RequestService);
 		this.init();
 	}
 

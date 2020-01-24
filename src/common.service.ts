@@ -20,9 +20,9 @@ export class CommonService
 
 	constructor(protected injector : Injector)
 	{
-		this.http = injector.get(HttpClient);
-		this.abortService = injector.get(AbortService);
-		this.cacheService = injector.get(CacheService);
+		this.http = injector.get<HttpClient>(HttpClient);
+		this.abortService = injector.get<AbortService>(AbortService);
+		this.cacheService = injector.get<CacheService>(CacheService);
 		this.init();
 	}
 
