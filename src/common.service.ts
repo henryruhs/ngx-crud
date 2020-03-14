@@ -204,8 +204,7 @@ export class CommonService
 	{
 		return this.setOptions(
 		{
-			reportProgress: true,
-			withCredentials: true
+			reportProgress: true
 		});
 	}
 
