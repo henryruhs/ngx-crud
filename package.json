@@ -48,7 +48,7 @@
 		"chai": "4.2.0",
 		"core-js": "3.6.4",
 		"coveralls": "3.0.9",
-		"jsdom": "16.2.1",
+		"jsdom": "15.2.1",
 		"jsdom-global": "3.0.2",
 		"mocha": "7.1.0",
 		"ng-packagr": "9.0.3",
