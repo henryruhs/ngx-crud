@@ -187,7 +187,7 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public clearOption(name : keyof OptionInterface) : this
+	public clearOption<K extends keyof OptionInterface>(name : K) : this
 	{
 		return this.setOption(name, null);
 	}

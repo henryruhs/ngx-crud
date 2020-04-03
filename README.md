@@ -274,7 +274,7 @@ crudService->setOptions(options : OptionInterface) : this
 Clear a single option of the service:
 
 ```typescript
-crudService->clearOption(name : keyof OptionInterface) : this
+crudService->clearOption<K extends keyof OptionInterface>(name : K) : this
 ```
 
 Clear the options of the service:
