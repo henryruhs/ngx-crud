@@ -3,12 +3,7 @@
 	[
 		"ts"
 	],
-	"file": "./tests/setup.js",
+	"file": "tests/setup.js",
 	"spec": "tests/**/*.spec.ts",
-	"watch-files":
-	[
-		"src/**/*.ts",
-		"tests/**/*.ts"
-	],
 	"timeout": 5000
 }
