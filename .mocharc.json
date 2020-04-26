@@ -4,6 +4,6 @@
 		"ts"
 	],
 	"file": "tests/setup.js",
-	"spec": "tests/**/*.spec.ts",
-	"timeout": 5000
+	"spec": "tests/*.spec.ts",
+	"timeout": 8000
 }
