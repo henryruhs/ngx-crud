@@ -1,8 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservableInput } from 'rxjs';
 import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common.interface';
 import { CommonService } from './common.service';
 import { IdType, MethodType } from './common.type';
+import { BatchService } from './batch.service';
 import { DeleteService } from './delete.service';
 import { GetService } from './get.service';
 import { PatchService } from './patch.service';
@@ -13,6 +14,7 @@ import { RequestService } from './request.service';
 @Injectable()
 export class CrudService<T> extends CommonService
 {
+	protected batchService : BatchService<T>;
 	protected deleteService : DeleteService<T>;
 	protected getService : GetService<T>;
 	protected patchService : PatchService<T>;
@@ -23,6 +25,7 @@ export class CrudService<T> extends CommonService
 	constructor(protected injector : Injector)
 	{
 		super(injector);
+		this.batchService = injector.get<BatchService<T>>(BatchService);
 		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
 		this.getService = injector.get<GetService<T>>(GetService);
 		this.patchService = injector.get<PatchService<T>>(PatchService);
@@ -171,5 +174,20 @@ export class CrudService<T> extends CommonService
 			.setEndpoint(this.getEndpoint())
 			.setOptions((this.getOptions()))
 			.request(method, options);
+	}
+
+	/**
+	 * fires multiple requests in parallel
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param requestArray collection of requests
+	 *
+	 * @return multiple http responses as observable
+	 */
+
+	public parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
+	{
+		return this.batchService.parallel(requestArray);
 	}
 }
