@@ -167,4 +167,26 @@ describe('CrudService', () =>
 				.subscribe(() => done());
 		})();
 	});
+
+	it.only('parallel', done =>
+	{
+		inject(
+		[
+			TestService
+		], (testService : TestService) =>
+		{
+			testService
+				.parallel(
+				[
+					testService.read('1'),
+					testService.read('2')
+				])
+				.subscribe(responseArray =>
+				{
+					expect(responseArray[0].id).to.equal(1);
+					expect(responseArray[1].id).to.equal(2);
+					done();
+				});
+		})();
+	});
 });

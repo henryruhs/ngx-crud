@@ -1,7 +1,7 @@
 NGX CRUD
 ========
 
-> CRUD services in Angular with effortless aborting and caching.
+> CRUD services in Angular with effortless aborting, batching and caching.
 
 [![Build Status](https://img.shields.io/travis/redaxmedia/ngx-crud.svg)](https://travis-ci.org/redaxmedia/ngx-crud)
 [![Mutation Status](https://badge.stryker-mutator.io/github.com/redaxmedia/ngx-crud/master)](https://github.com/redaxmedia/ngx-crud)
@@ -198,6 +198,16 @@ Observe all caches for enabled services:
 
 ```typescript
 cacheService->observeAll() : Observable<[string, CacheInterface]>
+```
+
+
+HTTP Batching
+-------------
+
+Fires multiple requests in parallel:
+
+```typescript
+crudService->parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
 ```
 
 

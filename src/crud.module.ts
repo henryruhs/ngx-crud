@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AbortInterceptor } from './abort.interceptor';
 import { AbortService } from './abort.service';
+import { BatchService } from './batch.service';
 import { CacheInterceptor } from './cache.interceptor';
 import { CacheService } from './cache.service';
 import { DeleteService } from './delete.service';
@@ -26,6 +27,7 @@ import { RequestService } from './request.service';
 			useClass: CacheInterceptor
 		},
 		AbortService,
+		BatchService,
 		CacheService,
 		DeleteService,
 		GetService,
