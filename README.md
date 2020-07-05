@@ -155,6 +155,16 @@ abortService->observeAll() : Observable<[string, AbortInterface]>
 ```
 
 
+HTTP Batching
+-------------
+
+Fires multiple requests in parallel:
+
+```typescript
+crudService->parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
+```
+
+
 HTTP Caching
 ------------
 
@@ -198,16 +208,6 @@ Observe all caches for enabled services:
 
 ```typescript
 cacheService->observeAll() : Observable<[string, CacheInterface]>
-```
-
-
-HTTP Batching
--------------
-
-Fires multiple requests in parallel:
-
-```typescript
-crudService->parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
 ```
 
 
