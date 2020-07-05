@@ -168,7 +168,7 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it.only('parallel', done =>
+	it('parallel', done =>
 	{
 		inject(
 		[

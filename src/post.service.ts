@@ -8,7 +8,7 @@ import { createEndpointUrl } from './helper';
 export class PostService<T> extends CommonService
 {
 	/**
-	 *  fires a request to create a single resource
+	 * fires a request to create a single resource
 	 *
 	 * @since 1.0.0
 	 *
