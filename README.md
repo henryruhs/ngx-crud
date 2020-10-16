@@ -136,10 +136,10 @@ Abort a single request by its `urlWithParams` for enabled services:
 abortService->abort(urlWithParams : string) : this
 ```
 
-Abort many requests by their `endpointUrl` for enabled services:
+Abort many requests by their `url` for enabled services:
 
 ```typescript
-abortService->abortMany(endpointUrl : string) : this
+abortService->abortMany(url : string) : this
 ```
 
 Abort all requests for enabled services:
@@ -192,10 +192,10 @@ Flush a single cache by its `urlWithParams` for enabled services:
 cacheService->flush(urlWithParams : string) : this
 ```
 
-Flush many caches by their `endpointUrl` for enabled services:
+Flush many caches by their `url` for enabled services:
 
 ```typescript
-cacheService->flushMany(endpointUrl : string) : this
+cacheService->flushMany(url : string) : this
 ```
 
 Flush all caches for enabled services:
@@ -420,4 +420,12 @@ Clear the parameters instance of the service:
 
 ```typescript
 crudService->clearParams() : this
+```
+
+
+Helpers
+-------
+
+```typescript
+createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
 ```

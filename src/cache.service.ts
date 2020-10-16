@@ -95,14 +95,14 @@ export class CacheService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @param endpointUrl endpoint url of the request
+	 * @param url url of the request
 	 *
 	 * @return instance of the service
 	 */
 
-	public flushMany(endpointUrl : string) : this
+	public flushMany(url : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(endpointUrl) ? this.flush(urlWithParams) : null);
+		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(url) ? this.flush(urlWithParams) : null);
 		return this;
 	}
 

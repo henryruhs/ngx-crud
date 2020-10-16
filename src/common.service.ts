@@ -6,7 +6,7 @@ import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 import { OptionInterface } from './common.interface';
 import { MethodType } from './common.type';
-import { createEndpointUrl } from './helper';
+import { createUrl } from './helper';
 
 @Injectable()
 export class CommonService
@@ -554,9 +554,9 @@ export class CommonService
 
 	public abort() : this
 	{
-		const endpointUrl : string = createEndpointUrl(this.getApiUrl(), this.getEndpoint());
+		const url : string = createUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.abortService.abortMany(endpointUrl);
+		this.abortService.abortMany(url);
 		return this;
 	}
 
@@ -603,9 +603,9 @@ export class CommonService
 
 	public flush() : this
 	{
-		const endpointUrl : string = createEndpointUrl(this.getApiUrl(), this.getEndpoint());
+		const url : string = createUrl(this.getApiUrl(), this.getEndpoint());
 
-		this.cacheService.flushMany(endpointUrl);
+		this.cacheService.flushMany(url);
 		return this;
 	}
 

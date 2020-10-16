@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createEndpointUrl } from '../src/helper';
+import { createUrl } from '../src';
 
 describe('Helper', () =>
 {
@@ -33,6 +33,6 @@ describe('Helper', () =>
 			}
 		];
 
-		urlArray.forEach(item => expect(createEndpointUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.endpointUrl));
+		urlArray.forEach(item => expect(createUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.endpointUrl));
 	});
 });
