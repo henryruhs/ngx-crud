@@ -421,3 +421,11 @@ Clear the parameters instance of the service:
 ```typescript
 crudService->clearParams() : this
 ```
+
+
+Helpers
+-------
+
+```typescript
+createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
+```

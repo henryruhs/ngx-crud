@@ -3,8 +3,8 @@
  *
  * @since 4.3.0
  *
- * @param apiUrl url of the api
- * @param endpoint value of the endpoint
+ * @param apiUrl api url of the service
+ * @param endpoint endpoint of the service
  * @param id optional identifier of the record
  *
  * @return url of the request
