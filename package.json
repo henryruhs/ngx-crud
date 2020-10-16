@@ -28,8 +28,8 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^10",
-		"@angular/core": "^10",
+		"@angular/common": "^9 || ^10",
+		"@angular/core": "^9 || ^10",
 		"rxjs": "^6"
 	},
 	"devDependencies":
