@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { OptionInterface } from './common.interface';
 import { CommonService } from './common.service';
 import { IdType } from './common.type';
-import { createEndpointUrl } from './helper';
+import { createUrl } from './helper';
 
 @Injectable()
 export class GetService<T> extends CommonService
@@ -21,7 +21,7 @@ export class GetService<T> extends CommonService
 
 	public get(id : IdType, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.get<T>(createEndpointUrl(this.getApiUrl(), this.getEndpoint(), id),
+		return this.http.get<T>(createUrl(this.getApiUrl(), this.getEndpoint(), id),
 		{
 			...this.getOptions(),
 			...options
@@ -40,7 +40,7 @@ export class GetService<T> extends CommonService
 
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
-		return this.http.get<T[]>(createEndpointUrl(this.getApiUrl(), this.getEndpoint()),
+		return this.http.get<T[]>(createUrl(this.getApiUrl(), this.getEndpoint()),
 		{
 			...this.getOptions(),
 			...options

@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "4.2.0",
+	"version": "4.3.0",
 	"license": "MIT",
 	"keywords":
 	[
@@ -28,40 +28,40 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^9 || ^10",
-		"@angular/core": "^9 || ^10",
+		"@angular/common": "^10",
+		"@angular/core": "^10",
 		"rxjs": "^6"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "10.0.2",
-		"@angular/compiler": "10.0.2",
-		"@angular/compiler-cli": "10.0.2",
-		"@angular/core": "10.0.2",
-		"@angular/platform-browser": "10.0.2",
-		"@angular/platform-browser-dynamic": "10.0.2",
-		"@stryker-mutator/core": "3.3.1",
-		"@stryker-mutator/mocha-framework": "3.3.1",
-		"@stryker-mutator/mocha-runner": "3.3.1",
-		"@stryker-mutator/typescript": "3.3.1",
-		"@types/chai": "4.2.11",
-		"@types/mocha": "7.0.2",
+		"@angular/common": "10.1.6",
+		"@angular/compiler": "10.1.6",
+		"@angular/compiler-cli": "10.1.6",
+		"@angular/core": "10.1.6",
+		"@angular/platform-browser": "10.1.6",
+		"@angular/platform-browser-dynamic": "10.1.6",
+		"@stryker-mutator/core": "4.0.0",
+		"@stryker-mutator/mocha-framework": "4.0.0",
+		"@stryker-mutator/mocha-runner": "4.0.0",
+		"@stryker-mutator/typescript": "4.0.0",
+		"@types/chai": "4.2.14",
+		"@types/mocha": "8.0.3",
 		"chai": "4.2.0",
 		"core-js": "3.6.5",
 		"coveralls": "3.1.0",
-		"jsdom": "16.2.2",
+		"jsdom": "16.4.0",
 		"jsdom-global": "3.0.2",
-		"mocha": "8.0.1",
-		"ng-packagr": "10.0.0",
+		"mocha": "8.1.3",
+		"ng-packagr": "10.1.2",
 		"nyc": "15.1.0",
-		"rxjs": "6.6.0",
+		"rxjs": "6.6.3",
 		"stryker-cli": "1.0.0",
-		"ts-node": "8.10.2",
-		"tsickle": "0.39.0",
-		"tslint": "6.1.2",
+		"ts-node": "9.0.0",
+		"tsickle": "0.39.1",
+		"tslint": "6.1.3",
 		"tslint-config-redaxmedia": "2.0.0",
-		"typescript": "3.9.6",
-		"zone.js": "0.10.3"
+		"typescript": "4.0.3",
+		"zone.js": "0.11.1"
 	},
 	"scripts":
 	{

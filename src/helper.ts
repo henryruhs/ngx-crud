@@ -1,16 +1,16 @@
 /**
- * create the endpoint url of the request
+ * create the url of the request
  *
- * @since 4.1.0
+ * @since 4.3.0
  *
  * @param apiUrl url of the api
- * @param endpoint route of the endpoint
+ * @param endpoint value of the endpoint
  * @param id optional identifier of the record
  *
- * @return endpoint url of the request
+ * @return url of the request
  */
 
-export function createEndpointUrl(apiUrl : string, endpoint : string, id? : number | string) : string
+export function createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
 {
 	const route : string =
 	[

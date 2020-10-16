@@ -19,3 +19,4 @@ export { PatchService } from './patch.service';
 export { PostService } from './post.service';
 export { PutService } from './put.service';
 export { RequestService } from './request.service';
+export { createUrl } from './helper';
