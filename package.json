@@ -34,7 +34,7 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "10.1.6",
+		"@angular/common": "11.0.0",
 		"@angular/compiler": "11.0.0",
 		"@angular/compiler-cli": "11.0.0",
 		"@angular/core": "10.1.6",
