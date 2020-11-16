@@ -37,7 +37,7 @@
 		"@angular/common": "11.0.0",
 		"@angular/compiler": "11.0.0",
 		"@angular/compiler-cli": "11.0.0",
-		"@angular/core": "10.1.6",
+		"@angular/core": "11.0.0",
 		"@angular/platform-browser": "11.0.0",
 		"@angular/platform-browser-dynamic": "11.0.0",
 		"@stryker-mutator/core": "4.1.2",
