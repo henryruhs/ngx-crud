@@ -1,0 +1,14 @@
+{
+	"packageManager": "npm",
+	"reporters":
+	[
+		"clear-text",
+		"dashboard"
+	],
+	"testRunner": "mocha",
+	"tsconfigFile": "tsconfig.json",
+	"mutate":
+	[
+		"src/**/*.ts"
+	]
+}
