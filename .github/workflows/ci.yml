@@ -50,13 +50,14 @@ jobs:
     with:
      node-version: 14
   - run: npm install
-  - run: npm run test:coverage
-  - run: npm run test:report
-  - name: Report to coveralls
+  - run: npm install nyc @stryker-mutator/core @stryker-mutator/mocha-runner
+  - run: node_modules/.bin/nyc node_modules/.bin/mocha
+  - run: node_modules/.bin/nyc report --reporter=lcov
+  - name: Report to Coveralls
     uses: coverallsapp/github-action@v1.1.2
     with:
      github-token: ${{ secrets.GITHUB_TOKEN }}
-  - name: Report to stryker
-    run: npm run test:mutation
+  - name: Report to Stryker
+    run: node_modules/.bin/stryker run --testRunner=mocha --reporters=dashboard
     env:
      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
