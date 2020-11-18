@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "4.4.0",
+	"version": "4.4.1",
 	"license": "MIT",
 	"keywords":
 	[
@@ -40,8 +40,6 @@
 		"@angular/core": "11.0.0",
 		"@angular/platform-browser": "11.0.0",
 		"@angular/platform-browser-dynamic": "11.0.0",
-		"@stryker-mutator/core": "4.1.2",
-		"@stryker-mutator/mocha-runner": "4.1.2",
 		"@types/chai": "4.2.14",
 		"@types/mocha": "8.0.4",
 		"chai": "4.2.0",
@@ -50,7 +48,6 @@
 		"jsdom-global": "3.0.2",
 		"mocha": "8.2.1",
 		"ng-packagr": "11.0.2",
-		"nyc": "15.1.0",
 		"rxjs": "6.6.3",
 		"stryker-cli": "1.0.0",
 		"ts-node": "9.0.0",
@@ -65,10 +62,7 @@
 		"build": "ng-packagr --project package.json",
 		"lint": "tslint src/**/*.ts tests/**/*.ts",
 		"fix": "tslint src/**/*.ts tests/**/*.ts --fix",
-		"test": "mocha",
-		"test:coverage": "nyc mocha",
-		"test:report": "nyc report --reporter=lcov",
-		"test:mutation": "stryker run"
+		"test": "mocha"
 	},
 	"ngPackage":
 	{
