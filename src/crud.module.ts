@@ -6,6 +6,7 @@ import { BatchService } from './batch.service';
 import { CacheInterceptor } from './cache.interceptor';
 import { CacheService } from './cache.service';
 import { DeleteService } from './delete.service';
+import { FindService } from './find.service';
 import { GetService } from './get.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
@@ -30,6 +31,7 @@ import { RequestService } from './request.service';
 		BatchService,
 		CacheService,
 		DeleteService,
+		FindService,
 		GetService,
 		PatchService,
 		PostService,
