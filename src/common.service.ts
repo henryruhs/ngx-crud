@@ -610,6 +610,19 @@ export class CommonService
 	}
 
 	/**
+	 * get the http client
+	 *
+	 * @since 5.0.0
+	 *
+	 * @return instance of the http client
+	 */
+
+	getHttpClient() : HttpClient
+	{
+		return this.http;
+	}
+
+	/**
 	 * init the service
 	 *
 	 * @since 4.0.0
