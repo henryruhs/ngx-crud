@@ -429,8 +429,10 @@ Misc
 Get the http client:
 
 ```typescript
-crudService->getHttpClient()
+crudService->getHttpClient() : HttpClient
 ```
+
+Create the url of the request:
 
 ```typescript
 createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
