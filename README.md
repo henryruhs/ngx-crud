@@ -108,12 +108,6 @@ Fires a non-standard request:
 crudService->request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 ```
 
-Get the http client:
-
-```typescript
-crudService->getHttpClient()
-```
-
 
 HTTP Aborting
 -------------
@@ -429,8 +423,14 @@ crudService->clearParams() : this
 ```
 
 
-Helpers
--------
+Misc
+----
+
+Get the http client:
+
+```typescript
+crudService->getHttpClient()
+```
 
 ```typescript
 createUrl(apiUrl : string, endpoint : string, id? : number | string) : string
