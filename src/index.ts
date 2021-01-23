@@ -14,6 +14,7 @@ export { IdType, MethodType } from './common.type';
 export { CrudModule } from './crud.module';
 export { CrudService } from './crud.service';
 export { DeleteService } from './delete.service';
+export { FindService } from './find.service';
 export { GetService } from './get.service';
 export { PatchService } from './patch.service';
 export { PostService } from './post.service';

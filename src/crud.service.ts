@@ -5,6 +5,7 @@ import { CommonService } from './common.service';
 import { IdType, MethodType } from './common.type';
 import { BatchService } from './batch.service';
 import { DeleteService } from './delete.service';
+import { FindService } from './find.service';
 import { GetService } from './get.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
@@ -16,6 +17,7 @@ export class CrudService<T> extends CommonService
 {
 	protected batchService : BatchService<T>;
 	protected deleteService : DeleteService<T>;
+	protected findService : FindService<T>;
 	protected getService : GetService<T>;
 	protected patchService : PatchService<T>;
 	protected postService : PostService<T>;
@@ -27,6 +29,7 @@ export class CrudService<T> extends CommonService
 		super(injector);
 		this.batchService = injector.get<BatchService<T>>(BatchService);
 		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
+		this.findService = injector.get<FindService<T>>(FindService);
 		this.getService = injector.get<GetService<T>>(GetService);
 		this.patchService = injector.get<PatchService<T>>(PatchService);
 		this.postService = injector.get<PostService<T>>(PostService);
@@ -87,7 +90,7 @@ export class CrudService<T> extends CommonService
 
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
-		return this.getService
+		return this.findService
 			.setApiUrl(this.getApiUrl())
 			.setEndpoint(this.getEndpoint())
 			.setOptions((this.getOptions()))
