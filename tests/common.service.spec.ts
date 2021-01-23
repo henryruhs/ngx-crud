@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { CommonService, CrudModule } from '../src';
@@ -117,6 +117,17 @@ describe('CommonService', () =>
 				'7'
 			]);
 			expect(commonService.clearHeader('test').getHeaderArray('test')).to.be.equal(null);
+		})();
+	});
+
+	it('get http client', () =>
+	{
+		inject(
+		[
+			CommonService
+		], (commonService : CommonService) =>
+		{
+			expect(commonService.getHttpClient()).to.be.instanceof(HttpClient);
 		})();
 	});
 });
