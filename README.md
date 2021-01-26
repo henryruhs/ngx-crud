@@ -214,6 +214,18 @@ cacheService->observeAll() : Observable<[string, CacheInterface]>
 HTTP Observing
 --------------
 
+Enable observing for the service:
+
+```typescript
+crudService->enableObserve(method : MethodType = 'GET', lifetime : number = 1000) : this
+```
+
+Disable observing for the service:
+
+```typescript
+crudService->disableObserve() : this
+```
+
 Observe all requests for enabled services:
 
 ```typescript
