@@ -31,11 +31,11 @@ export class ObserveInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableLoader : boolean = request.headers.has(ObserveEnum.method) &&
+		const enableObserve : boolean = request.headers.has(ObserveEnum.method) &&
 			request.headers.get(ObserveEnum.method) === request.method &&
 			request.headers.has(ObserveEnum.lifetime);
 
-		return enableLoader ? this.handle(request, next) : next.handle(request);
+		return enableObserve ? this.handle(request, next) : next.handle(request);
 	}
 
 	/**

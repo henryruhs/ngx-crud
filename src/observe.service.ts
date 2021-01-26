@@ -7,8 +7,8 @@ import { ObserveEnum } from './observe.enum';
 @Injectable()
 export class ObserveService
 {
-	protected timeout : Timeout;
 	protected store : Subject<boolean> = new Subject<boolean>();
+	protected timeout : Timeout;
 
 	/**
 	 * start the observe for the request
