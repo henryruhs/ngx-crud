@@ -4,6 +4,7 @@ import { AbortEnum } from './abort.enum';
 import { AbortService } from './abort.service';
 import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
+import { ObserveEnum } from './observe.enum';
 import { OptionInterface } from './common.interface';
 import { MethodType } from './common.type';
 import { createUrl } from './helper';
@@ -607,6 +608,39 @@ export class CommonService
 
 		this.cacheService.flushMany(url);
 		return this;
+	}
+
+	/**
+	 * enable observing for the service
+	 *
+	 * @since 5.0.0
+	 *
+	 * @param method method of the request
+	 * @param lifetime lifetime of the request
+	 *
+	 * @return instance of the service
+	 */
+
+	public enableObserve(method : MethodType = 'GET', lifetime : number = 1000) : this
+	{
+		return this
+			.setHeader(ObserveEnum.method, method)
+			.setHeader(ObserveEnum.lifetime, lifetime.toString());
+	}
+
+	/**
+	 * disable observing for the service
+	 *
+	 * @since 5.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public disableObserve() : this
+	{
+		return this
+			.clearHeader(ObserveEnum.method)
+			.clearHeader(ObserveEnum.lifetime);
 	}
 
 	/**

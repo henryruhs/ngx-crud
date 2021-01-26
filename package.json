@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "5.0.0",
+	"version": "5.1.0-alpha.1",
 	"license": "MIT",
 	"keywords":
 	[
