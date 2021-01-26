@@ -8,6 +8,8 @@ import { CacheService } from './cache.service';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
+import { ObserveInterceptor } from './observe.interceptor';
+import { ObserveService } from './observe.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -27,12 +29,18 @@ import { RequestService } from './request.service';
 			provide: HTTP_INTERCEPTORS,
 			useClass: CacheInterceptor
 		},
+		{
+			multi: true,
+			provide: HTTP_INTERCEPTORS,
+			useClass: ObserveInterceptor
+		},
 		AbortService,
 		BatchService,
 		CacheService,
 		DeleteService,
 		FindService,
 		GetService,
+		ObserveService,
 		PatchService,
 		PostService,
 		PutService,

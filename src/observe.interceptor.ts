@@ -7,21 +7,21 @@ import
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { AbortEnum } from './abort.enum';
-import { AbortService } from './abort.service';
+import { finalize } from 'rxjs/operators';
+import { ObserveEnum } from './observe.enum';
+import { ObserveService } from './observe.service';
 
 @Injectable()
-export class AbortInterceptor implements HttpInterceptor
+export class ObserveInterceptor implements HttpInterceptor
 {
-	constructor(protected abortService : AbortService)
+	constructor(protected observeService : ObserveService)
 	{
 	}
 
 	/**
 	 * intercept the request
 	 *
-	 * @since 4.0.0
+	 * @since 5.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler
@@ -31,17 +31,17 @@ export class AbortInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableAbort : boolean = request.headers.has(AbortEnum.method) &&
-			request.headers.get(AbortEnum.method) === request.method &&
-			request.headers.has(AbortEnum.lifetime);
+		const enableLoader : boolean = request.headers.has(ObserveEnum.method) &&
+			request.headers.get(ObserveEnum.method) === request.method &&
+			request.headers.has(ObserveEnum.lifetime);
 
-		return enableAbort ? this.handle(request, next) : next.handle(request);
+		return enableLoader ? this.handle(request, next) : next.handle(request);
 	}
 
 	/**
 	 * handle the request
 	 *
-	 * @since 4.0.0
+	 * @since 5.0.0
 	 *
 	 * @param request instance of the http request
 	 * @param next instance of the http handler
@@ -51,10 +51,11 @@ export class AbortInterceptor implements HttpInterceptor
 
 	public handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
+		this.observeService.start();
 		return next
 			.handle(request)
 			.pipe(
-				takeUntil(this.abortService.get(request))
+				finalize(() => this.observeService.end(request))
 			);
 	}
 }

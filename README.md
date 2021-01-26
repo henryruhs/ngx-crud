@@ -211,6 +211,16 @@ cacheService->observeAll() : Observable<[string, CacheInterface]>
 ```
 
 
+HTTP Observing
+--------------
+
+Observe all requests for enabled services:
+
+```typescript
+observeService->observeAll() : Observable<boolean>
+```
+
+
 Service Shorthands
 ------------------
 
