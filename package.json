@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "5.1.1",
+	"version": "6.0.0-next.1",
 	"license": "MIT",
 	"keywords":
 	[
@@ -28,18 +28,18 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^9 || ^10 || ^11",
-		"@angular/core": "^9 || ^10 || ^11",
+		"@angular/common": "^12",
+		"@angular/core": "^12",
 		"rxjs": "^6 || ^7"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "11.1.0",
-		"@angular/compiler": "11.2.6",
-		"@angular/compiler-cli": "11.2.6",
-		"@angular/core": "11.1.0",
-		"@angular/platform-browser": "11.2.6",
-		"@angular/platform-browser-dynamic": "11.2.6",
+		"@angular/common": "12.0.0-next.6",
+		"@angular/compiler": "12.0.0-next.6",
+		"@angular/compiler-cli": "12.0.0-next.6",
+		"@angular/core": "12.0.0-next.6",
+		"@angular/platform-browser": "12.0.0-next.6",
+		"@angular/platform-browser-dynamic": "12.0.0-next.6",
 		"@types/chai": "4.2.15",
 		"@types/mocha": "8.2.2",
 		"chai": "4.3.4",
@@ -48,7 +48,7 @@
 		"jsdom-global": "3.0.2",
 		"mocha": "8.3.2",
 		"ng-packagr": "11.2.4",
-		"rxjs": "7.0.0-beta.13",
+		"rxjs": "7.0.0-beta.15",
 		"stryker-cli": "1.0.0",
 		"ts-node": "9.1.1",
 		"tsickle": "0.39.1",

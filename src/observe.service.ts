@@ -1,14 +1,13 @@
 import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import Timeout = NodeJS.Timeout;
 import { ObserveEnum } from './observe.enum';
 
 @Injectable()
 export class ObserveService
 {
 	protected store : Subject<boolean> = new Subject<boolean>();
-	protected timeout : Timeout;
+	protected timeout : NodeJS.Timeout;
 
 	/**
 	 * start the observe for the request

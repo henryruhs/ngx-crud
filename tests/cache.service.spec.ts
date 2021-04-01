@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import { CacheEnum, CacheService, CrudModule } from '../src';
+import { CacheService, CrudModule } from '../src';
 import { mockRequest } from './helper';
 import { TestService } from './test.service';
 
@@ -30,15 +30,16 @@ describe('CacheService', () =>
 	{
 		inject(
 		[
+			CacheService,
 			TestService
-		], (testService : TestService) =>
+		], (cacheService : CacheService, testService : TestService) =>
 		{
 			testService.enableCache();
-			expect(testService.getHeader(CacheEnum.method)).to.be.equal('GET');
-			expect(testService.getHeader(CacheEnum.lifetime)).to.be.equal('2000');
+			expect(testService.getContext().get(cacheService.getToken()).method).to.be.equal('GET');
+			expect(testService.getContext().get(cacheService.getToken()).lifetime).to.be.equal('2000');
 			testService.disableCache();
-			expect(testService.getHeader(CacheEnum.method)).to.be.equal(null);
-			expect(testService.getHeader(CacheEnum.lifetime)).to.be.equal(null);
+			expect(testService.getContext().get(cacheService.getToken()).method).to.be.equal(null);
+			expect(testService.getContext().get(cacheService.getToken()).lifetime).to.be.equal(null);
 		});
 	});
 

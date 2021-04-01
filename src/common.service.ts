@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpContextToken, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { AbortEnum } from './abort.enum';
 import { AbortService } from './abort.service';
-import { CacheEnum } from './cache.enum';
 import { CacheService } from './cache.service';
 import { ObserveEnum } from './observe.enum';
 import { OptionInterface } from './common.interface';
@@ -40,7 +39,8 @@ export class CommonService
 		return this
 			.clearOptions()
 			.clearHeaders()
-			.clearParams();
+			.clearParams()
+			.clearContext();
 	}
 
 	/**
@@ -513,6 +513,87 @@ export class CommonService
 	}
 
 	/**
+	 * get the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return context by token
+	 */
+
+	public getContextByToken(token : HttpContextToken<any>) : HttpContext
+	{
+		return this.getContext().get(token);
+	}
+
+	/**
+	 * get the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the context
+	 */
+
+	public getContext() : HttpContext
+	{
+		return this.getOption('context');
+	}
+
+	/**
+	 * set the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public setContextByToken(token : HttpContextToken<any>, context : any) : this
+	{
+		return this.setContext(this.getContext().set(token, context));
+	}
+
+	/**
+	 * set the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param context instance of the context
+	 *
+	 * @return instance of the service
+	 */
+
+	public setContext(context : HttpContext) : this
+	{
+		this.setOption('context', context);
+		return this;
+	}
+
+	/**
+	 * cleart the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public clearContextByToken(token : HttpContextToken<any>) : this
+	{
+		return this.setContext(this.getContext().delete(token));
+	}
+
+	/**
+	 * clear the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public clearContext() : this
+	{
+		return this.setContext(new HttpContext());
+	}
+
+	/**
 	 * enable aborting for the service
 	 *
 	 * @since 4.0.0
@@ -574,9 +655,11 @@ export class CommonService
 
 	public enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
 	{
-		return this
-			.setHeader(CacheEnum.method, method)
-			.setHeader(CacheEnum.lifetime, lifetime.toString());
+		return this.setContextByToken(this.cacheService.getToken(),
+		{
+			method,
+			lifetime
+		});
 	}
 
 	/**
@@ -589,9 +672,7 @@ export class CommonService
 
 	public disableCache() : this
 	{
-		return this
-			.clearHeader(CacheEnum.method)
-			.clearHeader(CacheEnum.lifetime);
+		return this.clearContextByToken(this.cacheService.getToken());
 	}
 
 	/**
