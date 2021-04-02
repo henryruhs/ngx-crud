@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { ObserveEnum, ObserveService, CrudModule } from '../src';
+import { ObserveService, CrudModule } from '../src';
 import { TestService } from './test.service';
 
 before(() =>
@@ -28,15 +28,16 @@ describe('ObserveService', () =>
 	{
 		inject(
 		[
+			ObserveService,
 			TestService
-		], (testService : TestService) =>
+		], (observeService : ObserveService, testService : TestService) =>
 		{
 			testService.enableObserve();
-			expect(testService.getHeader(ObserveEnum.method)).to.be.equal('GET');
-			expect(testService.getHeader(ObserveEnum.lifetime)).to.be.equal('1000');
+			expect(testService.getContext().get(observeService.getToken()).method).to.be.equal('ALL');
+			expect(testService.getContext().get(observeService.getToken()).lifetime).to.be.equal(1000);
 			testService.disableObserve();
-			expect(testService.getHeader(ObserveEnum.method)).to.be.equal(null);
-			expect(testService.getHeader(ObserveEnum.lifetime)).to.be.equal(null);
+			expect(testService.getContext().get(observeService.getToken()).method).to.be.equal(null);
+			expect(testService.getContext().get(observeService.getToken()).lifetime).to.be.equal(null);
 		});
 	});
 

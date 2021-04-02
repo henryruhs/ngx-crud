@@ -1,17 +1,35 @@
-import { HttpRequest } from '@angular/common/http';
+import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import Timeout = NodeJS.Timeout;
-import { ObserveEnum } from './observe.enum';
+import { ContextInterface } from './observe.interface';
 
 @Injectable()
 export class ObserveService
 {
-	protected store : Subject<boolean> = new Subject<boolean>();
-	protected timeout : Timeout;
+	protected defaultContext : ContextInterface =
+	{
+		method: null,
+		lifetime: null
+	};
+	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
+	protected signal : Subject<void> = new Subject<void>();
+	protected timeout : NodeJS.Timeout;
 
 	/**
-	 * start the observe for the request
+	 * get the token of the context
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return token of the context
+	 */
+
+	public getToken() : HttpContextToken<ContextInterface>
+	{
+		return this.token;
+	}
+
+	/**
+	 * start the observe for enabled services
 	 *
 	 * @since 5.0.0
 	 *
@@ -20,7 +38,7 @@ export class ObserveService
 
 	public start() : this
 	{
-		this.store.next(true);
+		this.signal.next();
 		return this;
 	}
 
@@ -36,10 +54,25 @@ export class ObserveService
 
 	public end<T>(request : HttpRequest<T>) : this
 	{
-		const lifetime : number = this.getLifetime(request);
+		const context : ContextInterface = request.context.get(this.getToken());
 
 		clearTimeout(this.timeout);
-		this.timeout = setTimeout(() => this.store.next(false), lifetime);
+		this.timeout = context.lifetime > 0 ? setTimeout(() => this.completeAll(), context.lifetime) : null;
+		return this;
+	}
+
+	/**
+	 * complete all observers for enabled services
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public completeAll() : this
+	{
+		this.signal.next();
+		this.signal.complete();
 		return this;
 	}
 
@@ -48,26 +81,11 @@ export class ObserveService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @return instance of the store
+	 * @return instance of the signal
 	 */
 
-	public observeAll() : Subject<boolean>
+	public observeAll() : Subject<void>
 	{
-		return this.store;
-	}
-
-	/**
-	 * get the lifetime of the request
-	 *
-	 * @since 5.0.0
-	 *
-	 * @param request instance of the http request
-	 *
-	 * @return lifetime of the request
-	 */
-
-	protected getLifetime<T>(request : HttpRequest<T>) : number
-	{
-		return parseFloat(request.headers.get(ObserveEnum.lifetime));
+		return this.signal;
 	}
 }

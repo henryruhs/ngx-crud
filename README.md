@@ -116,7 +116,7 @@ HTTP Aborting
 Enable aborting for the service:
 
 ```typescript
-crudService->enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
+crudService->enableAbort(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 ```
 
 Disable aborting for the service:
@@ -152,7 +152,7 @@ abortService->abortAll() : this
 Observe all requests for enabled services:
 
 ```typescript
-abortService->observeAll() : Observable<[string, AbortInterface]>
+abortService->observeAll() : Observable<[string, StoreInterface]>
 ```
 
 
@@ -172,7 +172,7 @@ HTTP Caching
 Enable caching for the service:
 
 ```typescript
-crudService->enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
+crudService->enableCache(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 ```
 
 Disable caching for the service:
@@ -208,7 +208,7 @@ cacheService->flushAll() : this
 Observe all caches for enabled services:
 
 ```typescript
-cacheService->observeAll() : Observable<[string, CacheInterface]>
+cacheService->observeAll() : Observable<[string, StoreInterface]>
 ```
 
 
@@ -218,13 +218,19 @@ HTTP Observing
 Enable observing for the service:
 
 ```typescript
-crudService->enableObserve(method : MethodType = 'GET', lifetime : number = 1000) : this
+crudService->enableObserve(method : AnyType | MethodType = 'ANY', lifetime : number = 1000) : this
 ```
 
 Disable observing for the service:
 
 ```typescript
 crudService->disableObserve() : this
+```
+
+Complete all observers for enabled services:
+
+```typescript
+observeService->completeAll() : this
 ```
 
 Observe all requests for enabled services:
@@ -315,6 +321,46 @@ Clear the options of the service:
 
 ```typescript
 crudService->clearOptions() : this
+```
+
+
+HTTP Context
+------------
+
+Get the context by token:
+
+```typescript
+crudService->getContextByToken(token : HttpContextToken<any>) : HttpContext
+```
+
+Get the context instance of the service:
+
+```typescript
+crudService->getContext() : HttpContext
+```
+
+Set the context by token:
+
+```typescript
+crudService->setContextByToken(token : HttpContextToken<any>, context : any) : this
+```
+
+Set the context instance of the service:
+
+```typescript
+crudService->setContext(context : HttpContext) : this
+```
+
+Clear the context by token:
+
+```typescript
+crudService->clearContextByToken(token : HttpContextToken<any>) : this
+```
+
+Clear the context instance of the service:
+
+```typescript
+crudService->clearContext() : this
 ```
 
 

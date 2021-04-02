@@ -9,7 +9,7 @@ import
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { filter, publishReplay, refCount, tap } from 'rxjs/operators';
-import { CacheEnum } from './cache.enum';
+import { ContextInterface } from './cache.interface';
 import { CacheService } from './cache.service';
 
 @Injectable()
@@ -32,9 +32,8 @@ export class CacheInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableCache : boolean = request.headers.has(CacheEnum.method) &&
-			request.headers.get(CacheEnum.method) === request.method &&
-			request.headers.has(CacheEnum.lifetime);
+		const context : ContextInterface = request.context.get(this.cacheService.getToken());
+		const enableCache : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
 
 		return enableCache ? this.handle(request, next) : next.handle(request);
 	}

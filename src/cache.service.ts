@@ -1,13 +1,31 @@
-import { HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { CacheEnum } from './cache.enum';
-import { CacheInterface } from './cache.interface';
+import { ContextInterface, StoreInterface } from './cache.interface';
 
 @Injectable()
 export class CacheService
 {
-	protected store : Map<string, CacheInterface> = new Map();
+	protected defaultContext : ContextInterface =
+	{
+		method: null,
+		lifetime: null
+	};
+	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
+	protected store : Map<string, StoreInterface> = new Map();
+
+	/**
+	 * get the token of the context
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return token of the context
+	 */
+
+	public getToken() : HttpContextToken<ContextInterface>
+	{
+		return this.token;
+	}
 
 	/**
 	 * get the response of the request
@@ -41,7 +59,7 @@ export class CacheService
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
 	{
-		const lifetime : number = this.getLifetime(request);
+		const context : ContextInterface = request.context.get(this.getToken());
 
 		if (this.has(request))
 		{
@@ -50,7 +68,7 @@ export class CacheService
 		this.store.set(request.urlWithParams,
 		{
 			response,
-			timeout: lifetime > 0 ? setTimeout(() => this.flush(request.urlWithParams), lifetime) : null
+			timeout: context.lifetime > 0 ? setTimeout(() => this.flush(request.urlWithParams), context.lifetime) : null
 		});
 		return this;
 	}
@@ -128,23 +146,8 @@ export class CacheService
 	 * @return collection of response and timeout as observable
 	 */
 
-	public observeAll() : Observable<[string, CacheInterface]>
+	public observeAll() : Observable<[string, StoreInterface]>
 	{
 		return from(this.store);
-	}
-
-	/**
-	 * get the lifetime of the request
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param request instance of the http request
-	 *
-	 * @return lifetime of the request
-	 */
-
-	protected getLifetime<T>(request : HttpRequest<T>) : number
-	{
-		return parseFloat(request.headers.get(CacheEnum.lifetime));
 	}
 }

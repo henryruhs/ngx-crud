@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import { AbortEnum, AbortService, CrudModule } from '../src';
+import { AbortService, CrudModule } from '../src';
 import { mockRequest } from './helper';
 import { TestService } from './test.service';
 
@@ -30,15 +30,16 @@ describe('AbortService', () =>
 	{
 		inject(
 		[
+			AbortService,
 			TestService
-		], (testService : TestService) =>
+		], (abortService : AbortService, testService : TestService) =>
 		{
 			testService.enableAbort();
-			expect(testService.getHeader(AbortEnum.method)).to.be.equal('GET');
-			expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal('2000');
+			expect(testService.getContext().get(abortService.getToken()).method).to.be.equal('GET');
+			expect(testService.getContext().get(abortService.getToken()).lifetime).to.be.equal(2000);
 			testService.disableAbort();
-			expect(testService.getHeader(AbortEnum.method)).to.be.equal(null);
-			expect(testService.getHeader(AbortEnum.lifetime)).to.be.equal(null);
+			expect(testService.getContext().get(abortService.getToken()).method).to.be.equal(null);
+			expect(testService.getContext().get(abortService.getToken()).lifetime).to.be.equal(null);
 		});
 	});
 
@@ -81,9 +82,6 @@ describe('AbortService', () =>
 				.enableAbort()
 				.setParam('abort', '2')
 				.find()
-				.pipe(
-					delay(500)
-				)
 				.subscribe(() =>
 				{
 					testService.clear();
@@ -112,9 +110,6 @@ describe('AbortService', () =>
 					.enableAbort()
 					.setParam('abort', '3')
 					.find()
-					.pipe(
-						delay(500)
-					)
 					.subscribe(() =>
 					{
 						testService.clear();

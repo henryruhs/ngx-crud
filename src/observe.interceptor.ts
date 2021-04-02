@@ -8,7 +8,7 @@ import
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { ObserveEnum } from './observe.enum';
+import { ContextInterface } from './observe.interface';
 import { ObserveService } from './observe.service';
 
 @Injectable()
@@ -31,9 +31,8 @@ export class ObserveInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableObserve : boolean = request.headers.has(ObserveEnum.method) &&
-			request.headers.get(ObserveEnum.method) === request.method &&
-			request.headers.has(ObserveEnum.lifetime);
+		const context : ContextInterface = request.context.get(this.observeService.getToken());
+		const enableObserve : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
 
 		return enableObserve ? this.handle(request, next) : next.handle(request);
 	}
