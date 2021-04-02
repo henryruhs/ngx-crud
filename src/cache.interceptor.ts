@@ -55,7 +55,7 @@ export class CacheInterceptor implements HttpInterceptor
 	}
 
 	/**
-	 * signal the request
+	 * store the request
 	 *
 	 * @since 3.0.0
 	 *

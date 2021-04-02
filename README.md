@@ -116,7 +116,7 @@ HTTP Aborting
 Enable aborting for the service:
 
 ```typescript
-crudService->enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
+crudService->enableAbort(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 ```
 
 Disable aborting for the service:
@@ -172,7 +172,7 @@ HTTP Caching
 Enable caching for the service:
 
 ```typescript
-crudService->enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
+crudService->enableCache(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 ```
 
 Disable caching for the service:
@@ -218,7 +218,7 @@ HTTP Observing
 Enable observing for the service:
 
 ```typescript
-crudService->enableObserve(method : MethodType = 'GET', lifetime : number = 1000) : this
+crudService->enableObserve(method : AnyType | MethodType = 'ANY', lifetime : number = 1000) : this
 ```
 
 Disable observing for the service:
