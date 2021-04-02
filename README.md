@@ -152,7 +152,7 @@ abortService->abortAll() : this
 Observe all requests for enabled services:
 
 ```typescript
-abortService->observeAll() : Observable<[string, AbortInterface]>
+abortService->observeAll() : Observable<[string, StoreInterface]>
 ```
 
 
@@ -208,7 +208,7 @@ cacheService->flushAll() : this
 Observe all caches for enabled services:
 
 ```typescript
-cacheService->observeAll() : Observable<[string, CacheInterface]>
+cacheService->observeAll() : Observable<[string, StoreInterface]>
 ```
 
 

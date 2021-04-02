@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { CacheInterface, ContextInterface } from './cache.interface';
+import { ContextInterface, StoreInterface } from './cache.interface';
 
 @Injectable()
 export class CacheService
@@ -12,7 +12,7 @@ export class CacheService
 		lifetime: null
 	};
 	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected store : Map<string, CacheInterface> = new Map();
+	protected store : Map<string, StoreInterface> = new Map();
 
 	/**
 	 * get the token of the context
@@ -146,7 +146,7 @@ export class CacheService
 	 * @return collection of response and timeout as observable
 	 */
 
-	public observeAll() : Observable<[string, CacheInterface]>
+	public observeAll() : Observable<[string, StoreInterface]>
 	{
 		return from(this.store);
 	}

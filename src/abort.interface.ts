@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { AnyType, MethodType } from './common.type';
 
-export interface AbortInterface
+export interface StoreInterface
 {
 	signal : Subject<void>;
 	timeout : NodeJS.Timeout;

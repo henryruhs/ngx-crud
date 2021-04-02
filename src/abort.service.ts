@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable, Subject } from 'rxjs';
-import { AbortInterface, ContextInterface } from './abort.interface';
+import { ContextInterface, StoreInterface } from './abort.interface';
 
 @Injectable()
 export class AbortService
@@ -12,7 +12,7 @@ export class AbortService
 		lifetime: null
 	};
 	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected store : Map<string, AbortInterface> = new Map();
+	protected store : Map<string, StoreInterface> = new Map();
 
 	/**
 	 * get the token of the context
@@ -147,7 +147,7 @@ export class AbortService
 	 * @return collection of signal and timeout as observable
 	 */
 
-	public observeAll() : Observable<[string, AbortInterface]>
+	public observeAll() : Observable<[string, StoreInterface]>
 	{
 		return from(this.store);
 	}
