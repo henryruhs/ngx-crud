@@ -12,7 +12,7 @@ export class ObserveService
 		lifetime: null
 	};
 	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected signal : Subject<void> = new Subject<void>();
+	protected signal : Subject<boolean> = new Subject<boolean>();
 	protected timeout : NodeJS.Timeout;
 
 	/**
@@ -38,7 +38,7 @@ export class ObserveService
 
 	public start() : this
 	{
-		this.signal.next();
+		this.signal.next(true);
 		return this;
 	}
 
@@ -71,7 +71,7 @@ export class ObserveService
 
 	public completeAll() : this
 	{
-		this.signal.next();
+		this.signal.next(false);
 		this.signal.complete();
 		return this;
 	}
@@ -84,7 +84,7 @@ export class ObserveService
 	 * @return instance of the signal
 	 */
 
-	public observeAll() : Subject<void>
+	public observeAll() : Subject<boolean>
 	{
 		return this.signal;
 	}

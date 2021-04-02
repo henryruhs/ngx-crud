@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "6.0.0-next.1",
+	"version": "6.0.0-next.2",
 	"license": "MIT",
 	"keywords":
 	[
@@ -34,12 +34,12 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "12.0.0-next.6",
-		"@angular/compiler": "12.0.0-next.6",
-		"@angular/compiler-cli": "12.0.0-next.6",
-		"@angular/core": "12.0.0-next.6",
-		"@angular/platform-browser": "12.0.0-next.6",
-		"@angular/platform-browser-dynamic": "12.0.0-next.6",
+		"@angular/common": "12.0.0-next.7",
+		"@angular/compiler": "12.0.0-next.7",
+		"@angular/compiler-cli": "12.0.0-next.7",
+		"@angular/core": "12.0.0-next.7",
+		"@angular/platform-browser": "12.0.0-next.7",
+		"@angular/platform-browser-dynamic": "12.0.0-next.7",
 		"@types/chai": "4.2.15",
 		"@types/mocha": "8.2.2",
 		"chai": "4.3.4",

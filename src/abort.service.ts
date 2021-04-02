@@ -37,13 +37,13 @@ export class AbortService
 	 * @return signal as observable
 	 */
 
-	public get<T>(request : HttpRequest<T>) : Observable<void>
+	public get<T>(request : HttpRequest<T>) : Observable<boolean>
 	{
 		if (!this.has(request))
 		{
 			this.set(request);
 		}
-		return this.store.get(request.urlWithParams).signal.asObservable();
+		return this.store.get(request.urlWithParams).signal;
 	}
 
 	/**
@@ -66,9 +66,10 @@ export class AbortService
 		}
 		this.store.set(request.urlWithParams,
 		{
-			signal: new Subject<void>(),
+			signal: new Subject<boolean>(),
 			timeout: context.lifetime > 0 ? setTimeout(() => this.abort(request.urlWithParams), context.lifetime) : null
 		});
+		this.store.get(request.urlWithParams).signal.next(true);
 		return this;
 	}
 
@@ -102,7 +103,7 @@ export class AbortService
 		if (this.store.has(urlWithParams))
 		{
 			clearTimeout(this.store.get(urlWithParams).timeout);
-			this.store.get(urlWithParams).signal.next();
+			this.store.get(urlWithParams).signal.next(false);
 			this.store.get(urlWithParams).signal.complete();
 			this.store.delete(urlWithParams);
 		}

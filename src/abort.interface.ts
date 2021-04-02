@@ -3,7 +3,7 @@ import { UniversalMethodType } from './common.type';
 
 export interface StoreInterface
 {
-	signal : Subject<void>;
+	signal : Subject<boolean>;
 	timeout : NodeJS.Timeout;
 }
 
