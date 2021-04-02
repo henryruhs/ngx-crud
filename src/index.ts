@@ -5,7 +5,7 @@ export { CacheInterceptor } from './cache.interceptor';
 export { CacheService } from './cache.service';
 export { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common.interface';
 export { CommonService } from './common.service';
-export { AnyType, IdType, MethodType } from './common.type';
+export { IdType, MethodType, UniversalMethodType } from './common.type';
 export { CrudModule } from './crud.module';
 export { CrudService } from './crud.service';
 export { DeleteService } from './delete.service';

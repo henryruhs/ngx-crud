@@ -1,7 +1,7 @@
-import { AnyType, MethodType } from './common.type';
+import { UniversalMethodType } from './common.type';
 
 export interface ContextInterface
 {
-	method : AnyType | MethodType;
+	method : UniversalMethodType;
 	lifetime : number;
 }

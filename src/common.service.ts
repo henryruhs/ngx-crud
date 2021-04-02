@@ -4,7 +4,7 @@ import { AbortService } from './abort.service';
 import { CacheService } from './cache.service';
 import { ObserveService } from './observe.service';
 import { OptionInterface } from './common.interface';
-import { AnyType, MethodType } from './common.type';
+import { UniversalMethodType } from './common.type';
 import { createUrl } from './helper';
 
 @Injectable()
@@ -605,7 +605,7 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableAbort(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
+	public enableAbort(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.abortService.getToken(),
 		{
@@ -654,7 +654,7 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableCache(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
+	public enableCache(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.cacheService.getToken(),
 		{
@@ -703,7 +703,7 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableObserve(method : AnyType | MethodType = 'ANY', lifetime : number = 1000) : this
+	public enableObserve(method : UniversalMethodType = 'ANY', lifetime : number = 1000) : this
 	{
 		return this.setContextByToken(this.observeService.getToken(),
 		{

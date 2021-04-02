@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { AnyType, MethodType } from './common.type';
+import { UniversalMethodType } from './common.type';
 
 export interface StoreInterface
 {
@@ -9,6 +9,6 @@ export interface StoreInterface
 
 export interface ContextInterface
 {
-	method : AnyType | MethodType;
+	method : UniversalMethodType;
 	lifetime : number;
 }
