@@ -72,7 +72,6 @@ export class ObserveService
 	public completeAll() : this
 	{
 		this.signal.next(false);
-		this.signal.complete();
 		return this;
 	}
 
