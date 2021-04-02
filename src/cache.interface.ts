@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MethodType } from './common.type';
+import { AnyType, MethodType } from './common.type';
 
 export interface CacheInterface
 {
@@ -10,6 +10,6 @@ export interface CacheInterface
 
 export interface ContextInterface
 {
-	method : MethodType;
+	method : AnyType | MethodType;
 	lifetime : number;
 }

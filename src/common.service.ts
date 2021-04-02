@@ -1,11 +1,10 @@
 import { HttpClient, HttpContext, HttpContextToken, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
-import { AbortEnum } from './abort.enum';
 import { AbortService } from './abort.service';
 import { CacheService } from './cache.service';
-import { ObserveEnum } from './observe.enum';
+import { ObserveService } from './observe.service';
 import { OptionInterface } from './common.interface';
-import { MethodType } from './common.type';
+import { AnyType, MethodType } from './common.type';
 import { createUrl } from './helper';
 
 @Injectable()
@@ -14,6 +13,7 @@ export class CommonService
 	protected http : HttpClient;
 	protected abortService : AbortService;
 	protected cacheService : CacheService;
+	protected observeService : ObserveService;
 	protected apiUrl : string;
 	protected endpoint : string;
 	protected options : OptionInterface;
@@ -23,6 +23,7 @@ export class CommonService
 		this.http = injector.get<HttpClient>(HttpClient);
 		this.abortService = injector.get<AbortService>(AbortService);
 		this.cacheService = injector.get<CacheService>(CacheService);
+		this.observeService = injector.get<ObserveService>(ObserveService);
 		this.init();
 	}
 
@@ -38,9 +39,9 @@ export class CommonService
 	{
 		return this
 			.clearOptions()
+			.clearContext()
 			.clearHeaders()
-			.clearParams()
-			.clearContext();
+			.clearParams();
 	}
 
 	/**
@@ -207,6 +208,87 @@ export class CommonService
 		{
 			reportProgress: true
 		});
+	}
+
+	/**
+	 * get the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return context by token
+	 */
+
+	public getContextByToken(token : HttpContextToken<any>) : HttpContext
+	{
+		return this.getContext().get(token);
+	}
+
+	/**
+	 * get the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the context
+	 */
+
+	public getContext() : HttpContext
+	{
+		return this.getOption('context');
+	}
+
+	/**
+	 * set the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public setContextByToken(token : HttpContextToken<any>, context : any) : this
+	{
+		return this.setContext(this.getContext().set(token, context));
+	}
+
+	/**
+	 * set the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param context instance of the context
+	 *
+	 * @return instance of the service
+	 */
+
+	public setContext(context : HttpContext) : this
+	{
+		this.setOption('context', context);
+		return this;
+	}
+
+	/**
+	 * cleart the context by token
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public clearContextByToken(token : HttpContextToken<any>) : this
+	{
+		return this.setContext(this.getContext().delete(token));
+	}
+
+	/**
+	 * clear the context instance of the service
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public clearContext() : this
+	{
+		return this.setContext(new HttpContext());
 	}
 
 	/**
@@ -513,87 +595,6 @@ export class CommonService
 	}
 
 	/**
-	 * get the context by token
-	 *
-	 * @since 6.0.0
-	 *
-	 * @return context by token
-	 */
-
-	public getContextByToken(token : HttpContextToken<any>) : HttpContext
-	{
-		return this.getContext().get(token);
-	}
-
-	/**
-	 * get the context instance of the service
-	 *
-	 * @since 6.0.0
-	 *
-	 * @return instance of the context
-	 */
-
-	public getContext() : HttpContext
-	{
-		return this.getOption('context');
-	}
-
-	/**
-	 * set the context by token
-	 *
-	 * @since 6.0.0
-	 *
-	 * @return instance of the service
-	 */
-
-	public setContextByToken(token : HttpContextToken<any>, context : any) : this
-	{
-		return this.setContext(this.getContext().set(token, context));
-	}
-
-	/**
-	 * set the context instance of the service
-	 *
-	 * @since 6.0.0
-	 *
-	 * @param context instance of the context
-	 *
-	 * @return instance of the service
-	 */
-
-	public setContext(context : HttpContext) : this
-	{
-		this.setOption('context', context);
-		return this;
-	}
-
-	/**
-	 * cleart the context by token
-	 *
-	 * @since 6.0.0
-	 *
-	 * @return instance of the service
-	 */
-
-	public clearContextByToken(token : HttpContextToken<any>) : this
-	{
-		return this.setContext(this.getContext().delete(token));
-	}
-
-	/**
-	 * clear the context instance of the service
-	 *
-	 * @since 6.0.0
-	 *
-	 * @return instance of the service
-	 */
-
-	public clearContext() : this
-	{
-		return this.setContext(new HttpContext());
-	}
-
-	/**
 	 * enable aborting for the service
 	 *
 	 * @since 4.0.0
@@ -604,11 +605,13 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableAbort(method : MethodType = 'GET', lifetime : number = 2000) : this
+	public enableAbort(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 	{
-		return this
-			.setHeader(AbortEnum.method, method)
-			.setHeader(AbortEnum.lifetime, lifetime.toString());
+		return this.setContextByToken(this.abortService.getToken(),
+		{
+			method,
+			lifetime
+		});
 	}
 
 	/**
@@ -621,9 +624,7 @@ export class CommonService
 
 	public disableAbort() : this
 	{
-		return this
-			.clearHeader(AbortEnum.method)
-			.clearHeader(AbortEnum.lifetime);
+		return this.clearContextByToken(this.abortService.getToken());
 	}
 
 	/**
@@ -653,7 +654,7 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableCache(method : MethodType = 'GET', lifetime : number = 2000) : this
+	public enableCache(method : AnyType | MethodType = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.cacheService.getToken(),
 		{
@@ -702,11 +703,13 @@ export class CommonService
 	 * @return instance of the service
 	 */
 
-	public enableObserve(method : MethodType = 'GET', lifetime : number = 1000) : this
+	public enableObserve(method : AnyType | MethodType = 'ANY', lifetime : number = 1000) : this
 	{
-		return this
-			.setHeader(ObserveEnum.method, method)
-			.setHeader(ObserveEnum.lifetime, lifetime.toString());
+		return this.setContextByToken(this.observeService.getToken(),
+		{
+			method,
+			lifetime
+		});
 	}
 
 	/**
@@ -719,9 +722,7 @@ export class CommonService
 
 	public disableObserve() : this
 	{
-		return this
-			.clearHeader(ObserveEnum.method)
-			.clearHeader(ObserveEnum.lifetime);
+		return this.clearContextByToken(this.observeService.getToken());
 	}
 
 	/**

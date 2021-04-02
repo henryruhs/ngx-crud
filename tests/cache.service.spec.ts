@@ -36,7 +36,7 @@ describe('CacheService', () =>
 		{
 			testService.enableCache();
 			expect(testService.getContext().get(cacheService.getToken()).method).to.be.equal('GET');
-			expect(testService.getContext().get(cacheService.getToken()).lifetime).to.be.equal('2000');
+			expect(testService.getContext().get(cacheService.getToken()).lifetime).to.be.equal(2000);
 			testService.disableCache();
 			expect(testService.getContext().get(cacheService.getToken()).method).to.be.equal(null);
 			expect(testService.getContext().get(cacheService.getToken()).lifetime).to.be.equal(null);

@@ -16,6 +16,7 @@ export function mockRequest(testService : TestService) : HttpRequest<any>
 {
 	return new HttpRequest('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
 	{
+		context: testService.getContext(),
 		headers: testService.getHeaders(),
 		params: testService.getParams()
 	});

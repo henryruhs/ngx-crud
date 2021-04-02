@@ -30,7 +30,7 @@
 	{
 		"@angular/common": "^12",
 		"@angular/core": "^12",
-		"rxjs": "^6 || ^7"
+		"rxjs": "^7"
 	},
 	"devDependencies":
 	{

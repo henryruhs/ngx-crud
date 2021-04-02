@@ -2,9 +2,9 @@ import { HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface OptionInterface
 {
+	context? : HttpContext;
 	headers? : HttpHeaders;
 	params? : HttpParams;
-	context? : HttpContext;
 	observe? : any;
 	reportProgress? : boolean;
 	responseType? : any;

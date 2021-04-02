@@ -8,7 +8,7 @@ import
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AbortEnum } from './abort.enum';
+import { ContextInterface } from './abort.interface';
 import { AbortService } from './abort.service';
 
 @Injectable()
@@ -31,9 +31,8 @@ export class AbortInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const enableAbort : boolean = request.headers.has(AbortEnum.method) &&
-			request.headers.get(AbortEnum.method) === request.method &&
-			request.headers.has(AbortEnum.lifetime);
+		const context : ContextInterface = request.context.get(this.abortService.getToken());
+		const enableAbort : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
 
 		return enableAbort ? this.handle(request, next) : next.handle(request);
 	}

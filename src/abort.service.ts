@@ -1,13 +1,31 @@
-import { HttpRequest } from '@angular/common/http';
+import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable, Subject } from 'rxjs';
-import { AbortEnum } from './abort.enum';
-import { AbortInterface } from './abort.interface';
+import { AbortInterface, ContextInterface } from './abort.interface';
 
 @Injectable()
 export class AbortService
 {
+	protected defaultContext : ContextInterface =
+	{
+		method: null,
+		lifetime: null
+	};
+	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
 	protected store : Map<string, AbortInterface> = new Map();
+
+	/**
+	 * get the token of the context
+	 *
+	 * @since 6.0.0
+	 *
+	 * @return token of the context
+	 */
+
+	public getToken() : HttpContextToken<ContextInterface>
+	{
+		return this.token;
+	}
 
 	/**
 	 * get the signal of the request
@@ -40,7 +58,7 @@ export class AbortService
 
 	public set<T>(request : HttpRequest<T>) : this
 	{
-		const lifetime : number = this.getLifetime(request);
+		const context : ContextInterface = request.context.get(this.getToken());
 
 		if (this.has(request))
 		{
@@ -49,7 +67,7 @@ export class AbortService
 		this.store.set(request.urlWithParams,
 		{
 			signal: new Subject<void>(),
-			timeout: lifetime > 0 ? setTimeout(() => this.abort(request.urlWithParams), lifetime) : null
+			timeout: context.lifetime > 0 ? setTimeout(() => this.abort(request.urlWithParams), context.lifetime) : null
 		});
 		return this;
 	}
@@ -132,20 +150,5 @@ export class AbortService
 	public observeAll() : Observable<[string, AbortInterface]>
 	{
 		return from(this.store);
-	}
-
-	/**
-	 * get the lifetime of the request
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param request instance of the http request
-	 *
-	 * @return lifetime of the request
-	 */
-
-	protected getLifetime<T>(request : HttpRequest<T>) : number
-	{
-		return parseFloat(request.headers.get(AbortEnum.lifetime));
 	}
 }
