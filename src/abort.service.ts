@@ -104,7 +104,6 @@ export class AbortService
 		{
 			clearTimeout(this.store.get(urlWithParams).timeout);
 			this.store.get(urlWithParams).signal.next(false);
-			this.store.get(urlWithParams).signal.complete();
 			this.store.delete(urlWithParams);
 		}
 		return this;
