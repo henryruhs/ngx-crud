@@ -227,6 +227,12 @@ Disable observing for the service:
 crudService->disableObserve() : this
 ```
 
+Complete all observers for enabled services:
+
+```typescript
+observeService->completeAll() : this
+```
+
 Observe all requests for enabled services:
 
 ```typescript
@@ -315,6 +321,46 @@ Clear the options of the service:
 
 ```typescript
 crudService->clearOptions() : this
+```
+
+
+HTTP Context
+------------
+
+Get the context by token:
+
+```typescript
+crudService->getContextByToken(token : HttpContextToken<any>) : HttpContext
+```
+
+Get the context instance of the service:
+
+```typescript
+crudService->getContext() : HttpContext
+```
+
+Set the context by token:
+
+```typescript
+crudService->setContextByToken(token : HttpContextToken<any>, context : any) : this
+```
+
+Set the context instance of the service:
+
+```typescript
+crudService->setContext(context : HttpContext) : this
+```
+
+Clear the context by token:
+
+```typescript
+crudService->clearContextByToken(token : HttpContextToken<any>) : this
+```
+
+Clear the context instance of the service:
+
+```typescript
+crudService->clearContext() : this
 ```
 
 

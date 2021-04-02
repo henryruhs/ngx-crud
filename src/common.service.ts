@@ -266,7 +266,7 @@ export class CommonService
 	}
 
 	/**
-	 * cleart the context by token
+	 * clear the context by token
 	 *
 	 * @since 6.0.0
 	 *

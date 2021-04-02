@@ -57,19 +57,19 @@ export class ObserveService
 		const context : ContextInterface = request.context.get(this.getToken());
 
 		clearTimeout(this.timeout);
-		this.timeout = context.lifetime > 0 ? setTimeout(() => this.complete(), context.lifetime) : null;
+		this.timeout = context.lifetime > 0 ? setTimeout(() => this.completeAll(), context.lifetime) : null;
 		return this;
 	}
 
 	/**
-	 * complete the observe for enabled services
+	 * complete all observers for enabled services
 	 *
 	 * @since 6.0.0
 	 *
 	 * @return instance of the service
 	 */
 
-	public complete() : this
+	public completeAll() : this
 	{
 		this.signal.next();
 		this.signal.complete();
