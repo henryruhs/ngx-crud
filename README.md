@@ -330,7 +330,7 @@ HTTP Context
 Get the context by token:
 
 ```typescript
-crudService->getContextByToken(token : HttpContextToken<any>) : HttpContext
+crudService->getContextByToken(token : HttpContextToken<ContextInterface>) : HttpContext
 ```
 
 Get the context instance of the service:
@@ -342,7 +342,7 @@ crudService->getContext() : HttpContext
 Set the context by token:
 
 ```typescript
-crudService->setContextByToken(token : HttpContextToken<any>, context : any) : this
+crudService->setContextByToken(token : HttpContextToken<ContextInterface>, value : ContextInterface) : this
 ```
 
 Set the context instance of the service:
@@ -354,7 +354,7 @@ crudService->setContext(context : HttpContext) : this
 Clear the context by token:
 
 ```typescript
-crudService->clearContextByToken(token : HttpContextToken<any>) : this
+crudService->clearContextByToken(token : HttpContextToken<ContextInterface>) : this
 ```
 
 Clear the context instance of the service:

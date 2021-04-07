@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { AbortService } from './abort.service';
 import { CacheService } from './cache.service';
 import { ObserveService } from './observe.service';
-import { OptionInterface } from './common.interface';
+import { ContextInterface, OptionInterface } from './common.interface';
 import { UniversalMethodType } from './common.type';
 import { createUrl } from './helper';
 
@@ -215,12 +215,14 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
+	 * @param token token of the context
+	 *
 	 * @return context by token
 	 */
 
-	public getContextByToken(token : HttpContextToken<any>) : HttpContext
+	public getContextByToken(token : HttpContextToken<ContextInterface>) : HttpContext
 	{
-		return this.getContext().get(token);
+		return this.getContext().get(token) as HttpContext;
 	}
 
 	/**
@@ -241,12 +243,15 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
+	 * @param token token of the context
+	 * @param value value of the context
+	 *
 	 * @return instance of the service
 	 */
 
-	public setContextByToken(token : HttpContextToken<any>, context : any) : this
+	public setContextByToken(token : HttpContextToken<ContextInterface>, value : ContextInterface) : this
 	{
-		return this.setContext(this.getContext().set(token, context));
+		return this.setContext(this.getContext().set(token, value));
 	}
 
 	/**
@@ -270,10 +275,12 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
+	 * @param token token of the context
+	 *
 	 * @return instance of the service
 	 */
 
-	public clearContextByToken(token : HttpContextToken<any>) : this
+	public clearContextByToken(token : HttpContextToken<ContextInterface>) : this
 	{
 		return this.setContext(this.getContext().delete(token));
 	}

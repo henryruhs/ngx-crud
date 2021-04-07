@@ -16,6 +16,12 @@ export interface OptionWithBodyInterface extends OptionInterface
 	body? : BodyInterface;
 }
 
-export interface BodyInterface {
+export interface BodyInterface
+{
+	[index : string] : any;
+}
+
+export interface ContextInterface
+{
 	[index : string] : any;
 }
