@@ -51,11 +51,7 @@ export class CrudService<T> extends CommonService
 
 	public create(body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
-		return this.postService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.post(body, options);
+		return this.postService.bind(this).post(body, options);
 	}
 
 	/**
@@ -71,11 +67,7 @@ export class CrudService<T> extends CommonService
 
 	public read(id : IdType, options? : OptionInterface) : Observable<T>
 	{
-		return this.getService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.get(id, options);
+		return this.getService.bind(this).get(id, options);
 	}
 
 	/**
@@ -90,11 +82,7 @@ export class CrudService<T> extends CommonService
 
 	public find(options? : OptionInterface) : Observable<T[]>
 	{
-		return this.findService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.find(options);
+		return this.findService.bind(this).find(options);
 	}
 
 	/**
@@ -111,11 +99,7 @@ export class CrudService<T> extends CommonService
 
 	public update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
-		return this.putService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.put(id, body, options);
+		return this.putService.bind(this).put(id, body, options);
 	}
 
 	/**
@@ -132,11 +116,7 @@ export class CrudService<T> extends CommonService
 
 	public patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
-		return this.patchService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.patch(id, body, options);
+		return this.patchService.bind(this).patch(id, body, options);
 	}
 
 	/**
@@ -152,11 +132,7 @@ export class CrudService<T> extends CommonService
 
 	public delete(id : IdType, options? : OptionInterface) : Observable<T>
 	{
-		return this.deleteService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.delete(id, options);
+		return this.deleteService.bind(this).delete(id, options);
 	}
 
 	/**
@@ -172,11 +148,7 @@ export class CrudService<T> extends CommonService
 
 	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
 	{
-		return this.requestService
-			.setApiUrl(this.getApiUrl())
-			.setEndpoint(this.getEndpoint())
-			.setOptions((this.getOptions()))
-			.request(method, options);
+		return this.requestService.bind(this).request(method, options);
 	}
 
 	/**

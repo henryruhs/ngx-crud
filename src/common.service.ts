@@ -28,6 +28,22 @@ export class CommonService
 	}
 
 	/**
+	 * bind to service
+	 *
+	 * @since 6.2.0
+	 *
+	 * @return instance of the service
+	 */
+
+	public bind(that : CommonService) : this
+	{
+		return this
+			.setApiUrl(that.getApiUrl())
+			.setEndpoint(that.getEndpoint())
+			.setOptions(that.getOptions());
+	}
+
+	/**
 	 * clear the service
 	 *
 	 * @since 2.0.0
@@ -740,7 +756,7 @@ export class CommonService
 	 * @return instance of the http client
 	 */
 
-	getHttpClient() : HttpClient
+	public getHttpClient() : HttpClient
 	{
 		return this.http;
 	}
