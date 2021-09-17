@@ -1,38 +1,45 @@
 import { expect } from 'chai';
-import { createUrl } from '../src';
+import { createUrl, createUrlWithId } from '../src';
 
 describe('Helper', () =>
 {
-	it('create endpoint url', () =>
+	it('create url', () =>
 	{
-		const urlArray : any[] =
+		const testArray : any[] =
 		[
 			{
 				apiUrl: 'http://localhost',
 				endpoint: '/posts',
-				endpointUrl: 'http://localhost/posts',
-				id: null
-			},
-			{
-				apiUrl: 'http://localhost/v1.0.0',
-				endpoint: '/posts',
-				endpointUrl: 'http://localhost/v1.0.0/posts/1',
-				id: 1
+				url: 'http://localhost/posts'
 			},
 			{
 				apiUrl: '..',
 				endpoint: '/posts',
-				endpointUrl: '../posts',
-				id: null
+				url: '../posts'
+			}
+		];
+
+		testArray.map(testSet => expect(createUrl(testSet.apiUrl, testSet.endpoint)).to.be.equal(testSet.url));
+	});
+
+	it('create url with id', () =>
+	{
+		const testArray : any[] =
+		[
+			{
+				apiUrl: 'http://localhost/v1.0.0',
+				endpoint: '/posts',
+				url: 'http://localhost/v1.0.0/posts/1',
+				id: 1
 			},
 			{
 				apiUrl: '../v1.0.0',
 				endpoint: '/posts',
-				endpointUrl: '../v1.0.0/posts/1',
+				url: '../v1.0.0/posts/1',
 				id: 1
 			}
 		];
 
-		urlArray.forEach(item => expect(createUrl(item.apiUrl, item.endpoint, item.id)).to.be.equal(item.endpointUrl));
+		testArray.map(testSet => expect(createUrlWithId(testSet.apiUrl, testSet.endpoint, testSet.id)).to.be.equal(testSet.url));
 	});
 });

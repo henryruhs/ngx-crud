@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { BodyInterface, OptionInterface } from './common.interface';
 import { CommonService } from './common.service';
 import { IdType } from './common.type';
-import { createUrl } from './helper';
+import { createUrlWithId } from './helper';
 
 @Injectable()
 export class PutService<T> extends CommonService
@@ -22,7 +22,7 @@ export class PutService<T> extends CommonService
 
 	public put(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
 	{
-		return this.http.put<T>(createUrl(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.put<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options
