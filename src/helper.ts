@@ -30,7 +30,7 @@ export function createUrl(apiUrl : string, endpoint : string) : string
  *
  * @param apiUrl api url of the service
  * @param endpoint endpoint of the service
- * @param id optional identifier of the resource
+ * @param id identifier of the resource
  *
  * @return url of the request
  */
