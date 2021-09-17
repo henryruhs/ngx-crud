@@ -12,7 +12,6 @@ export class TestService extends CrudService<TestInterface>
 	constructor(injector : Injector)
 	{
 		super(injector);
-		this.init();
 	}
 
 	/**
