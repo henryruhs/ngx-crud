@@ -5,6 +5,10 @@
 	],
 	"rules":
 	{
+		"ban-types":
+		[
+			"Function"
+		],
 		"max-line-length":
 		{
 			"options":

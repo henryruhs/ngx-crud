@@ -17,4 +17,5 @@ export { PatchService } from './patch.service';
 export { PostService } from './post.service';
 export { PutService } from './put.service';
 export { RequestService } from './request.service';
+export { ApiUrl, Endpoint } from './decorator';
 export { createUrl, createUrlWithId } from './helper';
