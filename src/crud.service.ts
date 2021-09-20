@@ -35,7 +35,6 @@ export class CrudService<T> extends CommonService
 		this.postService = injector.get<PostService<T>>(PostService);
 		this.putService = injector.get<PutService<T>>(PutService);
 		this.requestService = injector.get<RequestService<T>>(RequestService);
-		this.init();
 	}
 
 	/**
