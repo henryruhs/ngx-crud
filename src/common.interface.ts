@@ -2,18 +2,18 @@ import { HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface OptionInterface
 {
-	context? : HttpContext;
-	headers? : HttpHeaders;
-	params? : HttpParams;
-	observe? : any;
-	reportProgress? : boolean;
-	responseType? : any;
-	withCredentials? : boolean;
+	context ?: HttpContext;
+	headers ?: HttpHeaders;
+	params ?: HttpParams;
+	observe ?: any;
+	reportProgress ?: boolean;
+	responseType ?: any;
+	withCredentials ?: boolean;
 }
 
 export interface OptionWithBodyInterface extends OptionInterface
 {
-	body? : BodyInterface;
+	body ?: BodyInterface;
 }
 
 export interface BodyInterface

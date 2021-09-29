@@ -48,7 +48,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public create(body : BodyInterface, options? : OptionInterface) : Observable<T>
+	public create(body : BodyInterface, options ?: OptionInterface) : Observable<T>
 	{
 		return this.postService.bind(this).post(body, options);
 	}
@@ -64,7 +64,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public read(id : IdType, options? : OptionInterface) : Observable<T>
+	public read(id : IdType, options ?: OptionInterface) : Observable<T>
 	{
 		return this.getService.bind(this).get(id, options);
 	}
@@ -79,7 +79,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public find(options? : OptionInterface) : Observable<T[]>
+	public find(options ?: OptionInterface) : Observable<T[]>
 	{
 		return this.findService.bind(this).find(options);
 	}
@@ -96,7 +96,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public update(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
+	public update(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
 	{
 		return this.putService.bind(this).put(id, body, options);
 	}
@@ -113,7 +113,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public patch(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
+	public patch(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
 	{
 		return this.patchService.bind(this).patch(id, body, options);
 	}
@@ -129,7 +129,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public delete(id : IdType, options? : OptionInterface) : Observable<T>
+	public delete(id : IdType, options ?: OptionInterface) : Observable<T>
 	{
 		return this.deleteService.bind(this).delete(id, options);
 	}
@@ -145,7 +145,7 @@ export class CrudService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
+	public request(method : MethodType, options ?: OptionWithBodyInterface) : Observable<T | T[]>
 	{
 		return this.requestService.bind(this).request(method, options);
 	}

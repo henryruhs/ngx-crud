@@ -19,7 +19,7 @@ export class GetService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public get(id : IdType, options? : OptionInterface) : Observable<T>
+	public get(id : IdType, options ?: OptionInterface) : Observable<T>
 	{
 		return this.http.get<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
 		{

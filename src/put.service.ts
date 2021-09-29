@@ -20,7 +20,7 @@ export class PutService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public put(id : IdType, body : BodyInterface, options? : OptionInterface) : Observable<T>
+	public put(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
 	{
 		return this.http.put<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
 		{

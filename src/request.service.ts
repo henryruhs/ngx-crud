@@ -19,7 +19,7 @@ export class RequestService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public request(method : MethodType, options? : OptionWithBodyInterface) : Observable<T | T[]>
+	public request(method : MethodType, options ?: OptionWithBodyInterface) : Observable<T | T[]>
 	{
 		return this.http.request<T | T[]>(method, createUrl(this.getApiUrl(), this.getEndpoint()),
 		{

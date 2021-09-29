@@ -20,7 +20,7 @@ export function createUrl(apiUrl : string, endpoint : string) : string
 	.filter(value => value)
 	.join('/');
 
-	return apiUrl + route
+	return apiUrl + route;
 }
 
 /**

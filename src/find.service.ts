@@ -17,7 +17,7 @@ export class FindService<T> extends CommonService
 	 * @return http response as observable
 	 */
 
-	public find(options? : OptionInterface) : Observable<T[]>
+	public find(options ?: OptionInterface) : Observable<T[]>
 	{
 		return this.http.get<T[]>(createUrl(this.getApiUrl(), this.getEndpoint()),
 		{

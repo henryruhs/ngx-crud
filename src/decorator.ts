@@ -13,7 +13,7 @@ export function ApiUrl(apiUrl : string) : Function
 	return (constructor : Function) =>
 	{
 		constructor.prototype.setApiUrl(apiUrl);
-	}
+	};
 }
 
 /**
@@ -31,5 +31,6 @@ export function Endpoint(endpoint : string) : Function
 	return (constructor : Function) =>
 	{
 		constructor.prototype.setEndpoint(endpoint);
-	}
+	};
 }
+
