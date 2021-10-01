@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "7.1.0",
+	"version": "7.2.0",
 	"license": "MIT",
 	"keywords":
 	[
@@ -45,7 +45,7 @@
 		"chai": "4.3.4",
 		"core-js": "3.17.3",
 		"eslint": "7.26.0",
-		"eslint-config-redaxmedia": "3.0.0-beta.5",
+		"eslint-config-redaxmedia": "3.1.0",
 		"jsdom": "17.0.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "9.1.1",
@@ -59,11 +59,17 @@
 	},
 	"scripts":
 	{
-		"build": "ng-packagr --project package.json",
 		"lint": "eslint src/**/*.ts tests/**/*.ts",
 		"fix": "eslint src/**/*.ts tests/**/*.ts --fix",
-		"test": "mocha"
+		"test": "mocha",
+		"build": "ng-packagr --project package.json",
+		"prepublish": "npm run build"
 	},
+	"main": "dist/index.js",
+	"files":
+	[
+		"dist/**"
+	],
 	"ngPackage":
 	{
 		"lib":

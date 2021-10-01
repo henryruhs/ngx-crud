@@ -13,11 +13,11 @@ export class PatchService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param body body of the request
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {BodyInterface} body body of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public patch(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>

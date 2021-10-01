@@ -23,10 +23,10 @@ export class ObserveInterceptor implements HttpInterceptor
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param request instance of the http request
-	 * @param next instance of the http handler
+	 * @param {HttpRequest<T>} request instance of the http request
+	 * @param {HttpHandler} next instance of the http handler
 	 *
-	 * @return http event as observable
+	 * @return {Observable<HttpEvent<T>>} http event
 	 */
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
@@ -42,10 +42,10 @@ export class ObserveInterceptor implements HttpInterceptor
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param request instance of the http request
-	 * @param next instance of the http handler
+	 * @param {HttpRequest<T>} request instance of the http request
+	 * @param {HttpHandler} next instance of the http handler
 	 *
-	 * @return http event as observable
+	 * @return {Observable<HttpEvent<T>>} http event
 	 */
 
 	public handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>

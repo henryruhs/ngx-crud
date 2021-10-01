@@ -19,7 +19,7 @@ export class AbortService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return token of the context
+	 * @return {HttpContextToken<ContextInterface>} token of the context
 	 */
 
 	public getToken() : HttpContextToken<ContextInterface>
@@ -32,9 +32,9 @@ export class AbortService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return signal as observable
+	 * @return {Observable<boolean>} signal of the request
 	 */
 
 	public get<T>(request : HttpRequest<T>) : Observable<boolean>
@@ -51,9 +51,9 @@ export class AbortService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public set<T>(request : HttpRequest<T>) : this
@@ -78,9 +78,9 @@ export class AbortService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return boolean
+	 * @return {boolean}
 	 */
 
 	public has<T>(request : HttpRequest<T>) : boolean
@@ -93,9 +93,9 @@ export class AbortService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param urlWithParams url with parameters
+	 * @param {string} urlWithParams url with parameters
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public abort(urlWithParams : string) : this
@@ -114,9 +114,9 @@ export class AbortService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @param url url of the request
+	 * @param {string} url url of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public abortMany(url : string) : this
@@ -130,7 +130,7 @@ export class AbortService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public abortAll() : this
@@ -144,7 +144,7 @@ export class AbortService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return collection of signal and timeout as observable
+	 * @return {Observable<[string, StoreInterface]>} collection of signal and timeout
 	 */
 
 	public observeAll() : Observable<[string, StoreInterface]>

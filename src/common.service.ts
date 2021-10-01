@@ -32,7 +32,9 @@ export class CommonService
 	 *
 	 * @since 6.2.0
 	 *
-	 * @return instance of the service
+	 * @param {CommonService} that instance of the common service
+	 *
+	 * @return {this} instance of the service
 	 */
 
 	public bind(that : CommonService) : this
@@ -48,7 +50,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clear() : this
@@ -65,7 +67,7 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public destroy() : this
@@ -81,7 +83,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return api url of the service
+	 * @return {string} api url of the service
 	 */
 
 	public getApiUrl() : string
@@ -94,9 +96,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param apiUrl api url of the service
+	 * @param {string} apiUrl api url of the service
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setApiUrl(apiUrl : string) : this
@@ -110,7 +112,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return endpoint of the service
+	 * @return {string} endpoint of the service
 	 */
 
 	public getEndpoint() : string
@@ -123,9 +125,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param endpoint endpoint of the service
+	 * @param {string} endpoint endpoint of the service
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setEndpoint(endpoint : string) : this
@@ -137,14 +139,14 @@ export class CommonService
 	/**
 	 * get a single option of the service
 	 *
-	 * @since 2.0.0
+	 * @since 7.2.0
 	 *
-	 * @param name name of the option
+	 * @param {keyof OptionInterface} name name of the option
 	 *
-	 * @return value of the option
+	 * @return {OptionInterface[keyof OptionInterface]} value of the option
 	 */
 
-	public getOption<K extends keyof OptionInterface>(name : K) : OptionInterface[K]
+	public getOption(name : keyof OptionInterface) : OptionInterface[keyof OptionInterface]
 	{
 		return this.options[name];
 	}
@@ -154,7 +156,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the options
+	 * @return {OptionInterface} instance of the options
 	 */
 
 	public getOptions() : OptionInterface
@@ -167,13 +169,13 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the option
-	 * @param value value of the option
+	 * @param {keyof OptionInterface} name name of the option
+	 * @param {OptionInterface[keyof OptionInterface]} value value of the option
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
-	public setOption<K extends keyof OptionInterface>(name : K, value : OptionInterface[K]) : this
+	public setOption(name : keyof OptionInterface, value : OptionInterface[keyof OptionInterface]) : this
 	{
 		this.options[name.toString()] = value;
 		return this;
@@ -184,9 +186,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param options options of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setOptions(options : OptionInterface) : this
@@ -198,14 +200,14 @@ export class CommonService
 	/**
 	 * clear a single option of the service
 	 *
-	 * @since 2.0.0
+	 * @since 7.2.0
 	 *
-	 * @param name name of the option
+	 * @param {keyof OptionInterface} name name of the option
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
-	public clearOption<K extends keyof OptionInterface>(name : K) : this
+	public clearOption(name : keyof OptionInterface) : this
 	{
 		return this.setOption(name, null);
 	}
@@ -215,7 +217,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearOptions() : this
@@ -231,9 +233,9 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param token token of the context
+	 * @param {HttpContextToken<ContextInterface>} token token of the context
 	 *
-	 * @return context by token
+	 * @return {HttpContext} context by token
 	 */
 
 	public getContextByToken(token : HttpContextToken<ContextInterface>) : HttpContext
@@ -246,7 +248,7 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return instance of the context
+	 * @return {HttpContext} instance of the context
 	 */
 
 	public getContext() : HttpContext
@@ -259,10 +261,10 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param token token of the context
-	 * @param value value of the context
+	 * @param {HttpContextToken<ContextInterface>} token token of the context
+	 * @param {ContextInterface} value value of the context
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setContextByToken(token : HttpContextToken<ContextInterface>, value : ContextInterface) : this
@@ -275,9 +277,9 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param context instance of the context
+	 * @param {HttpContext} context instance of the context
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setContext(context : HttpContext) : this
@@ -291,9 +293,9 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param token token of the context
+	 * @param {HttpContextToken<ContextInterface>} token token of the context
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearContextByToken(token : HttpContextToken<ContextInterface>) : this
@@ -306,7 +308,7 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearContext() : this
@@ -319,9 +321,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the header
+	 * @param {string} name name of the header
 	 *
-	 * @return value of the header
+	 * @return {string} value of the header
 	 */
 
 	public getHeader(name : string) : string
@@ -334,7 +336,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the headers
+	 * @return {HttpHeaders} instance of the headers
 	 */
 
 	public getHeaders() : HttpHeaders
@@ -347,9 +349,9 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param name name of the header
+	 * @param {string} name name of the header
 	 *
-	 * @return values of the header
+	 * @return {string[]} values of the header
 	 */
 
 	public getHeaderArray(name : string) : string[]
@@ -362,10 +364,10 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the header
-	 * @param value value of the header
+	 * @param {string} name name of the header
+	 * @param {string} value value of the header
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setHeader(name : string, value : string) : this
@@ -378,9 +380,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param headers instance of the headers
+	 * @param {HttpHeaders} headers instance of the headers
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setHeaders(headers : HttpHeaders) : this
@@ -393,10 +395,10 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param name name of the header
-	 * @param valueArray values of the header
+	 * @param {string} name name of the header
+	 * @param {string[]} valueArray values of the header
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setHeaderArray(name : string, valueArray : string[]) : this
@@ -409,10 +411,10 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the header
-	 * @param value value of the header
+	 * @param {string} name name of the header
+	 * @param {string} value value of the header
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public appendHeader(name : string, value : string) : this
@@ -425,10 +427,10 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param name name of the header
-	 * @param valueArray values of the header
+	 * @param {string} name name of the header
+	 * @param {string[]} valueArray values of the header
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public appendHeaderArray(name : string, valueArray : string[]) : this
@@ -441,9 +443,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the header
+	 * @param {string} name name of the header
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearHeader(name : string) : this
@@ -456,7 +458,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearHeaders() : this
@@ -469,9 +471,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the parameter
+	 * @param {string} name name of the parameter
 	 *
-	 * @return value of the parameter
+	 * @return {string} value of the parameter
 	 */
 
 	public getParam(name : string) : string
@@ -484,7 +486,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the parameters
+	 * @return {HttpParams} instance of the parameters
 	 */
 
 	public getParams() : HttpParams
@@ -497,9 +499,9 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param name name of the parameter
+	 * @param {string} name name of the parameter
 	 *
-	 * @return values of the parameter
+	 * @return {string[]} values of the parameter
 	 */
 
 	public getParamArray(name : string) : string[]
@@ -512,10 +514,10 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the parameter
-	 * @param value value of the parameter
+	 * @param {string} name name of the parameter
+	 * @param {string} value value of the parameter
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setParam(name : string, value : string) : this
@@ -528,9 +530,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param params instance of the parameters
+	 * @param {HttpParams} params instance of the parameters
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setParams(params : HttpParams) : this
@@ -543,10 +545,10 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param name name of the parameter
-	 * @param valueArray values of the parameter
+	 * @param {string} name name of the parameter
+	 * @param {string[]} valueArray values of the parameter
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public setParamArray(name : string, valueArray : string[]) : this
@@ -561,10 +563,10 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the parameter
-	 * @param value value of the parameter
+	 * @param {string} name name of the parameter
+	 * @param {string} value value of the parameter
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public appendParam(name : string, value : string) : this
@@ -577,10 +579,10 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param name name of the parameter
-	 * @param valueArray values of the parameter
+	 * @param {string} name name of the parameter
+	 * @param {string[]} valueArray values of the parameter
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public appendParamArray(name : string, valueArray : string[]) : this
@@ -594,9 +596,9 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param name name of the parameter
+	 * @param {string} name name of the parameter
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearParam(name : string) : this
@@ -609,7 +611,7 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public clearParams() : this
@@ -622,10 +624,10 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param method method of the request
-	 * @param lifetime lifetime of the request
+	 * @param {UniversalMethodType} method method of the request
+	 * @param {number} lifetime lifetime of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public enableAbort(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
@@ -642,7 +644,7 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public disableAbort() : this
@@ -655,7 +657,7 @@ export class CommonService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public abort() : this
@@ -671,10 +673,10 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param method method of the request
-	 * @param lifetime lifetime of the request
+	 * @param {UniversalMethodType} method method of the request
+	 * @param {number} lifetime lifetime of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public enableCache(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
@@ -691,7 +693,7 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public disableCache() : this
@@ -704,7 +706,7 @@ export class CommonService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public flush() : this
@@ -720,10 +722,10 @@ export class CommonService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param method method of the request
-	 * @param lifetime lifetime of the request
+	 * @param {UniversalMethodType} method method of the request
+	 * @param {number} lifetime lifetime of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public enableObserve(method : UniversalMethodType = 'ANY', lifetime : number = 1000) : this
@@ -740,7 +742,7 @@ export class CommonService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public disableObserve() : this
@@ -753,7 +755,7 @@ export class CommonService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @return instance of the http client
+	 * @return {HttpClient} instance of the http client
 	 */
 
 	public getHttpClient() : HttpClient
@@ -766,7 +768,7 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	protected init() : this

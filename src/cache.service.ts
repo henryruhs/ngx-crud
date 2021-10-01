@@ -19,7 +19,7 @@ export class CacheService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return token of the context
+	 * @return {HttpContextToken<ContextInterface>} token of the context
 	 */
 
 	public getToken() : HttpContextToken<ContextInterface>
@@ -32,9 +32,9 @@ export class CacheService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<HttpResponse<T>>} http response
 	 */
 
 	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
@@ -51,10 +51,10 @@ export class CacheService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param request instance of the http request
-	 * @param response instance of the http response
+	 * @param {HttpRequest<T>} request instance of the http request
+	 * @param {Observable<HttpResponse<T>>} response instance of the http response
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
@@ -78,9 +78,9 @@ export class CacheService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return boolean
+	 * @return {boolean}
 	 */
 
 	public has<T>(request : HttpRequest<T>) : boolean
@@ -93,9 +93,9 @@ export class CacheService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param urlWithParams url with parameters
+	 * @param {string} urlWithParams url with parameters
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public flush(urlWithParams : string) : this
@@ -113,9 +113,9 @@ export class CacheService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @param url url of the request
+	 * @param {string} url url of the request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public flushMany(url : string) : this
@@ -129,7 +129,7 @@ export class CacheService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public flushAll() : this
@@ -143,7 +143,7 @@ export class CacheService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return collection of response and timeout as observable
+	 * @return {Observable<[string, StoreInterface]>} collection of response and timeout
 	 */
 
 	public observeAll() : Observable<[string, StoreInterface]>

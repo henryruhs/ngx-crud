@@ -13,10 +13,10 @@ export class RequestService<T> extends CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param method method of the request
-	 * @param options options of the request
+	 * @param {MethodType} method method of the request
+	 * @param {OptionWithBodyInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T | T[]>} http response
 	 */
 
 	public request(method : MethodType, options ?: OptionWithBodyInterface) : Observable<T | T[]>

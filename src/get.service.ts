@@ -13,10 +13,10 @@ export class GetService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public get(id : IdType, options ?: OptionInterface) : Observable<T>

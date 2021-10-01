@@ -5,10 +5,10 @@ import { IdType } from './common.type';
  *
  * @since 4.3.0
  *
- * @param apiUrl api url of the service
- * @param endpoint endpoint of the service
+ * @param {string} apiUrl api url of the service
+ * @param {string} endpoint endpoint of the service
  *
- * @return url of the request
+ * @return {string} url of the request
  */
 
 export function createUrl(apiUrl : string, endpoint : string) : string
@@ -28,11 +28,11 @@ export function createUrl(apiUrl : string, endpoint : string) : string
  *
  * @since 7.0.0
  *
- * @param apiUrl api url of the service
- * @param endpoint endpoint of the service
- * @param id identifier of the resource
+ * @param {string} apiUrl api url of the service
+ * @param {string} endpoint endpoint of the service
+ * @param {IdType} id identifier of the resource
  *
- * @return url of the request
+ * @return {string} url of the request
  */
 
 export function createUrlWithId(apiUrl : string, endpoint : string, id : IdType) : string
