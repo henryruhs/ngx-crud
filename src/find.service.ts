@@ -12,9 +12,9 @@ export class FindService<T> extends CommonService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param options options of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T[]>} http response
 	 */
 
 	public find(options ?: OptionInterface) : Observable<T[]>

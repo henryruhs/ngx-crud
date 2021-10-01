@@ -18,9 +18,9 @@ export class TestService extends CrudService<TestInterface>
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param userId identifier of the user
+	 * @param {string} userId identifier of the user
 	 *
-	 * @return http response as observable
+	 * @return {Observable<TestInterface[]>} http response
 	 */
 
 	public findByUser(userId : string) : Observable<TestInterface[]>

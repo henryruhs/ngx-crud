@@ -12,10 +12,10 @@ export class PostService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param body body of the request
-	 * @param options options of the request
+	 * @param {BodyInterface} body body of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public post(body : BodyInterface, options ?: OptionInterface) : Observable<T>

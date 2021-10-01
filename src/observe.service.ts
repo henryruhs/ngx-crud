@@ -20,7 +20,7 @@ export class ObserveService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return token of the context
+	 * @return {HttpContextToken<ContextInterface>} token of the context
 	 */
 
 	public getToken() : HttpContextToken<ContextInterface>
@@ -33,7 +33,7 @@ export class ObserveService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public start() : this
@@ -47,9 +47,9 @@ export class ObserveService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param request instance of the http request
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public end<T>(request : HttpRequest<T>) : this
@@ -66,7 +66,7 @@ export class ObserveService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return instance of the service
+	 * @return {this} instance of the service
 	 */
 
 	public completeAll() : this
@@ -80,7 +80,7 @@ export class ObserveService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @return instance of the signal
+	 * @return {Subject<boolean>} instance of the signal
 	 */
 
 	public observeAll() : Subject<boolean>

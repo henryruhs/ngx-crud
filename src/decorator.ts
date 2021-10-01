@@ -3,9 +3,9 @@
  *
  * @since 7.1.0
  *
- * @param apiUrl api url of the service
+ * @param {string} apiUrl api url of the service
  *
- * @return Function
+ * @return {Function} constructor of the class
  */
 
 export function ApiUrl(apiUrl : string) : Function
@@ -21,9 +21,9 @@ export function ApiUrl(apiUrl : string) : Function
  *
  * @since 7.1.0
  *
- * @param endpoint endpoint of the service
+ * @param {string} endpoint endpoint of the service
  *
- * @return Function
+ * @return {Function} constructor of the class
  */
 
 export function Endpoint(endpoint : string) : Function

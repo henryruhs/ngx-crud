@@ -42,10 +42,10 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param body body of the request
-	 * @param options options of the request
+	 * @param {BodyInterface} body body of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public create(body : BodyInterface, options ?: OptionInterface) : Observable<T>
@@ -58,10 +58,10 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public read(id : IdType, options ?: OptionInterface) : Observable<T>
@@ -74,9 +74,9 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param options options of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T[]>} http response
 	 */
 
 	public find(options ?: OptionInterface) : Observable<T[]>
@@ -89,11 +89,11 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param body body of the request
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {BodyInterface} body body of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public update(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
@@ -106,11 +106,11 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param body body of the request
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {BodyInterface} body body of the request
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public patch(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
@@ -123,10 +123,10 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param id identifier of the resource
-	 * @param options options of the request
+	 * @param {IdType} id identifier of the resource
+	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T>} http response
 	 */
 
 	public delete(id : IdType, options ?: OptionInterface) : Observable<T>
@@ -139,10 +139,10 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param method method of the request
-	 * @param options options of the request
+	 * @param {MethodType} method method of the request
+	 * @param {OptionWithBodyInterface} options options of the request
 	 *
-	 * @return http response as observable
+	 * @return {Observable<T | T[]>} http response
 	 */
 
 	public request(method : MethodType, options ?: OptionWithBodyInterface) : Observable<T | T[]>
@@ -155,9 +155,9 @@ export class CrudService<T> extends CommonService
 	 *
 	 * @since 4.2.0
 	 *
-	 * @param requestArray collection of requests
+	 * @param {ObservableInput<T>[]} requestArray collection of requests
 	 *
-	 * @return multiple http responses as observable
+	 * @return {Observable<T[]>} multiple http responses
 	 */
 
 	public parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
