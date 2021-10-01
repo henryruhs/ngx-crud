@@ -62,8 +62,7 @@
 		"lint": "eslint src/**/*.ts tests/**/*.ts",
 		"fix": "eslint src/**/*.ts tests/**/*.ts --fix",
 		"test": "mocha",
-		"build": "ng-packagr --project package.json",
-		"prepublish": "exit 1"
+		"build": "ng-packagr --project package.json"
 	},
 	"ngPackage":
 	{
