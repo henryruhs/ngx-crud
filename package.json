@@ -63,13 +63,8 @@
 		"fix": "eslint src/**/*.ts tests/**/*.ts --fix",
 		"test": "mocha",
 		"build": "ng-packagr --project package.json",
-		"prepublish": "npm run build"
+		"prepublish": "exit 1"
 	},
-	"main": "dist/index.js",
-	"files":
-	[
-		"dist/**"
-	],
 	"ngPackage":
 	{
 		"lib":
