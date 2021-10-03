@@ -17,12 +17,12 @@ export class PatchService<T> extends CommonService
 	 * @param {BodyInterface} body body of the request
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public patch(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
+	public patch<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.patch<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.patch<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options

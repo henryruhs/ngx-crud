@@ -17,12 +17,12 @@ export class PutService<T> extends CommonService
 	 * @param {BodyInterface} body body of the request
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public put(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
+	public put<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.put<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.put<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options

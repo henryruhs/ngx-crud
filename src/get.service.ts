@@ -16,12 +16,12 @@ export class GetService<T> extends CommonService
 	 * @param {IdType} id identifier of the resource
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public get(id : IdType, options ?: OptionInterface) : Observable<T>
+	public get<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.get<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
+		return this.http.get<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
 		{
 			...this.getOptions(),
 			...options
