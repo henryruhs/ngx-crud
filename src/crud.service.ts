@@ -40,7 +40,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to create a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {BodyInterface} body body of the request
 	 * @param {OptionInterface} options options of the request
@@ -56,7 +56,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to read a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {OptionInterface} options options of the request
@@ -72,7 +72,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to find multiple resources
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {OptionInterface} options options of the request
 	 *
@@ -87,7 +87,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to completely update a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {BodyInterface} body body of the request
@@ -104,7 +104,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to partially update a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {BodyInterface} body body of the request
@@ -121,7 +121,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a request to delete a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {OptionInterface} options options of the request
@@ -137,7 +137,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires a non-standard request
 	 *
-	 * @since 2.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {MethodType} method method of the request
 	 * @param {OptionWithBodyInterface} options options of the request
@@ -153,7 +153,7 @@ export class CrudService<T> extends CommonService
 	/**
 	 * fires multiple requests in parallel
 	 *
-	 * @since 4.2.0
+	 * @since 8.0.0
 	 *
 	 * @param {ObservableInput<$>[]} requestArray collection of requests
 	 *

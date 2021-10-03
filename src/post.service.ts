@@ -10,7 +10,7 @@ export class PostService<T> extends CommonService
 	/**
 	 * fires a request to create a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {BodyInterface} body body of the request
 	 * @param {OptionInterface} options options of the request

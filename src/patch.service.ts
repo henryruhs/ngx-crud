@@ -11,7 +11,7 @@ export class PatchService<T> extends CommonService
 	/**
 	 * fires a request to partially update a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {BodyInterface} body body of the request

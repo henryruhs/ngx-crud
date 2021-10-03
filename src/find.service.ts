@@ -10,7 +10,7 @@ export class FindService<T> extends CommonService
 	/**
 	 * fires a request to find multiple resources
 	 *
-	 * @since 5.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {OptionInterface} options options of the request
 	 *

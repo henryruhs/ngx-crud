@@ -11,7 +11,7 @@ export class DeleteService<T> extends CommonService
 	/**
 	 * fires a request to delete a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {OptionInterface} options options of the request

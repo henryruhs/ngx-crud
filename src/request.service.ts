@@ -11,7 +11,7 @@ export class RequestService<T> extends CommonService
 	/**
 	 * fire a non-standard request
 	 *
-	 * @since 2.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {MethodType} method method of the request
 	 * @param {OptionWithBodyInterface} options options of the request
