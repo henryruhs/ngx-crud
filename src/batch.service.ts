@@ -10,12 +10,12 @@ export class BatchService<T> extends CommonService
 	 *
 	 * @since 4.2.0
 	 *
-	 * @param {ObservableInput<T>[]} requestArray collection of requests
+	 * @param {ObservableInput<$>[]} requestArray collection of requests
 	 *
-	 * @return {Observable<T[]>} multiple http responses
+	 * @return {Observable<$[]>} multiple http responses
 	 */
 
-	public parallel(requestArray : ObservableInput<T>[]) : Observable<T[]>
+	public parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>
 	{
 		return forkJoin(requestArray);
 	}
