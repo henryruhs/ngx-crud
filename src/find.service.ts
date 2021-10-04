@@ -10,16 +10,16 @@ export class FindService<T> extends CommonService
 	/**
 	 * fires a request to find multiple resources
 	 *
-	 * @since 5.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T[]>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public find(options ?: OptionInterface) : Observable<T[]>
+	public find<$ = T[]>(options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.get<T[]>(createUrl(this.getApiUrl(), this.getEndpoint()),
+		return this.http.get<$>(createUrl(this.getApiUrl(), this.getEndpoint()),
 		{
 			...this.getOptions(),
 			...options

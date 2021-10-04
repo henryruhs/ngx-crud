@@ -11,17 +11,17 @@ export class DeleteService<T> extends CommonService
 	/**
 	 * fires a request to delete a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public delete(id : IdType, options ?: OptionInterface) : Observable<T>
+	public delete<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.delete<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
+		return this.http.delete<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
 		{
 			...this.getOptions(),
 			...options

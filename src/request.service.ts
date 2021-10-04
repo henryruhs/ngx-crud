@@ -11,17 +11,17 @@ export class RequestService<T> extends CommonService
 	/**
 	 * fire a non-standard request
 	 *
-	 * @since 2.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {MethodType} method method of the request
 	 * @param {OptionWithBodyInterface} options options of the request
 	 *
-	 * @return {Observable<T | T[]>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public request(method : MethodType, options ?: OptionWithBodyInterface) : Observable<T | T[]>
+	public request<$ = T | T[]>(method : MethodType, options ?: OptionWithBodyInterface) : Observable<$>
 	{
-		return this.http.request<T | T[]>(method, createUrl(this.getApiUrl(), this.getEndpoint()),
+		return this.http.request<$>(method, createUrl(this.getApiUrl(), this.getEndpoint()),
 		{
 			...this.getOptions(),
 			...options

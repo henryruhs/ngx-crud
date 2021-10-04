@@ -11,18 +11,18 @@ export class PutService<T> extends CommonService
 	/**
 	 * fires a request to completely update a single resource
 	 *
-	 * @since 1.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {IdType} id identifier of the resource
 	 * @param {BodyInterface} body body of the request
 	 * @param {OptionInterface} options options of the request
 	 *
-	 * @return {Observable<T>} http response
+	 * @return {Observable<$>} http response
 	 */
 
-	public put(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<T>
+	public put<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>
 	{
-		return this.http.put<T>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.put<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
 		{
 			...this.getOptions(),
 			...options
