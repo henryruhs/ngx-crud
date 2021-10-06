@@ -8,7 +8,7 @@ export class ObserveService
 {
 	protected defaultContext : ContextInterface =
 	{
-		method: 'GET',
+		method: null,
 		lifetime: null
 	};
 	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
