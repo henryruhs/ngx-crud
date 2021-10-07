@@ -1,7 +1,9 @@
-import { HttpContextToken, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpContextToken, HttpEvent, HttpRequest } from '@angular/common/http';
+import { Optional, Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ContextInterface } from './observe.interface';
+import { ContextInterface, EffectInterface } from './observe.interface';
+import { StateType } from './observe.type';
+import { EFFECT_SERVICE } from './observe.token';
 
 @Injectable()
 export class ObserveService
@@ -12,8 +14,12 @@ export class ObserveService
 		lifetime: null
 	};
 	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected signal : Subject<boolean> = new Subject<boolean>();
+	protected state : Subject<StateType> = new Subject<StateType>();
 	protected timeout : NodeJS.Timeout;
+
+	constructor(@Optional() @Inject(EFFECT_SERVICE) protected effectService : EffectInterface)
+	{
+	}
 
 	/**
 	 * get the token of the context
@@ -31,15 +37,30 @@ export class ObserveService
 	/**
 	 * start the observe for enabled services
 	 *
-	 * @since 5.0.0
+	 * @since 8.0.0
 	 *
 	 * @return {this} instance of the service
 	 */
 
 	public start() : this
 	{
-		this.signal.next(true);
+		this.state.next('STARTED');
 		return this;
+	}
+
+	/**
+	 * effect to handle events
+	 *
+	 * @since 8.0.0
+	 *
+	 * @param {HttpEvent<T>} event http event
+	 *
+	 * @return {void}
+	 */
+
+	public effect<T>(event : HttpEvent<T>) : void
+	{
+		this.effectService?.effect(event);
 	}
 
 	/**
@@ -64,27 +85,27 @@ export class ObserveService
 	/**
 	 * complete all observers for enabled services
 	 *
-	 * @since 6.0.0
+	 * @since 8.0.0
 	 *
 	 * @return {this} instance of the service
 	 */
 
 	public completeAll() : this
 	{
-		this.signal.next(false);
+		this.state.next('COMPLETED');
 		return this;
 	}
 
 	/**
 	 * observe all requests for enabled services
 	 *
-	 * @since 5.0.0
+	 * @since 8.0.0
 	 *
-	 * @return {Subject<boolean>} instance of the signal
+	 * @return {Subject<boolean>} state of all requests
 	 */
 
-	public observeAll() : Subject<boolean>
+	public observeAll() : Subject<StateType>
 	{
-		return this.signal;
+		return this.state;
 	}
 }

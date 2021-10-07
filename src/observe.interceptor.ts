@@ -7,7 +7,7 @@ import
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import { ContextInterface } from './observe.interface';
 import { ObserveService } from './observe.service';
 
@@ -40,7 +40,7 @@ export class ObserveInterceptor implements HttpInterceptor
 	/**
 	 * handle the request
 	 *
-	 * @since 5.0.0
+	 * @since 8.0.0
 	 *
 	 * @param {HttpRequest<T>} request instance of the http request
 	 * @param {HttpHandler} next instance of the http handler
@@ -54,6 +54,7 @@ export class ObserveInterceptor implements HttpInterceptor
 		return next
 			.handle(request)
 			.pipe(
+				tap((event : HttpEvent<T>) => this.observeService.effect<T>(event)),
 				finalize(() => this.observeService.end(request))
 			);
 	}
