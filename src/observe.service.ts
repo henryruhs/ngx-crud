@@ -35,7 +35,7 @@ export class ObserveService
 	}
 
 	/**
-	 * start the observe for enabled services
+	 * start to observe the request
 	 *
 	 * @since 8.0.0
 	 *
@@ -64,7 +64,7 @@ export class ObserveService
 	}
 
 	/**
-	 * end the observe for the request
+	 * end to observe the request
 	 *
 	 * @since 5.0.0
 	 *
@@ -83,7 +83,7 @@ export class ObserveService
 	}
 
 	/**
-	 * complete all observers for enabled services
+	 * complete to observe for enabled services
 	 *
 	 * @since 8.0.0
 	 *
