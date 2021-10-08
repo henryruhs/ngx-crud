@@ -1,4 +1,4 @@
-import { IdType } from './common.type';
+import { IdType } from '../common/common.type';
 
 /**
  * create the url

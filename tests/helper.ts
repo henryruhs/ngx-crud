@@ -1,6 +1,6 @@
 import { HttpRequest } from '@angular/common/http';
 import { TestService } from './test.service';
-import { createUrl } from '../src';
+import { createUrl } from '../src/core';
 
 /**
  * mock request for test service

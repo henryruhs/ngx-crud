@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BodyInterface, OptionInterface } from './common.interface';
-import { CommonService } from './common.service';
+import { BodyInterface, OptionInterface } from '../common/common.interface';
+import { CommonService } from '../common/common.service';
 import { createUrl } from './helper';
 
 @Injectable()

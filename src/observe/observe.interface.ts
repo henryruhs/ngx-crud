@@ -1,5 +1,5 @@
 import { HttpEvent } from '@angular/common/http';
-import { UniversalMethodType } from './common.type';
+import { UniversalMethodType } from '../common/common.type';
 
 export interface ContextInterface
 {

@@ -28,7 +28,7 @@ Import the `CrudModule` and `HttpClientModule` inside your `AppModule`:
 ```typescript
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CrudModule } from 'ngx-crud';
+import { CrudModule } from 'ngx-crud/core';
 
 @NgModule(
 {
@@ -51,7 +51,7 @@ Extend the `ExampleService` from the `CrudService`:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { CrudService } from 'ngx-crud';
+import { CrudService } from 'ngx-crud/core';
 import { ExampleInterface } from './example.interface';
 
 import { environment } from '@env';

@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiUrl, Endpoint, CrudService } from '../src';
+import { ApiUrl, Endpoint, CrudService } from '../src/core';
 import { TestInterface } from './test.interface';
 
 @Injectable()

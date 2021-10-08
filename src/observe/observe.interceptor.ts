@@ -54,7 +54,7 @@ export class ObserveInterceptor implements HttpInterceptor
 		return next
 			.handle(request)
 			.pipe(
-				tap((event : HttpEvent<T>) => this.observeService.effect<T>(event)),
+				tap((event : HttpEvent<T>) => this.observeService.effect(event)),
 				finalize(() => this.observeService.end(request))
 			);
 	}
