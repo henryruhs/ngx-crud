@@ -6,20 +6,20 @@ import { IdType, MethodType } from './common/common.type';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
+import { ParallelService } from './parallel.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { RequestService } from './request.service';
-import { ParallelService } from './parallel.service';
 import { CrudInterface } from './crud.interface';
 
 @Injectable()
 export class CrudService<T> extends CommonService implements CrudInterface<T>
 {
-	protected batchService : ParallelService<T>;
 	protected deleteService : DeleteService<T>;
 	protected findService : FindService<T>;
 	protected getService : GetService<T>;
+	protected parallelService : ParallelService<T>;
 	protected patchService : PatchService<T>;
 	protected postService : PostService<T>;
 	protected putService : PutService<T>;
@@ -28,10 +28,10 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.batchService = injector.get<ParallelService<T>>(ParallelService);
 		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
 		this.findService = injector.get<FindService<T>>(FindService);
 		this.getService = injector.get<GetService<T>>(GetService);
+		this.parallelService = injector.get<ParallelService<T>>(ParallelService);
 		this.patchService = injector.get<PatchService<T>>(PatchService);
 		this.postService = injector.get<PostService<T>>(PostService);
 		this.putService = injector.get<PutService<T>>(PutService);
@@ -163,6 +163,6 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 
 	public parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>
 	{
-		return this.batchService.parallel<$>(requestArray);
+		return this.parallelService.parallel<$>(requestArray);
 	}
 }
