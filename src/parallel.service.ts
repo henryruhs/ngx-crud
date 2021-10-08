@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, ObservableInput } from 'rxjs';
-import { CommonService } from './common.service';
+import { CommonService } from './common/common.service';
 
 @Injectable()
-export class BatchService<T> extends CommonService
+export class ParallelService<T> extends CommonService
 {
 	/**
 	 * fires multiple requests in parallel

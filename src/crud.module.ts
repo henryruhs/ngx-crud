@@ -1,15 +1,15 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AbortInterceptor } from './abort.interceptor';
-import { AbortService } from './abort.service';
-import { BatchService } from './batch.service';
-import { CacheInterceptor } from './cache.interceptor';
-import { CacheService } from './cache.service';
+import { AbortInterceptor } from './abort';
+import { AbortService } from './abort';
+import { ParallelService } from './parallel.service';
+import { CacheInterceptor } from './cache/cache.interceptor';
+import { CacheService } from './cache/cache.service';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
-import { ObserveInterceptor } from './observe.interceptor';
-import { ObserveService } from './observe.service';
+import { ObserveInterceptor } from './observe/observe.interceptor';
+import { ObserveService } from './observe/observe.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -35,7 +35,7 @@ import { RequestService } from './request.service';
 			useClass: ObserveInterceptor
 		},
 		AbortService,
-		BatchService,
+		ParallelService,
 		CacheService,
 		DeleteService,
 		FindService,

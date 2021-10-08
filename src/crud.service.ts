@@ -1,9 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
-import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common.interface';
-import { CommonService } from './common.service';
-import { IdType, MethodType } from './common.type';
-import { BatchService } from './batch.service';
+import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common/common.interface';
+import { CommonService } from './common/common.service';
+import { IdType, MethodType } from './common/common.type';
+import { ParallelService } from './parallel.service';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
@@ -16,7 +16,7 @@ import { CrudInterface } from './crud.interface';
 @Injectable()
 export class CrudService<T> extends CommonService implements CrudInterface<T>
 {
-	protected batchService : BatchService<T>;
+	protected batchService : ParallelService<T>;
 	protected deleteService : DeleteService<T>;
 	protected findService : FindService<T>;
 	protected getService : GetService<T>;
@@ -28,7 +28,7 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.batchService = injector.get<BatchService<T>>(BatchService);
+		this.batchService = injector.get<ParallelService<T>>(ParallelService);
 		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
 		this.findService = injector.get<FindService<T>>(FindService);
 		this.getService = injector.get<GetService<T>>(GetService);
