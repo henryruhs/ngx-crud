@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, batching and caching",
-	"version": "8.0.0-next.3",
+	"version": "8.0.0-next.4",
 	"license": "MIT",
 	"keywords":
 	[
@@ -62,14 +62,7 @@
 		"lint": "eslint src/**/*.ts tests/**/*.ts",
 		"fix": "eslint src/**/*.ts tests/**/*.ts --fix",
 		"test": "mocha",
-		"build": "ng-packagr --project=package.json",
+		"build": "ng-packagr --project=ng-package.json",
 		"prepublishOnly": "exit 1"
-	},
-	"ngPackage":
-	{
-		"lib":
-		{
-			"entryFile": "src/index.ts"
-		}
 	}
 }

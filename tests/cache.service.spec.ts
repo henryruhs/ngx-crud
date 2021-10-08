@@ -2,8 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
-import { CrudModule } from '../src/core';
-import { CacheService } from '../src/cache';
+import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './helper';
 

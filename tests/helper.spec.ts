@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createUrl, createUrlWithId } from '../src/core';
+import { createUrl, createUrlWithId } from '../src';
 
 describe('Helper', () =>
 {
