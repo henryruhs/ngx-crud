@@ -3,7 +3,6 @@ import { Observable, ObservableInput } from 'rxjs';
 import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common/common.interface';
 import { CommonService } from './common/common.service';
 import { IdType, MethodType } from './common/common.type';
-import { ParallelService } from './parallel.service';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
@@ -11,6 +10,7 @@ import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { RequestService } from './request.service';
+import { ParallelService } from './parallel.service';
 import { CrudInterface } from './crud.interface';
 
 @Injectable()

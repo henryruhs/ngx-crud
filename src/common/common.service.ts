@@ -1,8 +1,8 @@
 import { HttpClient, HttpContext, HttpContextToken, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
-import { AbortService } from '../abort';
-import { CacheService } from '../cache';
-import { ObserveService } from '../observe';
+import { AbortService } from '../abort/abort.service';
+import { CacheService } from '../cache/cache.service';
+import { ObserveService } from '../observe/observe.service';
 import { ContextInterface, OptionInterface } from './common.interface';
 import { UniversalMethodType } from './common.type';
 import { createUrl } from '../helper';
