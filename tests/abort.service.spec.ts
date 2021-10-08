@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { mockRequest } from './helper';
-import { CrudModule } from '../src';
+import { CrudModule } from '../src/core';
 import { AbortService } from '../src/abort';
 import { TestService } from './test.service';
+import { mockRequest } from './helper';
 
 before(() =>
 {

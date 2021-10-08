@@ -1,8 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
-import { BodyInterface, OptionInterface, OptionWithBodyInterface } from './common/common.interface';
-import { CommonService } from './common/common.service';
-import { IdType, MethodType } from './common/common.type';
+import { BodyInterface, OptionInterface, OptionWithBodyInterface } from '../common/common.interface';
+import { CommonService } from '../common/common.service';
+import { IdType, MethodType } from '../common/common.type';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';

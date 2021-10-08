@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OptionWithBodyInterface } from './common/common.interface';
-import { CommonService } from './common/common.service';
-import { MethodType } from './common/common.type';
+import { OptionWithBodyInterface } from '../common/common.interface';
+import { CommonService } from '../common/common.service';
+import { MethodType } from '../common/common.type';
 import { createUrl } from './helper';
 
 @Injectable()

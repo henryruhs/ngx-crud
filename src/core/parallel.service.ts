@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, ObservableInput } from 'rxjs';
-import { CommonService } from './common/common.service';
+import { CommonService } from '../common/common.service';
 
 @Injectable()
 export class ParallelService<T> extends CommonService
