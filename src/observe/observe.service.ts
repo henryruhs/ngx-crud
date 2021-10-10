@@ -1,4 +1,4 @@
-import { HttpContextToken, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ContextInterface, EffectInterface } from './observe.interface';
@@ -49,18 +49,42 @@ export class ObserveService
 	}
 
 	/**
-	 * effect to handle events
+	 * before hook for the effect service
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {HttpEvent<T>} event http event
+	 * @param {HttpRequest<T>} request instance of the http request
 	 *
-	 * @return {void}
+	 * @return {HttpRequest<T>} instance of the http request
 	 */
 
-	public effect<T>(event : HttpEvent<T>) : void
+	public before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{
-		this.effectService?.effect(event);
+		if (typeof this.effectService?.before === 'function')
+		{
+			return this.effectService.before(request);
+		}
+		return request;
+	}
+
+	/**
+	 * after hook for the effect service
+	 *
+	 * @since 8.0.0
+	 *
+	 * @param {HttpRequest<T>} request instance of the http request
+	 * @param {HttpResponse<T>} response instance of the http response
+	 *
+	 * @return {this} instance of the service
+	 */
+
+	public after<T>(request : HttpRequest<T>, response : HttpResponse<T>) : this
+	{
+		if (typeof this.effectService?.after === 'function')
+		{
+			this.effectService.after(request, response);
+		}
+		return this;
 	}
 
 	/**

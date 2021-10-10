@@ -3,11 +3,11 @@ import
 	HttpEvent,
 	HttpHandler,
 	HttpInterceptor,
-	HttpRequest
+	HttpRequest, HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { filter, finalize, tap } from 'rxjs/operators';
 import { ContextInterface } from './observe.interface';
 import { ObserveService } from './observe.service';
 
@@ -52,9 +52,10 @@ export class ObserveInterceptor implements HttpInterceptor
 	{
 		this.observeService.start();
 		return next
-			.handle(request)
+			.handle(this.observeService.before(request))
 			.pipe(
-				tap((event : HttpEvent<T>) => this.observeService.effect(event)),
+				filter(event => event instanceof HttpResponse),
+				tap((response : HttpResponse<T>) => this.observeService.after(request, response)),
 				finalize(() => this.observeService.end(request))
 			);
 	}
