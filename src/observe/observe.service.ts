@@ -1,4 +1,4 @@
-import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ContextInterface, EffectInterface } from './observe.interface';
@@ -73,12 +73,12 @@ export class ObserveService
 	 * @since 8.0.0
 	 *
 	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpResponse<T>} response instance of the http response
+	 * @param {HttpResponse<T> | HttpErrorResponse} response instance of the http response
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public after<T>(request : HttpRequest<T>, response : HttpResponse<T>) : this
+	public after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
 	{
 		if (typeof this.effectService?.after === 'function')
 		{

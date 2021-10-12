@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { UniversalMethodType } from '../common/common.type';
 
 export interface ContextInterface
@@ -10,5 +10,5 @@ export interface ContextInterface
 export interface EffectInterface
 {
 	before?<T>(request : HttpRequest<T>) : HttpRequest<T>;
-	after?<T>(request : HttpRequest<T>, response : HttpResponse<T>) : void
+	after?<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : void
 }

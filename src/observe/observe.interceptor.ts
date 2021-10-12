@@ -1,13 +1,15 @@
 import
 {
+	HttpErrorResponse,
 	HttpEvent,
 	HttpHandler,
 	HttpInterceptor,
-	HttpRequest, HttpResponse
+	HttpRequest,
+	HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter, finalize, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, filter, finalize, tap } from 'rxjs/operators';
 import { ContextInterface } from './observe.interface';
 import { ObserveService } from './observe.service';
 
@@ -56,6 +58,11 @@ export class ObserveInterceptor implements HttpInterceptor
 			.pipe(
 				filter(event => event instanceof HttpResponse),
 				tap((response : HttpResponse<T>) => this.observeService.after(request, response)),
+				catchError((response : HttpErrorResponse) =>
+				{
+					this.observeService.after(request, response);
+					return throwError(response);
+				}),
 				finalize(() => this.observeService.end(request))
 			);
 	}
