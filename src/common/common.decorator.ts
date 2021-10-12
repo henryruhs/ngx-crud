@@ -33,4 +33,3 @@ export function Endpoint(endpoint : string) : Function
 		constructor.prototype.setEndpoint(endpoint);
 	};
 }
-

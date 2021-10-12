@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
-import { UniversalMethodType } from '../common/common.type';
+import { UniversalMethodType } from '../common';
 
 export interface ContextInterface
 {

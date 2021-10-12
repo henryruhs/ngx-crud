@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { UniversalMethodType } from '../common/common.type';
+import { UniversalMethodType } from '../common';
 
 export interface StoreInterface
 {

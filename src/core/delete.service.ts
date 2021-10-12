@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OptionInterface } from '../common/common.interface';
-import { CommonService } from '../common/common.service';
-import { IdType } from '../common/common.type';
-import { createUrlWithId } from './helper';
+import { OptionInterface } from '../common';
+import { CommonService } from '../common';
+import { IdType } from '../common';
+import { createUrlWithId } from '../common';
 
 @Injectable()
 export class DeleteService<T> extends CommonService

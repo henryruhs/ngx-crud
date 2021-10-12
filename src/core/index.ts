@@ -9,6 +9,3 @@ export { PostService } from './post.service';
 export { ParallelService } from './parallel.service';
 export { PutService } from './put.service';
 export { RequestService } from './request.service';
-
-export { ApiUrl, Endpoint } from './decorator';
-export { createUrl, createUrlWithId } from './helper';

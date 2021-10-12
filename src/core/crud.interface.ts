@@ -1,6 +1,6 @@
 import { Observable, ObservableInput } from 'rxjs';
-import { BodyInterface, OptionInterface, OptionWithBodyInterface } from '../common/common.interface';
-import { IdType, MethodType } from '../common/common.type';
+import { BodyInterface, OptionInterface, OptionWithBodyInterface } from '../common';
+import { IdType, MethodType } from '../common';
 
 export interface CrudInterface<T>
 {

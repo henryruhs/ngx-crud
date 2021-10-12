@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UniversalMethodType } from '../common/common.type';
+import { UniversalMethodType } from '../common';
 
 export interface StoreInterface
 {

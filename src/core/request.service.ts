@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OptionWithBodyInterface } from '../common/common.interface';
-import { CommonService } from '../common/common.service';
-import { MethodType } from '../common/common.type';
-import { createUrl } from './helper';
+import { OptionWithBodyInterface } from '../common';
+import { CommonService } from '../common';
+import { MethodType } from '../common';
+import { createUrl } from '../common';
 
 @Injectable()
 export class RequestService<T> extends CommonService
