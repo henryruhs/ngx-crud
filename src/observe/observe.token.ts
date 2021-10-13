@@ -1,4 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { EffectInterface } from './observe.interface';
+import { ObserveEffectInterface } from './observe.interface';
 
-export const EFFECT_SERVICE : InjectionToken<EffectInterface> = new InjectionToken<EffectInterface>('NGX_CRUD__OBSERVE__EFFECT_SERVICE');
+export const OBSERVE_EFFECT : InjectionToken<ObserveEffectInterface> = new InjectionToken<ObserveEffectInterface>('NGX_CRUD__OBSERVE_EFFECT');

@@ -7,7 +7,7 @@ export interface ContextInterface
 	lifetime : number;
 }
 
-export interface EffectInterface
+export interface ObserveEffectInterface
 {
 	before?<T>(request : HttpRequest<T>) : HttpRequest<T>;
 	after?<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : void

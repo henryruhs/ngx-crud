@@ -1,9 +1,9 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ContextInterface, EffectInterface } from './observe.interface';
+import { ContextInterface, ObserveEffectInterface } from './observe.interface';
 import { StateType } from './observe.type';
-import { EFFECT_SERVICE } from './observe.token';
+import { OBSERVE_EFFECT } from './observe.token';
 
 @Injectable()
 export class ObserveService
@@ -17,7 +17,7 @@ export class ObserveService
 	protected state : Subject<StateType> = new Subject<StateType>();
 	protected timeout : NodeJS.Timeout;
 
-	constructor(@Optional() @Inject(EFFECT_SERVICE) protected effectService : EffectInterface)
+	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveEffectInterface)
 	{
 	}
 
@@ -60,9 +60,9 @@ export class ObserveService
 
 	public before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{
-		if (typeof this.effectService?.before === 'function')
+		if (typeof this.observeEffect?.before === 'function')
 		{
-			return this.effectService.before(request);
+			return this.observeEffect.before(request);
 		}
 		return request;
 	}
@@ -80,9 +80,9 @@ export class ObserveService
 
 	public after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
 	{
-		if (typeof this.effectService?.after === 'function')
+		if (typeof this.observeEffect?.after === 'function')
 		{
-			this.effectService.after(request, response);
+			this.observeEffect.after(request, response);
 		}
 		return this;
 	}
