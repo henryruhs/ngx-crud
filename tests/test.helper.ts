@@ -1,8 +1,7 @@
-import { HttpRequest } from '@angular/common/http';
-import { TestService } from './test.service';
+import { HttpRequest, HttpContextToken } from '@angular/common/http';
 import { createUrl } from '../src';
-import { ContextInterface } from './test.interface';
-import { HttpContextToken } from '@angular/common/http';
+import { TestService } from './test.service';
+import { ContextInterface, TestInterface } from './test.interface';
 
 const defaultContext : ContextInterface =
 {
@@ -31,12 +30,12 @@ export function getToken() : HttpContextToken<ContextInterface>
  *
  * @param {TestService} testService TestService
  *
- * @return {HttpRequest<any>} instance of the http request
+ * @return {HttpRequest<TestInterface>} instance of the http request
  */
 
-export function mockRequest(testService : TestService) : HttpRequest<any>
+export function mockRequest(testService : TestService) : HttpRequest<TestInterface>
 {
-	return new HttpRequest('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
+	return new HttpRequest<TestInterface>('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
 	{
 		context: testService.getContext(),
 		headers: testService.getHeaders(),
