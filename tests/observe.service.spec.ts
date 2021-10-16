@@ -74,26 +74,26 @@ describe('ObserveService', () =>
 	it('observe all', done =>
 	{
 		inject(
-			[
-				ObserveService,
-				TestService
-			], (observeService : ObserveService, testService : TestService) =>
-			{
-				testService
-					.enableObserve('GET')
-					.find()
-					.subscribe();
-				observeService
-					.observeAll()
-					.subscribe(() =>
-					{
-						testService.clear();
-						done();
-					}, () =>
-					{
-						testService.clear();
-						done('error');
-					});
-			})();
+		[
+			ObserveService,
+			TestService
+		], (observeService : ObserveService, testService : TestService) =>
+		{
+			testService
+				.enableObserve('GET')
+				.find()
+				.subscribe();
+			observeService
+				.observeAll()
+				.subscribe(() =>
+				{
+					testService.clear();
+					done();
+				}, () =>
+				{
+					testService.clear();
+					done('error');
+				});
+		})();
 	});
 });
