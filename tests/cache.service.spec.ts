@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { delay } from 'rxjs/operators';
 import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
-import { mockRequest } from './helper';
+import { mockRequest } from './test.helper';
 
 before(() =>
 {

@@ -1,8 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { CrudModule, ObserveService } from '../src';
+import { CrudModule, ObserveService, OBSERVE_EFFECT } from '../src';
 import { TestService } from './test.service';
+import { TestEffect } from './test.effect';
+import { getToken } from './test.helper';
 
 before(() =>
 {
@@ -17,7 +19,11 @@ before(() =>
 			providers:
 			[
 				ObserveService,
-				TestService
+				TestService,
+				{
+					provide: OBSERVE_EFFECT,
+					useClass: TestEffect
+				}
 			]
 		});
 });
@@ -41,22 +47,20 @@ describe('ObserveService', () =>
 		});
 	});
 
-	it('observe all', done =>
+	it('before and after', done =>
 	{
 		inject(
 		[
-			ObserveService,
 			TestService
-		], (observeService : ObserveService, testService : TestService) =>
+		], (testService : TestService) =>
 		{
 			testService
 				.enableObserve('GET')
 				.find()
-				.subscribe();
-			observeService
-				.observeAll()
 				.subscribe(() =>
 				{
+					expect(testService.getContext().get(getToken()).before).to.be.true;
+					expect(testService.getContext().get(getToken()).after).to.be.true;
 					testService.clear();
 					done();
 				}, () =>
@@ -65,5 +69,31 @@ describe('ObserveService', () =>
 					done('error');
 				});
 		})();
+	});
+
+	it('observe all', done =>
+	{
+		inject(
+			[
+				ObserveService,
+				TestService
+			], (observeService : ObserveService, testService : TestService) =>
+			{
+				testService
+					.enableObserve('GET')
+					.find()
+					.subscribe();
+				observeService
+					.observeAll()
+					.subscribe(() =>
+					{
+						testService.clear();
+						done();
+					}, () =>
+					{
+						testService.clear();
+						done('error');
+					});
+			})();
 	});
 });

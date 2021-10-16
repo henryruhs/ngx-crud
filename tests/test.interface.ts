@@ -5,3 +5,9 @@ export interface TestInterface
 	body : string;
 	userId : string;
 }
+
+export interface ContextInterface
+{
+	before : boolean;
+	after : boolean
+}

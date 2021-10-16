@@ -3,7 +3,7 @@ import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { CrudModule, AbortService } from '../src';
 import { TestService } from './test.service';
-import { mockRequest } from './helper';
+import { mockRequest } from './test.helper';
 
 before(() =>
 {
