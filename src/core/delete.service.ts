@@ -21,7 +21,7 @@ export class DeleteService<T> extends CommonService
 
 	public delete<$ = T>(id : Id, options ?: Options) : Observable<$>
 	{
-		return this.http.delete<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
+		return this.http.delete<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

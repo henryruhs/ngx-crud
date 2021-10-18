@@ -19,7 +19,7 @@ export class FindService<T> extends CommonService
 
 	public find<$ = T[]>(options ?: Options) : Observable<$>
 	{
-		return this.http.get<$>(createUrl(this.getApiUrl(), this.getEndpoint()),
+		return this.http.get<$>(createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

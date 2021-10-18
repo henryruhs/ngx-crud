@@ -60,7 +60,7 @@ import { environment } from '@env';
 export class ExampleService extends CrudService<Example>
 {
 	protected apiUrl : string = environment.apiUrl;
-	protected endpoint : string = environment.routes.example;
+	protected endpoint : string = environment.apiRoute.example;
 }
 ```
 

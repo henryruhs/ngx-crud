@@ -21,7 +21,7 @@ export class GetService<T> extends CommonService
 
 	public get<$ = T>(id : Id, options ?: Options) : Observable<$>
 	{
-		return this.http.get<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id),
+		return this.http.get<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

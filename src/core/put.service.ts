@@ -22,7 +22,7 @@ export class PutService<T> extends CommonService
 
 	public put<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
-		return this.http.put<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.put<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

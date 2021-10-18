@@ -22,7 +22,7 @@ export class PatchService<T> extends CommonService
 
 	public patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
-		return this.http.patch<$>(createUrlWithId(this.getApiUrl(), this.getEndpoint(), id), body,
+		return this.http.patch<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

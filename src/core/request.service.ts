@@ -21,7 +21,7 @@ export class RequestService<T> extends CommonService
 
 	public request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>
 	{
-		return this.http.request<$>(method, createUrl(this.getApiUrl(), this.getEndpoint()),
+		return this.http.request<$>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

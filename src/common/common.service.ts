@@ -15,8 +15,13 @@ export class CommonService
 	protected cacheService : CacheService;
 	protected observeService : ObserveService;
 	protected apiUrl : string;
+
+	/** @deprecated **/
+
 	protected endpoint : string;
+	protected apiRoute : string;
 	protected options : Options;
+
 
 	constructor(protected injector : Injector)
 	{
@@ -41,7 +46,7 @@ export class CommonService
 	{
 		return this
 			.setApiUrl(that.getApiUrl())
-			.setEndpoint(that.getEndpoint())
+			.setApiRoute(that.getApiRoute())
 			.setOptions(that.getOptions());
 	}
 
@@ -108,9 +113,41 @@ export class CommonService
 	}
 
 	/**
+	 * get the api route of the service
+	 *
+	 * @since 8.2.0
+	 *
+	 * @return {string} api route of the service
+	 */
+
+	public getApiRoute() : string
+	{
+		return this.apiRoute;
+	}
+
+	/**
+	 * set the api route of the service
+	 *
+	 * @since 8.2.0
+	 *
+	 * @param {string} apiRoute api route of the service
+	 *
+	 * @return {this} instance of the service
+	 */
+
+	public setApiRoute(apiRoute : string) : this
+	{
+		this.endpoint = apiRoute;
+		this.apiRoute = apiRoute;
+		return this;
+	}
+
+	/**
 	 * get the endpoint of the service
 	 *
 	 * @since 2.0.0
+	 *
+	 * @deprecated
 	 *
 	 * @return {string} endpoint of the service
 	 */
@@ -125,6 +162,8 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
+	 * @deprecated
+	 *
 	 * @param {string} endpoint endpoint of the service
 	 *
 	 * @return {this} instance of the service
@@ -133,6 +172,7 @@ export class CommonService
 	public setEndpoint(endpoint : string) : this
 	{
 		this.endpoint = endpoint;
+		this.apiRoute = endpoint;
 		return this;
 	}
 

@@ -1,11 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiUrl, Endpoint, CrudService } from '../src';
+import { ApiUrl, ApiRoute, CrudService } from '../src';
 import { Test } from './test.interface';
 
 @Injectable()
 @ApiUrl('https://jsonplaceholder.typicode.com')
-@Endpoint('/posts')
+@ApiRoute('/posts')
 export class TestService extends CrudService<Test>
 {
 	constructor(injector : Injector)
