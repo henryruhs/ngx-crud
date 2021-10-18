@@ -17,7 +17,7 @@ export class ObserveService
 	protected state : Subject<State> = new Subject<State>();
 	protected timeout : NodeJS.Timeout;
 
-	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect & ObserveAfterEffect)
+	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
 	{
 	}
 
@@ -60,7 +60,7 @@ export class ObserveService
 
 	public before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{
-		if (typeof this.observeEffect?.before === 'function')
+		if ('before' in this.observeEffect && typeof this.observeEffect.before === 'function')
 		{
 			return this.observeEffect.before(request);
 		}
@@ -80,7 +80,7 @@ export class ObserveService
 
 	public after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
 	{
-		if (typeof this.observeEffect?.after === 'function')
+		if ('after' in this.observeEffect && typeof this.observeEffect.after === 'function')
 		{
 			this.observeEffect.after(request, response);
 		}
