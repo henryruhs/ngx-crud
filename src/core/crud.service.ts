@@ -11,10 +11,10 @@ import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
 import { RequestService } from './request.service';
-import { CrudInterface } from './crud.interface';
+import { Crud } from './crud.interface';
 
 @Injectable()
-export class CrudService<T> extends CommonService implements CrudInterface<T>
+export class CrudService<T> extends CommonService implements Crud<T>
 {
 	protected deleteService : DeleteService<T>;
 	protected findService : FindService<T>;
