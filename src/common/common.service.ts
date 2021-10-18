@@ -22,7 +22,6 @@ export class CommonService
 	protected apiRoute : string;
 	protected options : Options;
 
-
 	constructor(protected injector : Injector)
 	{
 		this.http = injector.get<HttpClient>(HttpClient);
@@ -302,14 +301,14 @@ export class CommonService
 	 * @since 6.0.0
 	 *
 	 * @param {HttpContextToken<Context>} token token of the context
-	 * @param {Context} value value of the context
+	 * @param {Context} context value of the context
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public setContextByToken(token : HttpContextToken<Context>, value : Context) : this
+	public setContextByToken(token : HttpContextToken<Context>, context : Context) : this
 	{
-		return this.setContext(this.getContext().set(token, value));
+		return this.setContext(this.getContext().set(token, context));
 	}
 
 	/**
