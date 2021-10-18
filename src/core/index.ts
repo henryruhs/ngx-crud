@@ -1,5 +1,5 @@
 export { CrudModule } from './crud.module';
-export { CrudInterface } from './crud.interface';
+export { CrudInterface, Crud } from './crud.interface';
 export { CrudService } from './crud.service';
 export { DeleteService } from './delete.service';
 export { FindService } from './find.service';
