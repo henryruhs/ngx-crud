@@ -1,23 +1,23 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ContextInterface, ObserveEffectInterface } from './observe.interface';
-import { StateType } from './observe.type';
+import { Context, ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
+import { State } from './observe.type';
 import { OBSERVE_EFFECT } from './observe.token';
 
 @Injectable()
 export class ObserveService
 {
-	protected defaultContext : ContextInterface =
+	protected defaultContext : Context =
 	{
 		method: null,
 		lifetime: null
 	};
-	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected state : Subject<StateType> = new Subject<StateType>();
+	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
+	protected state : Subject<State> = new Subject<State>();
 	protected timeout : NodeJS.Timeout;
 
-	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveEffectInterface)
+	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect & ObserveAfterEffect)
 	{
 	}
 
@@ -26,10 +26,10 @@ export class ObserveService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return {HttpContextToken<ContextInterface>} token of the context
+	 * @return {HttpContextToken<Context>} token of the context
 	 */
 
-	public getToken() : HttpContextToken<ContextInterface>
+	public getToken() : HttpContextToken<Context>
 	{
 		return this.token;
 	}
@@ -99,7 +99,7 @@ export class ObserveService
 
 	public end<T>(request : HttpRequest<T>) : this
 	{
-		const context : ContextInterface = request.context.get(this.getToken());
+		const context : Context = request.context.get(this.getToken());
 
 		clearTimeout(this.timeout);
 		this.timeout = context.lifetime > 0 ? setTimeout(() => this.completeAll(), context.lifetime) : null;
@@ -125,10 +125,10 @@ export class ObserveService
 	 *
 	 * @since 8.0.0
 	 *
-	 * @return {Subject<boolean>} state of all requests
+	 * @return {Subject<State>} state of all requests
 	 */
 
-	public observeAll() : Subject<StateType>
+	public observeAll() : Subject<State>
 	{
 		return this.state;
 	}

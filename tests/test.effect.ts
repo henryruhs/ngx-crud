@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
-import { ObserveEffectInterface } from '../src';
+import { ObserveAfterEffect, ObserveBeforeEffect } from '../src';
 import { getToken } from './test.helper';
 
 @Injectable()
-export class TestEffect implements ObserveEffectInterface
+export class TestEffect implements ObserveBeforeEffect, ObserveAfterEffect
 {
 	before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{

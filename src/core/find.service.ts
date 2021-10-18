@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OptionInterface } from '../common';
+import { Options } from '../common';
 import { CommonService } from '../common';
 import { createUrl } from '../common';
 
@@ -12,12 +12,12 @@ export class FindService<T> extends CommonService
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {OptionInterface} options options of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public find<$ = T[]>(options ?: OptionInterface) : Observable<$>
+	public find<$ = T[]>(options ?: Options) : Observable<$>
 	{
 		return this.http.get<$>(createUrl(this.getApiUrl(), this.getEndpoint()),
 		{

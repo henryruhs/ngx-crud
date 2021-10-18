@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { AbortService } from '../abort';
 import { CacheService } from '../cache';
 import { ObserveService } from '../observe';
-import { ContextInterface, OptionInterface } from './common.interface';
-import { UniversalMethodType } from './common.type';
+import { Context, Options } from './common.interface';
+import { UniversalMethod } from './common.type';
 import { createUrl } from './common.helper';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class CommonService
 	protected observeService : ObserveService;
 	protected apiUrl : string;
 	protected endpoint : string;
-	protected options : OptionInterface;
+	protected options : Options;
 
 	constructor(protected injector : Injector)
 	{
@@ -146,7 +146,7 @@ export class CommonService
 	 * @return {OptionInterface[keyof OptionInterface]} value of the option
 	 */
 
-	public getOption(name : keyof OptionInterface) : OptionInterface[keyof OptionInterface]
+	public getOption(name : keyof Options) : Options[keyof Options]
 	{
 		return this.options[name];
 	}
@@ -156,10 +156,10 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return {OptionInterface} instance of the options
+	 * @return {Options} instance of the options
 	 */
 
-	public getOptions() : OptionInterface
+	public getOptions() : Options
 	{
 		return this.options;
 	}
@@ -175,7 +175,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setOption(name : keyof OptionInterface, value : OptionInterface[keyof OptionInterface]) : this
+	public setOption(name : keyof Options, value : Options[keyof Options]) : this
 	{
 		this.options[name.toString()] = value;
 		return this;
@@ -186,12 +186,12 @@ export class CommonService
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param {OptionInterface} options options of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public setOptions(options : OptionInterface) : this
+	public setOptions(options : Options) : this
 	{
 		this.options = options;
 		return this;
@@ -207,7 +207,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearOption(name : keyof OptionInterface) : this
+	public clearOption(name : keyof Options) : this
 	{
 		return this.setOption(name, null);
 	}
@@ -233,12 +233,12 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param {HttpContextToken<ContextInterface>} token token of the context
+	 * @param {HttpContextToken<Context>} token token of the context
 	 *
 	 * @return {HttpContext} context by token
 	 */
 
-	public getContextByToken(token : HttpContextToken<ContextInterface>) : HttpContext
+	public getContextByToken(token : HttpContextToken<Context>) : HttpContext
 	{
 		return this.getContext().get(token) as HttpContext;
 	}
@@ -261,13 +261,13 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param {HttpContextToken<ContextInterface>} token token of the context
-	 * @param {ContextInterface} value value of the context
+	 * @param {HttpContextToken<Context>} token token of the context
+	 * @param {Context} value value of the context
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public setContextByToken(token : HttpContextToken<ContextInterface>, value : ContextInterface) : this
+	public setContextByToken(token : HttpContextToken<Context>, value : Context) : this
 	{
 		return this.setContext(this.getContext().set(token, value));
 	}
@@ -293,12 +293,12 @@ export class CommonService
 	 *
 	 * @since 6.0.0
 	 *
-	 * @param {HttpContextToken<ContextInterface>} token token of the context
+	 * @param {HttpContextToken<Context>} token token of the context
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public clearContextByToken(token : HttpContextToken<ContextInterface>) : this
+	public clearContextByToken(token : HttpContextToken<Context>) : this
 	{
 		return this.setContext(this.getContext().delete(token));
 	}
@@ -624,13 +624,13 @@ export class CommonService
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param {UniversalMethodType} method method of the request
+	 * @param {UniversalMethod} method method of the request
 	 * @param {number} lifetime lifetime of the request
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public enableAbort(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
+	public enableAbort(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.abortService.getToken(),
 		{
@@ -673,13 +673,13 @@ export class CommonService
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param {UniversalMethodType} method method of the request
+	 * @param {UniversalMethod} method method of the request
 	 * @param {number} lifetime lifetime of the request
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public enableCache(method : UniversalMethodType = 'GET', lifetime : number = 2000) : this
+	public enableCache(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.cacheService.getToken(),
 		{
@@ -722,13 +722,13 @@ export class CommonService
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param {UniversalMethodType} method method of the request
+	 * @param {UniversalMethod} method method of the request
 	 * @param {number} lifetime lifetime of the request
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	public enableObserve(method : UniversalMethodType = 'ANY', lifetime : number = 1000) : this
+	public enableObserve(method : UniversalMethod = 'ANY', lifetime : number = 1000) : this
 	{
 		return this.setContextByToken(this.observeService.getToken(),
 		{

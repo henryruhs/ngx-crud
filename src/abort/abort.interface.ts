@@ -1,14 +1,14 @@
 import { Subject } from 'rxjs';
-import { UniversalMethodType } from '../common';
+import { UniversalMethod } from '../common';
 
-export interface StoreInterface
+export interface Store
 {
 	signal : Subject<boolean>;
 	timeout : NodeJS.Timeout;
 }
 
-export interface ContextInterface
+export interface Context
 {
-	method : UniversalMethodType;
+	method : UniversalMethod;
 	lifetime : number;
 }

@@ -1,15 +1,15 @@
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UniversalMethodType } from '../common';
+import { UniversalMethod } from '../common';
 
-export interface StoreInterface
+export interface Store
 {
 	response : Observable<HttpResponse<any>>;
 	timeout : NodeJS.Timeout;
 }
 
-export interface ContextInterface
+export interface Context
 {
-	method : UniversalMethodType;
+	method : UniversalMethod;
 	lifetime : number;
 }

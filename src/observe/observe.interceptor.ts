@@ -10,7 +10,7 @@ import
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, filter, finalize, tap } from 'rxjs/operators';
-import { ContextInterface } from './observe.interface';
+import { Context } from './observe.interface';
 import { ObserveService } from './observe.service';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class ObserveInterceptor implements HttpInterceptor
 
 	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		const context : ContextInterface = request.context.get(this.observeService.getToken());
+		const context : Context = request.context.get(this.observeService.getToken());
 		const enableObserve : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
 
 		return enableObserve ? this.handle(request, next) : next.handle(request);

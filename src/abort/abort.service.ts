@@ -1,28 +1,28 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable, Subject } from 'rxjs';
-import { ContextInterface, StoreInterface } from './abort.interface';
+import { Context, Store } from './abort.interface';
 
 @Injectable()
 export class AbortService
 {
-	protected defaultContext : ContextInterface =
+	protected defaultContext : Context =
 	{
 		method: null,
 		lifetime: null
 	};
-	protected token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => this.defaultContext);
-	protected store : Map<string, StoreInterface> = new Map();
+	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
+	protected store : Map<string, Store> = new Map();
 
 	/**
 	 * get the token of the context
 	 *
 	 * @since 6.0.0
 	 *
-	 * @return {HttpContextToken<ContextInterface>} token of the context
+	 * @return {HttpContextToken<Context>} token of the context
 	 */
 
-	public getToken() : HttpContextToken<ContextInterface>
+	public getToken() : HttpContextToken<Context>
 	{
 		return this.token;
 	}
@@ -58,7 +58,7 @@ export class AbortService
 
 	public set<T>(request : HttpRequest<T>) : this
 	{
-		const context : ContextInterface = request.context.get(this.getToken());
+		const context : Context = request.context.get(this.getToken());
 
 		if (this.has(request))
 		{
@@ -144,10 +144,10 @@ export class AbortService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return {Observable<[string, StoreInterface]>} collection of signal and timeout
+	 * @return {Observable<[string, Store]>} collection of signal and timeout
 	 */
 
-	public observeAll() : Observable<[string, StoreInterface]>
+	public observeAll() : Observable<[string, Store]>
 	{
 		return from(this.store);
 	}

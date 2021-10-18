@@ -1,5 +1,5 @@
 export { ObserveInterceptor } from './observe.interceptor';
-export { ObserveEffectInterface } from './observe.interface';
+export { ObserveEffectInterface, ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
 export { ObserveService } from './observe.service';
 export { OBSERVE_EFFECT } from './observe.token';
-export { StateType } from './observe.type';
+export { StateType, State } from './observe.type';

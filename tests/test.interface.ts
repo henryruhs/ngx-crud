@@ -1,4 +1,4 @@
-export interface TestInterface
+export interface Test
 {
 	id : number;
 	title : string;
@@ -6,7 +6,7 @@ export interface TestInterface
 	userId : string;
 }
 
-export interface ContextInterface
+export interface Context
 {
 	before : boolean;
 	after : boolean

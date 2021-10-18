@@ -52,12 +52,12 @@ Extend the `ExampleService` from the `CrudService`:
 ```typescript
 import { Injectable } from '@angular/core';
 import { CrudService } from 'ngx-crud';
-import { ExampleInterface } from './example.interface';
+import { Example } from './example.interface';
 
 import { environment } from '@env';
 
 @Injectable()
-export class ExampleService extends CrudService<ExampleInterface>
+export class ExampleService extends CrudService<Example>
 {
 	protected apiUrl : string = environment.apiUrl;
 	protected endpoint : string = environment.routes.example;

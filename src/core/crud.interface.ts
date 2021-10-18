@@ -1,15 +1,15 @@
 import { Observable, ObservableInput } from 'rxjs';
-import { BodyInterface, OptionInterface, OptionWithBodyInterface } from '../common';
-import { IdType, MethodType } from '../common';
+import { Body, Options, OptionWithBody } from '../common';
+import { Id, Method } from '../common';
 
 export interface CrudInterface<T>
 {
-	create<$ = T>(body : BodyInterface, options ?: OptionInterface) : Observable<$>;
-	read<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>;
-	find<$ = T[]>(options ?: OptionInterface) : Observable<$>;
-	update<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>;
-	patch<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>;
-	delete<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>;
-	request<$ = T | T[]>(method : MethodType, options ?: OptionWithBodyInterface) : Observable<$>;
+	create<$ = T>(body : Body, options ?: Options) : Observable<$>;
+	read<$ = T>(id : Id, options ?: Options) : Observable<$>;
+	find<$ = T[]>(options ?: Options) : Observable<$>;
+	update<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>;
+	patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>;
+	delete<$ = T>(id : Id, options ?: Options) : Observable<$>;
+	request<$ = T | T[]>(method : Method, options ?: OptionWithBody) : Observable<$>;
 	parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>;
 }

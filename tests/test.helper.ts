@@ -1,24 +1,24 @@
 import { HttpRequest, HttpContextToken } from '@angular/common/http';
 import { createUrl } from '../src';
 import { TestService } from './test.service';
-import { ContextInterface, TestInterface } from './test.interface';
+import { Context, Test } from './test.interface';
 
-const defaultContext : ContextInterface =
+const defaultContext : Context =
 {
 	before: false,
 	after: false
 };
-const token : HttpContextToken<ContextInterface> = new HttpContextToken<ContextInterface>(() => defaultContext);
+const token : HttpContextToken<Context> = new HttpContextToken<Context>(() => defaultContext);
 
 /**
  * get the http context token
  *
  * @since 8.0.0
  *
- * @return {HttpContextToken<ContextInterface>} instance of the http context token
+ * @return {HttpContextToken<Context>} instance of the http context token
  */
 
-export function getToken() : HttpContextToken<ContextInterface>
+export function getToken() : HttpContextToken<Context>
 {
 	return token;
 }
@@ -30,12 +30,12 @@ export function getToken() : HttpContextToken<ContextInterface>
  *
  * @param {TestService} testService TestService
  *
- * @return {HttpRequest<TestInterface>} instance of the http request
+ * @return {HttpRequest<Test>} instance of the http request
  */
 
-export function mockRequest(testService : TestService) : HttpRequest<TestInterface>
+export function mockRequest(testService : TestService) : HttpRequest<Test>
 {
-	return new HttpRequest<TestInterface>('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
+	return new HttpRequest<Test>('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
 	{
 		context: testService.getContext(),
 		headers: testService.getHeaders(),

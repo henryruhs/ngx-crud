@@ -1,8 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
-import { BodyInterface, OptionInterface, OptionWithBodyInterface } from '../common';
+import { Body, Options, OptionWithBody } from '../common';
 import { CommonService } from '../common';
-import { IdType, MethodType } from '../common';
+import { Id, Method } from '../common';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
@@ -43,13 +43,13 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {BodyInterface} body body of the request
-	 * @param {OptionInterface} options options of the request
+	 * @param {Body} body body of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public create<$ = T>(body : BodyInterface, options ?: OptionInterface) : Observable<$>
+	public create<$ = T>(body : Body, options ?: Options) : Observable<$>
 	{
 		return this.postService.bind(this).post<$>(body, options);
 	}
@@ -59,13 +59,13 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {IdType} id identifier of the resource
-	 * @param {OptionInterface} options options of the request
+	 * @param {Id} id identifier of the resource
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public read<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>
+	public read<$ = T>(id : Id, options ?: Options) : Observable<$>
 	{
 		return this.getService.bind(this).get<$>(id, options);
 	}
@@ -75,12 +75,12 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {OptionInterface} options options of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public find<$ = T[]>(options ?: OptionInterface) : Observable<$>
+	public find<$ = T[]>(options ?: Options) : Observable<$>
 	{
 		return this.findService.bind(this).find<$>(options);
 	}
@@ -90,14 +90,14 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {IdType} id identifier of the resource
-	 * @param {BodyInterface} body body of the request
-	 * @param {OptionInterface} options options of the request
+	 * @param {Id} id identifier of the resource
+	 * @param {Body} body body of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public update<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>
+	public update<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
 		return this.putService.bind(this).put<$>(id, body, options);
 	}
@@ -107,14 +107,14 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {IdType} id identifier of the resource
-	 * @param {BodyInterface} body body of the request
-	 * @param {OptionInterface} options options of the request
+	 * @param {Id} id identifier of the resource
+	 * @param {Body} body body of the request
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public patch<$ = T>(id : IdType, body : BodyInterface, options ?: OptionInterface) : Observable<$>
+	public patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
 		return this.patchService.bind(this).patch<$>(id, body, options);
 	}
@@ -124,13 +124,13 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {IdType} id identifier of the resource
-	 * @param {OptionInterface} options options of the request
+	 * @param {Id} id identifier of the resource
+	 * @param {Options} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public delete<$ = T>(id : IdType, options ?: OptionInterface) : Observable<$>
+	public delete<$ = T>(id : Id, options ?: Options) : Observable<$>
 	{
 		return this.deleteService.bind(this).delete<$>(id, options);
 	}
@@ -140,13 +140,13 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {MethodType} method method of the request
-	 * @param {OptionWithBodyInterface} options options of the request
+	 * @param {Method} method method of the request
+	 * @param {OptionWithBody} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public request<$ = T | T[]>(method : MethodType, options ?: OptionWithBodyInterface) : Observable<$>
+	public request<$ = T | T[]>(method : Method, options ?: OptionWithBody) : Observable<$>
 	{
 		return this.requestService.bind(this).request<$>(method, options);
 	}
