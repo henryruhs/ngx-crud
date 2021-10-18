@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
-import { Body, Options, OptionWithBody } from '../common';
+import { Body, Options, OptionsWithBody } from '../common';
 import { CommonService } from '../common';
 import { Id, Method } from '../common';
 import { DeleteService } from './delete.service';
@@ -141,12 +141,12 @@ export class CrudService<T> extends CommonService implements CrudInterface<T>
 	 * @since 8.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionWithBody} options options of the request
+	 * @param {OptionsWithBody} options options of the request
 	 *
 	 * @return {Observable<$>} http response
 	 */
 
-	public request<$ = T | T[]>(method : Method, options ?: OptionWithBody) : Observable<$>
+	public request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>
 	{
 		return this.requestService.bind(this).request<$>(method, options);
 	}

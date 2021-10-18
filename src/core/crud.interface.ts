@@ -1,5 +1,5 @@
 import { Observable, ObservableInput } from 'rxjs';
-import { Body, Options, OptionWithBody } from '../common';
+import { Body, Options, OptionsWithBody } from '../common';
 import { Id, Method } from '../common';
 
 export interface CrudInterface<T>
@@ -10,6 +10,6 @@ export interface CrudInterface<T>
 	update<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>;
 	patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>;
 	delete<$ = T>(id : Id, options ?: Options) : Observable<$>;
-	request<$ = T | T[]>(method : Method, options ?: OptionWithBody) : Observable<$>;
+	request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>;
 	parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>;
 }

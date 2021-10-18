@@ -45,7 +45,7 @@ export interface Options
 	withCredentials ?: boolean;
 }
 
-export interface OptionWithBody extends Options
+export interface OptionsWithBody extends Options
 {
 	body ?: Body;
 }
