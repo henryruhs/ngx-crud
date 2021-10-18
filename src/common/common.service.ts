@@ -701,7 +701,7 @@ export class CommonService
 
 	public abort() : this
 	{
-		const url : string = createUrl(this.getApiUrl(), this.getEndpoint());
+		const url : string = createUrl(this.getApiUrl(), this.getApiRoute());
 
 		this.abortService.abortMany(url);
 		return this;
@@ -750,7 +750,7 @@ export class CommonService
 
 	public flush() : this
 	{
-		const url : string = createUrl(this.getApiUrl(), this.getEndpoint());
+		const url : string = createUrl(this.getApiUrl(), this.getApiRoute());
 
 		this.cacheService.flushMany(url);
 		return this;

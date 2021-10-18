@@ -35,7 +35,7 @@ export function getToken() : HttpContextToken<Context>
 
 export function mockRequest(testService : TestService) : HttpRequest<Test>
 {
-	return new HttpRequest<Test>('GET', createUrl(testService.getApiUrl(), testService.getEndpoint()),
+	return new HttpRequest<Test>('GET', createUrl(testService.getApiUrl(), testService.getApiRoute()),
 	{
 		context: testService.getContext(),
 		headers: testService.getHeaders(),
