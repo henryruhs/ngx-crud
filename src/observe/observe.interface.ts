@@ -17,10 +17,10 @@ export interface Context
 
 export interface ObserveBeforeEffect
 {
-	before?<T>(request : HttpRequest<T>) : HttpRequest<T>;
+	before<T>(request : HttpRequest<T>) : HttpRequest<T>;
 }
 
 export interface ObserveAfterEffect
 {
-	after?<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : void
+	after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : void
 }
