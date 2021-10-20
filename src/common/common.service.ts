@@ -28,7 +28,7 @@ export class CommonService
 	}
 
 	/**
-	 * bind to service
+	 * bind to the service
 	 *
 	 * @since 6.2.0
 	 *

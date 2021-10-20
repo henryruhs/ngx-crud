@@ -61,23 +61,6 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it('find', done =>
-	{
-		inject(
-		[
-			TestService
-		], (testService : TestService) =>
-		{
-			testService
-				.find()
-				.subscribe(response =>
-				{
-					expect(response[0].userId).to.equal(1);
-					done();
-				});
-		})();
-	});
-
 	it('find by user', done =>
 	{
 		inject(
@@ -90,6 +73,23 @@ describe('CrudService', () =>
 				.subscribe(response =>
 				{
 					expect(response[0].userId).to.equal(10);
+					done();
+				});
+		})();
+	});
+
+	it('find', done =>
+	{
+		inject(
+		[
+			TestService
+		], (testService : TestService) =>
+		{
+			testService
+				.find()
+				.subscribe(response =>
+				{
+					expect(response[0].userId).to.equal(1);
 					done();
 				});
 		})();

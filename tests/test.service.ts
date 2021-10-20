@@ -25,6 +25,19 @@ export class TestService extends CrudService<Test>
 
 	public findByUser(userId : string) : Observable<Test[]>
 	{
-		return this.setParam('userId', userId).find();
+		return this.clone().setParam('userId', userId).find();
+	}
+
+	/**
+	 * clone the service
+	 *
+	 * @since 9.0.0
+	 *
+	 * @return {TestService} instance of the service
+	 */
+
+	protected clone() : TestService
+	{
+		return new TestService(this.injector);
 	}
 }
