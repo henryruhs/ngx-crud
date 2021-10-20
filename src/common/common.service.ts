@@ -177,7 +177,7 @@ export class CommonService
 
 	public setOption(name : keyof Options, value : Options[keyof Options]) : this
 	{
-		this.options[name.toString()] = value;
+		this.options[name] = value;
 		return this;
 	}
 
