@@ -7,7 +7,7 @@ import
 	HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { filter, share, tap } from 'rxjs/operators';
 import { Context } from './cache.interface';
 import { CacheService } from './cache.service';
@@ -72,7 +72,10 @@ export class CacheInterceptor implements HttpInterceptor
 			.pipe(
 				filter(event => event instanceof HttpResponse),
 				tap((response : HttpResponse<T>) => this.cacheService.set(request, of(response))),
-				share()
+				share(
+				{
+					connector: () => new ReplaySubject()
+				})
 			);
 
 		this.cacheService.set(request, nextHandler);
