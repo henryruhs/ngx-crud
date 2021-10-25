@@ -57,16 +57,20 @@ describe('ObserveService', () =>
 			testService
 				.enableObserve('GET')
 				.find()
-				.subscribe(() =>
+				.subscribe(
 				{
-					expect(testService.getContext().get(getToken()).before).to.be.true;
-					expect(testService.getContext().get(getToken()).after).to.be.true;
-					testService.clear();
-					done();
-				}, () =>
-				{
-					testService.clear();
-					done('error');
+					next: () =>
+					{
+						expect(testService.getContext().get(getToken()).before).to.be.true;
+						expect(testService.getContext().get(getToken()).after).to.be.true;
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
 				});
 		})();
 	});
@@ -85,14 +89,18 @@ describe('ObserveService', () =>
 				.subscribe();
 			observeService
 				.observeAll()
-				.subscribe(() =>
+				.subscribe(
 				{
-					testService.clear();
-					done();
-				}, () =>
-				{
-					testService.clear();
-					done('error');
+					next: () =>
+					{
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
 				});
 		})();
 	});

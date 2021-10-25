@@ -61,7 +61,7 @@ export class ObserveInterceptor implements HttpInterceptor
 				catchError((response : HttpErrorResponse) =>
 				{
 					this.observeService.after(request, response);
-					return throwError(response);
+					return throwError(() => response);
 				}),
 				finalize(() => this.observeService.end(request))
 			);

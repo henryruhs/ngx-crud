@@ -140,15 +140,19 @@ describe('AbortService', () =>
 				.subscribe();
 			abortService
 				.observeAll()
-				.subscribe(store =>
+				.subscribe(
 				{
-					expect(store.length).to.be.above(0);
-					testService.clear();
-					done();
-				}, () =>
-				{
-					testService.clear();
-					done('error');
+					next: store =>
+					{
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
 				});
 		})();
 	});

@@ -62,14 +62,18 @@ describe('CacheService', () =>
 				{
 					cacheService
 						.get(mockRequest(testService))
-						.subscribe(() =>
+						.subscribe(
 						{
-							testService.clear();
-							done();
-						}, () =>
-						{
-							testService.clear();
-							done('error');
+							next: () =>
+							{
+								testService.clear();
+								done();
+							},
+							error: () =>
+							{
+								testService.clear();
+								done('error');
+							}
 						});
 				});
 		})();
@@ -94,14 +98,18 @@ describe('CacheService', () =>
 				{
 					cacheService
 						.get(mockRequest(testService))
-						.subscribe(() =>
+						.subscribe(
 						{
-							testService.clear();
-							done('error');
-						}, () =>
-						{
-							testService.clear();
-							done();
+							next: () =>
+							{
+								testService.clear();
+								done('error');
+							},
+							error: () =>
+							{
+								testService.clear();
+								done();
+							}
 						});
 				});
 		})();
@@ -124,14 +132,18 @@ describe('CacheService', () =>
 					testService.flush();
 					cacheService
 						.get(mockRequest(testService))
-						.subscribe(() =>
+						.subscribe(
 						{
-							testService.clear();
-							done('error');
-						}, () =>
-						{
-							testService.clear();
-							done();
+							next: () =>
+							{
+								testService.clear();
+								done('error');
+							},
+							error: () =>
+							{
+								testService.clear();
+								done();
+							}
 						});
 				});
 		})();
@@ -154,14 +166,18 @@ describe('CacheService', () =>
 					cacheService
 						.flushAll()
 						.get(mockRequest(testService))
-						.subscribe(() =>
+						.subscribe(
 						{
-							testService.clear();
-							done('error');
-						}, () =>
-						{
-							testService.clear();
-							done();
+							next: () =>
+							{
+								testService.clear();
+								done('error');
+							},
+							error: () =>
+							{
+								testService.clear();
+								done();
+							}
 						});
 				});
 		})();
@@ -182,15 +198,19 @@ describe('CacheService', () =>
 				.subscribe();
 			cacheService
 				.observeAll()
-				.subscribe(store =>
+				.subscribe(
 				{
-					expect(store.length).to.be.above(0);
-					testService.clear();
-					done();
-				}, () =>
-				{
-					testService.clear();
-					done('error');
+					next: store =>
+					{
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
 				});
 		})();
 	});
