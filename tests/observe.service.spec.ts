@@ -39,7 +39,7 @@ describe('ObserveService', () =>
 		], (observeService : ObserveService, testService : TestService) =>
 		{
 			testService.enableObserve();
-			expect(testService.getContext().get(observeService.getToken()).method).to.be.equal('ALL');
+			expect(testService.getContext().get(observeService.getToken()).method).to.be.equal('ANY');
 			expect(testService.getContext().get(observeService.getToken()).lifetime).to.be.equal(1000);
 			testService.disableObserve();
 			expect(testService.getContext().get(observeService.getToken()).method).to.be.equal(null);

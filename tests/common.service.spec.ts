@@ -1,7 +1,7 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpContextToken } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { CrudModule, CommonService } from '../src';
+import { CrudModule, CommonService, Context } from '../src';
 import { TestService } from './test.service';
 
 before(() =>
@@ -117,6 +117,35 @@ describe('CommonService', () =>
 				'7'
 			]);
 			expect(commonService.clearHeader('test').getHeaderArray('test')).to.be.equal(null);
+		})();
+	});
+
+	it('context by token', () =>
+	{
+		inject(
+		[
+			CommonService
+		], (commonService : CommonService) =>
+		{
+			const defaultContext : Context =
+			{
+				method: 'ANY',
+				lifetime: 1000
+			};
+			const token : HttpContextToken<Context> = new HttpContextToken<Context>(() => defaultContext);
+
+			expect((commonService.getContextByToken(token) as Context).method).to.be.equal('ANY');
+			expect((commonService.getContextByToken(token) as Context).lifetime).to.be.equal(1000);
+			commonService.setContextByToken(token,
+			{
+				method: 'GET',
+				lifetime: 2000
+			});
+			expect((commonService.getContextByToken(token) as Context).method).to.be.equal('GET');
+			expect((commonService.getContextByToken(token) as Context).lifetime).to.be.equal(2000);
+			commonService.clearContextByToken(token);
+			expect((commonService.getContextByToken(token) as Context).method).to.be.equal('ANY');
+			expect((commonService.getContextByToken(token) as Context).lifetime).to.be.equal(1000);
 		})();
 	});
 
