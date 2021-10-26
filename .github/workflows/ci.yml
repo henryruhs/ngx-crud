@@ -50,13 +50,9 @@ jobs:
     with:
      node-version: 14
   - run: npm install
-  - run: npm install c8 @stryker-mutator/core @stryker-mutator/mocha-runner
-  - run: node_modules/.bin/c8 --reporter=lcov node_modules/.bin/mocha
+  - run: npx c8 --reporter=lcov mocha
   - name: Report to Coveralls
     uses: coverallsapp/github-action@v1.1.2
     with:
      github-token: ${{ secrets.GITHUB_TOKEN }}
-  - name: Report to Stryker
-    run: node_modules/.bin/stryker run --testRunner=mocha --reporters=dashboard
-    env:
-     STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
