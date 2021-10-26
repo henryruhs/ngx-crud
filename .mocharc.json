@@ -3,7 +3,13 @@
 	[
 		"ts"
 	],
-	"file": "tests/setup.js",
-	"spec": "tests/*.spec.ts",
+	"node-option":
+	[
+		"experimental-specifier-resolution=node",
+		"loader=ts-node/esm",
+		"no-warnings"
+	],
+	"file": "tests/setup.mjs",
+	"spec": "tests/**/*.spec.ts",
 	"timeout": 8000
 }
