@@ -50,8 +50,8 @@ jobs:
     with:
      node-version: 14
   - run: npm install
-  - run: npm install nyc @stryker-mutator/core @stryker-mutator/mocha-runner
-  - run: node_modules/.bin/nyc node_modules/.bin/mocha
+  - run: npm install c8 @stryker-mutator/core @stryker-mutator/mocha-runner
+  - run: node_modules/.bin/c8 --reporter=lcov node_modules/.bin/mocha
   - name: Report to Coveralls
     uses: coverallsapp/github-action@v1.1.2
     with:
