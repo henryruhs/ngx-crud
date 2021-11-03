@@ -9,7 +9,8 @@
 		"loader=ts-node/esm",
 		"no-warnings"
 	],
-	"file": "tests/setup.mjs",
+	"require": "tests/setup.mjs",
 	"spec": "tests/**/*.spec.ts",
+	"parallel": true,
 	"timeout": 8000
 }
