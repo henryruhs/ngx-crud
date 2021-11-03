@@ -11,6 +11,5 @@
 	],
 	"require": "tests/setup.mjs",
 	"spec": "tests/**/*.spec.ts",
-	"parallel": true,
 	"timeout": 8000
 }
