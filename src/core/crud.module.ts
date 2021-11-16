@@ -9,7 +9,6 @@ import { FindService } from './find.service';
 import { GetService } from './get.service';
 import { ObserveInterceptor } from '../observe';
 import { ObserveService } from '../observe';
-import { ParallelService } from './parallel.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -40,7 +39,6 @@ import { RequestService } from './request.service';
 		FindService,
 		GetService,
 		ObserveService,
-		ParallelService,
 		PatchService,
 		PostService,
 		PutService,

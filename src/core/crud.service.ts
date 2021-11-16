@@ -1,12 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
-import { Observable, ObservableInput } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Body, Options, OptionsWithBody } from '../common';
 import { CommonService } from '../common';
 import { Id, Method } from '../common';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { GetService } from './get.service';
-import { ParallelService } from './parallel.service';
 import { PatchService } from './patch.service';
 import { PostService } from './post.service';
 import { PutService } from './put.service';
@@ -14,12 +13,20 @@ import { RequestService } from './request.service';
 import { Crud } from './crud.interface';
 
 @Injectable()
-export class CrudService<T> extends CommonService implements Crud<T>
+export class CrudService<
+	T,
+	Create = T,
+	Read = T,
+	Find = T[],
+	Update = T,
+	Patch = T,
+	Delete = T,
+	Request = T | T[]
+> extends CommonService implements Crud
 {
 	protected deleteService : DeleteService<T>;
 	protected findService : FindService<T>;
 	protected getService : GetService<T>;
-	protected parallelService : ParallelService<T>;
 	protected patchService : PatchService<T>;
 	protected postService : PostService<T>;
 	protected putService : PutService<T>;
@@ -31,7 +38,6 @@ export class CrudService<T> extends CommonService implements Crud<T>
 		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
 		this.findService = injector.get<FindService<T>>(FindService);
 		this.getService = injector.get<GetService<T>>(GetService);
-		this.parallelService = injector.get<ParallelService<T>>(ParallelService);
 		this.patchService = injector.get<PatchService<T>>(PatchService);
 		this.postService = injector.get<PostService<T>>(PostService);
 		this.putService = injector.get<PutService<T>>(PutService);
@@ -49,7 +55,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public create<$ = T>(body : Body, options ?: Options) : Observable<$>
+	public create<$ = Create>(body : Body, options ?: Options) : Observable<$>
 	{
 		return this.postService.bind(this).post<$>(body, options);
 	}
@@ -65,7 +71,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public read<$ = T>(id : Id, options ?: Options) : Observable<$>
+	public read<$ = Read>(id : Id, options ?: Options) : Observable<$>
 	{
 		return this.getService.bind(this).get<$>(id, options);
 	}
@@ -80,7 +86,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public find<$ = T[]>(options ?: Options) : Observable<$>
+	public find<$ = Find>(options ?: Options) : Observable<$>
 	{
 		return this.findService.bind(this).find<$>(options);
 	}
@@ -97,7 +103,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public update<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
+	public update<$ = Update>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
 		return this.putService.bind(this).put<$>(id, body, options);
 	}
@@ -114,7 +120,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
+	public patch<$ = Patch>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
 		return this.patchService.bind(this).patch<$>(id, body, options);
 	}
@@ -130,7 +136,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public delete<$ = T>(id : Id, options ?: Options) : Observable<$>
+	public delete<$ = Delete>(id : Id, options ?: Options) : Observable<$>
 	{
 		return this.deleteService.bind(this).delete<$>(id, options);
 	}
@@ -146,24 +152,8 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @return {Observable<$>} http response
 	 */
 
-	public request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>
+	public request<$ = Request>(method : Method, options ?: OptionsWithBody) : Observable<$>
 	{
 		return this.requestService.bind(this).request<$>(method, options);
-	}
-
-	/**
-	 * fires multiple requests in parallel
-	 *
-	 * @since 8.0.0
-	 * @deprecated 9.1.0
-	 *
-	 * @param {ObservableInput<$>[]} requestArray collection of requests
-	 *
-	 * @return {Observable<$[]>} multiple http responses
-	 */
-
-	public parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>
-	{
-		return this.parallelService.parallel<$>(requestArray);
 	}
 }

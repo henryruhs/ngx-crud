@@ -6,6 +6,5 @@ export { FindService } from './find.service';
 export { GetService } from './get.service';
 export { PatchService } from './patch.service';
 export { PostService } from './post.service';
-export { ParallelService } from './parallel.service';
 export { PutService } from './put.service';
 export { RequestService } from './request.service';
