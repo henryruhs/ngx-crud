@@ -5,10 +5,10 @@ import { CommonService } from '../common';
 import { Id, Method } from '../common';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
-import { GetService } from './get.service';
+import { ReadService } from './read.service';
 import { PatchService } from './patch.service';
-import { PostService } from './post.service';
-import { PutService } from './put.service';
+import { CreateService } from './create.service';
+import { UpdateService } from './update.service';
 import { RequestService } from './request.service';
 import { Crud } from './crud.interface';
 
@@ -24,23 +24,23 @@ export class CrudService<
 	Request = T | T[]
 > extends CommonService implements Crud
 {
-	protected deleteService : DeleteService<T>;
+	protected createService : CreateService<T>;
+	protected readService : ReadService<T>;
 	protected findService : FindService<T>;
-	protected getService : GetService<T>;
+	protected updateService : UpdateService<T>;
 	protected patchService : PatchService<T>;
-	protected postService : PostService<T>;
-	protected putService : PutService<T>;
+	protected deleteService : DeleteService<T>;
 	protected requestService : RequestService<T>;
 
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
+		this.createService = injector.get<CreateService<T>>(CreateService);
+		this.readService = injector.get<ReadService<T>>(ReadService);
 		this.findService = injector.get<FindService<T>>(FindService);
-		this.getService = injector.get<GetService<T>>(GetService);
+		this.updateService = injector.get<UpdateService<T>>(UpdateService);
 		this.patchService = injector.get<PatchService<T>>(PatchService);
-		this.postService = injector.get<PostService<T>>(PostService);
-		this.putService = injector.get<PutService<T>>(PutService);
+		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
 		this.requestService = injector.get<RequestService<T>>(RequestService);
 	}
 
@@ -57,7 +57,7 @@ export class CrudService<
 
 	public create<$ = Create>(body : Body, options ?: Options) : Observable<$>
 	{
-		return this.postService.bind(this).post<$>(body, options);
+		return this.createService.bind(this).create<$>(body, options);
 	}
 
 	/**
@@ -73,7 +73,7 @@ export class CrudService<
 
 	public read<$ = Read>(id : Id, options ?: Options) : Observable<$>
 	{
-		return this.getService.bind(this).get<$>(id, options);
+		return this.readService.bind(this).read<$>(id, options);
 	}
 
 	/**
@@ -105,7 +105,7 @@ export class CrudService<
 
 	public update<$ = Update>(id : Id, body : Body, options ?: Options) : Observable<$>
 	{
-		return this.putService.bind(this).put<$>(id, body, options);
+		return this.updateService.bind(this).update<$>(id, body, options);
 	}
 
 	/**

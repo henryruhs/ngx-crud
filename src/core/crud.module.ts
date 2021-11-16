@@ -6,12 +6,12 @@ import { CacheInterceptor } from '../cache';
 import { CacheService } from '../cache';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
-import { GetService } from './get.service';
+import { ReadService } from './read.service';
 import { ObserveInterceptor } from '../observe';
 import { ObserveService } from '../observe';
 import { PatchService } from './patch.service';
-import { PostService } from './post.service';
-import { PutService } from './put.service';
+import { CreateService } from './create.service';
+import { UpdateService } from './update.service';
 import { RequestService } from './request.service';
 
 @NgModule(
@@ -37,11 +37,11 @@ import { RequestService } from './request.service';
 		CacheService,
 		DeleteService,
 		FindService,
-		GetService,
+		ReadService,
 		ObserveService,
 		PatchService,
-		PostService,
-		PutService,
+		CreateService,
+		UpdateService,
 		RequestService
 	]
 })

@@ -5,7 +5,7 @@ import { CommonService } from '../common';
 import { createUrl } from '../common';
 
 @Injectable()
-export class PostService<T> extends CommonService
+export class CreateService<T> extends CommonService
 {
 	/**
 	 * fires a request to create a single resource
@@ -18,7 +18,7 @@ export class PostService<T> extends CommonService
 	 * @return {Observable<$>} http response
 	 */
 
-	public post<$ = T>(body : Body, options ?: Options) : Observable<$>
+	public create<$ = T>(body : Body, options ?: Options) : Observable<$>
 	{
 		return this.http.post<$>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
 		{
