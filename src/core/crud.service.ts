@@ -155,6 +155,7 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * fires multiple requests in parallel
 	 *
 	 * @since 8.0.0
+	 * @deprecated 9.1.0
 	 *
 	 * @param {ObservableInput<$>[]} requestArray collection of requests
 	 *

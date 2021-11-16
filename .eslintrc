@@ -2,5 +2,9 @@
 	"extends":
 	[
 		"eslint-config-redaxmedia"
-	]
+	],
+	"rules":
+	{
+		"deprecation/deprecation": "warn"
+	}
 }
