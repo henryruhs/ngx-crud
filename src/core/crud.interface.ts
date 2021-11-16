@@ -2,9 +2,12 @@ import { Observable } from 'rxjs';
 import { Body, Options, OptionsWithBody } from '../common';
 import { Id, Method } from '../common';
 
-export interface Crud
+export interface Crud<CreateRequestBody, CreateResponseBody>
 {
-	create<$>(body : Body, options ?: Options) : Observable<$>;
+	create<
+		$CreateRequestBody extends CreateRequestBody,
+		$CreateResponseBody extends CreateResponseBody
+	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>;
 	read<$>(id : Id, options ?: Options) : Observable<$>;
 	find<$>(options ?: Options) : Observable<$>;
 	update<$>(id : Id, body : Body, options ?: Options) : Observable<$>;

@@ -1,7 +1,7 @@
 import { HttpRequest, HttpContextToken } from '@angular/common/http';
 import { createUrl } from '../src';
 import { TestService } from './test.service';
-import { Context, Test } from './test.interface';
+import { Context, ResponseBody } from './test.interface';
 
 const defaultContext : Context =
 {
@@ -30,12 +30,12 @@ export function getToken() : HttpContextToken<Context>
  *
  * @param {TestService} testService TestService
  *
- * @return {HttpRequest<Test>} instance of the http request
+ * @return {HttpRequest<ResponseBody>} instance of the http request
  */
 
-export function mockRequest(testService : TestService) : HttpRequest<Test>
+export function mockRequest(testService : TestService) : HttpRequest<ResponseBody>
 {
-	return new HttpRequest<Test>('GET', createUrl(testService.getApiUrl(), testService.getApiRoute()),
+	return new HttpRequest<ResponseBody>('GET', createUrl(testService.getApiUrl(), testService.getApiRoute()),
 	{
 		context: testService.getContext(),
 		headers: testService.getHeaders(),

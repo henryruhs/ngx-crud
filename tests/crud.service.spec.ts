@@ -33,7 +33,9 @@ describe('CrudService', () =>
 			testService
 				.create(
 				{
-					title: 'test'
+					title: 'test',
+					body: 'test',
+					userId: '1'
 				})
 				.subscribe(response =>
 				{

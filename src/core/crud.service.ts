@@ -14,34 +14,38 @@ import { Crud } from './crud.interface';
 
 @Injectable()
 export class CrudService<
-	T,
-	Create = T,
-	Read = T,
-	Find = T[],
-	Update = T,
-	Patch = T,
-	Delete = T,
-	Request = T | T[]
-> extends CommonService implements Crud
+	RequestBody,
+	ResponseBody,
+	CreateRequestBody = RequestBody,
+	CreateResponseBody = ResponseBody,
+	// to be implemented from here on
+	Read = ResponseBody,
+	Find = ResponseBody[],
+	Update = ResponseBody,
+	//PatchRequestBody = Partial<RequestBody>,
+	Patch = ResponseBody,
+	Delete = ResponseBody,
+	Request = ResponseBody | ResponseBody[]
+> extends CommonService implements Crud<CreateRequestBody, CreateResponseBody>
 {
-	protected createService : CreateService<T>;
-	protected readService : ReadService<T>;
-	protected findService : FindService<T>;
-	protected updateService : UpdateService<T>;
-	protected patchService : PatchService<T>;
-	protected deleteService : DeleteService<T>;
-	protected requestService : RequestService<T>;
+	protected createService : CreateService<CreateRequestBody, CreateResponseBody>;
+	protected readService : ReadService<ResponseBody>;
+	protected findService : FindService<ResponseBody>;
+	protected updateService : UpdateService<ResponseBody>;
+	protected patchService : PatchService<ResponseBody>;
+	protected deleteService : DeleteService<ResponseBody>;
+	protected requestService : RequestService<ResponseBody>;
 
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.createService = injector.get<CreateService<T>>(CreateService);
-		this.readService = injector.get<ReadService<T>>(ReadService);
-		this.findService = injector.get<FindService<T>>(FindService);
-		this.updateService = injector.get<UpdateService<T>>(UpdateService);
-		this.patchService = injector.get<PatchService<T>>(PatchService);
-		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
-		this.requestService = injector.get<RequestService<T>>(RequestService);
+		this.createService = injector.get<CreateService<CreateRequestBody, CreateResponseBody>>(CreateService);
+		this.readService = injector.get<ReadService<ResponseBody>>(ReadService);
+		this.findService = injector.get<FindService<ResponseBody>>(FindService);
+		this.updateService = injector.get<UpdateService<ResponseBody>>(UpdateService);
+		this.patchService = injector.get<PatchService<ResponseBody>>(PatchService);
+		this.deleteService = injector.get<DeleteService<ResponseBody>>(DeleteService);
+		this.requestService = injector.get<RequestService<ResponseBody>>(RequestService);
 	}
 
 	/**
@@ -49,15 +53,18 @@ export class CrudService<
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {Body} body body of the request
+	 * @param {$CreateRequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$CreateResponseBody>} http response
 	 */
 
-	public create<$ = Create>(body : Body, options ?: Options) : Observable<$>
+	public create<
+		$CreateRequestBody extends CreateRequestBody,
+		$CreateResponseBody extends CreateResponseBody
+	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
 	{
-		return this.createService.bind(this).create<$>(body, options);
+		return this.createService.bind(this).create<$CreateRequestBody, $CreateResponseBody>(body, options);
 	}
 
 	/**
