@@ -6,7 +6,7 @@ import { Id } from '../common';
 import { createUrlWithId } from '../common';
 
 @Injectable()
-export class ReadService<ResponseBody> extends CommonService
+export class ReadService<ReadResponseBody> extends CommonService
 {
 	/**
 	 * fires a request to read a single resource
@@ -16,12 +16,14 @@ export class ReadService<ResponseBody> extends CommonService
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$ResponseBody>} http response
+	 * @return {Observable<$ReadResponseBody>} http response
 	 */
 
-	public read<$ResponseBody = ResponseBody>(id : Id, options ?: Options) : Observable<$ResponseBody>
+	public read<
+		$ReadResponseBody = ReadResponseBody
+	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
 	{
-		return this.http.get<$ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.http.get<$ReadResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

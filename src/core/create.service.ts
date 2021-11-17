@@ -5,25 +5,25 @@ import { CommonService } from '../common';
 import { createUrl } from '../common';
 
 @Injectable()
-export class CreateService<RequestBody, ResponseBody> extends CommonService
+export class CreateService<CreateRequestBody, CreateResponseBody> extends CommonService
 {
 	/**
 	 * fires a request to create a single resource
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {$RequestBody} body body of the request
+	 * @param {$CreateRequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$ResponseBody>} http response
+	 * @return {Observable<$CreateResponseBody>} http response
 	 */
 
 	public create<
-		$RequestBody extends RequestBody,
-		$ResponseBody extends ResponseBody
-	>(body : $RequestBody, options ?: Options) : Observable<$ResponseBody>
+		$CreateRequestBody extends CreateRequestBody,
+		$CreateResponseBody = CreateResponseBody
+	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
 	{
-		return this.http.post<$ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
+		return this.http.post<$CreateResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
 		{
 			...this.getOptions(),
 			...options

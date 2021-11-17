@@ -107,14 +107,18 @@ describe('CrudService', () =>
 			testService
 				.update('1',
 				{
-					title: 'test'
+					title: 'test',
+					body: 'test',
+					userId: '1'
 				})
 				.subscribe(response =>
 				{
 					expect(response).to.deep.equal(
 					{
 						id: 1,
-						title: 'test'
+						title: 'test',
+						body: 'test',
+						userId: '1'
 					});
 					done();
 				});

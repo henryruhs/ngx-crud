@@ -6,7 +6,7 @@ import { Method } from '../common';
 import { createUrl } from '../common';
 
 @Injectable()
-export class RequestService<T> extends CommonService
+export class RequestService<RequestRequestBody, RequestResponseBody> extends CommonService
 {
 	/**
 	 * fire a non-standard request
@@ -14,14 +14,17 @@ export class RequestService<T> extends CommonService
 	 * @since 8.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody} options options of the request
+	 * @param {OptionsWithBody<$RequestRequestBody>} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$RequestResponseBody>} http response
 	 */
 
-	public request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>
+	public request<
+		$RequestRequestBody = RequestRequestBody,
+		$RequestResponseBody = RequestResponseBody | RequestResponseBody[]
+	>(method : Method, options ?: OptionsWithBody<$RequestRequestBody>) : Observable<$RequestResponseBody>
 	{
-		return this.http.request<$>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.http.request<$RequestResponseBody>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options
