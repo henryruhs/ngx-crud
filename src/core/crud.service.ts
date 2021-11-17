@@ -11,6 +11,7 @@ import { PatchService } from './patch.service';
 import { DeleteService } from './delete.service';
 import { CustomService } from './custom.service';
 import { Crud } from './crud.interface';
+import { NoInfer } from './crud.type';
 
 @Injectable()
 export class CrudService<
@@ -73,9 +74,9 @@ export class CrudService<
 	 */
 
 	public create<
-		$CreateRequestBody extends CreateRequestBody,
+		$CreateRequestBody = CreateRequestBody,
 		$CreateResponseBody = CreateResponseBody
-	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
+	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>
 	{
 		return this.createService.bind(this).create(body, options);
 	}
@@ -128,9 +129,9 @@ export class CrudService<
 	 */
 
 	public update<
-		$UpdateRequestBody extends UpdateRequestBody,
+		$UpdateRequestBody = UpdateRequestBody,
 		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : $UpdateRequestBody, options ?: Options) : Observable<$UpdateResponseBody>
+	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
 	{
 		return this.updateService.bind(this).update(id, body, options);
 	}
@@ -148,9 +149,9 @@ export class CrudService<
 	 */
 
 	public patch<
-		$PatchRequestBody extends PatchRequestBody,
+		$PatchRequestBody = PatchRequestBody,
 		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : $PatchRequestBody, options ?: Options) : Observable<$PatchResponseBody>
+	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
 	{
 		return this.patchService.bind(this).patch(id, body, options);
 	}
@@ -185,9 +186,9 @@ export class CrudService<
 	 */
 
 	public custom<
-		$CustomRequestBody extends CustomRequestBody,
-		$CustomResponseBody = CustomResponseBody
-	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
+		$CustomRequestBody = CustomRequestBody,
+		$CustomResponseBody = CustomResponseBody,
+	>(method : Method, options ?: OptionsWithBody<NoInfer<$CustomRequestBody>>) : Observable<$CustomResponseBody>
 	{
 		return this.customService.bind(this).custom(method, options);
 	}

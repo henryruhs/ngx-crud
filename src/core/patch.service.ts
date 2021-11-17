@@ -4,6 +4,7 @@ import { Options } from '../common';
 import { CommonService } from '../common';
 import { Id } from '../common';
 import { createUrlWithId } from '../common';
+import { NoInfer } from './crud.type';
 
 @Injectable()
 export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonService
@@ -21,9 +22,9 @@ export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonSer
 	 */
 
 	public patch<
-		$PatchRequestBody extends PatchRequestBody,
+		$PatchRequestBody = PatchRequestBody,
 		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : $PatchRequestBody, options ?: Options) : Observable<$PatchResponseBody>
+	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
 	{
 		return this.http.patch<$PatchResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{

@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Options, OptionsWithBody } from '../common';
 import { Id, Method } from '../common';
+import { NoInfer } from './crud.type';
 
 export interface Crud<
 	CreateRequestBody,
@@ -17,9 +18,9 @@ export interface Crud<
 >
 {
 	create<
-		$CreateRequestBody extends CreateRequestBody,
+		$CreateRequestBody = CreateRequestBody,
 		$CreateResponseBody = CreateResponseBody
-	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>;
+	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>;
 	read<
 		$ReadResponseBody = ReadResponseBody
 	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
@@ -27,18 +28,18 @@ export interface Crud<
 		$FindResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<$FindResponseBody>;
 	update<
-		$UpdateRequestBody extends UpdateRequestBody,
+		$UpdateRequestBody = UpdateRequestBody,
 		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : $UpdateRequestBody, options ?: Options) : Observable<$UpdateResponseBody>
+	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
 	patch<
-		$PatchRequestBody extends PatchRequestBody,
+		$PatchRequestBody = PatchRequestBody,
 		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : $PatchRequestBody, options ?: Options) : Observable<$PatchResponseBody>
+	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
 	delete<
 		$DeleteResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
 	custom<
-		$CustomRequestBody extends CustomRequestBody,
+		$CustomRequestBody = CustomRequestBody,
 		$CustomResponseBody = CustomResponseBody
-	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
+	>(method : Method, options ?: OptionsWithBody<NoInfer<$CustomRequestBody>>) : Observable<$CustomResponseBody>
 }

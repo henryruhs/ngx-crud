@@ -4,6 +4,7 @@ import { Options } from '../common';
 import { CommonService } from '../common';
 import { Id } from '../common';
 import { createUrlWithId } from '../common';
+import { NoInfer } from './crud.type';
 
 @Injectable()
 export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends CommonService
@@ -21,9 +22,9 @@ export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends Common
 	 */
 
 	public update<
-		$UpdateRequestBody extends UpdateRequestBody,
+		$UpdateRequestBody = UpdateRequestBody,
 		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : $UpdateRequestBody, options ?: Options) : Observable<$UpdateResponseBody>
+	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
 	{
 		return this.http.put<$UpdateResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{

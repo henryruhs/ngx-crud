@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Options } from '../common';
 import { CommonService } from '../common';
 import { createUrl } from '../common';
+import { NoInfer } from './crud.type';
 
 @Injectable()
 export class CreateService<CreateRequestBody, CreateResponseBody> extends CommonService
@@ -19,9 +20,9 @@ export class CreateService<CreateRequestBody, CreateResponseBody> extends Common
 	 */
 
 	public create<
-		$CreateRequestBody extends CreateRequestBody,
+		$CreateRequestBody = CreateRequestBody,
 		$CreateResponseBody = CreateResponseBody
-	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
+	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>
 	{
 		return this.http.post<$CreateResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
 		{
