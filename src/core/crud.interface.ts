@@ -12,8 +12,8 @@ export interface Crud<
 	PatchRequestBody,
 	PatchResponseBody,
 	DeleteResponseBody,
-	RequestRequestBody,
-	RequestResponseBody
+	CustomRequestBody,
+	CustomResponseBody
 >
 {
 	create<
@@ -37,8 +37,8 @@ export interface Crud<
 	delete<
 		$DeleteResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
-	request<
-		$RequestRequestBody = RequestRequestBody,
-		$RequestResponseBody = RequestResponseBody
-		>(method : Method, options ?: OptionsWithBody<$RequestRequestBody>) : Observable<$RequestResponseBody>
+	custom<
+		$CustomRequestBody extends CustomRequestBody,
+		$CustomResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
 }

@@ -7,4 +7,4 @@ export { FindService } from './find.service';
 export { UpdateService } from './update.service';
 export { PatchService } from './patch.service';
 export { DeleteService } from './delete.service';
-export { RequestService } from './request.service';
+export { CustomService } from './custom.service';

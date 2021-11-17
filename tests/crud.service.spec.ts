@@ -160,7 +160,7 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it('request', done =>
+	it('custom', done =>
 	{
 		inject(
 		[
@@ -168,7 +168,7 @@ describe('CrudService', () =>
 		], (testService : TestService) =>
 		{
 			testService
-				.request('GET')
+				.custom('GET')
 				.subscribe(() => done());
 		})();
 	});

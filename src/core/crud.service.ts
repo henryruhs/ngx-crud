@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { Options, OptionsWithBody } from '../common';
 import { CommonService } from '../common';
 import { Id, Method } from '../common';
-import { DeleteService } from './delete.service';
-import { FindService } from './find.service';
-import { ReadService } from './read.service';
-import { PatchService } from './patch.service';
 import { CreateService } from './create.service';
+import { ReadService } from './read.service';
+import { FindService } from './find.service';
 import { UpdateService } from './update.service';
-import { RequestService } from './request.service';
+import { PatchService } from './patch.service';
+import { DeleteService } from './delete.service';
+import { CustomService } from './custom.service';
 import { Crud } from './crud.interface';
 
 @Injectable()
@@ -25,8 +25,8 @@ export class CrudService<
 	PatchRequestBody = Partial<RequestBody>,
 	PatchResponseBody = ResponseBody,
 	DeleteResponseBody = ResponseBody,
-	RequestRequestBody = RequestBody,
-	RequestResponseBody = ResponseBody | ResponseBody[]
+	CustomRequestBody = RequestBody,
+	CustomResponseBody = ResponseBody | ResponseBody[]
 > extends CommonService implements Crud<
 	CreateRequestBody,
 	CreateResponseBody,
@@ -37,8 +37,8 @@ export class CrudService<
 	PatchRequestBody,
 	PatchResponseBody,
 	DeleteResponseBody,
-	RequestRequestBody,
-	RequestResponseBody
+	CustomRequestBody,
+	CustomResponseBody
 >
 {
 	protected createService : CreateService<CreateRequestBody, CreateResponseBody>;
@@ -47,7 +47,7 @@ export class CrudService<
 	protected updateService : UpdateService<UpdateRequestBody, UpdateResponseBody>;
 	protected patchService : PatchService<PatchRequestBody, PatchResponseBody>;
 	protected deleteService : DeleteService<DeleteResponseBody>;
-	protected requestService : RequestService<RequestRequestBody, RequestResponseBody>;
+	protected requestService : CustomService<CustomRequestBody, CustomResponseBody>;
 
 	constructor(protected injector : Injector)
 	{
@@ -58,7 +58,7 @@ export class CrudService<
 		this.updateService = injector.get<UpdateService<UpdateRequestBody, UpdateResponseBody>>(UpdateService);
 		this.patchService = injector.get<PatchService<PatchRequestBody, PatchResponseBody>>(PatchService);
 		this.deleteService = injector.get<DeleteService<DeleteResponseBody>>(DeleteService);
-		this.requestService = injector.get<RequestService<RequestRequestBody, RequestResponseBody>>(RequestService);
+		this.requestService = injector.get<CustomService<CustomRequestBody, CustomResponseBody>>(CustomService);
 	}
 
 	/**
@@ -174,20 +174,20 @@ export class CrudService<
 	}
 
 	/**
-	 * fires a non-standard request
+	 * fires a custom request
 	 *
-	 * @since 8.0.0
+	 * @since 10.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody<$RequestRequestBody>} options options of the request
+	 * @param {OptionsWithBody<$CustomRequestBody>} options options of the request
 	 *
-	 * @return {Observable<$RequestResponseBody>} http response
+	 * @return {Observable<$CustomResponseBody>} http response
 	 */
 
-	public request<
-		$RequestRequestBody = RequestRequestBody,
-		$RequestResponseBody = RequestResponseBody
-	>(method : Method, options ?: OptionsWithBody<$RequestRequestBody>) : Observable<$RequestResponseBody>
+	public custom<
+		$CustomRequestBody extends CustomRequestBody,
+		$CustomResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
 	{
 		return this.requestService.bind(this).request(method, options);
 	}

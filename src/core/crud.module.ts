@@ -12,7 +12,7 @@ import { ObserveService } from '../observe';
 import { PatchService } from './patch.service';
 import { CreateService } from './create.service';
 import { UpdateService } from './update.service';
-import { RequestService } from './request.service';
+import { CustomService } from './custom.service';
 
 @NgModule(
 {
@@ -42,7 +42,7 @@ import { RequestService } from './request.service';
 		PatchService,
 		CreateService,
 		UpdateService,
-		RequestService
+		CustomService
 	]
 })
 export class CrudModule
