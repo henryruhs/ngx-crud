@@ -1,4 +1,4 @@
-export { Body, Context, Options, OptionsWithBody } from './common.interface';
+export { Context, Options, OptionsWithBody } from './common.interface';
 export { CommonService } from './common.service';
 export { Id, Method, UniversalMethod } from './common.type';
 

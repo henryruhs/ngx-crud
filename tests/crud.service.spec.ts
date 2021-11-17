@@ -33,7 +33,9 @@ describe('CrudService', () =>
 			testService
 				.create(
 				{
-					title: 'test'
+					title: 'test',
+					body: 'test',
+					userId: '1'
 				})
 				.subscribe(response =>
 				{
@@ -105,14 +107,18 @@ describe('CrudService', () =>
 			testService
 				.update('1',
 				{
-					title: 'test'
+					title: 'test',
+					body: 'test',
+					userId: '1'
 				})
 				.subscribe(response =>
 				{
 					expect(response).to.deep.equal(
 					{
 						id: 1,
-						title: 'test'
+						title: 'test',
+						body: 'test',
+						userId: '1'
 					});
 					done();
 				});
@@ -154,7 +160,7 @@ describe('CrudService', () =>
 		})();
 	});
 
-	it('request', done =>
+	it('custom', done =>
 	{
 		inject(
 		[
@@ -162,30 +168,8 @@ describe('CrudService', () =>
 		], (testService : TestService) =>
 		{
 			testService
-				.request('GET')
+				.custom('GET')
 				.subscribe(() => done());
-		})();
-	});
-
-	it('parallel', done =>
-	{
-		inject(
-		[
-			TestService
-		], (testService : TestService) =>
-		{
-			testService
-				.parallel(
-				[
-					testService.read('1'),
-					testService.read('2')
-				])
-				.subscribe(responseArray =>
-				{
-					expect(responseArray[0].id).to.equal(1);
-					expect(responseArray[1].id).to.equal(2);
-					done();
-				});
 		})();
 	});
 });

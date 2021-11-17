@@ -6,14 +6,13 @@ import { CacheInterceptor } from '../cache';
 import { CacheService } from '../cache';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
-import { GetService } from './get.service';
+import { ReadService } from './read.service';
 import { ObserveInterceptor } from '../observe';
 import { ObserveService } from '../observe';
-import { ParallelService } from './parallel.service';
 import { PatchService } from './patch.service';
-import { PostService } from './post.service';
-import { PutService } from './put.service';
-import { RequestService } from './request.service';
+import { CreateService } from './create.service';
+import { UpdateService } from './update.service';
+import { CustomService } from './custom.service';
 
 @NgModule(
 {
@@ -38,13 +37,12 @@ import { RequestService } from './request.service';
 		CacheService,
 		DeleteService,
 		FindService,
-		GetService,
+		ReadService,
 		ObserveService,
-		ParallelService,
 		PatchService,
-		PostService,
-		PutService,
-		RequestService
+		CreateService,
+		UpdateService,
+		CustomService
 	]
 })
 export class CrudModule

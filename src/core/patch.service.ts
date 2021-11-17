@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Body, Options } from '../common';
+import { Options } from '../common';
 import { CommonService } from '../common';
 import { Id } from '../common';
 import { createUrlWithId } from '../common';
 
 @Injectable()
-export class PatchService<T> extends CommonService
+export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonService
 {
 	/**
 	 * fires a request to partially update a single resource
@@ -14,15 +14,18 @@ export class PatchService<T> extends CommonService
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {Body} body body of the request
+	 * @param {$PatchResponseBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$PatchResponseBody>} http response
 	 */
 
-	public patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
+	public patch<
+		$PatchRequestBody extends PatchRequestBody,
+		$PatchResponseBody = PatchResponseBody
+	>(id : Id, body : $PatchRequestBody, options ?: Options) : Observable<$PatchResponseBody>
 	{
-		return this.http.patch<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
+		return this.http.patch<$PatchResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

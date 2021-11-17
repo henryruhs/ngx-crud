@@ -1,41 +1,64 @@
 import { Injectable, Injector } from '@angular/core';
-import { Observable, ObservableInput } from 'rxjs';
-import { Body, Options, OptionsWithBody } from '../common';
+import { Observable } from 'rxjs';
+import { Options, OptionsWithBody } from '../common';
 import { CommonService } from '../common';
 import { Id, Method } from '../common';
-import { DeleteService } from './delete.service';
+import { CreateService } from './create.service';
+import { ReadService } from './read.service';
 import { FindService } from './find.service';
-import { GetService } from './get.service';
-import { ParallelService } from './parallel.service';
+import { UpdateService } from './update.service';
 import { PatchService } from './patch.service';
-import { PostService } from './post.service';
-import { PutService } from './put.service';
-import { RequestService } from './request.service';
+import { DeleteService } from './delete.service';
+import { CustomService } from './custom.service';
 import { Crud } from './crud.interface';
 
 @Injectable()
-export class CrudService<T> extends CommonService implements Crud<T>
+export class CrudService<
+	RequestBody,
+	ResponseBody,
+	CreateRequestBody = RequestBody,
+	CreateResponseBody = ResponseBody,
+	ReadResponseBody = ResponseBody,
+	FindResponseBody = ResponseBody[],
+	UpdateRequestBody = RequestBody,
+	UpdateResponseBody = ResponseBody,
+	PatchRequestBody = Partial<RequestBody>,
+	PatchResponseBody = ResponseBody,
+	DeleteResponseBody = ResponseBody,
+	CustomRequestBody = RequestBody,
+	CustomResponseBody = ResponseBody | ResponseBody[]
+> extends CommonService implements Crud<
+	CreateRequestBody,
+	CreateResponseBody,
+	ReadResponseBody,
+	FindResponseBody,
+	UpdateRequestBody,
+	UpdateResponseBody,
+	PatchRequestBody,
+	PatchResponseBody,
+	DeleteResponseBody,
+	CustomRequestBody,
+	CustomResponseBody
+>
 {
-	protected deleteService : DeleteService<T>;
-	protected findService : FindService<T>;
-	protected getService : GetService<T>;
-	protected parallelService : ParallelService<T>;
-	protected patchService : PatchService<T>;
-	protected postService : PostService<T>;
-	protected putService : PutService<T>;
-	protected requestService : RequestService<T>;
+	protected createService : CreateService<CreateRequestBody, CreateResponseBody>;
+	protected readService : ReadService<ReadResponseBody>;
+	protected findService : FindService<FindResponseBody>;
+	protected updateService : UpdateService<UpdateRequestBody, UpdateResponseBody>;
+	protected patchService : PatchService<PatchRequestBody, PatchResponseBody>;
+	protected deleteService : DeleteService<DeleteResponseBody>;
+	protected customService : CustomService<CustomRequestBody, CustomResponseBody>;
 
 	constructor(protected injector : Injector)
 	{
 		super(injector);
-		this.deleteService = injector.get<DeleteService<T>>(DeleteService);
-		this.findService = injector.get<FindService<T>>(FindService);
-		this.getService = injector.get<GetService<T>>(GetService);
-		this.parallelService = injector.get<ParallelService<T>>(ParallelService);
-		this.patchService = injector.get<PatchService<T>>(PatchService);
-		this.postService = injector.get<PostService<T>>(PostService);
-		this.putService = injector.get<PutService<T>>(PutService);
-		this.requestService = injector.get<RequestService<T>>(RequestService);
+		this.createService = injector.get<CreateService<CreateRequestBody, CreateResponseBody>>(CreateService);
+		this.readService = injector.get<ReadService<ReadResponseBody>>(ReadService);
+		this.findService = injector.get<FindService<FindResponseBody>>(FindService);
+		this.updateService = injector.get<UpdateService<UpdateRequestBody, UpdateResponseBody>>(UpdateService);
+		this.patchService = injector.get<PatchService<PatchRequestBody, PatchResponseBody>>(PatchService);
+		this.deleteService = injector.get<DeleteService<DeleteResponseBody>>(DeleteService);
+		this.customService = injector.get<CustomService<CustomRequestBody, CustomResponseBody>>(CustomService);
 	}
 
 	/**
@@ -43,15 +66,18 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {Body} body body of the request
+	 * @param {$CreateRequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$CreateResponseBody>} http response
 	 */
 
-	public create<$ = T>(body : Body, options ?: Options) : Observable<$>
+	public create<
+		$CreateRequestBody extends CreateRequestBody,
+		$CreateResponseBody = CreateResponseBody
+	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
 	{
-		return this.postService.bind(this).post<$>(body, options);
+		return this.createService.bind(this).create(body, options);
 	}
 
 	/**
@@ -62,12 +88,14 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$ReadResponseBody>} http response
 	 */
 
-	public read<$ = T>(id : Id, options ?: Options) : Observable<$>
+	public read<
+		$ReadResponseBody = ReadResponseBody
+	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
 	{
-		return this.getService.bind(this).get<$>(id, options);
+		return this.readService.bind(this).read(id, options);
 	}
 
 	/**
@@ -77,12 +105,14 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 *
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$FindResponseBody>} http response
 	 */
 
-	public find<$ = T[]>(options ?: Options) : Observable<$>
+	public find<
+		$FindResponseBody = FindResponseBody
+	>(options ?: Options) : Observable<$FindResponseBody>
 	{
-		return this.findService.bind(this).find<$>(options);
+		return this.findService.bind(this).find(options);
 	}
 
 	/**
@@ -91,15 +121,18 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {Body} body body of the request
+	 * @param {$UpdateRequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$UpdateResponseBody>} http response
 	 */
 
-	public update<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
+	public update<
+		$UpdateRequestBody extends UpdateRequestBody,
+		$UpdateResponseBody = UpdateResponseBody
+	>(id : Id, body : $UpdateRequestBody, options ?: Options) : Observable<$UpdateResponseBody>
 	{
-		return this.putService.bind(this).put<$>(id, body, options);
+		return this.updateService.bind(this).update(id, body, options);
 	}
 
 	/**
@@ -108,15 +141,18 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {Body} body body of the request
+	 * @param {$PatchRequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$PatchResponseBody>} http response
 	 */
 
-	public patch<$ = T>(id : Id, body : Body, options ?: Options) : Observable<$>
+	public patch<
+		$PatchRequestBody extends PatchRequestBody,
+		$PatchResponseBody = PatchResponseBody
+	>(id : Id, body : $PatchRequestBody, options ?: Options) : Observable<$PatchResponseBody>
 	{
-		return this.patchService.bind(this).patch<$>(id, body, options);
+		return this.patchService.bind(this).patch(id, body, options);
 	}
 
 	/**
@@ -127,43 +163,32 @@ export class CrudService<T> extends CommonService implements Crud<T>
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$DeleteResponseBody>} http response
 	 */
 
-	public delete<$ = T>(id : Id, options ?: Options) : Observable<$>
+	public delete<
+		$DeleteResponseBody = DeleteResponseBody
+	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
 	{
-		return this.deleteService.bind(this).delete<$>(id, options);
+		return this.deleteService.bind(this).delete(id, options);
 	}
 
 	/**
-	 * fires a non-standard request
+	 * fires a custom request
 	 *
-	 * @since 8.0.0
+	 * @since 10.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody} options options of the request
+	 * @param {OptionsWithBody<$CustomRequestBody>} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$CustomResponseBody>} http response
 	 */
 
-	public request<$ = T | T[]>(method : Method, options ?: OptionsWithBody) : Observable<$>
+	public custom<
+		$CustomRequestBody extends CustomRequestBody,
+		$CustomResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
 	{
-		return this.requestService.bind(this).request<$>(method, options);
-	}
-
-	/**
-	 * fires multiple requests in parallel
-	 *
-	 * @since 8.0.0
-	 * @deprecated 9.1.0
-	 *
-	 * @param {ObservableInput<$>[]} requestArray collection of requests
-	 *
-	 * @return {Observable<$[]>} multiple http responses
-	 */
-
-	public parallel<$ = T>(requestArray : ObservableInput<$>[]) : Observable<$[]>
-	{
-		return this.parallelService.parallel<$>(requestArray);
+		return this.customService.bind(this).request(method, options);
 	}
 }

@@ -11,14 +11,9 @@ export interface Options
 	withCredentials ?: boolean;
 }
 
-export interface OptionsWithBody extends Options
+export interface OptionsWithBody<ResponseBody> extends Options
 {
-	body ?: Body;
-}
-
-export interface Body
-{
-	[index : string] : any;
+	body ?: ResponseBody;
 }
 
 export interface Context

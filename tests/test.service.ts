@@ -1,12 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiUrl, ApiRoute, CrudService } from '../src';
-import { Test } from './test.interface';
+import { RequestBody, ResponseBody } from './test.interface';
 
 @Injectable()
 @ApiUrl('https://jsonplaceholder.typicode.com')
 @ApiRoute('/posts')
-export class TestService extends CrudService<Test>
+export class TestService extends CrudService<RequestBody, ResponseBody>
 {
 	constructor(injector : Injector)
 	{
@@ -20,10 +20,10 @@ export class TestService extends CrudService<Test>
 	 *
 	 * @param {string} userId identifier of the user
 	 *
-	 * @return {Observable<Test[]>} http response
+	 * @return {Observable<ResponseBody[]>} http response
 	 */
 
-	public findByUser(userId : string) : Observable<Test[]>
+	public findByUser(userId : string) : Observable<ResponseBody[]>
 	{
 		return this.clone().setParam('userId', userId).find();
 	}

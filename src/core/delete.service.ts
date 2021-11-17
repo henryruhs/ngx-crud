@@ -6,7 +6,7 @@ import { Id } from '../common';
 import { createUrlWithId } from '../common';
 
 @Injectable()
-export class DeleteService<T> extends CommonService
+export class DeleteService<DeleteResponseBody> extends CommonService
 {
 	/**
 	 * fires a request to delete a single resource
@@ -16,12 +16,14 @@ export class DeleteService<T> extends CommonService
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$DeleteResponseBody>} http response
 	 */
 
-	public delete<$ = T>(id : Id, options ?: Options) : Observable<$>
+	public delete<
+		$DeleteResponseBody = DeleteResponseBody
+	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
 	{
-		return this.http.delete<$>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.http.delete<$DeleteResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options
