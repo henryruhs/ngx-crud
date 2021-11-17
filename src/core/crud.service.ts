@@ -189,6 +189,6 @@ export class CrudService<
 		$CustomResponseBody = CustomResponseBody
 	>(method : Method, options ?: OptionsWithBody<$CustomRequestBody>) : Observable<$CustomResponseBody>
 	{
-		return this.customService.bind(this).request(method, options);
+		return this.customService.bind(this).custom(method, options);
 	}
 }
