@@ -5,7 +5,7 @@ import { CommonService } from '../common';
 import { createUrl } from '../common';
 
 @Injectable()
-export class FindService<T> extends CommonService
+export class FindService<ResponseBody> extends CommonService
 {
 	/**
 	 * fires a request to find multiple resources
@@ -14,12 +14,12 @@ export class FindService<T> extends CommonService
 	 *
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$ResponseBody>} http response
 	 */
 
-	public find<$ = T[]>(options ?: Options) : Observable<$>
+	public find<$ResponseBody = ResponseBody[]>(options ?: Options) : Observable<$ResponseBody>
 	{
-		return this.http.get<$>(createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.http.get<$ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

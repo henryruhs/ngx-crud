@@ -16,6 +16,7 @@ export interface OptionsWithBody extends Options
 	body ?: Body;
 }
 
+/* @deprecated */
 export interface Body
 {
 	[index : string] : any;

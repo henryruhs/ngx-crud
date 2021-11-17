@@ -18,19 +18,24 @@ export class CrudService<
 	ResponseBody,
 	CreateRequestBody = RequestBody,
 	CreateResponseBody = ResponseBody,
+	ReadResponseBody = ResponseBody,
+	FindResponseBody = ResponseBody[],
 	// to be implemented from here on
-	Read = ResponseBody,
-	Find = ResponseBody[],
 	Update = ResponseBody,
 	//PatchRequestBody = Partial<RequestBody>,
 	Patch = ResponseBody,
 	Delete = ResponseBody,
 	Request = ResponseBody | ResponseBody[]
-> extends CommonService implements Crud<CreateRequestBody, CreateResponseBody>
+> extends CommonService implements Crud<
+	CreateRequestBody,
+	CreateResponseBody,
+	ReadResponseBody,
+	FindResponseBody
+>
 {
 	protected createService : CreateService<CreateRequestBody, CreateResponseBody>;
-	protected readService : ReadService<ResponseBody>;
-	protected findService : FindService<ResponseBody>;
+	protected readService : ReadService<ReadResponseBody>;
+	protected findService : FindService<FindResponseBody>;
 	protected updateService : UpdateService<ResponseBody>;
 	protected patchService : PatchService<ResponseBody>;
 	protected deleteService : DeleteService<ResponseBody>;
@@ -40,8 +45,8 @@ export class CrudService<
 	{
 		super(injector);
 		this.createService = injector.get<CreateService<CreateRequestBody, CreateResponseBody>>(CreateService);
-		this.readService = injector.get<ReadService<ResponseBody>>(ReadService);
-		this.findService = injector.get<FindService<ResponseBody>>(FindService);
+		this.readService = injector.get<ReadService<ReadResponseBody>>(ReadService);
+		this.findService = injector.get<FindService<FindResponseBody>>(FindService);
 		this.updateService = injector.get<UpdateService<ResponseBody>>(UpdateService);
 		this.patchService = injector.get<PatchService<ResponseBody>>(PatchService);
 		this.deleteService = injector.get<DeleteService<ResponseBody>>(DeleteService);
@@ -64,7 +69,7 @@ export class CrudService<
 		$CreateResponseBody extends CreateResponseBody
 	>(body : $CreateRequestBody, options ?: Options) : Observable<$CreateResponseBody>
 	{
-		return this.createService.bind(this).create<$CreateRequestBody, $CreateResponseBody>(body, options);
+		return this.createService.bind(this).create(body, options);
 	}
 
 	/**
@@ -75,12 +80,12 @@ export class CrudService<
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$ReadResponseBody>} http response
 	 */
 
-	public read<$ = Read>(id : Id, options ?: Options) : Observable<$>
+	public read<$ReadResponseBody = ReadResponseBody>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
 	{
-		return this.readService.bind(this).read<$>(id, options);
+		return this.readService.bind(this).read(id, options);
 	}
 
 	/**
@@ -90,12 +95,12 @@ export class CrudService<
 	 *
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$>} http response
+	 * @return {Observable<$FindResponseBody>} http response
 	 */
 
-	public find<$ = Find>(options ?: Options) : Observable<$>
+	public find<$FindResponseBody = FindResponseBody>(options ?: Options) : Observable<$FindResponseBody>
 	{
-		return this.findService.bind(this).find<$>(options);
+		return this.findService.bind(this).find(options);
 	}
 
 	/**
