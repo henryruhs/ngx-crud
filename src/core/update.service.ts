@@ -15,18 +15,18 @@ export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends Common
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {$UpdateRequestBody} body body of the request
+	 * @param {RequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$UpdateResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public update<
-		$UpdateRequestBody = UpdateRequestBody,
-		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
+		RequestBody = UpdateRequestBody,
+		ResponseBody = UpdateResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.put<$UpdateResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
+		return this.http.put<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

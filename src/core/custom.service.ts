@@ -15,17 +15,17 @@ export class CustomService<CustomRequestBody, CustomResponseBody> extends Common
 	 * @since 10.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody<$CustomRequestBody>} options options of the request
+	 * @param {OptionsWithBody<RequestBody>} options options of the request
 	 *
-	 * @return {Observable<$CustomResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public custom<
-		$CustomRequestBody = CustomRequestBody,
-		$CustomResponseBody = CustomResponseBody | CustomResponseBody[],
-	>(method : Method, options ?: OptionsWithBody<NoInfer<$CustomRequestBody>>) : Observable<$CustomResponseBody>
+		RequestBody = CustomRequestBody,
+		ResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>
 	{
-		return this.http.request<$CustomResponseBody>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.http.request<ResponseBody>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

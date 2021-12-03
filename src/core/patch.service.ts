@@ -15,18 +15,18 @@ export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonSer
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {$PatchResponseBody} body body of the request
+	 * @param {ResponseBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$PatchResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public patch<
-		$PatchRequestBody = PatchRequestBody,
-		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
+		RequestBody = PatchRequestBody,
+		ResponseBody = PatchResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.patch<$PatchResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
+		return this.http.patch<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

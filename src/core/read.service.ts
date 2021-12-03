@@ -16,14 +16,14 @@ export class ReadService<ReadResponseBody> extends CommonService
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$ReadResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public read<
-		$ReadResponseBody = ReadResponseBody
-	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
+		ResponseBody = ReadResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.get<$ReadResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.http.get<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

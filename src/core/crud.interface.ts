@@ -18,28 +18,28 @@ export interface Crud<
 >
 {
 	create<
-		$CreateRequestBody = CreateRequestBody,
-		$CreateResponseBody = CreateResponseBody
-	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>;
+		RequestBody = CreateRequestBody,
+		ResponseBody = CreateResponseBody
+	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>;
 	read<
-		$ReadResponseBody = ReadResponseBody
-	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
+		ResponseBody = ReadResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	find<
-		$FindResponseBody = FindResponseBody
-	>(options ?: Options) : Observable<$FindResponseBody>;
+		ResponseBody = FindResponseBody
+	>(options ?: Options) : Observable<ResponseBody>;
 	update<
-		$UpdateRequestBody = UpdateRequestBody,
-		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
+		RequestBody = UpdateRequestBody,
+		ResponseBody = UpdateResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	patch<
-		$PatchRequestBody = PatchRequestBody,
-		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
+		RequestBody = PatchRequestBody,
+		ResponseBody = PatchResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	delete<
-		$DeleteResponseBody = DeleteResponseBody
-	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
+		ResponseBody = DeleteResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	custom<
-		$CustomRequestBody = CustomRequestBody,
-		$CustomResponseBody = CustomResponseBody
-	>(method : Method, options ?: OptionsWithBody<NoInfer<$CustomRequestBody>>) : Observable<$CustomResponseBody>
+		RequestBody = CustomRequestBody,
+		ResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>
 }

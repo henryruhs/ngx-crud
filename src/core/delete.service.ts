@@ -16,14 +16,14 @@ export class DeleteService<DeleteResponseBody> extends CommonService
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$DeleteResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public delete<
-		$DeleteResponseBody = DeleteResponseBody
-	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
+		ResponseBody = DeleteResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.delete<$DeleteResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.http.delete<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

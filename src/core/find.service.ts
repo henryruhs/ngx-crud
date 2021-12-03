@@ -14,14 +14,14 @@ export class FindService<FindResponseBody> extends CommonService
 	 *
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$FindResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public find<
-		$FindResponseBody = FindResponseBody | FindResponseBody[]
-	>(options ?: Options) : Observable<$FindResponseBody>
+		ResponseBody = FindResponseBody
+	>(options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.get<$FindResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.http.get<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

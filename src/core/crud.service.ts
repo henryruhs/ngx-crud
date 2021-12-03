@@ -67,16 +67,16 @@ export class CrudService<
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {$CreateRequestBody} body body of the request
+	 * @param {RequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$CreateResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public create<
-		$CreateRequestBody = CreateRequestBody,
-		$CreateResponseBody = CreateResponseBody
-	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>
+		RequestBody = CreateRequestBody,
+		ResponseBody = CreateResponseBody
+	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.createService.bind(this).create(body, options);
 	}
@@ -89,12 +89,12 @@ export class CrudService<
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$ReadResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public read<
-		$ReadResponseBody = ReadResponseBody
-	>(id : Id, options ?: Options) : Observable<$ReadResponseBody>
+		ResponseBody = ReadResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.readService.bind(this).read(id, options);
 	}
@@ -106,12 +106,12 @@ export class CrudService<
 	 *
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$FindResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public find<
-		$FindResponseBody = FindResponseBody
-	>(options ?: Options) : Observable<$FindResponseBody>
+		ResponseBody = FindResponseBody
+	>(options ?: Options) : Observable<ResponseBody>
 	{
 		return this.findService.bind(this).find(options);
 	}
@@ -122,16 +122,16 @@ export class CrudService<
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {$UpdateRequestBody} body body of the request
+	 * @param {RequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$UpdateResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public update<
-		$UpdateRequestBody = UpdateRequestBody,
-		$UpdateResponseBody = UpdateResponseBody
-	>(id : Id, body : NoInfer<$UpdateRequestBody>, options ?: Options) : Observable<$UpdateResponseBody>
+		RequestBody = UpdateRequestBody,
+		ResponseBody = UpdateResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.updateService.bind(this).update(id, body, options);
 	}
@@ -142,16 +142,16 @@ export class CrudService<
 	 * @since 8.0.0
 	 *
 	 * @param {Id} id identifier of the resource
-	 * @param {$PatchRequestBody} body body of the request
+	 * @param {RequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$PatchResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public patch<
-		$PatchRequestBody = PatchRequestBody,
-		$PatchResponseBody = PatchResponseBody
-	>(id : Id, body : NoInfer<$PatchRequestBody>, options ?: Options) : Observable<$PatchResponseBody>
+		RequestBody = PatchRequestBody,
+		ResponseBody = PatchResponseBody
+	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.patchService.bind(this).patch(id, body, options);
 	}
@@ -164,12 +164,12 @@ export class CrudService<
 	 * @param {Id} id identifier of the resource
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$DeleteResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public delete<
-		$DeleteResponseBody = DeleteResponseBody
-	>(id : Id, options ?: Options) : Observable<$DeleteResponseBody>
+		ResponseBody = DeleteResponseBody
+	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.deleteService.bind(this).delete(id, options);
 	}
@@ -180,15 +180,15 @@ export class CrudService<
 	 * @since 10.0.0
 	 *
 	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody<$CustomRequestBody>} options options of the request
+	 * @param {OptionsWithBody<RequestBody>} options options of the request
 	 *
-	 * @return {Observable<$CustomResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public custom<
-		$CustomRequestBody = CustomRequestBody,
-		$CustomResponseBody = CustomResponseBody,
-	>(method : Method, options ?: OptionsWithBody<NoInfer<$CustomRequestBody>>) : Observable<$CustomResponseBody>
+		RequestBody = CustomRequestBody,
+		ResponseBody = CustomResponseBody
+	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>
 	{
 		return this.customService.bind(this).custom(method, options);
 	}

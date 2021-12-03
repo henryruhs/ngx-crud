@@ -13,18 +13,18 @@ export class CreateService<CreateRequestBody, CreateResponseBody> extends Common
 	 *
 	 * @since 8.0.0
 	 *
-	 * @param {$CreateRequestBody} body body of the request
+	 * @param {RequestBody} body body of the request
 	 * @param {Options} options options of the request
 	 *
-	 * @return {Observable<$CreateResponseBody>} http response
+	 * @return {Observable<ResponseBody>} http response
 	 */
 
 	public create<
-		$CreateRequestBody = CreateRequestBody,
-		$CreateResponseBody = CreateResponseBody
-	>(body : NoInfer<$CreateRequestBody>, options ?: Options) : Observable<$CreateResponseBody>
+		RequestBody = CreateRequestBody,
+		ResponseBody = CreateResponseBody
+	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.post<$CreateResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
+		return this.http.post<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
 		{
 			...this.getOptions(),
 			...options
