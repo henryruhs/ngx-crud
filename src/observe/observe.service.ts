@@ -29,7 +29,7 @@ export class ObserveService
 	 * @return {HttpContextToken<Context>} token of the context
 	 */
 
-	public getToken() : HttpContextToken<Context>
+	getToken() : HttpContextToken<Context>
 	{
 		return this.token;
 	}
@@ -42,7 +42,7 @@ export class ObserveService
 	 * @return {this} instance of the service
 	 */
 
-	public start() : this
+	start() : this
 	{
 		this.state.next('STARTED');
 		return this;
@@ -58,7 +58,7 @@ export class ObserveService
 	 * @return {HttpRequest<T>} instance of the http request
 	 */
 
-	public before<T>(request : HttpRequest<T>) : HttpRequest<T>
+	before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{
 		if ('before' in this.observeEffect && typeof this.observeEffect.before === 'function')
 		{
@@ -78,7 +78,7 @@ export class ObserveService
 	 * @return {this} instance of the service
 	 */
 
-	public after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
+	after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
 	{
 		if ('after' in this.observeEffect && typeof this.observeEffect.after === 'function')
 		{
@@ -97,7 +97,7 @@ export class ObserveService
 	 * @return {this} instance of the service
 	 */
 
-	public end<T>(request : HttpRequest<T>) : this
+	end<T>(request : HttpRequest<T>) : this
 	{
 		const context : Context = request.context.get(this.getToken());
 
@@ -114,7 +114,7 @@ export class ObserveService
 	 * @return {this} instance of the service
 	 */
 
-	public completeAll() : this
+	completeAll() : this
 	{
 		this.state.next('COMPLETED');
 		return this;
@@ -128,7 +128,7 @@ export class ObserveService
 	 * @return {Subject<State>} state of all requests
 	 */
 
-	public observeAll() : Subject<State>
+	observeAll() : Subject<State>
 	{
 		return this.state;
 	}

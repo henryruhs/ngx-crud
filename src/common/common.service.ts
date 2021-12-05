@@ -37,7 +37,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public bind(that : CommonService) : this
+	bind(that : CommonService) : this
 	{
 		return this
 			.setApiUrl(that.getApiUrl())
@@ -53,7 +53,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clear() : this
+	clear() : this
 	{
 		return this
 			.clearOptions()
@@ -70,7 +70,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public destroy() : this
+	destroy() : this
 	{
 		return this
 			.abort()
@@ -86,7 +86,7 @@ export class CommonService
 	 * @return {string} api url of the service
 	 */
 
-	public getApiUrl() : string
+	getApiUrl() : string
 	{
 		return this.apiUrl;
 	}
@@ -101,7 +101,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setApiUrl(apiUrl : string) : this
+	setApiUrl(apiUrl : string) : this
 	{
 		this.apiUrl = apiUrl;
 		return this;
@@ -115,7 +115,7 @@ export class CommonService
 	 * @return {string} api route of the service
 	 */
 
-	public getApiRoute() : string
+	getApiRoute() : string
 	{
 		return this.apiRoute;
 	}
@@ -130,7 +130,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setApiRoute(apiRoute : string) : this
+	setApiRoute(apiRoute : string) : this
 	{
 		this.apiRoute = apiRoute;
 		return this;
@@ -146,7 +146,7 @@ export class CommonService
 	 * @return {OptionInterface[keyof OptionInterface]} value of the option
 	 */
 
-	public getOption(name : keyof Options) : Options[keyof Options]
+	getOption(name : keyof Options) : Options[keyof Options]
 	{
 		return this.options[name];
 	}
@@ -159,7 +159,7 @@ export class CommonService
 	 * @return {Options} instance of the options
 	 */
 
-	public getOptions() : Options
+	getOptions() : Options
 	{
 		return this.options;
 	}
@@ -175,7 +175,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setOption(name : keyof Options, value : Options[keyof Options]) : this
+	setOption(name : keyof Options, value : Options[keyof Options]) : this
 	{
 		this.options[name] = value;
 		return this;
@@ -191,7 +191,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setOptions(options : Options) : this
+	setOptions(options : Options) : this
 	{
 		this.options = options;
 		return this;
@@ -207,7 +207,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearOption(name : keyof Options) : this
+	clearOption(name : keyof Options) : this
 	{
 		return this.setOption(name, null);
 	}
@@ -220,7 +220,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearOptions() : this
+	clearOptions() : this
 	{
 		return this.setOptions(
 		{
@@ -238,7 +238,7 @@ export class CommonService
 	 * @return {HttpContext} context by token
 	 */
 
-	public getContextByToken(token : HttpContextToken<Context>) : HttpContext
+	getContextByToken(token : HttpContextToken<Context>) : HttpContext
 	{
 		return this.getContext().get(token) as HttpContext;
 	}
@@ -251,7 +251,7 @@ export class CommonService
 	 * @return {HttpContext} instance of the context
 	 */
 
-	public getContext() : HttpContext
+	getContext() : HttpContext
 	{
 		return this.getOption('context');
 	}
@@ -267,7 +267,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setContextByToken(token : HttpContextToken<Context>, context : Context) : this
+	setContextByToken(token : HttpContextToken<Context>, context : Context) : this
 	{
 		return this.setContext(this.getContext().set(token, context));
 	}
@@ -282,7 +282,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setContext(context : HttpContext) : this
+	setContext(context : HttpContext) : this
 	{
 		this.setOption('context', context);
 		return this;
@@ -298,7 +298,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearContextByToken(token : HttpContextToken<Context>) : this
+	clearContextByToken(token : HttpContextToken<Context>) : this
 	{
 		return this.setContext(this.getContext().delete(token));
 	}
@@ -311,7 +311,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearContext() : this
+	clearContext() : this
 	{
 		return this.setContext(new HttpContext());
 	}
@@ -326,7 +326,7 @@ export class CommonService
 	 * @return {string} value of the header
 	 */
 
-	public getHeader(name : string) : string
+	getHeader(name : string) : string
 	{
 		return this.getHeaders().get(name);
 	}
@@ -339,7 +339,7 @@ export class CommonService
 	 * @return {HttpHeaders} instance of the headers
 	 */
 
-	public getHeaders() : HttpHeaders
+	getHeaders() : HttpHeaders
 	{
 		return this.getOption('headers');
 	}
@@ -354,7 +354,7 @@ export class CommonService
 	 * @return {string[]} values of the header
 	 */
 
-	public getHeaderArray(name : string) : string[]
+	getHeaderArray(name : string) : string[]
 	{
 		return this.getHeaders().getAll(name);
 	}
@@ -370,7 +370,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setHeader(name : string, value : string) : this
+	setHeader(name : string, value : string) : this
 	{
 		return this.setHeaders(this.getHeaders().set(name, value));
 	}
@@ -385,7 +385,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setHeaders(headers : HttpHeaders) : this
+	setHeaders(headers : HttpHeaders) : this
 	{
 		return this.setOption('headers', headers);
 	}
@@ -401,7 +401,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setHeaderArray(name : string, valueArray : string[]) : this
+	setHeaderArray(name : string, valueArray : string[]) : this
 	{
 		return this.setHeaders(this.getHeaders().set(name, valueArray));
 	}
@@ -417,7 +417,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public appendHeader(name : string, value : string) : this
+	appendHeader(name : string, value : string) : this
 	{
 		return this.setHeaders(this.getHeaders().append(name, value));
 	}
@@ -433,7 +433,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public appendHeaderArray(name : string, valueArray : string[]) : this
+	appendHeaderArray(name : string, valueArray : string[]) : this
 	{
 		return this.setHeaders(this.getHeaders().append(name, valueArray));
 	}
@@ -448,7 +448,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearHeader(name : string) : this
+	clearHeader(name : string) : this
 	{
 		return this.setHeaders(this.getHeaders().delete(name));
 	}
@@ -461,7 +461,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearHeaders() : this
+	clearHeaders() : this
 	{
 		return this.setHeaders(new HttpHeaders());
 	}
@@ -476,7 +476,7 @@ export class CommonService
 	 * @return {string} value of the parameter
 	 */
 
-	public getParam(name : string) : string
+	getParam(name : string) : string
 	{
 		return this.getParams().get(name);
 	}
@@ -489,7 +489,7 @@ export class CommonService
 	 * @return {HttpParams} instance of the parameters
 	 */
 
-	public getParams() : HttpParams
+	getParams() : HttpParams
 	{
 		return this.getOption('params');
 	}
@@ -504,7 +504,7 @@ export class CommonService
 	 * @return {string[]} values of the parameter
 	 */
 
-	public getParamArray(name : string) : string[]
+	getParamArray(name : string) : string[]
 	{
 		return this.getParams().getAll(name);
 	}
@@ -520,7 +520,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setParam(name : string, value : string) : this
+	setParam(name : string, value : string) : this
 	{
 		return this.setParams(this.getParams().set(name, value));
 	}
@@ -535,7 +535,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setParams(params : HttpParams) : this
+	setParams(params : HttpParams) : this
 	{
 		return this.setOption('params', params);
 	}
@@ -551,7 +551,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public setParamArray(name : string, valueArray : string[]) : this
+	setParamArray(name : string, valueArray : string[]) : this
 	{
 		this.clearParam(name);
 		valueArray.forEach(value => this.appendParam(name, value));
@@ -569,7 +569,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public appendParam(name : string, value : string) : this
+	appendParam(name : string, value : string) : this
 	{
 		return this.setParams(this.getParams().append(name, value));
 	}
@@ -585,7 +585,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public appendParamArray(name : string, valueArray : string[]) : this
+	appendParamArray(name : string, valueArray : string[]) : this
 	{
 		valueArray.forEach(value => this.appendParam(name, value));
 		return this;
@@ -601,7 +601,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearParam(name : string) : this
+	clearParam(name : string) : this
 	{
 		return this.setParams(this.getParams().delete(name));
 	}
@@ -614,7 +614,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public clearParams() : this
+	clearParams() : this
 	{
 		return this.setParams(new HttpParams());
 	}
@@ -630,7 +630,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public enableAbort(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
+	enableAbort(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.abortService.getToken(),
 		{
@@ -647,7 +647,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public disableAbort() : this
+	disableAbort() : this
 	{
 		return this.clearContextByToken(this.abortService.getToken());
 	}
@@ -660,7 +660,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public abort() : this
+	abort() : this
 	{
 		const url : string = createUrl(this.getApiUrl(), this.getApiRoute());
 
@@ -679,7 +679,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public enableCache(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
+	enableCache(method : UniversalMethod = 'GET', lifetime : number = 2000) : this
 	{
 		return this.setContextByToken(this.cacheService.getToken(),
 		{
@@ -696,7 +696,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public disableCache() : this
+	disableCache() : this
 	{
 		return this.clearContextByToken(this.cacheService.getToken());
 	}
@@ -709,7 +709,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public flush() : this
+	flush() : this
 	{
 		const url : string = createUrl(this.getApiUrl(), this.getApiRoute());
 
@@ -728,7 +728,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public enableObserve(method : UniversalMethod = 'ANY', lifetime : number = 1000) : this
+	enableObserve(method : UniversalMethod = 'ANY', lifetime : number = 1000) : this
 	{
 		return this.setContextByToken(this.observeService.getToken(),
 		{
@@ -745,7 +745,7 @@ export class CommonService
 	 * @return {this} instance of the service
 	 */
 
-	public disableObserve() : this
+	disableObserve() : this
 	{
 		return this.clearContextByToken(this.observeService.getToken());
 	}
@@ -758,7 +758,7 @@ export class CommonService
 	 * @return {HttpClient} instance of the http client
 	 */
 
-	public getHttpClient() : HttpClient
+	getHttpClient() : HttpClient
 	{
 		return this.http;
 	}

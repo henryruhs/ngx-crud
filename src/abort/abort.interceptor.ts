@@ -29,7 +29,7 @@ export class AbortInterceptor implements HttpInterceptor
 	 * @return {Observable<HttpEvent<T>>} http event
 	 */
 
-	public intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
+	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.abortService.getToken());
 		const enableAbort : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
@@ -48,7 +48,7 @@ export class AbortInterceptor implements HttpInterceptor
 	 * @return {Observable<HttpEvent<T>>} http event
 	 */
 
-	public handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
+	handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		return next
 			.handle(request)

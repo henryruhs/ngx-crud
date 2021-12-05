@@ -22,7 +22,7 @@ export class AbortService
 	 * @return {HttpContextToken<Context>} token of the context
 	 */
 
-	public getToken() : HttpContextToken<Context>
+	getToken() : HttpContextToken<Context>
 	{
 		return this.token;
 	}
@@ -37,7 +37,7 @@ export class AbortService
 	 * @return {Observable<boolean>} signal of the request
 	 */
 
-	public get<T>(request : HttpRequest<T>) : Observable<boolean>
+	get<T>(request : HttpRequest<T>) : Observable<boolean>
 	{
 		if (!this.has(request))
 		{
@@ -56,7 +56,7 @@ export class AbortService
 	 * @return {this} instance of the service
 	 */
 
-	public set<T>(request : HttpRequest<T>) : this
+	set<T>(request : HttpRequest<T>) : this
 	{
 		const context : Context = request.context.get(this.getToken());
 
@@ -83,7 +83,7 @@ export class AbortService
 	 * @return {boolean}
 	 */
 
-	public has<T>(request : HttpRequest<T>) : boolean
+	has<T>(request : HttpRequest<T>) : boolean
 	{
 		return this.store.has(request.urlWithParams);
 	}
@@ -98,7 +98,7 @@ export class AbortService
 	 * @return {this} instance of the service
 	 */
 
-	public abort(urlWithParams : string) : this
+	abort(urlWithParams : string) : this
 	{
 		if (this.store.has(urlWithParams))
 		{
@@ -119,7 +119,7 @@ export class AbortService
 	 * @return {this} instance of the service
 	 */
 
-	public abortMany(url : string) : this
+	abortMany(url : string) : this
 	{
 		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(url) ? this.abort(urlWithParams) : null);
 		return this;
@@ -133,7 +133,7 @@ export class AbortService
 	 * @return {this} instance of the service
 	 */
 
-	public abortAll() : this
+	abortAll() : this
 	{
 		this.store.forEach((value, urlWithParams) => this.abort(urlWithParams));
 		return this;
@@ -147,7 +147,7 @@ export class AbortService
 	 * @return {Observable<[string, Store]>} collection of signal and timeout
 	 */
 
-	public observeAll() : Observable<[string, Store]>
+	observeAll() : Observable<[string, Store]>
 	{
 		return from(this.store);
 	}

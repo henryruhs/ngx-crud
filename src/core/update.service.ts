@@ -21,7 +21,7 @@ export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends Common
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public update<
+	update<
 		RequestBody = UpdateRequestBody,
 		ResponseBody = UpdateResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>

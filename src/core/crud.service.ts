@@ -73,7 +73,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public create<
+	create<
 		RequestBody = CreateRequestBody,
 		ResponseBody = CreateResponseBody
 	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
@@ -92,7 +92,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public read<
+	read<
 		ResponseBody = ReadResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
@@ -109,7 +109,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public find<
+	find<
 		ResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<ResponseBody>
 	{
@@ -128,7 +128,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public update<
+	update<
 		RequestBody = UpdateRequestBody,
 		ResponseBody = UpdateResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
@@ -148,7 +148,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public patch<
+	patch<
 		RequestBody = PatchRequestBody,
 		ResponseBody = PatchResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
@@ -167,7 +167,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public delete<
+	delete<
 		ResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
@@ -185,7 +185,7 @@ export class CrudService<
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public custom<
+	custom<
 		RequestBody = CustomRequestBody,
 		ResponseBody = CustomResponseBody
 	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>

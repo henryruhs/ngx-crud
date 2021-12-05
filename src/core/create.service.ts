@@ -19,7 +19,7 @@ export class CreateService<CreateRequestBody, CreateResponseBody> extends Common
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public create<
+	create<
 		RequestBody = CreateRequestBody,
 		ResponseBody = CreateResponseBody
 	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>

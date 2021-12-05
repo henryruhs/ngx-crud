@@ -17,7 +17,7 @@ export class FindService<FindResponseBody> extends CommonService
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public find<
+	find<
 		ResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<ResponseBody>
 	{

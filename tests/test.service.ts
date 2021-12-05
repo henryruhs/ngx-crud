@@ -23,7 +23,7 @@ export class TestService extends CrudService<RequestBody, ResponseBody>
 	 * @return {Observable<ResponseBody[]>} http response
 	 */
 
-	public findByUser(userId : string) : Observable<ResponseBody[]>
+	findByUser(userId : string) : Observable<ResponseBody[]>
 	{
 		return this.clone().setParam('userId', userId).find();
 	}

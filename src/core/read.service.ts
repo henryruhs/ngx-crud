@@ -19,7 +19,7 @@ export class ReadService<ReadResponseBody> extends CommonService
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public read<
+	read<
 		ResponseBody = ReadResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{

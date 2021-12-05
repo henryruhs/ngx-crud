@@ -22,7 +22,7 @@ export class CacheService
 	 * @return {HttpContextToken<Context>} token of the context
 	 */
 
-	public getToken() : HttpContextToken<Context>
+	getToken() : HttpContextToken<Context>
 	{
 		return this.token;
 	}
@@ -37,7 +37,7 @@ export class CacheService
 	 * @return {Observable<HttpResponse<T>>} http response
 	 */
 
-	public get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
+	get<T>(request : HttpRequest<T>) : Observable<HttpResponse<T>>
 	{
 		if (!this.has(request))
 		{
@@ -57,7 +57,7 @@ export class CacheService
 	 * @return {this} instance of the service
 	 */
 
-	public set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
+	set<T>(request : HttpRequest<T>, response : Observable<HttpResponse<T>>) : this
 	{
 		const context : Context = request.context.get(this.getToken());
 
@@ -83,7 +83,7 @@ export class CacheService
 	 * @return {boolean}
 	 */
 
-	public has<T>(request : HttpRequest<T>) : boolean
+	has<T>(request : HttpRequest<T>) : boolean
 	{
 		return this.store.has(request.urlWithParams);
 	}
@@ -98,7 +98,7 @@ export class CacheService
 	 * @return {this} instance of the service
 	 */
 
-	public flush(urlWithParams : string) : this
+	flush(urlWithParams : string) : this
 	{
 		if (this.store.has(urlWithParams))
 		{
@@ -118,7 +118,7 @@ export class CacheService
 	 * @return {this} instance of the service
 	 */
 
-	public flushMany(url : string) : this
+	flushMany(url : string) : this
 	{
 		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(url) ? this.flush(urlWithParams) : null);
 		return this;
@@ -132,7 +132,7 @@ export class CacheService
 	 * @return {this} instance of the service
 	 */
 
-	public flushAll() : this
+	flushAll() : this
 	{
 		this.store.forEach((value, urlWithParams) => this.flush(urlWithParams));
 		return this;
@@ -146,7 +146,7 @@ export class CacheService
 	 * @return {Observable<[string, Store]>} collection of response and timeout
 	 */
 
-	public observeAll() : Observable<[string, Store]>
+	observeAll() : Observable<[string, Store]>
 	{
 		return from(this.store);
 	}

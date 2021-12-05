@@ -19,7 +19,7 @@ export class DeleteService<DeleteResponseBody> extends CommonService
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public delete<
+	delete<
 		ResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{

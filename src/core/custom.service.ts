@@ -20,7 +20,7 @@ export class CustomService<CustomRequestBody, CustomResponseBody> extends Common
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public custom<
+	custom<
 		RequestBody = CustomRequestBody,
 		ResponseBody = CustomResponseBody
 	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>

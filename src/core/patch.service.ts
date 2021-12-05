@@ -21,7 +21,7 @@ export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonSer
 	 * @return {Observable<ResponseBody>} http response
 	 */
 
-	public patch<
+	patch<
 		RequestBody = PatchRequestBody,
 		ResponseBody = PatchResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
