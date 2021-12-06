@@ -1,10 +1,10 @@
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { UniversalMethod } from '../common';
 
 export interface Store
 {
 	signal : Subject<boolean>;
-	timeout : NodeJS.Timeout;
+	timer : Subscription;
 }
 
 export interface Context

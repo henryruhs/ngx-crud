@@ -32,7 +32,7 @@ export class AbortInterceptor implements HttpInterceptor
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.abortService.getToken());
-		const enableAbort : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
+		const enableAbort : boolean = (context.method === 'ANY' || context.method === request.method) && context.lifetime > 0;
 
 		return enableAbort ? this.handle(request, next) : next.handle(request);
 	}

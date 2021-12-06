@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, timer, Observable, Subscription } from 'rxjs';
 import { Context, Store } from './cache.interface';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class CacheService
 	}
 
 	/**
-	 * set the response and timeout for the request
+	 * set the response and timer for the request
 	 *
 	 * @since 3.0.0
 	 *
@@ -63,18 +63,18 @@ export class CacheService
 
 		if (this.has(request))
 		{
-			clearTimeout(this.store.get(request.urlWithParams).timeout);
+			this.store.get(request.urlWithParams).timer.unsubscribe();
 		}
 		this.store.set(request.urlWithParams,
 		{
 			response,
-			timeout: context.lifetime > 0 ? setTimeout(() => this.flush(request.urlWithParams), context.lifetime) : null
+			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.flush(request.urlWithParams)) : new Subscription()
 		});
 		return this;
 	}
 
 	/**
-	 * has a response and timeout for the request
+	 * has a response and timer for the request
 	 *
 	 * @since 3.0.0
 	 *
@@ -102,7 +102,7 @@ export class CacheService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			clearTimeout(this.store.get(urlWithParams).timeout);
+			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}
 		return this;
@@ -143,7 +143,7 @@ export class CacheService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return {Observable<[string, Store]>} collection of response and timeout
+	 * @return {Observable<[string, Store]>} collection of response and timer
 	 */
 
 	observeAll() : Observable<[string, Store]>

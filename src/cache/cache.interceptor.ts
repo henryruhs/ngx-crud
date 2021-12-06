@@ -33,7 +33,7 @@ export class CacheInterceptor implements HttpInterceptor
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.cacheService.getToken());
-		const enableCache : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
+		const enableCache : boolean = (context.method === 'ANY' || context.method === request.method) && context.lifetime > 0;
 
 		return enableCache ? this.handle(request, next) : next.handle(request);
 	}

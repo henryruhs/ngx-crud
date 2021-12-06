@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable, Subject } from 'rxjs';
+import { from, timer, Observable, Subject, Subscription } from 'rxjs';
 import { Context, Store } from './abort.interface';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class AbortService
 	}
 
 	/**
-	 * set the signal and timeout for the request
+	 * set the signal and timer for the request
 	 *
 	 * @since 4.0.0
 	 *
@@ -62,19 +62,19 @@ export class AbortService
 
 		if (this.has(request))
 		{
-			clearTimeout(this.store.get(request.urlWithParams).timeout);
+			this.store.get(request.urlWithParams).timer.unsubscribe();
 		}
 		this.store.set(request.urlWithParams,
 		{
 			signal: new Subject<boolean>(),
-			timeout: context.lifetime > 0 ? setTimeout(() => this.abort(request.urlWithParams), context.lifetime) : null
+			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.abort(request.urlWithParams)) : new Subscription()
 		});
 		this.store.get(request.urlWithParams).signal.next(true);
 		return this;
 	}
 
 	/**
-	 * has a signal and timeout for the request
+	 * has a signal and timer for the request
 	 *
 	 * @since 4.0.0
 	 *
@@ -102,7 +102,7 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			clearTimeout(this.store.get(urlWithParams).timeout);
+			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.get(urlWithParams).signal.next(false);
 			this.store.delete(urlWithParams);
 		}
@@ -144,7 +144,7 @@ export class AbortService
 	 *
 	 * @since 4.1.0
 	 *
-	 * @return {Observable<[string, Store]>} collection of signal and timeout
+	 * @return {Observable<[string, Store]>} collection of signal and timer
 	 */
 
 	observeAll() : Observable<[string, Store]>

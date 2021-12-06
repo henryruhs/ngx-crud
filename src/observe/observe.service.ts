@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { timer, Subject, Subscription } from 'rxjs';
 import { Context, ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
 import { State } from './observe.type';
 import { OBSERVE_EFFECT } from './observe.token';
@@ -15,7 +15,7 @@ export class ObserveService
 	};
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
 	protected state : Subject<State> = new Subject<State>();
-	protected timeout : NodeJS.Timeout;
+	protected timer : Subscription = new Subscription();
 
 	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
 	{
@@ -101,8 +101,8 @@ export class ObserveService
 	{
 		const context : Context = request.context.get(this.getToken());
 
-		clearTimeout(this.timeout);
-		this.timeout = context.lifetime > 0 ? setTimeout(() => this.completeAll(), context.lifetime) : null;
+		this.timer.unsubscribe();
+		this.timer = context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.completeAll()) : new Subscription();
 		return this;
 	}
 

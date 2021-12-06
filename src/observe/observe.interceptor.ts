@@ -34,7 +34,7 @@ export class ObserveInterceptor implements HttpInterceptor
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.observeService.getToken());
-		const enableObserve : boolean = context.method === 'ANY' || context.method === request.method && context.lifetime > 0;
+		const enableObserve : boolean = (context.method === 'ANY' || context.method === request.method) && context.lifetime > 0;
 
 		return enableObserve ? this.handle(request, next) : next.handle(request);
 	}

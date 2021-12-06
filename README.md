@@ -8,7 +8,7 @@ NGX CRUD
 [![NPM Version](https://img.shields.io/npm/v/ngx-crud.svg)](https://npmjs.com/package/ngx-crud)
 [![License](https://img.shields.io/npm/l/ngx-crud.svg)](https://npmjs.com/package/ngx-crud)
 [![Article Medium](https://img.shields.io/badge/article-medium-0088cc.svg)](https://medium.com/@redaxmedia/crud-services-in-angular-with-effortless-aborting-and-caching-d92078967643)
-[![Playground StackBlitz](https://img.shields.io/badge/playground-stackblitz-0088cc.svg)](https://stackblitz.com/github/redaxmedia/ngx-crud-playground)
+[![Playground Next](https://img.shields.io/badge/playground-next-0088cc.svg)](https://playground.ngx-crud.com)
 
 
 Installation
