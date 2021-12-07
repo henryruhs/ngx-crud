@@ -1,1 +1,1 @@
-export type State = 'STARTED' | 'COMPLETED';
+export type ObserveStatus = 'STARTED' | 'COMPLETED';

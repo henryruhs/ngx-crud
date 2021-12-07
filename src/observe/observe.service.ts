@@ -2,7 +2,7 @@ import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '
 import { Optional, Inject, Injectable } from '@angular/core';
 import { timer, Subject, Subscription } from 'rxjs';
 import { Context, ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
-import { State } from './observe.type';
+import { ObserveStatus } from './observe.type';
 import { OBSERVE_EFFECT } from './observe.token';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class ObserveService
 		lifetime: null
 	};
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected state : Subject<State> = new Subject<State>();
+	protected status : Subject<ObserveStatus> = new Subject<ObserveStatus>();
 	protected timer : Subscription = new Subscription();
 
 	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
@@ -44,7 +44,7 @@ export class ObserveService
 
 	start() : this
 	{
-		this.state.next('STARTED');
+		this.status.next('STARTED');
 		return this;
 	}
 
@@ -116,7 +116,7 @@ export class ObserveService
 
 	completeAll() : this
 	{
-		this.state.next('COMPLETED');
+		this.status.next('COMPLETED');
 		return this;
 	}
 
@@ -125,11 +125,11 @@ export class ObserveService
 	 *
 	 * @since 8.0.0
 	 *
-	 * @return {Subject<State>} state of all requests
+	 * @return {Subject<ObserveStatus>} status of all requests
 	 */
 
-	observeAll() : Subject<State>
+	observeAll() : Subject<ObserveStatus>
 	{
-		return this.state;
+		return this.status;
 	}
 }
