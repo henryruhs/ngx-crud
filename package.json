@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "10.0.0-next.5",
+	"version": "10.0.0-next.6",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -36,10 +36,10 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "13.0.0",
+		"@angular/common": "13.0.3",
 		"@angular/compiler": "13.0.3",
 		"@angular/compiler-cli": "13.0.3",
-		"@angular/core": "13.0.0",
+		"@angular/core": "13.0.3",
 		"@angular/platform-browser": "13.0.3",
 		"@angular/platform-browser-dynamic": "13.0.3",
 		"@types/chai": "4.2.22",
