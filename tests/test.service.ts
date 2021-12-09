@@ -27,17 +27,4 @@ export class TestService extends CrudService<RequestBody, ResponseBody>
 	{
 		return this.clone().setParam('userId', userId).find();
 	}
-
-	/**
-	 * clone the service
-	 *
-	 * @since 9.0.0
-	 *
-	 * @return {TestService} instance of the service
-	 */
-
-	protected clone() : TestService
-	{
-		return new TestService(this.injector);
-	}
 }

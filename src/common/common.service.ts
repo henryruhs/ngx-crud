@@ -28,21 +28,34 @@ export class CommonService
 	}
 
 	/**
-	 * bind to the service
+	 * bind the service
 	 *
 	 * @since 6.2.0
 	 *
-	 * @param {CommonService} that instance of the common service
+	 * @param {this} that instance of the service
 	 *
 	 * @return {this} instance of the service
 	 */
 
-	bind(that : CommonService) : this
+	bind(that : this) : this
 	{
 		return this
 			.setApiUrl(that.getApiUrl())
 			.setApiRoute(that.getApiRoute())
 			.setOptions(that.getOptions());
+	}
+
+	/**
+	 * clone the service
+	 *
+	 * @since 10.1.0
+	 *
+	 * @return {this} instance of the service
+	 */
+
+	clone() : this
+	{
+		return new (this.constructor as new (injector) => this)(this.injector);
 	}
 
 	/**
