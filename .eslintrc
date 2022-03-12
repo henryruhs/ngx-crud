@@ -2,5 +2,10 @@
 	"extends":
 	[
 		"eslint-config-redaxmedia"
-	]
+	],
+	"rules":
+	{
+		"@typescript-eslint/no-unsafe-member-access": "warn",
+		"rxjs/no-nested-subscribe": "warn"
+	}
 }

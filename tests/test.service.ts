@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiUrl, ApiRoute, CrudService } from '../src';
 import { RequestBody, ResponseBody } from './test.interface';
@@ -8,11 +8,6 @@ import { RequestBody, ResponseBody } from './test.interface';
 @ApiRoute('/posts')
 export class TestService extends CrudService<RequestBody, ResponseBody>
 {
-	constructor(injector : Injector)
-	{
-		super(injector);
-	}
-
 	/**
 	 * find by user
 	 *

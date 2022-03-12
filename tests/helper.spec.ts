@@ -1,45 +1,45 @@
 import { expect } from 'chai';
-import { createUrl, createUrlWithId } from '../src';
+import { createUrl, createUrlWithId, Id } from '../src';
 
 describe('Helper', () =>
 {
 	it('create url', () =>
 	{
-		const testArray : any[] =
+		const testArray : { apiUrl : string; apiRoute : string; url : string; }[] =
 		[
 			{
 				apiUrl: 'http://localhost',
-				endpoint: '/posts',
+				apiRoute: '/posts',
 				url: 'http://localhost/posts'
 			},
 			{
 				apiUrl: '..',
-				endpoint: '/posts',
+				apiRoute: '/posts',
 				url: '../posts'
 			}
 		];
 
-		testArray.map(testSet => expect(createUrl(testSet.apiUrl, testSet.endpoint)).to.be.equal(testSet.url));
+		testArray.map(testSet => expect(createUrl(testSet.apiUrl, testSet.apiRoute)).to.be.equal(testSet.url));
 	});
 
 	it('create url with id', () =>
 	{
-		const testArray : any[] =
+		const testArray : { apiUrl : string; apiRoute : string; id : Id; url : string; }[] =
 		[
 			{
 				apiUrl: 'http://localhost/v1.0.0',
-				endpoint: '/posts',
-				url: 'http://localhost/v1.0.0/posts/1',
-				id: 1
+				apiRoute: '/posts',
+				id: '1',
+				url: 'http://localhost/v1.0.0/posts/1'
 			},
 			{
 				apiUrl: '../v1.0.0',
-				endpoint: '/posts',
-				url: '../v1.0.0/posts/1',
-				id: 1
+				apiRoute: '/posts',
+				id: '1',
+				url: '../v1.0.0/posts/1'
 			}
 		];
 
-		testArray.map(testSet => expect(createUrlWithId(testSet.apiUrl, testSet.endpoint, testSet.id)).to.be.equal(testSet.url));
+		testArray.map(testSet => expect(createUrlWithId(testSet.apiUrl, testSet.apiRoute, testSet.id)).to.be.equal(testSet.url));
 	});
 });
