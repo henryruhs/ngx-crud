@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { delay } from 'rxjs/operators';
+import { concatMap, delay, tap } from 'rxjs/operators';
 import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './test.helper';
@@ -56,25 +56,21 @@ describe('CacheService', () =>
 				.setParam('cache', '1')
 				.find()
 				.pipe(
-					delay(500)
+					delay(500),
+					concatMap(() => cacheService.get(mockRequest(testService)))
 				)
-				.subscribe(() =>
+				.subscribe(
 				{
-					cacheService
-						.get(mockRequest(testService))
-						.subscribe(
-						{
-							next: () =>
-							{
-								testService.clear();
-								done();
-							},
-							error: () =>
-							{
-								testService.clear();
-								done('error');
-							}
-						});
+					next: () =>
+					{
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
 				});
 		})();
 	});
@@ -92,25 +88,21 @@ describe('CacheService', () =>
 				.setParam('cache', '2')
 				.find()
 				.pipe(
-					delay(1000)
+					delay(1000),
+					concatMap(() => cacheService.get(mockRequest(testService)))
 				)
-				.subscribe(() =>
+				.subscribe(
 				{
-					cacheService
-						.get(mockRequest(testService))
-						.subscribe(
-						{
-							next: () =>
-							{
-								testService.clear();
-								done('error');
-							},
-							error: () =>
-							{
-								testService.clear();
-								done();
-							}
-						});
+					next: () =>
+					{
+						testService.clear();
+						done('error');
+					},
+					error: () =>
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
@@ -127,24 +119,22 @@ describe('CacheService', () =>
 				.enableCache()
 				.setParam('cache', '3')
 				.find()
-				.subscribe(() =>
+				.pipe(
+					tap(() => testService.flush()),
+					concatMap(() => cacheService.get(mockRequest(testService)))
+				)
+				.subscribe(
 				{
-					testService.flush();
-					cacheService
-						.get(mockRequest(testService))
-						.subscribe(
-						{
-							next: () =>
-							{
-								testService.clear();
-								done('error');
-							},
-							error: () =>
-							{
-								testService.clear();
-								done();
-							}
-						});
+					next: () =>
+					{
+						testService.clear();
+						done('error');
+					},
+					error: () =>
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
@@ -161,24 +151,21 @@ describe('CacheService', () =>
 				.enableCache()
 				.setParam('cache', '4')
 				.find()
-				.subscribe(() =>
+				.pipe(
+					concatMap(() => cacheService.flushAll().get(mockRequest(testService)))
+				)
+				.subscribe(
 				{
-					cacheService
-						.flushAll()
-						.get(mockRequest(testService))
-						.subscribe(
-						{
-							next: () =>
-							{
-								testService.clear();
-								done('error');
-							},
-							error: () =>
-							{
-								testService.clear();
-								done();
-							}
-						});
+					next: () =>
+					{
+						testService.clear();
+						done('error');
+					},
+					error: () =>
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
