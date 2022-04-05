@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "10.1.0",
+	"version": "10.1.1",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -17,16 +17,16 @@
 	"author":
 	{
 		"name": "Henry Ruhs",
-		"url": "https://redaxmedia.com"
+		"url": "https://henryruhs.com"
 	},
 	"bugs":
 	{
-		"url": "https://github.com/redaxmedia/ngx-crud/issues"
+		"url": "https://github.com/henryruhs/ngx-crud/issues"
 	},
 	"repository":
 	{
 		"type": "git",
-		"url": "https://github.com/redaxmedia/ngx-crud.git"
+		"url": "https://github.com/henryruhs/ngx-crud.git"
 	},
 	"peerDependencies":
 	{
@@ -36,6 +36,7 @@
 	},
 	"devDependencies":
 	{
+		"@isnotdefined/eslint-config": "4.3.0",
 		"@angular/common": "13.0.3",
 		"@angular/compiler": "13.3.0",
 		"@angular/compiler-cli": "13.3.0",
@@ -47,7 +48,6 @@
 		"chai": "4.3.6",
 		"core-js": "3.21.1",
 		"eslint": "8.12.0",
-		"eslint-config-redaxmedia": "4.2.3",
 		"jsdom": "19.0.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "9.2.2",
