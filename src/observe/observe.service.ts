@@ -13,6 +13,7 @@ export class ObserveService
 		method: null,
 		lifetime: null
 	};
+
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
 	protected status : Subject<ObserveStatus> = new Subject<ObserveStatus>();
 	protected timer : Subscription = new Subscription();

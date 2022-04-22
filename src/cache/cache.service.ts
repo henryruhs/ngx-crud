@@ -11,6 +11,7 @@ export class CacheService
 		method: null,
 		lifetime: null
 	};
+
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
 	protected store : Map<string, Store> = new Map();
 
