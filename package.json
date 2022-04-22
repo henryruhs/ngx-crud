@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "11.0.0-next.1",
+	"version": "11.0.0-next.2",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -30,8 +30,8 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^14",
-		"@angular/core": "^14",
+		"@angular/common": "14.0.0-next.14",
+		"@angular/core": "14.0.0-next.14",
 		"rxjs": "^7"
 	},
 	"devDependencies":
