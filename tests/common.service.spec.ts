@@ -4,26 +4,26 @@ import { expect } from 'chai';
 import { CrudModule, CommonService, Context } from '../src';
 import { TestService } from './test.service';
 
-before(() =>
-{
-	TestBed
-		.configureTestingModule(
-		{
-			imports:
-			[
-				CrudModule,
-				HttpClientModule
-			],
-			providers:
-			[
-				CommonService,
-				TestService
-			]
-		});
-});
-
 describe('CommonService', () =>
 {
+	before(() =>
+	{
+		TestBed
+			.configureTestingModule(
+			{
+				imports:
+				[
+					CrudModule,
+					HttpClientModule
+				],
+				providers:
+				[
+					CommonService,
+					TestService
+				]
+			});
+	});
+
 	it('simple param', () =>
 	{
 		inject(

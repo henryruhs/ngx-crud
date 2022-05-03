@@ -4,25 +4,25 @@ import { expect } from 'chai';
 import { CrudModule } from '../src';
 import { TestService } from './test.service';
 
-before(() =>
-{
-	TestBed
-		.configureTestingModule(
-		{
-			imports:
-			[
-				CrudModule,
-				HttpClientModule
-			],
-			providers:
-			[
-				TestService
-			]
-		});
-});
-
 describe('CrudService', () =>
 {
+	before(() =>
+	{
+		TestBed
+			.configureTestingModule(
+			{
+				imports:
+				[
+					CrudModule,
+					HttpClientModule
+				],
+				providers:
+				[
+					TestService
+				]
+			});
+	});
+
 	it('create', done =>
 	{
 		inject(

@@ -61,7 +61,7 @@ export class ObserveService
 
 	before<T>(request : HttpRequest<T>) : HttpRequest<T>
 	{
-		if ('before' in this.observeEffect && typeof this.observeEffect.before === 'function')
+		if (this.observeEffect && 'before' in this.observeEffect)
 		{
 			return this.observeEffect.before(request);
 		}
@@ -81,7 +81,7 @@ export class ObserveService
 
 	after<T>(request : HttpRequest<T>, response : HttpResponse<T> | HttpErrorResponse) : this
 	{
-		if ('after' in this.observeEffect && typeof this.observeEffect.after === 'function')
+		if (this.observeEffect && 'after' in this.observeEffect)
 		{
 			this.observeEffect.after(request, response);
 		}

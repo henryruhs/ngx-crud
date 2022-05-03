@@ -5,26 +5,26 @@ import { CrudModule, AbortService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './test.helper';
 
-before(() =>
-{
-	TestBed
-		.configureTestingModule(
-		{
-			imports:
-			[
-				CrudModule,
-				HttpClientModule
-			],
-			providers:
-			[
-				AbortService,
-				TestService
-			]
-		});
-});
-
 describe('AbortService', () =>
 {
+	before(() =>
+	{
+		TestBed
+			.configureTestingModule(
+			{
+				imports:
+				[
+					CrudModule,
+					HttpClientModule
+				],
+				providers:
+				[
+					AbortService,
+					TestService
+				]
+			});
+	});
+
 	it('enable and disable', () =>
 	{
 		inject(
