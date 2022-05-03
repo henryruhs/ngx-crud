@@ -6,26 +6,26 @@ import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './test.helper';
 
+before(() =>
+{
+	TestBed
+		.configureTestingModule(
+		{
+			imports:
+			[
+				CrudModule,
+				HttpClientModule
+			],
+			providers:
+			[
+				CacheService,
+				TestService
+			]
+		});
+});
+
 describe('CacheService', () =>
 {
-	before(() =>
-	{
-		TestBed
-			.configureTestingModule(
-			{
-				imports:
-				[
-					CrudModule,
-					HttpClientModule
-				],
-				providers:
-				[
-					CacheService,
-					TestService
-				]
-			});
-	});
-
 	it('enable and disable', () =>
 	{
 		inject(

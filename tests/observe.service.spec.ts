@@ -6,30 +6,30 @@ import { TestService } from './test.service';
 import { TestEffect } from './test.effect';
 import { getToken } from './test.helper';
 
+before(() =>
+{
+	TestBed
+		.configureTestingModule(
+		{
+			imports:
+			[
+				CrudModule,
+				HttpClientModule
+			],
+			providers:
+			[
+				ObserveService,
+				TestService,
+				{
+					provide: OBSERVE_EFFECT,
+					useClass: TestEffect
+				}
+			]
+		});
+});
+
 describe('ObserveService', () =>
 {
-	before(() =>
-	{
-		TestBed
-			.configureTestingModule(
-			{
-				imports:
-				[
-					CrudModule,
-					HttpClientModule
-				],
-				providers:
-				[
-					ObserveService,
-					TestService,
-					{
-						provide: OBSERVE_EFFECT,
-						useClass: TestEffect
-					}
-				]
-			});
-	});
-
 	it('enable and disable', () =>
 	{
 		inject(
