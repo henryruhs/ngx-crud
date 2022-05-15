@@ -59,10 +59,10 @@
 	},
 	"scripts":
 	{
+		"build": "ng-packagr --project=ng-package.json",
+		"prepublishOnly": "exit 1",
 		"lint": "eslint ./{src,tests}/**/*.ts",
 		"fix": "eslint ./{src,tests}/**/*.ts --fix",
-		"test": "mocha",
-		"build": "ng-packagr --project=ng-package.json",
-		"prepublishOnly": "exit 1"
+		"test": "mocha"
 	}
 }
