@@ -9,18 +9,6 @@ import { NoInfer } from './crud.type';
 @Injectable()
 export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends CommonService
 {
-	/**
-	 * fires a request to completely update a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {RequestBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	update<
 		RequestBody = UpdateRequestBody,
 		ResponseBody = UpdateResponseBody

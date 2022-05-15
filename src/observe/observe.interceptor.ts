@@ -20,17 +20,6 @@ export class ObserveInterceptor implements HttpInterceptor
 	{
 	}
 
-	/**
-	 * intercept the request
-	 *
-	 * @since 5.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
-
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.observeService.getToken());
@@ -38,17 +27,6 @@ export class ObserveInterceptor implements HttpInterceptor
 
 		return enableObserve ? this.handle(request, next) : next.handle(request);
 	}
-
-	/**
-	 * handle the request
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
 
 	handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{

@@ -7,16 +7,6 @@ import { createUrl } from '../common';
 @Injectable()
 export class FindService<FindResponseBody> extends CommonService
 {
-	/**
-	 * fires a request to find multiple resources
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	find<
 		ResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<ResponseBody>

@@ -62,17 +62,6 @@ export class CrudService<
 		this.customService = injector.get<CustomService<CustomRequestBody, CustomResponseBody>>(CustomService);
 	}
 
-	/**
-	 * fires a request to create a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {RequestBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	create<
 		RequestBody = CreateRequestBody,
 		ResponseBody = CreateResponseBody
@@ -81,17 +70,6 @@ export class CrudService<
 		return this.createService.bind(this).create(body, options);
 	}
 
-	/**
-	 * fires a request to read a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	read<
 		ResponseBody = ReadResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
@@ -99,34 +77,12 @@ export class CrudService<
 		return this.readService.bind(this).read(id, options);
 	}
 
-	/**
-	 * fires a request to find multiple resources
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	find<
 		ResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<ResponseBody>
 	{
 		return this.findService.bind(this).find(options);
 	}
-
-	/**
-	 * fires a request to completely update a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {RequestBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
 
 	update<
 		RequestBody = UpdateRequestBody,
@@ -136,18 +92,6 @@ export class CrudService<
 		return this.updateService.bind(this).update(id, body, options);
 	}
 
-	/**
-	 * fires a request to partially update a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {RequestBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	patch<
 		RequestBody = PatchRequestBody,
 		ResponseBody = PatchResponseBody
@@ -156,34 +100,12 @@ export class CrudService<
 		return this.patchService.bind(this).patch(id, body, options);
 	}
 
-	/**
-	 * fires a request to delete a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	delete<
 		ResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
 		return this.deleteService.bind(this).delete(id, options);
 	}
-
-	/**
-	 * fires a custom request
-	 *
-	 * @since 10.0.0
-	 *
-	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody<RequestBody>} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
 
 	custom<
 		RequestBody = CustomRequestBody,

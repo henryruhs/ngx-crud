@@ -1,34 +1,16 @@
-/**
- * decorator to set the api url of the service
- *
- * @since 7.1.0
- *
- * @param {string} apiUrl api url of the service
- *
- * @return {Function} constructor of the class
- */
+import { Constructor } from './common.interface';
 
 export function ApiUrl(apiUrl : string) : Function
 {
-	return (constructor : Function) =>
+	return (constructor : Constructor) =>
 	{
 		constructor.prototype.setApiUrl(apiUrl);
 	};
 }
 
-/**
- * decorator to set the api route of the service
- *
- * @since 8.2.0
- *
- * @param {string} apiRoute api route of the service
- *
- * @return {Function} constructor of the class
- */
-
 export function ApiRoute(apiRoute : string) : Function
 {
-	return (constructor : Function) =>
+	return (constructor : Constructor) =>
 	{
 		constructor.prototype.setApiRoute(apiRoute);
 	};

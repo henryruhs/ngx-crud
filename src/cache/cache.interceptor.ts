@@ -19,17 +19,6 @@ export class CacheInterceptor implements HttpInterceptor
 	{
 	}
 
-	/**
-	 * intercept the request
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
-
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.cacheService.getToken());
@@ -38,32 +27,10 @@ export class CacheInterceptor implements HttpInterceptor
 		return enableCache ? this.handle(request, next) : next.handle(request);
 	}
 
-	/**
-	 * handle the request
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
-
 	protected handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		return this.cacheService.has(request) ? this.cacheService.get(request) : this.store(request, next);
 	}
-
-	/**
-	 * store the request
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpResponse<T>>} http response
-	 */
 
 	protected store<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpResponse<T>>
 	{

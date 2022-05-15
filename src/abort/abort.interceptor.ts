@@ -18,17 +18,6 @@ export class AbortInterceptor implements HttpInterceptor
 	{
 	}
 
-	/**
-	 * intercept the request
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
-
 	intercept<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
 		const context : Context = request.context.get(this.abortService.getToken());
@@ -36,17 +25,6 @@ export class AbortInterceptor implements HttpInterceptor
 
 		return enableAbort ? this.handle(request, next) : next.handle(request);
 	}
-
-	/**
-	 * handle the request
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param {HttpRequest<T>} request instance of the http request
-	 * @param {HttpHandler} next instance of the http handler
-	 *
-	 * @return {Observable<HttpEvent<T>>} http event
-	 */
 
 	handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{

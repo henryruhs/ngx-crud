@@ -8,17 +8,6 @@ import { NoInfer } from './crud.type';
 @Injectable()
 export class CreateService<CreateRequestBody, CreateResponseBody> extends CommonService
 {
-	/**
-	 * fires a request to create a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {RequestBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	create<
 		RequestBody = CreateRequestBody,
 		ResponseBody = CreateResponseBody

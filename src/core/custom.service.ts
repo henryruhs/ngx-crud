@@ -9,17 +9,6 @@ import { NoInfer } from './crud.type';
 @Injectable()
 export class CustomService<CustomRequestBody, CustomResponseBody> extends CommonService
 {
-	/**
-	 * fire a custom request
-	 *
-	 * @since 10.0.0
-	 *
-	 * @param {Method} method method of the request
-	 * @param {OptionsWithBody<RequestBody>} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	custom<
 		RequestBody = CustomRequestBody,
 		ResponseBody = CustomResponseBody
