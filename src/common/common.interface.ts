@@ -20,3 +20,12 @@ export interface Context
 {
 	[index : string] : any;
 }
+
+export interface Constructor
+{
+	prototype :
+	{
+		setApiUrl : (apiUrl : string) => void;
+		setApiRoute : (apiRoute : string) => void;
+	}
+}

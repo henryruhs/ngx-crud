@@ -9,18 +9,6 @@ import { NoInfer } from './crud.type';
 @Injectable()
 export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonService
 {
-	/**
-	 * fires a request to partially update a single resource
-	 *
-	 * @since 8.0.0
-	 *
-	 * @param {Id} id identifier of the resource
-	 * @param {ResponseBody} body body of the request
-	 * @param {Options} options options of the request
-	 *
-	 * @return {Observable<ResponseBody>} http response
-	 */
-
 	patch<
 		RequestBody = PatchRequestBody,
 		ResponseBody = PatchResponseBody
