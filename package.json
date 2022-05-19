@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "11.0.0-next.4",
+	"version": "11.0.0-next.5",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -30,18 +30,18 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "14.0.0-rc.0",
-		"@angular/core": "14.0.0-rc.0",
+		"@angular/common": "14.0.0-rc.1",
+		"@angular/core": "14.0.0-rc.1",
 		"rxjs": "^7"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "14.0.0-rc.0",
-		"@angular/compiler": "14.0.0-rc.0",
-		"@angular/compiler-cli": "14.0.0-rc.0",
-		"@angular/core": "14.0.0-rc.0",
-		"@angular/platform-browser": "14.0.0-rc.0",
-		"@angular/platform-browser-dynamic": "14.0.0-rc.0",
+		"@angular/common": "14.0.0-rc.1",
+		"@angular/compiler": "14.0.0-rc.1",
+		"@angular/compiler-cli": "14.0.0-rc.1",
+		"@angular/core": "14.0.0-rc.1",
+		"@angular/platform-browser": "14.0.0-rc.1",
+		"@angular/platform-browser-dynamic": "14.0.0-rc.1",
 		"@isnotdefined/eslint-config": "5.1.0",
 		"@types/chai": "4.3.1",
 		"@types/mocha": "9.1.1",
