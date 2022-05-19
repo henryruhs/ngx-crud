@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Options, OptionsWithBody } from '../common';
 import { CommonService } from '../common';
@@ -42,25 +42,13 @@ export class CrudService<
 	CustomResponseBody
 >
 {
-	protected createService : CreateService<CreateRequestBody, CreateResponseBody>;
-	protected readService : ReadService<ReadResponseBody>;
-	protected findService : FindService<FindResponseBody>;
-	protected updateService : UpdateService<UpdateRequestBody, UpdateResponseBody>;
-	protected patchService : PatchService<PatchRequestBody, PatchResponseBody>;
-	protected deleteService : DeleteService<DeleteResponseBody>;
-	protected customService : CustomService<CustomRequestBody, CustomResponseBody>;
-
-	constructor(protected injector : Injector)
-	{
-		super(injector);
-		this.createService = injector.get<CreateService<CreateRequestBody, CreateResponseBody>>(CreateService);
-		this.readService = injector.get<ReadService<ReadResponseBody>>(ReadService);
-		this.findService = injector.get<FindService<FindResponseBody>>(FindService);
-		this.updateService = injector.get<UpdateService<UpdateRequestBody, UpdateResponseBody>>(UpdateService);
-		this.patchService = injector.get<PatchService<PatchRequestBody, PatchResponseBody>>(PatchService);
-		this.deleteService = injector.get<DeleteService<DeleteResponseBody>>(DeleteService);
-		this.customService = injector.get<CustomService<CustomRequestBody, CustomResponseBody>>(CustomService);
-	}
+	protected createService : CreateService<CreateRequestBody, CreateResponseBody> = this.injector.get(CreateService);
+	protected readService : ReadService<ReadResponseBody> = this.injector.get(ReadService);
+	protected findService : FindService<FindResponseBody> = this.injector.get(FindService);
+	protected updateService : UpdateService<UpdateRequestBody, UpdateResponseBody> = this.injector.get(UpdateService);
+	protected patchService : PatchService<PatchRequestBody, PatchResponseBody> = this.injector.get(PatchService);
+	protected deleteService : DeleteService<DeleteResponseBody> = this.injector.get(DeleteService);
+	protected customService : CustomService<CustomRequestBody, CustomResponseBody> = this.injector.get(CustomService);
 
 	create<
 		RequestBody = CreateRequestBody,
