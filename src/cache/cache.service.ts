@@ -62,13 +62,13 @@ export class CacheService
 
 	flushMany(url : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(url) ? this.flush(urlWithParams) : null);
+		this.store.forEach((store, urlWithParams) => urlWithParams.startsWith(url) ? this.flush(urlWithParams) : null);
 		return this;
 	}
 
 	flushAll() : this
 	{
-		this.store.forEach((value, urlWithParams) => this.flush(urlWithParams));
+		this.store.forEach((store, urlWithParams) => this.flush(urlWithParams));
 		return this;
 	}
 

@@ -64,13 +64,13 @@ export class AbortService
 
 	abortMany(url : string) : this
 	{
-		this.store.forEach((value, urlWithParams) => urlWithParams.startsWith(url) ? this.abort(urlWithParams) : null);
+		this.store.forEach((store, urlWithParams) => urlWithParams.startsWith(url) ? this.abort(urlWithParams) : null);
 		return this;
 	}
 
 	abortAll() : this
 	{
-		this.store.forEach((value, urlWithParams) => this.abort(urlWithParams));
+		this.store.forEach((store, urlWithParams) => this.abort(urlWithParams));
 		return this;
 	}
 

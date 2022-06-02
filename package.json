@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "11.0.0-next.5",
+	"version": "11.0.0-beta.1",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -30,18 +30,18 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "14.0.0-rc.1",
-		"@angular/core": "14.0.0-rc.1",
+		"@angular/common": "^14",
+		"@angular/core": "^14",
 		"rxjs": "^7"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "14.0.0-rc.1",
-		"@angular/compiler": "14.0.0-rc.1",
-		"@angular/compiler-cli": "14.0.0-rc.1",
-		"@angular/core": "14.0.0-rc.1",
-		"@angular/platform-browser": "14.0.0-rc.1",
-		"@angular/platform-browser-dynamic": "14.0.0-rc.1",
+		"@angular/common": "14.0.0",
+		"@angular/compiler": "14.0.0",
+		"@angular/compiler-cli": "14.0.0",
+		"@angular/core": "14.0.0",
+		"@angular/platform-browser": "14.0.0",
+		"@angular/platform-browser-dynamic": "14.0.0",
 		"@isnotdefined/eslint-config": "5.1.0",
 		"@types/chai": "4.3.1",
 		"@types/mocha": "9.1.1",
@@ -51,7 +51,7 @@
 		"jsdom": "19.0.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "10.0.0",
-		"ng-packagr": "14.0.0-rc.0",
+		"ng-packagr": "14.0.0",
 		"rxjs": "7.5.5",
 		"ts-node": "10.7.0",
 		"typescript": "4.6.4",
