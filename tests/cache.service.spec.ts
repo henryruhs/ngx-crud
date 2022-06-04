@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { concatMap, delay, tap } from 'rxjs/operators';
+import { concatMap, delay, take, tap } from 'rxjs/operators';
 import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './test.helper';
@@ -139,7 +139,7 @@ describe('CacheService', () =>
 		})();
 	});
 
-	it('programmatic flush all', done =>
+	it('programmatic flush many', done =>
 	{
 		inject(
 		[
@@ -150,6 +150,37 @@ describe('CacheService', () =>
 			testService
 				.enableCache()
 				.setParam('cache', '4')
+				.find()
+				.pipe(
+					concatMap(() => cacheService.flushMany('https://jsonplaceholder.typicode.com/posts').get(mockRequest(testService)))
+				)
+				.subscribe(
+				{
+					next: () =>
+					{
+						testService.clear();
+						done('error');
+					},
+					error: () =>
+					{
+						testService.clear();
+						done();
+					}
+				});
+		})();
+	});
+
+	it('programmatic flush all', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('cache', '5')
 				.find()
 				.pipe(
 					concatMap(() => cacheService.flushAll().get(mockRequest(testService)))
@@ -170,6 +201,72 @@ describe('CacheService', () =>
 		})();
 	});
 
+	it('observe', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('cache', '6')
+				.find()
+				.subscribe();
+			cacheService
+				.observe('https://jsonplaceholder.typicode.com/posts?cache=6')
+				.pipe(take(1))
+				.subscribe(
+				{
+					next: store =>
+					{
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
+				});
+		})();
+	});
+
+	it('observe many', done =>
+	{
+		inject(
+		[
+			CacheService,
+			TestService
+		], (cacheService : CacheService, testService : TestService) =>
+		{
+			testService
+				.enableCache()
+				.setParam('cache', '7')
+				.find()
+				.subscribe();
+			cacheService
+				.observeMany('https://jsonplaceholder.typicode.com/posts')
+				.pipe(take(1))
+				.subscribe(
+				{
+					next: store =>
+					{
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
+				});
+		})();
+	});
+
 	it('observe all', done =>
 	{
 		inject(
@@ -180,11 +277,12 @@ describe('CacheService', () =>
 		{
 			testService
 				.enableCache()
-				.setParam('cache', '5')
+				.setParam('cache', '8')
 				.find()
 				.subscribe();
 			cacheService
 				.observeAll()
+				.pipe(take(1))
 				.subscribe(
 				{
 					next: store =>

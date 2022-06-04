@@ -1,7 +1,8 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, timer, Observable, Subject, Subscription } from 'rxjs';
+import { filter, from, timer, Observable, Subject, Subscription } from 'rxjs';
 import { Context, Store } from './abort.interface';
+import { stripUrlParams } from '../common';
 
 @Injectable()
 export class AbortService
@@ -64,7 +65,7 @@ export class AbortService
 
 	abortMany(url : string) : this
 	{
-		this.store.forEach((store, urlWithParams) => urlWithParams.startsWith(url) ? this.abort(urlWithParams) : null);
+		this.store.forEach((store, urlWithParams) => stripUrlParams(urlWithParams) === url ? this.abort(urlWithParams) : null);
 		return this;
 	}
 
@@ -72,6 +73,16 @@ export class AbortService
 	{
 		this.store.forEach((store, urlWithParams) => this.abort(urlWithParams));
 		return this;
+	}
+
+	observe(urlWithParams : string) : Observable<[string, Store]>
+	{
+		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
+	}
+
+	observeMany(url : string) : Observable<[string, Store]>
+	{
+		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
 	}
 
 	observeAll() : Observable<[string, Store]>
