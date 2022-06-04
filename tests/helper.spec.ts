@@ -47,5 +47,5 @@ describe('Helper', () =>
 	{
 		expect(stripUrlParams('http://localhost/v1.0.0/posts/1?cache=1'), 'http://localhost/v1.0.0/posts/1');
 		expect(stripUrlParams('../v1.0.0/posts/1?cache=1'), '../v1.0.0/posts/1');
-	})
+	});
 });

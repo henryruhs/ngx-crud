@@ -167,7 +167,7 @@ describe('CacheService', () =>
 						done();
 					}
 				});
-			})();
+		})();
 	});
 
 	it('programmatic flush all', done =>
