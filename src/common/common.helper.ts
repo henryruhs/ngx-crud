@@ -24,3 +24,8 @@ export function createUrlWithId(apiUrl : string, apiRoute : string, id : Id) : s
 
 	return apiUrl + route;
 }
+
+export function stripUrlParams(urlWithParams : string) : string
+{
+	return urlWithParams.split('?')[0];
+}

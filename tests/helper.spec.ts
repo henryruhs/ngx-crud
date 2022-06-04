@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createUrl, createUrlWithId, Id } from '../src';
+import { createUrl, createUrlWithId, stripUrlParams, Id } from '../src';
 
 describe('Helper', () =>
 {
@@ -42,4 +42,10 @@ describe('Helper', () =>
 
 		testArray.map(testSet => expect(createUrlWithId(testSet.apiUrl, testSet.apiRoute, testSet.id)).to.be.equal(testSet.url));
 	});
+
+	it('strip url params', () =>
+	{
+		expect(stripUrlParams('http://localhost/v1.0.0/posts/1?cache=1'), 'http://localhost/v1.0.0/posts/1');
+		expect(stripUrlParams('../v1.0.0/posts/1?cache=1'), '../v1.0.0/posts/1');
+	})
 });

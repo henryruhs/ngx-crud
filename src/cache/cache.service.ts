@@ -1,7 +1,8 @@
 import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, timer, Observable, Subscription } from 'rxjs';
+import { from, filter, timer, Observable, Subscription } from 'rxjs';
 import { Context, Store } from './cache.interface';
+import { stripUrlParams } from '../common';
 
 @Injectable()
 export class CacheService
@@ -62,7 +63,7 @@ export class CacheService
 
 	flushMany(url : string) : this
 	{
-		this.store.forEach((store, urlWithParams) => urlWithParams.startsWith(url) ? this.flush(urlWithParams) : null);
+		this.store.forEach((store, urlWithParams) => stripUrlParams(urlWithParams) === url ? this.flush(urlWithParams) : null);
 		return this;
 	}
 
@@ -70,6 +71,16 @@ export class CacheService
 	{
 		this.store.forEach((store, urlWithParams) => this.flush(urlWithParams));
 		return this;
+	}
+
+	observe(urlWithParams : string) : Observable<[string, Store]>
+	{
+		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
+	}
+
+	observeMany(url : string) : Observable<[string, Store]>
+	{
+		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
 	}
 
 	observeAll() : Observable<[string, Store]>
