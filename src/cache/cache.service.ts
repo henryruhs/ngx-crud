@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, filter, timer, Observable, Subscription } from 'rxjs';
+import { filter, from, timer, Observable, Subscription } from 'rxjs';
 import { Context, Store } from './cache.interface';
 import { stripUrlParams } from '../common';
 
