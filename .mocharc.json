@@ -8,7 +8,7 @@
 		"experimental-specifier-resolution=node",
 		"loader=ts-node/esm"
 	],
-	"require": "tests/setup.mjs",
+	"require": "mocha.setup.ts",
 	"spec": "tests/**/*.spec.ts",
 	"timeout": 8000
 }

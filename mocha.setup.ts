@@ -1,6 +1,5 @@
 import 'core-js/proposals/reflect-metadata';
 import 'zone.js';
-import 'ts-node/register';
 import 'jsdom-global/register';
 import { TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
