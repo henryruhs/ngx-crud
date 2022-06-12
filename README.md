@@ -51,7 +51,7 @@ import { Injectable } from '@angular/core';
 import { CrudService } from 'ngx-crud';
 import { RequestBody, ResponseBody } from './example.interface';
 
-import { environment } from '@env';
+import { environment } from '@environments';
 
 @Injectable()
 export class ExampleService extends CrudService<RequestBody, ResponseBody>
