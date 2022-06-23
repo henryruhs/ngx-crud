@@ -42,7 +42,7 @@
 		"@angular/core": "14.0.0",
 		"@angular/platform-browser": "14.0.0",
 		"@angular/platform-browser-dynamic": "14.0.0",
-		"@isnotdefined/eslint-config": "5.2.1",
+		"@isnotdefined/eslint-config": "6.0.0",
 		"@types/chai": "4.3.1",
 		"@types/mocha": "9.1.1",
 		"chai": "4.3.6",
