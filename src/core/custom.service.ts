@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OptionsWithBody } from '../common';
-import { CommonService } from '../common';
-import { Method } from '../common';
-import { createUrl } from '../common';
+import { CommonService, OptionsWithBody, Method, createUrl } from '../common';
 import { NoInfer } from './crud.type';
 
 @Injectable()

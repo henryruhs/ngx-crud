@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-import { Options, OptionsWithBody } from '../common';
-import { Id, Method } from '../common';
+import { Options, OptionsWithBody, Id, Method } from '../common';
 import { NoInfer } from './crud.type';
 
 export interface Crud<

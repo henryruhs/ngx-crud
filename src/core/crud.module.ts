@@ -1,14 +1,11 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AbortInterceptor } from '../abort';
-import { AbortService } from '../abort';
-import { CacheInterceptor } from '../cache';
-import { CacheService } from '../cache';
+import { AbortInterceptor, AbortService } from '../abort';
+import { CacheInterceptor, CacheService } from '../cache';
 import { DeleteService } from './delete.service';
 import { FindService } from './find.service';
 import { ReadService } from './read.service';
-import { ObserveInterceptor } from '../observe';
-import { ObserveService } from '../observe';
+import { ObserveInterceptor, ObserveService } from '../observe';
 import { PatchService } from './patch.service';
 import { CreateService } from './create.service';
 import { UpdateService } from './update.service';
