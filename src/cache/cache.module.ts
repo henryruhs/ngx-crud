@@ -7,12 +7,12 @@ import { CacheService } from './cache.service';
 {
 	providers:
 	[
+		CacheService,
 		{
 			multi: true,
 			provide: HTTP_INTERCEPTORS,
 			useClass: CacheInterceptor
-		},
-		CacheService
+		}
 	]
 })
 export class CacheModule

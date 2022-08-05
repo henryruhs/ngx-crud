@@ -7,12 +7,12 @@ import { AbortService } from './abort.service';
 {
 	providers:
 	[
+		AbortService,
 		{
 			multi: true,
 			provide: HTTP_INTERCEPTORS,
 			useClass: AbortInterceptor
-		},
-		AbortService
+		}
 	]
 })
 export class AbortModule

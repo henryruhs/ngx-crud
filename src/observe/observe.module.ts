@@ -7,12 +7,12 @@ import { ObserveService } from './observe.service';
 {
 	providers:
 	[
+		ObserveService,
 		{
 			multi: true,
 			provide: HTTP_INTERCEPTORS,
 			useClass: ObserveInterceptor
-		},
-		ObserveService
+		}
 	]
 })
 export class ObserveModule
