@@ -1,3 +1,4 @@
+export { ObserveModule } from './observe.module';
 export { ObserveInterceptor } from './observe.interceptor';
 export { ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
 export { ObserveService } from './observe.service';
