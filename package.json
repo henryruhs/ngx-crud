@@ -61,7 +61,7 @@
 	{
 		"build": "ng-packagr --project=ng-package.json",
 		"prepublishOnly": "exit 1",
-		"lint": "eslint {src,tests}/**/**/*.ts",
+		"lint": "eslint src tests --ext=.ts",
 		"fix": "npm run lint -- --fix",
 		"test": "mocha"
 	}
