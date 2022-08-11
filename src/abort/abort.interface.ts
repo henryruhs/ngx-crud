@@ -4,6 +4,7 @@ import { UniversalMethod } from '../common';
 export interface Store
 {
 	signal : Subject<boolean>;
+	controller : AbortController;
 	timer : Subscription;
 }
 

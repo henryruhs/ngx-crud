@@ -41,6 +41,7 @@ export class AbortService
 		this.store.set(request.urlWithParams,
 		{
 			signal: new Subject<boolean>(),
+			controller: new AbortController(),
 			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.abort(request.urlWithParams)) : new Subscription()
 		});
 		this.store.get(request.urlWithParams).signal.next(true);
@@ -56,8 +57,9 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.get(urlWithParams).signal.next(false);
+			this.store.get(urlWithParams).controller.abort();
+			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}
 		return this;
