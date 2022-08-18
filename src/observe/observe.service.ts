@@ -1,9 +1,10 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
-import { timer, Subject, Subscription } from 'rxjs';
-import { Context, ObserveAfterEffect, ObserveBeforeEffect } from './observe.interface';
-import { ObserveStatus } from './observe.type';
+import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { ObserveAfterEffect, ObserveBeforeEffect, Context, Store } from './observe.interface';
 import { OBSERVE_EFFECT } from './observe.token';
+import { ObserveStatus } from './observe.type';
+import { stripUrlParams } from '../common';
 
 @Injectable()
 export class ObserveService
@@ -15,8 +16,7 @@ export class ObserveService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected status : Subject<ObserveStatus> = new Subject<ObserveStatus>();
-	protected timer : Subscription = new Subscription();
+	protected store : Map<string, Store> = new Map();
 
 	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
 	{
@@ -27,9 +27,20 @@ export class ObserveService
 		return this.token;
 	}
 
-	start() : this
+	start<T>(request : HttpRequest<T>) : this
 	{
-		this.status.next('STARTED');
+		const context : Context = request.context.get(this.getToken());
+
+		if (this.has(request))
+		{
+			this.store.get(request.urlWithParams).timer.unsubscribe();
+		}
+		this.store.set(request.urlWithParams,
+		{
+			status: new Subject<ObserveStatus>(),
+			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.complete(request.urlWithParams)) : new Subscription()
+		});
+		this.store.get(request.urlWithParams).status.next('STARTED');
 		return this;
 	}
 
@@ -51,23 +62,61 @@ export class ObserveService
 		return this;
 	}
 
-	end<T>(request : HttpRequest<T>) : this
+	has<T>(request : HttpRequest<T>) : boolean
 	{
-		const context : Context = request.context.get(this.getToken());
+		return this.store.has(request.urlWithParams);
+	}
 
-		this.timer.unsubscribe();
-		this.timer = context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.completeAll()) : new Subscription();
+	error(urlWithParams : string) : this
+	{
+		if (this.store.has(urlWithParams))
+		{
+			this.store.get(urlWithParams).status.next('ERRORED');
+			this.store.get(urlWithParams).timer.unsubscribe();
+		}
+		return this;
+	}
+
+	complete(urlWithParams : string) : this
+	{
+		if (this.store.has(urlWithParams))
+		{
+			this.store.get(urlWithParams).status.next('COMPLETED');
+			this.store.get(urlWithParams).timer.unsubscribe();
+		}
+		return this;
+	}
+
+	completeMany(url : string) : this
+	{
+		this.store.forEach((store, urlWithParams) => stripUrlParams(urlWithParams) === url ? this.complete(urlWithParams) : null);
 		return this;
 	}
 
 	completeAll() : this
 	{
-		this.status.next('COMPLETED');
+		this.store.forEach((store, urlWithParams) => this.complete(urlWithParams));
 		return this;
 	}
 
-	observeAll() : Subject<ObserveStatus>
+	observe(urlWithParams : string) : Observable<ObserveStatus>
 	{
-		return this.status;
+		return from(this.store).pipe(
+			filter(value => value[0] === urlWithParams),
+			mergeMap(value => value[1].status)
+		);
+	}
+
+	observeMany(url : string) : Observable<ObserveStatus>
+	{
+		return from(this.store).pipe(
+			filter(value => stripUrlParams(value[0]) === url),
+			mergeMap(value => value[1].status)
+		);
+	}
+
+	observeAll() : Observable<ObserveStatus>
+	{
+		return from(this.store).pipe(mergeMap(value => value[1].status));
 	}
 }

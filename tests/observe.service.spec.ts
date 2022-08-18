@@ -1,4 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
+import { EMPTY } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { CrudModule, ObserveService, OBSERVE_EFFECT } from '../src';
@@ -56,6 +58,7 @@ describe('ObserveService', () =>
 		{
 			testService
 				.enableObserve('GET')
+				.setParam('observe', '1')
 				.find()
 				.subscribe(
 				{
@@ -75,6 +78,113 @@ describe('ObserveService', () =>
 		})();
 	});
 
+	it('natural error', done =>
+	{
+		inject(
+		[
+			ObserveService,
+			TestService
+		], (observeService : ObserveService, testService : TestService) =>
+		{
+			testService
+				.clone()
+				.setApiRoute('/error')
+				.enableObserve()
+				.find()
+				.pipe(catchError(() => EMPTY))
+				.subscribe();
+			observeService
+				.observe('https://jsonplaceholder.typicode.com/error')
+				.pipe(take(1))
+				.subscribe(
+				{
+					next: observeStatus =>
+					{
+						if (observeStatus === 'ERRORED')
+						{
+							testService.clear();
+							done();
+						}
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
+				});
+		})();
+	});
+
+	it('observe', done =>
+	{
+		inject(
+		[
+			ObserveService,
+			TestService
+		], (observeService : ObserveService, testService : TestService) =>
+		{
+			testService
+				.enableObserve()
+				.setParam('observe', '2')
+				.find()
+				.subscribe();
+			observeService
+				.observe('https://jsonplaceholder.typicode.com/posts?observe=2')
+				.pipe(take(1))
+				.subscribe(
+				{
+					next: observeStatus =>
+					{
+						if (observeStatus === 'COMPLETED')
+						{
+							testService.clear();
+							done();
+						}
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
+				});
+		})();
+	});
+
+	it('observe many', done =>
+	{
+		inject(
+		[
+			ObserveService,
+			TestService
+		], (observeService : ObserveService, testService : TestService) =>
+		{
+			testService
+				.enableObserve()
+				.setParam('observe', '3')
+				.find()
+				.subscribe();
+			observeService
+				.observeMany('https://jsonplaceholder.typicode.com/posts')
+				.pipe(take(1))
+				.subscribe(
+				{
+					next: observeStatus =>
+					{
+						if (observeStatus === 'COMPLETED')
+						{
+							testService.clear();
+							done();
+						}
+					},
+					error: () =>
+					{
+						testService.clear();
+						done('error');
+					}
+				});
+		})();
+	});
+
 	it('observe all', done =>
 	{
 		inject(
@@ -84,17 +194,22 @@ describe('ObserveService', () =>
 		], (observeService : ObserveService, testService : TestService) =>
 		{
 			testService
-				.enableObserve('GET')
+				.enableObserve()
+				.setParam('observe', '4')
 				.find()
 				.subscribe();
 			observeService
 				.observeAll()
+				.pipe(take(1))
 				.subscribe(
 				{
-					next: () =>
+					next: observeStatus =>
 					{
-						testService.clear();
-						done();
+						if (observeStatus === 'COMPLETED')
+						{
+							testService.clear();
+							done();
+						}
 					},
 					error: () =>
 					{
