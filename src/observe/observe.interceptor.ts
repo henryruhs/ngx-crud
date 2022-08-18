@@ -9,7 +9,7 @@ import
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, filter, finalize, tap } from 'rxjs/operators';
+import { catchError, filter, tap } from 'rxjs/operators';
 import { Context } from './observe.interface';
 import { ObserveService } from './observe.service';
 
@@ -30,18 +30,22 @@ export class ObserveInterceptor implements HttpInterceptor
 
 	handle<T>(request : HttpRequest<T>, next : HttpHandler) : Observable<HttpEvent<T>>
 	{
-		this.observeService.start();
+		this.observeService.start(request);
 		return next
 			.handle(this.observeService.before(request))
 			.pipe(
 				filter(event => event instanceof HttpResponse),
-				tap((response : HttpResponse<T>) => this.observeService.after(request, response)),
+				tap((response : HttpResponse<T>) =>
+				{
+					this.observeService.after(request, response);
+					this.observeService.complete(request.urlWithParams);
+				}),
 				catchError((response : HttpErrorResponse) =>
 				{
 					this.observeService.after(request, response);
+					this.observeService.error(request.urlWithParams);
 					return throwError(() => response);
-				}),
-				finalize(() => this.observeService.end(request))
+				})
 			);
 	}
 }

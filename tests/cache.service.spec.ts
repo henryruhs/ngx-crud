@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
+import { concatMap, delay, take, tap } from 'rxjs/operators';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { concatMap, delay, take, tap } from 'rxjs/operators';
 import { CrudModule, CacheService } from '../src';
 import { TestService } from './test.service';
 import { mockRequest } from './test.helper';
