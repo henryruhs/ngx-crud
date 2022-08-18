@@ -21,13 +21,13 @@ export class AbortService
 		return this.token;
 	}
 
-	get<T>(request : HttpRequest<T>) : Observable<boolean>
+	get<T>(request : HttpRequest<T>) : Observable<AbortController>
 	{
 		if (!this.has(request))
 		{
 			this.set(request);
 		}
-		return this.store.get(request.urlWithParams).signal;
+		return this.store.get(request.urlWithParams).controller;
 	}
 
 	set<T>(request : HttpRequest<T>) : this
@@ -40,11 +40,10 @@ export class AbortService
 		}
 		this.store.set(request.urlWithParams,
 		{
-			signal: new Subject<boolean>(),
-			controller: new AbortController(),
+			controller: new Subject<AbortController>(),
 			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.abort(request.urlWithParams)) : new Subscription()
 		});
-		this.store.get(request.urlWithParams).signal.next(true);
+		this.store.get(request.urlWithParams).controller.next(new AbortController());
 		return this;
 	}
 
@@ -57,8 +56,8 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			this.store.get(urlWithParams).signal.next(false);
-			this.store.get(urlWithParams).controller.abort();
+			this.store.get(urlWithParams).controller.subscribe(controller => controller.abort());
+			this.store.get(urlWithParams).controller.next(new AbortController());
 			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}

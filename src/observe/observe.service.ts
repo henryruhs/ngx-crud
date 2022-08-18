@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { Observable, Subject, Subscription, filter, from, timer } from 'rxjs';
 import { ObserveAfterEffect, ObserveBeforeEffect, Context, Store } from './observe.interface';
 import { OBSERVE_EFFECT } from './observe.token';
 import { ObserveStatus } from './observe.type';
@@ -99,24 +99,18 @@ export class ObserveService
 		return this;
 	}
 
-	observe(urlWithParams : string) : Observable<ObserveStatus>
+	observe(urlWithParams : string) : Observable<[string, Store]>
 	{
-		return from(this.store).pipe(
-			filter(value => value[0] === urlWithParams),
-			mergeMap(value => value[1].status)
-		);
+		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
 	}
 
-	observeMany(url : string) : Observable<ObserveStatus>
+	observeMany(url : string) : Observable<[string, Store]>
 	{
-		return from(this.store).pipe(
-			filter(value => stripUrlParams(value[0]) === url),
-			mergeMap(value => value[1].status)
-		);
+		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
 	}
 
-	observeAll() : Observable<ObserveStatus>
+	observeAll() : Observable<[string, Store]>
 	{
-		return from(this.store).pipe(mergeMap(value => value[1].status));
+		return from(this.store);
 	}
 }

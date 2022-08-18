@@ -98,13 +98,11 @@ describe('ObserveService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: observeStatus =>
+					next: store =>
 					{
-						if (observeStatus === 'ERRORED')
-						{
-							testService.clear();
-							done();
-						}
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
 					},
 					error: () =>
 					{
@@ -133,13 +131,11 @@ describe('ObserveService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: observeStatus =>
+					next: store =>
 					{
-						if (observeStatus === 'COMPLETED')
-						{
-							testService.clear();
-							done();
-						}
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
 					},
 					error: () =>
 					{
@@ -168,13 +164,11 @@ describe('ObserveService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: observeStatus =>
+					next: store =>
 					{
-						if (observeStatus === 'COMPLETED')
-						{
-							testService.clear();
-							done();
-						}
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
 					},
 					error: () =>
 					{
@@ -203,13 +197,11 @@ describe('ObserveService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: observeStatus =>
+					next: store =>
 					{
-						if (observeStatus === 'COMPLETED')
-						{
-							testService.clear();
-							done();
-						}
+						expect(store.length).to.be.above(0);
+						testService.clear();
+						done();
 					},
 					error: () =>
 					{
