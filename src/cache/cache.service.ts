@@ -1,6 +1,7 @@
 import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, filter, from, timer } from 'rxjs';
+import { Observable, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { ReactiveMap } from 'rxjs-collection/src';
 import { Context, Store } from './cache.interface';
 import { stripUrlParams } from '../common';
 
@@ -14,7 +15,7 @@ export class CacheService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected store : Map<string, Store> = new Map();
+	protected store : ReactiveMap<string, Store> = new ReactiveMap();
 
 	getToken() : HttpContextToken<Context>
 	{
@@ -85,6 +86,6 @@ export class CacheService
 
 	observeAll() : Observable<[string, Store]>
 	{
-		return from(this.store);
+		return this.store.asObservable().pipe(mergeMap(value => from(value)));
 	}
 }

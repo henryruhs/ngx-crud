@@ -219,9 +219,9 @@ describe('CacheService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: store =>
+					next: value =>
 					{
-						expect(store.length).to.be.above(0);
+						expect(value.length).to.be.above(0);
 						testService.clear();
 						done();
 					},
@@ -252,9 +252,9 @@ describe('CacheService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: store =>
+					next: value =>
 					{
-						expect(store.length).to.be.above(0);
+						expect(value.length).to.be.above(0);
 						testService.clear();
 						done();
 					},
@@ -285,9 +285,9 @@ describe('CacheService', () =>
 				.pipe(take(1))
 				.subscribe(
 				{
-					next: store =>
+					next: value =>
 					{
-						expect(store.length).to.be.above(0);
+						expect(value.length).to.be.above(0);
 						testService.clear();
 						done();
 					},

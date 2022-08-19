@@ -1,6 +1,7 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, filter, from, timer } from 'rxjs';
+import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { ReactiveMap } from 'rxjs-collection/src';
 import { ObserveAfterEffect, ObserveBeforeEffect, Context, Store } from './observe.interface';
 import { OBSERVE_EFFECT } from './observe.token';
 import { ObserveStatus } from './observe.type';
@@ -16,7 +17,7 @@ export class ObserveService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected store : Map<string, Store> = new Map();
+	protected store : ReactiveMap<string, Store> = new ReactiveMap();
 
 	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
 	{
@@ -111,6 +112,6 @@ export class ObserveService
 
 	observeAll() : Observable<[string, Store]>
 	{
-		return from(this.store);
+		return this.store.asObservable().pipe(mergeMap(value => from(value)));
 	}
 }

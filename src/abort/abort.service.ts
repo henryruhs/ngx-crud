@@ -1,6 +1,7 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, filter, from, timer } from 'rxjs';
+import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { ReactiveMap } from 'rxjs-collection/src';
 import { Context, Store } from './abort.interface';
 import { stripUrlParams } from '../common';
 
@@ -14,7 +15,7 @@ export class AbortService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected store : Map<string, Store> = new Map();
+	protected store : ReactiveMap<string, Store> = new ReactiveMap();
 
 	getToken() : HttpContextToken<Context>
 	{
@@ -88,6 +89,6 @@ export class AbortService
 
 	observeAll() : Observable<[string, Store]>
 	{
-		return from(this.store);
+		return this.store.asObservable().pipe(mergeMap(value => from(value)));
 	}
 }
