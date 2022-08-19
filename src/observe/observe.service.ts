@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
 import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
-import { ReactiveMap } from 'rxjs-collection/src';
+import { ReactiveMap } from 'rxjs-collection';
 import { ObserveAfterEffect, ObserveBeforeEffect, Context, Store } from './observe.interface';
 import { OBSERVE_EFFECT } from './observe.token';
 import { ObserveStatus } from './observe.type';

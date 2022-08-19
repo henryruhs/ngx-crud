@@ -9,6 +9,6 @@
 		"loader=ts-node/esm"
 	],
 	"require": "mocha.setup.ts",
-	"spec": "tests/**/*.spec.ts",
+	"spec": "tests",
 	"timeout": 8000
 }

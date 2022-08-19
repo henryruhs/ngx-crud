@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
-import { ReactiveMap } from 'rxjs-collection/src';
+import { ReactiveMap } from 'rxjs-collection';
 import { Context, Store } from './abort.interface';
 import { stripUrlParams } from '../common';
 
