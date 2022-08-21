@@ -17,7 +17,7 @@ export class ObserveService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected store : ReactiveMap<string, Store> = new ReactiveMap();
+	protected store : ReactiveMap<string, Store> = new ReactiveMap<string, Store>();
 
 	constructor(@Optional() @Inject(OBSERVE_EFFECT) protected observeEffect : ObserveBeforeEffect | ObserveAfterEffect)
 	{

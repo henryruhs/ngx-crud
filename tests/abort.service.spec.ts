@@ -162,11 +162,6 @@ describe('AbortService', () =>
 				TestService
 			], (abortService : AbortService, testService : TestService) =>
 			{
-				testService
-					.enableAbort()
-					.setParam('abort', '5')
-					.find()
-					.subscribe();
 				abortService
 					.observe('https://jsonplaceholder.typicode.com/posts?abort=5')
 					.pipe(take(1))
@@ -184,6 +179,11 @@ describe('AbortService', () =>
 							done('error');
 						}
 					});
+				testService
+					.enableAbort()
+					.setParam('abort', '5')
+					.find()
+					.subscribe();
 			})();
 	});
 
@@ -195,11 +195,6 @@ describe('AbortService', () =>
 			TestService
 		], (abortService : AbortService, testService : TestService) =>
 		{
-			testService
-				.enableAbort()
-				.setParam('abort', '6')
-				.find()
-				.subscribe();
 			abortService
 				.observeMany('https://jsonplaceholder.typicode.com/posts')
 				.pipe(take(1))
@@ -217,6 +212,11 @@ describe('AbortService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableAbort()
+				.setParam('abort', '6')
+				.find()
+				.subscribe();
 		})();
 	});
 
@@ -228,11 +228,6 @@ describe('AbortService', () =>
 			TestService
 		], (abortService : AbortService, testService : TestService) =>
 		{
-			testService
-				.enableAbort()
-				.setParam('abort', '7')
-				.find()
-				.subscribe();
 			abortService
 				.observeAll()
 				.pipe(take(1))
@@ -250,6 +245,11 @@ describe('AbortService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableAbort()
+				.setParam('abort', '7')
+				.find()
+				.subscribe();
 		})();
 	});
 });

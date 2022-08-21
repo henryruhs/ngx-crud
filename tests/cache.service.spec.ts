@@ -209,11 +209,6 @@ describe('CacheService', () =>
 			TestService
 		], (cacheService : CacheService, testService : TestService) =>
 		{
-			testService
-				.enableCache()
-				.setParam('cache', '6')
-				.find()
-				.subscribe();
 			cacheService
 				.observe('https://jsonplaceholder.typicode.com/posts?cache=6')
 				.pipe(take(1))
@@ -231,6 +226,11 @@ describe('CacheService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableCache()
+				.setParam('cache', '6')
+				.find()
+				.subscribe();
 		})();
 	});
 
@@ -242,11 +242,6 @@ describe('CacheService', () =>
 			TestService
 		], (cacheService : CacheService, testService : TestService) =>
 		{
-			testService
-				.enableCache()
-				.setParam('cache', '7')
-				.find()
-				.subscribe();
 			cacheService
 				.observeMany('https://jsonplaceholder.typicode.com/posts')
 				.pipe(take(1))
@@ -264,6 +259,11 @@ describe('CacheService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableCache()
+				.setParam('cache', '7')
+				.find()
+				.subscribe();
 		})();
 	});
 
@@ -275,11 +275,6 @@ describe('CacheService', () =>
 			TestService
 		], (cacheService : CacheService, testService : TestService) =>
 		{
-			testService
-				.enableCache()
-				.setParam('cache', '8')
-				.find()
-				.subscribe();
 			cacheService
 				.observeAll()
 				.pipe(take(1))
@@ -297,6 +292,11 @@ describe('CacheService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableCache()
+				.setParam('cache', '8')
+				.find()
+				.subscribe();
 		})();
 	});
 });

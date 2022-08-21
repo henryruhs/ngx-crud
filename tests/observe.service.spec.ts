@@ -86,13 +86,6 @@ describe('ObserveService', () =>
 			TestService
 		], (observeService : ObserveService, testService : TestService) =>
 		{
-			testService
-				.clone()
-				.setApiRoute('/error')
-				.enableObserve()
-				.find()
-				.pipe(catchError(() => EMPTY))
-				.subscribe();
 			observeService
 				.observe('https://jsonplaceholder.typicode.com/error')
 				.pipe(take(1))
@@ -110,6 +103,13 @@ describe('ObserveService', () =>
 						done('error');
 					}
 				});
+			testService
+				.clone()
+				.setApiRoute('/error')
+				.enableObserve()
+				.find()
+				.pipe(catchError(() => EMPTY))
+				.subscribe();
 		})();
 	});
 
@@ -121,11 +121,6 @@ describe('ObserveService', () =>
 			TestService
 		], (observeService : ObserveService, testService : TestService) =>
 		{
-			testService
-				.enableObserve()
-				.setParam('observe', '2')
-				.find()
-				.subscribe();
 			observeService
 				.observe('https://jsonplaceholder.typicode.com/posts?observe=2')
 				.pipe(take(1))
@@ -143,6 +138,11 @@ describe('ObserveService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableObserve()
+				.setParam('observe', '2')
+				.find()
+				.subscribe();
 		})();
 	});
 
@@ -154,11 +154,6 @@ describe('ObserveService', () =>
 			TestService
 		], (observeService : ObserveService, testService : TestService) =>
 		{
-			testService
-				.enableObserve()
-				.setParam('observe', '3')
-				.find()
-				.subscribe();
 			observeService
 				.observeMany('https://jsonplaceholder.typicode.com/posts')
 				.pipe(take(1))
@@ -176,6 +171,11 @@ describe('ObserveService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableObserve()
+				.setParam('observe', '3')
+				.find()
+				.subscribe();
 		})();
 	});
 
@@ -187,11 +187,6 @@ describe('ObserveService', () =>
 			TestService
 		], (observeService : ObserveService, testService : TestService) =>
 		{
-			testService
-				.enableObserve()
-				.setParam('observe', '4')
-				.find()
-				.subscribe();
 			observeService
 				.observeAll()
 				.pipe(take(1))
@@ -209,6 +204,11 @@ describe('ObserveService', () =>
 						done('error');
 					}
 				});
+			testService
+				.enableObserve()
+				.setParam('observe', '4')
+				.find()
+				.subscribe();
 		})();
 	});
 });

@@ -15,7 +15,7 @@ export class CacheService
 	};
 
 	protected token : HttpContextToken<Context> = new HttpContextToken<Context>(() => this.defaultContext);
-	protected store : ReactiveMap<string, Store> = new ReactiveMap();
+	protected store : ReactiveMap<string, Store> = new ReactiveMap<string, Store>();
 
 	getToken() : HttpContextToken<Context>
 	{
