@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
 import { ReactiveMap } from 'rxjs-collection';
 import { Context, Store } from './abort.interface';
 import { stripUrlParams } from '../common';
@@ -41,10 +41,9 @@ export class AbortService
 		}
 		this.store.set(request.urlWithParams,
 		{
-			controller: new Subject<AbortController>(),
+			controller: new BehaviorSubject<AbortController>(new AbortController()),
 			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.abort(request.urlWithParams)) : new Subscription()
 		});
-		this.store.get(request.urlWithParams).controller.next(new AbortController());
 		return this;
 	}
 
@@ -57,8 +56,7 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			this.store.get(urlWithParams).controller.subscribe(controller => controller.abort());
-			this.store.get(urlWithParams).controller.next(new AbortController());
+			this.store.get(urlWithParams).controller.getValue().abort();
 			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}
@@ -79,12 +77,12 @@ export class AbortService
 
 	observe(urlWithParams : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => value === urlWithParams));
 	}
 
 	observeMany(url : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => stripUrlParams(value) === url));
 	}
 
 	observeAll() : Observable<[string, Store]>

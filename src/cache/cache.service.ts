@@ -76,12 +76,12 @@ export class CacheService
 
 	observe(urlWithParams : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => value === urlWithParams));
 	}
 
 	observeMany(url : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => stripUrlParams(value) === url));
 	}
 
 	observeAll() : Observable<[string, Store]>

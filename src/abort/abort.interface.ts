@@ -1,9 +1,9 @@
-import { Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { UniversalMethod } from '../common';
 
 export interface Store
 {
-	controller : Subject<AbortController>;
+	controller : BehaviorSubject<AbortController>;
 	timer : Subscription;
 }
 

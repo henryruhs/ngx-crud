@@ -7,7 +7,7 @@ import
 	HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, of } from 'rxjs';
 import { filter, share, tap } from 'rxjs/operators';
 import { Context } from './cache.interface';
 import { CacheService } from './cache.service';
