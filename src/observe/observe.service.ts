@@ -1,6 +1,6 @@
 import { HttpContextToken, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Optional, Inject, Injectable } from '@angular/core';
-import { Observable, Subject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
 import { ReactiveMap } from 'rxjs-collection';
 import { ObserveAfterEffect, ObserveBeforeEffect, Context, Store } from './observe.interface';
 import { OBSERVE_EFFECT } from './observe.token';
@@ -38,10 +38,9 @@ export class ObserveService
 		}
 		this.store.set(request.urlWithParams,
 		{
-			status: new Subject<ObserveStatus>(),
+			status: new BehaviorSubject<ObserveStatus>('STARTED'),
 			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.complete(request.urlWithParams)) : new Subscription()
 		});
-		this.store.get(request.urlWithParams).status.next('STARTED');
 		return this;
 	}
 
@@ -102,12 +101,12 @@ export class ObserveService
 
 	observe(urlWithParams : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => value[0] === urlWithParams));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => value === urlWithParams));
 	}
 
 	observeMany(url : string) : Observable<[string, Store]>
 	{
-		return this.observeAll().pipe(filter(value => stripUrlParams(value[0]) === url));
+		return this.observeAll().pipe(filter(([ value ] : [ string, Store ]) => stripUrlParams(value) === url));
 	}
 
 	observeAll() : Observable<[string, Store]>
