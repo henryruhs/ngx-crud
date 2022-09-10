@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "12.1.0-beta.1",
+	"version": "12.1.0-beta.2",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",

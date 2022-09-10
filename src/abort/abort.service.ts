@@ -57,6 +57,7 @@ export class AbortService
 		if (this.store.has(urlWithParams))
 		{
 			this.store.get(urlWithParams).controller.getValue().abort();
+			this.store.get(urlWithParams).controller.next(this.store.get(urlWithParams).controller.getValue());
 			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}

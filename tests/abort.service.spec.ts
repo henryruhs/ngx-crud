@@ -62,10 +62,13 @@ describe('AbortService', () =>
 				});
 			abortService
 				.get(mockRequest(testService))
-				.subscribe(() =>
+				.subscribe(controller =>
 				{
-					testService.clear();
-					done();
+					if (controller.signal.aborted)
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
@@ -90,10 +93,13 @@ describe('AbortService', () =>
 			testService.abort();
 			abortService
 				.get(mockRequest(testService))
-				.subscribe(() =>
+				.subscribe(controller =>
 				{
-					testService.clear();
-					done();
+					if (controller.signal.aborted)
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
@@ -118,10 +124,13 @@ describe('AbortService', () =>
 			abortService
 				.abortMany('https://jsonplaceholder.typicode.com/posts')
 				.get(mockRequest(testService))
-				.subscribe(() =>
+				.subscribe(controller =>
 				{
-					testService.clear();
-					done();
+					if (controller.signal.aborted)
+					{
+						testService.clear();
+						done();
+					}
 				});
 		})();
 	});
@@ -146,10 +155,13 @@ describe('AbortService', () =>
 				abortService
 					.abortAll()
 					.get(mockRequest(testService))
-					.subscribe(() =>
+					.subscribe(controller =>
 					{
-						testService.clear();
-						done();
+						if (controller.signal.aborted)
+						{
+							testService.clear();
+							done();
+						}
 					});
 		})();
 	});
