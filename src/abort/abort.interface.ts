@@ -1,9 +1,10 @@
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UniversalMethod } from '../common';
+import { AbortSignal } from './abort.type';
 
 export interface Store
 {
-	controller : BehaviorSubject<AbortController>;
+	signal : BehaviorSubject<AbortSignal>;
 	timer : Subscription;
 }
 

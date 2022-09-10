@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
 import { ReactiveMap } from 'rxjs-collection';
 import { Context, Store } from './abort.interface';
+import { AbortSignal } from './abort.type';
 import { stripUrlParams } from '../common';
 
 @Injectable()
@@ -22,13 +23,13 @@ export class AbortService
 		return this.token;
 	}
 
-	get<T>(request : HttpRequest<T>) : Observable<AbortController>
+	get<T>(request : HttpRequest<T>) : Observable<AbortSignal>
 	{
 		if (!this.has(request))
 		{
 			this.set(request);
 		}
-		return this.store.get(request.urlWithParams).controller;
+		return this.store.get(request.urlWithParams).signal;
 	}
 
 	set<T>(request : HttpRequest<T>) : this
@@ -41,7 +42,7 @@ export class AbortService
 		}
 		this.store.set(request.urlWithParams,
 		{
-			controller: new BehaviorSubject<AbortController>(new AbortController()),
+			signal: new BehaviorSubject<AbortSignal>('STARTED'),
 			timer: context.lifetime > 0 ? timer(context.lifetime).subscribe(() => this.abort(request.urlWithParams)) : new Subscription()
 		});
 		return this;
@@ -56,8 +57,7 @@ export class AbortService
 	{
 		if (this.store.has(urlWithParams))
 		{
-			this.store.get(urlWithParams).controller.getValue().abort();
-			this.store.get(urlWithParams).controller.next(this.store.get(urlWithParams).controller.getValue());
+			this.store.get(urlWithParams).signal.next('ABORTED');
 			this.store.get(urlWithParams).timer.unsubscribe();
 			this.store.delete(urlWithParams);
 		}
