@@ -6,7 +6,7 @@ import
 	HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, skip } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Context } from './abort.interface';
 import { AbortService } from './abort.service';
@@ -31,7 +31,7 @@ export class AbortInterceptor implements HttpInterceptor
 		return next
 			.handle(request)
 			.pipe(
-				takeUntil(this.abortService.get(request))
+				takeUntil(this.abortService.get(request).pipe(skip(1)))
 			);
 	}
 }
