@@ -61,6 +61,18 @@ export class ExampleService extends CrudService<RequestBody, ResponseBody>
 }
 ```
 
+Use the HTTP operations as needed:
+
+```typescript
+exampleService.create(body, options);
+exampleService.read(id, options);
+exampleService.find(options);
+exampleService.update(id, body, options);
+exampleService.patch(id, body, options);
+exampleService.delete(id, options);
+exampleService.custom(method, options);
+```
+
 
 Documentation
 -------------
