@@ -48,7 +48,7 @@
 		"@types/mocha": "9.1.1",
 		"chai": "4.3.6",
 		"core-js": "3.25.1",
-		"eslint": "8.23.0",
+		"eslint": "8.28.0",
 		"jsdom": "20.0.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "10.0.0",
