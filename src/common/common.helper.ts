@@ -27,5 +27,5 @@ export function createUrlWithId(apiUrl : string, apiRoute : string, id : Id) : s
 
 export function stripUrlParams(urlWithParams : string) : string
 {
-	return urlWithParams.split('?').at(0);
+	return urlWithParams?.split('?').at(0);
 }
