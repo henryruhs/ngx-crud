@@ -74,7 +74,7 @@ describe('CrudService', () =>
 				.findByUser('10')
 				.subscribe(response =>
 				{
-					expect(response[0].userId).to.equal(10);
+					expect(response.at(0).userId).to.equal(10);
 					done();
 				});
 		})();
@@ -91,7 +91,7 @@ describe('CrudService', () =>
 				.find()
 				.subscribe(response =>
 				{
-					expect(response[0].userId).to.equal(1);
+					expect(response.at(0).userId).to.equal(1);
 					done();
 				});
 		})();

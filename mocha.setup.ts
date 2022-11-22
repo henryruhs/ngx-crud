@@ -1,4 +1,5 @@
 import 'core-js/proposals/reflect-metadata';
+import 'core-js/proposals/relative-indexing-method';
 import 'zone.js';
 import 'jsdom-global/register';
 import { TestBed } from '@angular/core/testing';
