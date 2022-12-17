@@ -3,7 +3,7 @@ NGX CRUD
 
 > CRUD services in Angular with effortless aborting, caching and observing.
 
-[![Build Status](https://img.shields.io/github/workflow/status/henryruhs/ngx-crud/ci.svg)](https://github.com/henryruhs/ngx-crud/actions?query=workflow:ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/henryruhs/ngx-crud/ci.yml.svg?branch=master)](https://github.com/henryruhs/ngx-crud/actions?query=workflow:ci)
 [![Coverage Status](https://coveralls.io/repos/github/henryruhs/ngx-crud/badge.svg)](https://coveralls.io/github/henryruhs/ngx-crud)
 [![NPM Version](https://img.shields.io/npm/v/ngx-crud.svg)](https://npmjs.com/package/ngx-crud)
 [![License](https://img.shields.io/npm/l/ngx-crud.svg)](https://npmjs.com/package/ngx-crud)
