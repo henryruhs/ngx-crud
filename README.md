@@ -54,10 +54,10 @@ import { RequestBody, ResponseBody } from './example.interface';
 import { environment } from '@environments';
 
 @Injectable()
+@ApiUrl(environment.apiUrl)
+@ApiRoute(environment.apiRoutes.example)
 export class ExampleService extends CrudService<RequestBody, ResponseBody>
 {
-	protected apiUrl : string = environment.apiUrl;
-	protected apiRoute : string = environment.apiRoutes.example;
 }
 ```
 
