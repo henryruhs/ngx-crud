@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 import { CrudModule, AbortService } from '../src';
@@ -62,13 +62,13 @@ describe('AbortService', () =>
 				});
 			abortService
 				.get(mockRequest(testService))
-				.subscribe(signal =>
+				.pipe(
+					filter(signal => signal === 'ABORTED')
+				)
+				.subscribe(() =>
 				{
-					if (signal === 'ABORTED')
-					{
-						testService.clear();
-						done();
-					}
+					testService.clear();
+					done();
 				});
 		})();
 	});
@@ -93,13 +93,13 @@ describe('AbortService', () =>
 			testService.abort();
 			abortService
 				.get(mockRequest(testService))
-				.subscribe(signal =>
+				.pipe(
+					filter(signal => signal === 'ABORTED')
+				)
+				.subscribe(() =>
 				{
-					if (signal === 'ABORTED')
-					{
-						testService.clear();
-						done();
-					}
+					testService.clear();
+					done();
 				});
 		})();
 	});
@@ -124,13 +124,13 @@ describe('AbortService', () =>
 			abortService
 				.abortMany('https://jsonplaceholder.typicode.com/posts')
 				.get(mockRequest(testService))
-				.subscribe(signal =>
+				.pipe(
+					filter(signal => signal === 'ABORTED')
+				)
+				.subscribe(() =>
 				{
-					if (signal === 'ABORTED')
-					{
-						testService.clear();
-						done();
-					}
+					testService.clear();
+					done();
 				});
 		})();
 	});
@@ -155,13 +155,13 @@ describe('AbortService', () =>
 				abortService
 					.abortAll()
 					.get(mockRequest(testService))
-					.subscribe(signal =>
+					.pipe(
+						filter(signal => signal === 'ABORTED')
+					)
+					.subscribe(() =>
 					{
-						if (signal === 'ABORTED')
-						{
-							testService.clear();
-							done();
-						}
+						testService.clear();
+						done();
 					});
 		})();
 	});
