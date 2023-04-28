@@ -2,8 +2,10 @@ import { HttpContextToken, HttpRequest, HttpResponse } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, filter, from, timer, mergeMap } from 'rxjs';
 import { ReactiveMap } from 'rxjs-collection';
-import { Context, Store } from './cache.interface';
+
 import { stripUrlParams } from '../common';
+
+import { Context, Store } from './cache.interface';
 
 @Injectable()
 export class CacheService

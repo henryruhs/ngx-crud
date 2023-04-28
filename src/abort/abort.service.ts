@@ -2,9 +2,11 @@ import { HttpContextToken, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription, filter, from, timer, mergeMap } from 'rxjs';
 import { ReactiveMap } from 'rxjs-collection';
+
+import { stripUrlParams } from '../common';
+
 import { Context, Store } from './abort.interface';
 import { AbortSignal } from './abort.type';
-import { stripUrlParams } from '../common';
 
 @Injectable()
 export class AbortService

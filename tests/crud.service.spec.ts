@@ -1,7 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
+
 import { CrudModule } from '../src';
+
 import { TestService } from './test.service';
 
 before(() =>

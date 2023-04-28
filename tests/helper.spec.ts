@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import { createUrl, createUrlWithId, stripUrlParams, Id } from '../src';
 
 describe('Helper', () =>
