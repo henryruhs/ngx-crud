@@ -52,7 +52,7 @@
 		"jsdom": "21.1.1",
 		"jsdom-global": "3.0.2",
 		"mocha": "10.2.0",
-		"ng-packagr": "15.2.2",
+		"ng-packagr": "16.0.0-rc.1",
 		"rxjs": "7.8.1",
 		"rxjs-collection": "2.1.2",
 		"ts-node": "10.9.1",
