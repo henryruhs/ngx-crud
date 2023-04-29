@@ -10,16 +10,6 @@ import { RequestBody, ResponseBody } from './test.interface';
 @ApiRoute('/posts')
 export class TestService extends CrudService<RequestBody, ResponseBody>
 {
-	/**
-	 * find by user
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param {string} userId identifier of the user
-	 *
-	 * @return {Observable<ResponseBody[]>} http response
-	 */
-
 	findByUser(userId : string) : Observable<ResponseBody[]>
 	{
 		return this.clone().setParam('userId', userId).find();

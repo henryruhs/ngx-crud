@@ -26,7 +26,7 @@ before(() =>
 		});
 });
 
-describe('CacheService', () =>
+describe(CacheService.name, () =>
 {
 	it('enable and disable', () =>
 	{

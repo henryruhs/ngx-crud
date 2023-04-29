@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 
-import { CrudModule } from '../src';
+import {CrudModule, CrudService} from '../src';
 
 import { TestService } from './test.service';
 
@@ -23,7 +23,7 @@ before(() =>
 		});
 });
 
-describe('CrudService', () =>
+describe(CrudService.name, () =>
 {
 	it('create', done =>
 	{

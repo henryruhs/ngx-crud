@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { createUrl, createUrlWithId, stripUrlParams, Id } from '../src';
 
-describe('Helper', () =>
+describe(createUrl.name, () =>
 {
 	it('create url', () =>
 	{
@@ -43,7 +43,10 @@ describe('Helper', () =>
 
 		testArray.map(testSet => expect(createUrlWithId(testSet.apiUrl, testSet.apiRoute, testSet.id)).to.be.equal(testSet.url));
 	});
+});
 
+describe(stripUrlParams.name, () =>
+{
 	it('strip url params', () =>
 	{
 		expect(stripUrlParams('http://localhost/v1.0.0/posts/1?cache=1'), 'http://localhost/v1.0.0/posts/1');

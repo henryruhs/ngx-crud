@@ -26,7 +26,7 @@ before(() =>
 		});
 });
 
-describe('AbortService', () =>
+describe(AbortService.name, () =>
 {
 	it('enable and disable', () =>
 	{

@@ -32,7 +32,7 @@ before(() =>
 		});
 });
 
-describe('ObserveService', () =>
+describe(ObserveService.name, () =>
 {
 	it('enable and disable', () =>
 	{

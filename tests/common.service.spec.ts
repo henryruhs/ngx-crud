@@ -24,7 +24,7 @@ before(() =>
 		});
 });
 
-describe('CommonService', () =>
+describe(CommonService.name, () =>
 {
 	it('simple param', () =>
 	{
