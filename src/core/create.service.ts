@@ -13,7 +13,7 @@ export class CreateService<CreateRequestBody, CreateResponseBody> extends Common
 		ResponseBody = CreateResponseBody
 	>(body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.post<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
+		return this.httpClient.post<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()), body,
 		{
 			...this.getOptions(),
 			...options

@@ -10,7 +10,7 @@ export class ReadService<ReadResponseBody> extends CommonService
 		ResponseBody = ReadResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.get<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.httpClient.get<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

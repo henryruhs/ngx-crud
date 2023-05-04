@@ -13,7 +13,7 @@ export class CustomService<CustomRequestBody, CustomResponseBody> extends Common
 		ResponseBody = CustomResponseBody
 	>(method : Method, options ?: OptionsWithBody<NoInfer<RequestBody>>) : Observable<ResponseBody>
 	{
-		return this.http.request<ResponseBody>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.httpClient.request<ResponseBody>(method, createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

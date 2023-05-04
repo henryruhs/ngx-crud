@@ -13,7 +13,7 @@ export class UpdateService<UpdateRequestBody, UpdateResponseBody> extends Common
 		ResponseBody = UpdateResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.put<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
+		return this.httpClient.put<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options

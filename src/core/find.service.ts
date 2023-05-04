@@ -10,7 +10,7 @@ export class FindService<FindResponseBody> extends CommonService
 		ResponseBody = FindResponseBody
 	>(options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.get<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()),
+		return this.httpClient.get<ResponseBody>(createUrl(this.getApiUrl(), this.getApiRoute()),
 		{
 			...this.getOptions(),
 			...options

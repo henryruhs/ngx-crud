@@ -10,7 +10,7 @@ export class DeleteService<DeleteResponseBody> extends CommonService
 		ResponseBody = DeleteResponseBody
 	>(id : Id, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.delete<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
+		return this.httpClient.delete<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id),
 		{
 			...this.getOptions(),
 			...options

@@ -13,7 +13,7 @@ export class PatchService<PatchRequestBody, PatchResponseBody> extends CommonSer
 		ResponseBody = PatchResponseBody
 	>(id : Id, body : NoInfer<RequestBody>, options ?: Options) : Observable<ResponseBody>
 	{
-		return this.http.patch<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
+		return this.httpClient.patch<ResponseBody>(createUrlWithId(this.getApiUrl(), this.getApiRoute(), id), body,
 		{
 			...this.getOptions(),
 			...options
