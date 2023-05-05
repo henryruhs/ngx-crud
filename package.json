@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "16.0.0",
+	"version": "16.0.1",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -61,7 +61,7 @@
 	},
 	"scripts":
 	{
-		"build": "ng-packagr --project=ng-package.json",
+		"build": "ng-packagr --project=ng-package.json --config=tsconfig.build.json",
 		"prepublishOnly": "exit 1",
 		"lint": "eslint src tests --ext=.ts",
 		"fix": "npm run lint -- --fix",

@@ -12,20 +12,16 @@ import { createUrl } from './common.helper';
 @Injectable()
 export class CommonService
 {
-	protected httpClient : HttpClient;
-	protected abortService : AbortService;
-	protected cacheService : CacheService;
-	protected observeService : ObserveService;
+	protected httpClient : HttpClient = this.injector.get(HttpClient);
+	protected abortService : AbortService = this.injector.get(AbortService);
+	protected cacheService : CacheService = this.injector.get(CacheService);
+	protected observeService : ObserveService = this.injector.get(ObserveService);
 	protected apiUrl : string;
 	protected apiRoute : string;
 	protected options : Options;
 
 	constructor(protected injector : Injector)
 	{
-		this.httpClient = this.injector.get(HttpClient);
-		this.abortService = this.injector.get(AbortService);
-		this.cacheService = this.injector.get(CacheService);
-		this.observeService = this.injector.get(ObserveService);
 		this.init();
 	}
 
