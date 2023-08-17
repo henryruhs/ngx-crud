@@ -77,4 +77,4 @@ exampleService.custom(method, options);
 Documentation
 -------------
 
-Read the [documenation](https://henryruhs.gitbook.io/ngx-crud) for a deep dive.
+Read the [documentation](https://henryruhs.gitbook.io/ngx-crud) for a deep dive.
