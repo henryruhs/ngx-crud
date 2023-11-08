@@ -7,33 +7,33 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Set up Node 16
-    uses: actions/setup-node@v3
+    uses: actions/setup-node@v4
     with:
-     node-version: 16
+     node-version: 18
   - run: npm install
   - run: npm run lint
  build:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout
-    uses: actions/checkout@v3
-  - name: Set up Node 16
-    uses: actions/setup-node@v3
+    uses: actions/checkout@v4
+  - name: Set up Node 18
+    uses: actions/setup-node@v4
     with:
-     node-version: 16
+     node-version: 18
   - run: npm install
   - run: npm run build
  test:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout
-    uses: actions/checkout@v3
-  - name: Set up Node 16
-    uses: actions/setup-node@v3
+    uses: actions/checkout@v4
+  - name: Set up Node 18
+    uses: actions/setup-node@v4
     with:
-     node-version: 16.17.1
+     node-version: 18
   - run: npm install
   - run: npm run test
  report:
@@ -41,15 +41,14 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout
-    uses: actions/checkout@v3
-  - name: Set up Node 16
-    uses: actions/setup-node@v3
+    uses: actions/checkout@v4
+  - name: Set up Node 18
+    uses: actions/setup-node@v4
     with:
-     node-version: 16.17.1
+     node-version: 18
   - run: npm install
   - run: npx c8 --reporter=lcov mocha
   - name: Report to Coveralls
-    uses: coverallsapp/github-action@v1.1.2
+    uses: coverallsapp/github-action@v2
     with:
      github-token: ${{ secrets.GITHUB_TOKEN }}
-
