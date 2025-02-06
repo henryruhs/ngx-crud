@@ -20,10 +20,10 @@ npm install ngx-crud
 Setup
 -----
 
-Import the `CrudModule` and `HttpClientModule` inside your `AppModule`:
+Import the `CrudModule` and `provideHttpClient` inside your `AppModule`:
 
 ```typescript
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CrudModule } from 'ngx-crud';
 
@@ -31,8 +31,11 @@ import { CrudModule } from 'ngx-crud';
 {
 	imports:
 	[
-		CrudModule,
-		HttpClientModule
+		CrudModule
+	],
+	providers:
+	[
+		provideHttpClient(withInterceptorsFromDi())
 	]
 })
 export class AppModule
