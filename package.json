@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "18.0.0",
+	"version": "19.0.0",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -30,33 +30,33 @@
 	},
 	"peerDependencies":
 	{
-		"@angular/common": "^18",
-		"@angular/core": "^18",
+		"@angular/common": "^19",
+		"@angular/core": "^19",
 		"rxjs": "^7",
 		"rxjs-collection": "^2"
 	},
 	"devDependencies":
 	{
-		"@angular/common": "18.2.13",
-		"@angular/compiler": "18.2.13",
-		"@angular/compiler-cli": "18.2.13",
-		"@angular/core": "18.2.13",
-		"@angular/platform-browser": "18.2.13",
-		"@angular/platform-browser-dynamic": "18.2.13",
+		"@angular/common": "19.1.4",
+		"@angular/compiler": "19.1.4",
+		"@angular/compiler-cli": "19.1.4",
+		"@angular/core": "19.1.4",
+		"@angular/platform-browser": "19.1.4",
+		"@angular/platform-browser-dynamic": "19.1.4",
 		"@isnotdefined/eslint-config": "9.8.0",
-		"@types/chai": "4.3.10",
-		"@types/mocha": "10.0.4",
-		"chai": "4.3.10",
-		"core-js": "3.33.2",
+		"@types/chai": "5.0.1",
+		"@types/mocha": "10.0.10",
+		"chai": "5.1.2",
+		"core-js": "3.40.0",
 		"eslint": "8.53.0",
-		"jsdom": "22.1.0",
+		"jsdom": "26.0.0",
 		"jsdom-global": "3.0.2",
-		"mocha": "10.2.0",
-		"ng-packagr": "18.2.1",
+		"mocha": "11.1.0",
+		"ng-packagr": "19.1.2",
 		"rxjs": "7.8.1",
 		"rxjs-collection": "2.1.2",
-		"ts-node": "10.9.1",
-		"typescript": "5.5.4"
+		"ts-node": "10.9.2",
+		"typescript": "5.7.3"
 	},
 	"scripts":
 	{
