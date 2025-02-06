@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { EMPTY } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
 import { inject, TestBed } from '@angular/core/testing';
@@ -17,11 +17,11 @@ before(() =>
 		{
 			imports:
 			[
-				CrudModule,
-				HttpClientModule
+				CrudModule
 			],
 			providers:
 			[
+				provideHttpClient(withInterceptorsFromDi()),
 				ObserveService,
 				TestService,
 				{

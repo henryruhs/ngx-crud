@@ -1,4 +1,9 @@
-import { HttpClient, HttpClientModule, HttpContextToken } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpContextToken,
+	provideHttpClient,
+	withInterceptorsFromDi
+} from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
 
@@ -13,11 +18,11 @@ before(() =>
 		{
 			imports:
 			[
-				CrudModule,
-				HttpClientModule
+				CrudModule
 			],
 			providers:
 			[
+				provideHttpClient(withInterceptorsFromDi()),
 				CommonService,
 				TestService
 			]
