@@ -1,7 +1,7 @@
 {
 	"name": "ngx-crud",
 	"description": "CRUD services in Angular with effortless aborting, caching and observing",
-	"version": "19.0.0",
+	"version": "19.0.1",
 	"homepage": "https://ngx-crud.com",
 	"license": "MIT",
 	"type": "module",
@@ -37,32 +37,32 @@
 	},
 	"devDependencies":
 	{
-		"@angular/common": "19.1.4",
-		"@angular/compiler": "19.1.4",
-		"@angular/compiler-cli": "19.1.4",
-		"@angular/core": "19.1.4",
-		"@angular/platform-browser": "19.1.4",
-		"@angular/platform-browser-dynamic": "19.1.4",
-		"@isnotdefined/eslint-config": "9.8.0",
+		"@angular/common": "19.1.5",
+		"@angular/compiler": "19.1.5",
+		"@angular/compiler-cli": "19.1.5",
+		"@angular/core": "19.1.5",
+		"@angular/platform-browser": "19.1.5",
+		"@angular/platform-browser-dynamic": "19.1.5",
+		"@isnotdefined/eslint-config": "10.0.0",
 		"@types/chai": "5.0.1",
 		"@types/mocha": "10.0.10",
 		"chai": "5.1.2",
 		"core-js": "3.40.0",
-		"eslint": "8.53.0",
+		"eslint": "9.19.0",
 		"jsdom": "26.0.0",
 		"jsdom-global": "3.0.2",
 		"mocha": "11.1.0",
 		"ng-packagr": "19.1.2",
 		"rxjs": "7.8.1",
-		"rxjs-collection": "2.1.2",
+		"rxjs-collection": "2.1.3",
 		"ts-node": "10.9.2",
 		"typescript": "5.7.3"
 	},
 	"scripts":
 	{
-		"build": "ng-packagr --project=ng-package.json --config=tsconfig.build.json",
+		"build": "ng-packagr --project ng-package.json --config tsconfig.build.json",
 		"prepublishOnly": "exit 1",
-		"lint": "eslint src tests --ext=.ts",
+		"lint": "eslint .",
 		"fix": "npm run lint -- --fix",
 		"test": "mocha"
 	}
